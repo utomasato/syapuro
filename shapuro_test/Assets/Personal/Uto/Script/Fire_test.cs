@@ -20,6 +20,8 @@ public class Fire_test : MonoBehaviour
     void Start()
     {
         movingSpeed = movingSpeed1;
+        candle.WakeUp();
+        IsOnCandle = true;
     }
 
     // Update is called once per frame
@@ -36,6 +38,7 @@ public class Fire_test : MonoBehaviour
 
         if (IsOnCandle)
         {
+            //Debug.Log(candle.GetHedPos());
             transform.position = candle.GetHedPos();
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -120,7 +123,7 @@ public class Fire_test : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
             //IsBigFire=false;
-            transform.position += new Vector3(0, 1f, 0);
+            transform.position += new Vector3(0, 0.6f, 0);
             IsOnCandle = false;
             t = 0f;
         }
@@ -134,9 +137,10 @@ public class Fire_test : MonoBehaviour
 
     public void Transfer(Candle_test NewCandle)
     {
+        if (candle != null) candle.Sleep();
         candle = NewCandle;
         IsOnCandle = true;
-        candle.Jump();
+        candle.WakeUp();
     }
 
 }

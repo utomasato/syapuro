@@ -17,7 +17,7 @@ public class Fire_sub_test : MonoBehaviour
 
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (parent.GetIsOnCandle() && other.gameObject.CompareTag("lamp"))
         {
