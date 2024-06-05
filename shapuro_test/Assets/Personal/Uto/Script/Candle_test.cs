@@ -8,22 +8,37 @@ public class Candle_test : MonoBehaviour
     [SerializeField] private float SpL;        // lifeと見た目の大きさの割合 同じ長さでも持つ時間が違うかも
     [SerializeField] private float jumpPower = 8f;
     [SerializeField] private GameObject firePoint;  // 火がつくところ
+    private float size0;
     private bool CanJump = true;
+    private bool IsBurning = false;
     private Vector3 hedPos0;
     private Vector3 hedPos;
     private Rigidbody rb;
-    // Start is called before the first frame update
+
     void Start()
     {
-        SpL = transform.lossyScale.y / life;
+        size0 = transform.lossyScale.y;
+        SpL = size0 / life;
         rb = GetComponent<Rigidbody>();
         hedPos0 = firePoint.transform.position - this.transform.position;
+        if (IsBurning)
+        {
+            Vector3 p = transform.position;
+            p.z = 0f;
+            transform.position = p;
+        }
+        else
+        {
+            Vector3 p = transform.position;
+            p.z = 2f;
+            transform.position = p;
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        hedPos = transform.position + hedPos0 * life * SpL / 2;
+        if (!IsBurning) return;
+        hedPos = transform.position + hedPos0 * life * SpL / size0;
         firePoint.transform.position = hedPos;
     }
 
@@ -50,6 +65,24 @@ public class Candle_test : MonoBehaviour
             rb.velocity = Vector3.up * jumpPower;
             CanJump = false;
         }
+    }
+
+    public void WakeUp()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.up * jumpPower / 2f;
+        CanJump = false;
+        IsBurning = true;
+        Vector3 p = transform.position;
+        p.z = 0f;
+        transform.position = p;
+    }
+
+    public void Sleep()
+    {
+        IsBurning = false;
+        Vector3 p = transform.position;
+        p.z = 2f;
+        transform.position = p;
     }
 
     public Vector3 GetHedPos()
