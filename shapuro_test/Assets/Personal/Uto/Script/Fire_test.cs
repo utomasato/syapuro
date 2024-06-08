@@ -9,10 +9,11 @@ public class Fire_test : MonoBehaviour
     [SerializeField] private float BurningRate1, BurningRate2;//蝋の燃焼速度　弱火、強火
     [SerializeField] private float fireSpeed; // 火の玉状態の移動速度
     [SerializeField] private float flingtime; // 火の玉状態での生存時間
-    private float t;
+    private float t; // 火の玉状態になってからの経過時間
     [SerializeField] private Candle_test candle;
+    [SerializeField] private CandleCon_test candlecon;
     //private bool IsBigFire = false;
-    private bool IsOnCandle = true;
+    private bool IsOnCandle = false;
     private bool IsGameOver = false;
 
 
@@ -20,8 +21,8 @@ public class Fire_test : MonoBehaviour
     void Start()
     {
         movingSpeed = movingSpeed1;
-        candle.WakeUp();
-        IsOnCandle = true;
+        //candle.WakeUp();
+        //IsOnCandle = true;
     }
 
     // Update is called once per frame
@@ -65,17 +66,17 @@ public class Fire_test : MonoBehaviour
 
             if (Input.GetKey(KeyCode.A))
             {
-                candle.Move(-movingSpeed);
+                candlecon.Move(-movingSpeed);
             }
 
             if (Input.GetKey(KeyCode.D))
             {
-                candle.Move(movingSpeed);
+                candlecon.Move(movingSpeed);
             }
 
             if (Input.GetKeyDown(KeyCode.W))
             {
-                candle.Jump();
+                candlecon.Jump();
             }
 
             if (Input.GetKeyDown(KeyCode.Return))
@@ -96,6 +97,7 @@ public class Fire_test : MonoBehaviour
                 else
                 {
                     IsOnCandle = true;
+                    candle.WakeUp();
                 }
             }
             if (Input.GetKey(KeyCode.A))
@@ -117,7 +119,7 @@ public class Fire_test : MonoBehaviour
         }
     }
 
-    public void fly()
+    public void fly()//蝋燭から離れる
     {
         if (IsOnCandle)
         {
@@ -126,8 +128,19 @@ public class Fire_test : MonoBehaviour
             transform.position += new Vector3(0, 0.6f, 0);
             IsOnCandle = false;
             t = 0f;
+            if (candle != null)
+            {
+                candle.Sleep();
+            }
         }
+    }
 
+    public void Transfer(FirePosition_test NewCandle)//蝋燭に憑依
+    {
+        candle = NewCandle.candle;
+        candlecon = NewCandle.candlecon;
+        IsOnCandle = true;
+        candle.WakeUp();
     }
 
     public bool GetIsOnCandle()
@@ -135,12 +148,5 @@ public class Fire_test : MonoBehaviour
         return IsOnCandle;
     }
 
-    public void Transfer(Candle_test NewCandle)
-    {
-        if (candle != null) candle.Sleep();
-        candle = NewCandle;
-        IsOnCandle = true;
-        candle.WakeUp();
-    }
 
 }
