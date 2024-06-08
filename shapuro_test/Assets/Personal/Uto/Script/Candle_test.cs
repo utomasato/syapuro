@@ -6,33 +6,22 @@ public class Candle_test : MonoBehaviour
 {
     [SerializeField] private float life = 2f;       // 全体量
     [SerializeField] private float SpL;        // lifeと見た目の大きさの割合 同じ長さでも持つ時間が違うかも
-    [SerializeField] private float jumpPower = 8f;
     [SerializeField] private GameObject firePoint;  // 火がつくところ
+    [SerializeField] private CandleCon_test candlecon;
     private float size0;
-    private bool CanJump = true;
+    private float size;
     private bool IsBurning = false;
     private Vector3 hedPos0;
     private Vector3 hedPos;
-    private Rigidbody rb;
 
     void Start()
     {
+
         size0 = transform.lossyScale.y;
+        size = size0;
         SpL = size0 / life;
-        rb = GetComponent<Rigidbody>();
         hedPos0 = firePoint.transform.position - this.transform.position;
-        if (IsBurning)
-        {
-            Vector3 p = transform.position;
-            p.z = 0f;
-            transform.position = p;
-        }
-        else
-        {
-            Vector3 p = transform.position;
-            p.z = 2f;
-            transform.position = p;
-        }
+        Sleep();
     }
 
     void Update()
@@ -42,56 +31,51 @@ public class Candle_test : MonoBehaviour
         firePoint.transform.position = hedPos;
     }
 
-    public void Shorten(float speed)
+    public void Shorten(float speed) // 蝋燭を短くする
     {
         life -= speed * Time.deltaTime;
-        transform.localScale = new Vector3(1, life * SpL, 1);
+        size = life * SpL;
+        Vector3 ls = transform.localScale;
+        ls.y = size;
+        transform.localScale = ls;
         if (life <= 0f)
         {
+            Destroy(candlecon.gameObject);
             Destroy(firePoint);
             Destroy(this.gameObject);
         }
     }
 
-    public void Move(float x)
+    public void Moving_sub(Vector3 pos)
     {
-        transform.position += new Vector3(x * Time.deltaTime, 0, 0);
+        transform.position = pos;
     }
 
-    public void Jump()
+    public void WakeUp() // 憑依される
     {
-        if (CanJump)
-        {
-            rb.velocity = Vector3.up * jumpPower;
-            CanJump = false;
-        }
-    }
-
-    public void WakeUp()
-    {
-        GetComponent<Rigidbody>().velocity = Vector3.up * jumpPower / 2f;
-        CanJump = false;
         IsBurning = true;
         Vector3 p = transform.position;
         p.z = 0f;
         transform.position = p;
+        candlecon.WakeUp_sub();
     }
 
-    public void Sleep()
+    public void Sleep() // 抜け殻になる
     {
         IsBurning = false;
         Vector3 p = transform.position;
         p.z = 2f;
         transform.position = p;
+        candlecon.Sleep_sub();
     }
 
-    public Vector3 GetHedPos()
+    public Vector3 GetHedPos() // 炎の位置
     {
         return hedPos;
     }
 
-    void OnCollisionEnter(Collision collision)
+    public float GetSize() // 蝋燭のサイズ
     {
-        CanJump = true; // 地面に接触したらフラグを立てる
+        return size;
     }
 }

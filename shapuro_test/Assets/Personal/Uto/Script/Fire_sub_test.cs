@@ -26,7 +26,7 @@ public class Fire_sub_test : MonoBehaviour
 
         if (!parent.GetIsOnCandle() && other.gameObject.CompareTag("FirePosition"))
         {
-            parent.Transfer(other.gameObject.GetComponent<FirePosition_test>().candle);
+            parent.Transfer(other.gameObject.GetComponent<FirePosition_test>());
         }
     }
 }
