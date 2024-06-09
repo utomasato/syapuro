@@ -43,14 +43,18 @@ public class Fire_test : MonoBehaviour
             transform.position = candle.GetHedPos();
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                transform.localScale = new Vector3(1, 2, 1);
+                Vector3 s = transform.localScale;
+                s.y = 2f;
+                transform.localScale = s;
                 //IsBigFire = true;
                 movingSpeed = movingSpeed2;
             }
 
             if (Input.GetKeyUp(KeyCode.Space))
             {
-                transform.localScale = new Vector3(1, 1, 1);
+                Vector3 s = transform.localScale;
+                s.y = 1f;
+                transform.localScale = s;
                 //IsBigFire = false;
                 movingSpeed = movingSpeed1;
             }

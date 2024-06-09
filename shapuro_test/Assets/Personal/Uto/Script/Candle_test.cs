@@ -10,7 +10,7 @@ public class Candle_test : MonoBehaviour
     [SerializeField] private CandleCon_test candlecon;
     private float size0;
     private float size;
-    private bool IsBurning = false;
+    //private bool IsBurning = false;
     private Vector3 hedPos0;
     private Vector3 hedPos;
 
@@ -26,9 +26,11 @@ public class Candle_test : MonoBehaviour
 
     void Update()
     {
-        if (!IsBurning) return;
+        //if (!IsBurning) return;
         hedPos = transform.position + hedPos0 * life * SpL / size0;
-        firePoint.transform.position = hedPos;
+        Vector3 h = hedPos;
+        h.z -= 1.5f;
+        firePoint.transform.position = h;
     }
 
     public void Shorten(float speed) // 蝋燭を短くする
@@ -40,6 +42,7 @@ public class Candle_test : MonoBehaviour
         transform.localScale = ls;
         if (life <= 0f)
         {
+            Sleep();
             Destroy(candlecon.gameObject);
             Destroy(firePoint);
             Destroy(this.gameObject);
@@ -53,7 +56,7 @@ public class Candle_test : MonoBehaviour
 
     public void WakeUp() // 憑依される
     {
-        IsBurning = true;
+        //IsBurning = true;
         Vector3 p = transform.position;
         p.z = 0f;
         transform.position = p;
@@ -62,7 +65,7 @@ public class Candle_test : MonoBehaviour
 
     public void Sleep() // 抜け殻になる
     {
-        IsBurning = false;
+        //IsBurning = false;
         Vector3 p = transform.position;
         p.z = 2f;
         transform.position = p;
