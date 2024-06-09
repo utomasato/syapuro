@@ -11,6 +11,7 @@ public class CandleCon_test : MonoBehaviour
     [SerializeField] private Candle_test candle;
     [SerializeField] private float legsize = 0.6f;
     [SerializeField] private float jumpPower = 8f;
+    [SerializeField] private GameObject foot;
     private bool CanJump = true;
     private bool IsBurning = false;
     private Rigidbody rb;
@@ -29,6 +30,9 @@ public class CandleCon_test : MonoBehaviour
             ls.y = candle.GetSize() + legsize;
             transform.localScale = ls;
             candle.Moving_sub(transform.position + new Vector3(0f, legsize / 2f, 0f));
+            Vector3 footpos = transform.position;
+            footpos.y -= ls.y / 2 - legsize;
+            foot.transform.position = footpos;
         }
         else
         {
@@ -64,7 +68,6 @@ public class CandleCon_test : MonoBehaviour
 
     public void Sleep_sub() // 抜け殻になる 足が消える
     {
-
         Vector3 ls = transform.localScale;
         ls.y = candle.GetSize();
         transform.localScale = ls;
@@ -76,5 +79,6 @@ public class CandleCon_test : MonoBehaviour
         Vector3 p = transform.position;
         p.z = 2f;
         transform.position = p;
+        foot.transform.position = new Vector3(0f, -1000f, 0f);
     }
 }
