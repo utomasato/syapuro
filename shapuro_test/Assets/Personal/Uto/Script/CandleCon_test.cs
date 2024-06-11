@@ -50,7 +50,7 @@ public class CandleCon_test : MonoBehaviour
         if (CanJump)
         {
             rb.velocity = Vector3.up * jumpPower;
-            //CanJump = false;
+            CanJump = false;
         }
     }
 
@@ -80,5 +80,10 @@ public class CandleCon_test : MonoBehaviour
         p.z = 2f;
         transform.position = p; // レイヤーを変える
         foot.transform.position = new Vector3(0f, -1000f, 0f); // 足をどっかやる
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        CanJump = true;
     }
 }
