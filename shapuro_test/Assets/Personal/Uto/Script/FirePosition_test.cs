@@ -1,3 +1,7 @@
+/*
+火がつく部分
+火の玉(プレイヤー)が当たるとそこに火がつく
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
