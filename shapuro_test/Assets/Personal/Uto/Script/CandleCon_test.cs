@@ -26,21 +26,21 @@ public class CandleCon_test : MonoBehaviour
     {
         if (IsBurning)
         {
-            Vector3 ls = transform.localScale;
+            Vector3 ls = transform.localScale; // candleが縮むのに合わせて小さくなる
             ls.y = candle.GetSize() + legsize;
             transform.localScale = ls;
-            candle.Moving_sub(transform.position + new Vector3(0f, legsize / 2f, 0f));
+            candle.Moving_sub(transform.position + new Vector3(0f, legsize / 2f, 0f)); // candleの位置を合わせる
             Vector3 footpos = transform.position;
             footpos.y -= ls.y / 2 - legsize;
-            foot.transform.position = footpos;
+            foot.transform.position = footpos; // 足の位置を合わせる
         }
         else
         {
-            candle.Moving_sub(transform.position);
+            candle.Moving_sub(transform.position); // candleの位置を合わせる
         }
     }
 
-    public void Move(float x)
+    public void Move(float x) // 動かす
     {
         transform.position += new Vector3(x * Time.deltaTime, 0, 0);
     }
@@ -50,7 +50,7 @@ public class CandleCon_test : MonoBehaviour
         if (CanJump)
         {
             rb.velocity = Vector3.up * jumpPower;
-            //CanJump = false;
+            CanJump = false;
         }
     }
 
@@ -59,18 +59,18 @@ public class CandleCon_test : MonoBehaviour
         IsBurning = true;
         Vector3 ls = transform.localScale;
         ls.y = candle.GetSize() + legsize;
-        transform.localScale = ls;
-        transform.position += new Vector3(0f, legsize / 2f, 0f);
+        transform.localScale = ls; // 足が生える分背が高くなる
+        transform.position += new Vector3(0f, legsize / 2f, 0f); // 足が生える分位置が高くなる
         Vector3 p = transform.position;
         p.z = 0f;
-        transform.position = p;
+        transform.position = p; // レイヤーを変える
     }
 
     public void Sleep_sub() // 抜け殻になる 足が消える
     {
         Vector3 ls = transform.localScale;
         ls.y = candle.GetSize();
-        transform.localScale = ls;
+        transform.localScale = ls; // 足がなくなる分小さくなる
         if (IsBurning)
         {
             IsBurning = false;
@@ -78,7 +78,12 @@ public class CandleCon_test : MonoBehaviour
         }
         Vector3 p = transform.position;
         p.z = 2f;
-        transform.position = p;
-        foot.transform.position = new Vector3(0f, -1000f, 0f);
+        transform.position = p; // レイヤーを変える
+        foot.transform.position = new Vector3(0f, -1000f, 0f); // 足をどっかやる
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        CanJump = true;
     }
 }
