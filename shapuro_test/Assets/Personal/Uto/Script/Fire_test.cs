@@ -1,3 +1,7 @@
+/*
+炎の動き部分
+炎から蝋燭に短くなる、動く、ジャンプの命令を出す
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

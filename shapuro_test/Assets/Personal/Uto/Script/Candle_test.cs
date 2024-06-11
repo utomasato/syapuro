@@ -1,3 +1,6 @@
+/*
+蝋燭が短くなる部分
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,16 +10,15 @@ public class Candle_test : MonoBehaviour
     [SerializeField] private float life = 2f;       // 全体量
     [SerializeField] private float SpL;        // lifeと見た目の大きさの割合 同じ長さでも持つ時間が違うかも
     [SerializeField] private GameObject firePoint;  // 火がつくところ
-    [SerializeField] private CandleCon_test candlecon;
-    private float size0;
-    private float size;
+    [SerializeField] private CandleCon_test candlecon; // 蝋燭の動きを司る
+    private float size0; // 初期サイズ
+    private float size; // 現在のサイズ
     //private bool IsBurning = false;
-    private Vector3 hedPos0;
-    private Vector3 hedPos;
+    private Vector3 hedPos0; // 火がつく部分の初期位置
+    private Vector3 hedPos; // 火がつく部分の位置
 
     void Start()
     {
-
         size0 = transform.lossyScale.y;
         size = size0;
         SpL = size0 / life;
@@ -27,7 +29,7 @@ public class Candle_test : MonoBehaviour
     void Update()
     {
         //if (!IsBurning) return;
-        hedPos = transform.position + hedPos0 * life * SpL / size0;
+        hedPos = transform.position + hedPos0 * life * SpL / size0; // 頭の位置を補正続ける(子オブジェクトにするとサイズも変わってしまうので動的に動かす)
         Vector3 h = hedPos;
         h.z -= 1.5f;
         firePoint.transform.position = h;
@@ -49,7 +51,7 @@ public class Candle_test : MonoBehaviour
         }
     }
 
-    public void Moving_sub(Vector3 pos)
+    public void Moving_sub(Vector3 pos) // 自身の位置を補正する
     {
         transform.position = pos;
     }
@@ -58,18 +60,18 @@ public class Candle_test : MonoBehaviour
     {
         //IsBurning = true;
         Vector3 p = transform.position;
-        p.z = 0f;
+        p.z = 0f; // レイヤーを変える
         transform.position = p;
-        candlecon.WakeUp_sub();
+        candlecon.WakeUp_sub(); // 動き側にも命令する
     }
 
     public void Sleep() // 抜け殻になる
     {
         //IsBurning = false;
         Vector3 p = transform.position;
-        p.z = 2f;
+        p.z = 2f; // レイヤーを変える
         transform.position = p;
-        candlecon.Sleep_sub();
+        candlecon.Sleep_sub(); // 動き側にも命令する
     }
 
     public Vector3 GetHedPos() // 炎の位置
