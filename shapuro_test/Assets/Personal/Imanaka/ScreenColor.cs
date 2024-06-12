@@ -13,7 +13,7 @@ public class ScreenColor : MonoBehaviour
     {
         gamemanager = new GameManager();
         GameOvercanvas.SetActive(false);
-        //   gamemanager.SetisGameOver(true); /*ここをコメント解除するとゲームオーバー画面になる*/
+        // gamemanager.SetisGameOver(true); /*ここをコメント解除するとゲームオーバー画面になる*/
     }
 
     // Update is called once per frame
