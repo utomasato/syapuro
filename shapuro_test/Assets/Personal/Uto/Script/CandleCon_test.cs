@@ -86,4 +86,13 @@ public class CandleCon_test : MonoBehaviour
     {
         CanJump = true;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (IsBurning && other.gameObject.CompareTag("Goal")) // 憑依状態でゴールしたら
+        {
+            Debug.Log("CLEAR");
+            GameObject.Find("GameState").GetComponent<GameState_test>().Clear();
+        }
+    }
 }

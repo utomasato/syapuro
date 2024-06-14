@@ -20,7 +20,7 @@ public class Fire_sub_test : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (parent.GetIsOnCandle() && other.gameObject.CompareTag("lamp")) // 憑依状態でランプに当たったら
         {
