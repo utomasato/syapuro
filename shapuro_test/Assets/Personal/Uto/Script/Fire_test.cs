@@ -1,3 +1,7 @@
+/*
+炎の動き部分
+炎から蝋燭に短くなる、動く、ジャンプの命令を出す
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,19 +14,25 @@ public class Fire_test : MonoBehaviour
     [SerializeField] private float fireSpeed; // 火の玉状態の移動速度
     [SerializeField] private float flingtime; // 火の玉状態での生存時間
     private float t; // 火の玉状態になってからの経過時間
-    [SerializeField] private Candle_test candle;
-    [SerializeField] private CandleCon_test candlecon;
+    private Candle_test candle;
+    private CandleCon_test candlecon;
+    [SerializeField] private FirePosition_test startfp;
     //private bool IsBigFire = false;
-    private bool IsOnCandle = false;
+    [SerializeField] private bool IsOnCandle = false;
     private bool IsGameOver = false;
+    private Vector3 startSize;
 
 
     // Start is called before the first frame update
     void Start()
     {
         movingSpeed = movingSpeed1;
+        startSize = transform.localScale;
         //candle.WakeUp();
-        //IsOnCandle = true;
+        if (IsOnCandle == true)
+        {
+            Transfer(startfp);
+        }
     }
 
     // Update is called once per frame
@@ -37,7 +47,7 @@ public class Fire_test : MonoBehaviour
             return;
         }
 
-        if (IsOnCandle)
+        if (IsOnCandle) // 蝋燭に着いているとき
         {
             //Debug.Log(candle.GetHedPos());
             transform.position = candle.GetHedPos();
@@ -88,20 +98,23 @@ public class Fire_test : MonoBehaviour
                 fly();
             }
         }
-        else
+        else // 飛んでいる時
         {
             t += Time.deltaTime;
-            if (t >= flingtime)
+            transform.localScale = startSize * (1.0f - t / flingtime); // 火が小さくなっていく(火の玉状態での時間制限の可視化)
+            if (t >= flingtime) // 火の玉になってから一定時間過ぎた時
             {
-                if (candle == null)
+                if (candle == null) // 直前に着いてた蝋燭がなくなっていれば
                 {
                     Debug.Log("GameOver");
                     IsGameOver = true;
+                    GameObject.Find("GameState").GetComponent<GameState_test>().GameOver();
                 }
-                else
+                else // 直前に着いていた蝋燭が残っていれば
                 {
-                    IsOnCandle = true;
+                    IsOnCandle = true; // 元いたところに戻る
                     candle.WakeUp();
+                    transform.localScale = startSize;
                 }
             }
             if (Input.GetKey(KeyCode.A))
@@ -145,6 +158,7 @@ public class Fire_test : MonoBehaviour
         candlecon = NewCandle.candlecon;
         IsOnCandle = true;
         candle.WakeUp();
+        transform.localScale = startSize;
     }
 
     public bool GetIsOnCandle()
