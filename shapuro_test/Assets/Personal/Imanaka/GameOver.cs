@@ -10,6 +10,8 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private GameObject GameOverText;
     [SerializeField]
+    private GameObject ScoreParents;//スコア表示の親オブジェクト
+    [SerializeField]
     private TMP_Text Score_Text;//スコア結果を表示するテキスト
     [SerializeField]
     private GameObject Button;
@@ -31,21 +33,25 @@ public class GameOver : MonoBehaviour
 
     GameObject[] GameOverAssets;
 
-    private Coroutine SampleCoroutine;
+    private Coroutine SampleCoroutine = null;
     // Start is called before the first frame update
     void Start()
     {
 
-        GameOverAssets = new GameObject[] { GameOverText, Score_Text.gameObject, Button };
+        GameOverAssets = new GameObject[] { GameOverText, ScoreParents, Button };
         foreach (GameObject asset in GameOverAssets)
         {
             asset.SetActive(false);
         }
+        Background.SetActive(false);
     }
 
     // Update is called once per frame
+
+    private int i = 0;
     void Update()
     {
+
         Invoke("Test", 2.0f);
         GameOverSystem();
     }
@@ -68,7 +74,12 @@ public class GameOver : MonoBehaviour
         }
         if (IsGameOver)
         {
-            SampleCoroutine = StartCoroutine(GameOverCoroutine(2.0f));
+            if (SampleCoroutine == null)
+            {
+                Debug.Log("aaa");
+                SampleCoroutine = StartCoroutine(GameOverCoroutine(2.0f));
+            }
+
             Background.SetActive(true);
             ScoreResult(ResultEndTime);
         }
@@ -93,15 +104,17 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    private int i = 0;
+
     IEnumerator GameOverCoroutine(float delay)
     {
         while (i < GameOverAssets.Length)
         {
+
             GameOverAssets[i].SetActive(true);
-            yield return new WaitForSeconds(delay);
             i++;
+            yield return new WaitForSeconds(delay);
         }
+        IsGameOver = false;
         SampleCoroutine = null;
     }
 }
