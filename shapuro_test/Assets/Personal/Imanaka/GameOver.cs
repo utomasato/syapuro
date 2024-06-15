@@ -24,15 +24,15 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Invoke("IsgameStart", 0.1f);
+        Invoke("Test", 2.0f);
         if (IsgameStart)
         {
             currentScale = PL.transform.localScale;
-            if (currentScale.y < 0)
-            {
-                IsGameOver = true;
-                IsgameStart = false;
-            }
+            /*  if (currentScale.y < 0)
+              {
+                  IsGameOver = true;
+                  IsgameStart = false;
+              }*/
         }
         if (IsGameOver)
         {
@@ -42,7 +42,7 @@ public class GameOver : MonoBehaviour
 
     void Test()
     {
-        IsgameStart = true;
+        IsGameOver = true;
     }
 }
 
