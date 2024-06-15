@@ -52,7 +52,7 @@ public class GameOver : MonoBehaviour
     void Update()
     {
 
-        Invoke("Test", 2.0f);
+        //  Invoke("Test", 2.0f);
         GameOverSystem();
     }
 
@@ -77,7 +77,7 @@ public class GameOver : MonoBehaviour
             if (SampleCoroutine == null)
             {
                 Debug.Log("aaa");
-                SampleCoroutine = StartCoroutine(GameOverCoroutine(2.0f));
+                SampleCoroutine = StartCoroutine(GameCoroutine(2.0f, GameOverAssets));
             }
 
             Background.SetActive(true);
@@ -85,12 +85,12 @@ public class GameOver : MonoBehaviour
         }
     }
 
-    int RandomScore(int min, int max)
+    public int RandomScore(int min, int max)
     {
         return Random.Range(min, max);
     }
 
-    void ScoreResult(float Endtime)
+    public void ScoreResult(float Endtime)
     {
         ResultStartTime += Time.deltaTime;
         if (ResultStartTime < Endtime)
@@ -105,12 +105,12 @@ public class GameOver : MonoBehaviour
     }
 
 
-    IEnumerator GameOverCoroutine(float delay)
+    public IEnumerator GameCoroutine(float delay, GameObject[] Asset)
     {
-        while (i < GameOverAssets.Length)
+        while (i < Asset.Length)
         {
 
-            GameOverAssets[i].SetActive(true);
+            Asset[i].SetActive(true);
             i++;
             yield return new WaitForSeconds(delay);
         }
