@@ -47,6 +47,25 @@ public class CandleCon_test : MonoBehaviour
 
     public void Jump()
     {
+        //以下 浅井追加　20240615
+        if (1.5f <= candle.GetSize())
+        {
+            jumpPower = 8.0f;
+        }
+        else if (1.0f <= candle.GetSize())
+        {
+            jumpPower = 9.0f;
+        }
+        else if (0.5f <= candle.GetSize())
+        {
+            jumpPower = 10.0f;
+        }
+        else if (0f <= candle.GetSize())
+        {
+            jumpPower = 11.0f;
+        }
+        //
+
         if (CanJump)
         {
             rb.velocity = Vector3.up * jumpPower;
