@@ -18,15 +18,23 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private GameObject Button;
 
-    private bool IsGameOver = false;
 
     [SerializeField]
     private GameObject PL;
+    [SerializeField]
+    private GameObject Firepos;
+    [SerializeField]
+    private GameObject Canldlecon;
+    [SerializeField]
+    private GameObject Foot;
 
     private Vector3 SaveScale;
+
+    private Vector3 SaveFootpos;
+
+    private Vector3 SavePLpos;
     private Vector3 currentScale;
 
-    private bool IsgameStart = false;
 
     private float ResultStartTime = 0.0f;//結果を出すまでの時間
 
@@ -39,6 +47,8 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SaveFootpos = Foot.transform.position;
+        SavePLpos = PL.transform.position;
         SaveScale = PL.transform.localScale;
         GameOverAssets = new GameObject[] { GameOverText, ScoreParents, Button };
         foreach (GameObject asset in GameOverAssets)
@@ -78,6 +88,7 @@ public class GameOver : MonoBehaviour
 
         if (state.JudgeGameOver)
         {
+            Foot.SetActive(false);
             GameOverCanvas.SetActive(true);
             if (SampleCoroutine == null)
             {
@@ -132,8 +143,17 @@ public class GameOver : MonoBehaviour
     public void PressRetry()//リトライボタンを押した時
     {
         GameState_test state = GetComponent<GameState_test>();
-        transform.localScale = SaveScale;
+
+
+        Firepos.SetActive(true);
+        Canldlecon.SetActive(true);
+        PL.SetActive(true);
+        PL.transform.localScale = SaveScale;
+        PL.transform.position = SavePLpos;
+        Foot.SetActive(true);
+        Foot.transform.position = SaveFootpos;
         state.JudgeGameOver = false;
+        Debug.Log("a");
     }
 }
 
