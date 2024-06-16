@@ -31,13 +31,12 @@ public class canLength : MonoBehaviour
     void changeLength(float variation)//蝋燭の長さ、位置を設定するメソッド
     {
         if (canLen == 0) return;
-        if (canLen < variation) variation = canLen;
-        Vector3 temp = this.gameObject.transform.localScale;
-        this.gameObject.transform.localScale = new Vector3(temp.x, canLen - variation, temp.z);
-        temp = this.gameObject.transform.localPosition;
-        this.gameObject.transform.localPosition = new Vector3(temp.x, temp.y - variation, temp.z);
         canLen -= variation;
         if (canLen < 0) canLen = 0;
+        Vector3 temp = this.gameObject.transform.localScale;
+        this.gameObject.transform.localScale = new Vector3(temp.x, canLen, temp.z);
+        temp = this.gameObject.transform.localPosition;
+        this.gameObject.transform.localPosition = new Vector3(temp.x, temp.y - variation, temp.z);
     }
 }
 public enum Status
