@@ -1203,10 +1203,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1509664779}
     - target: {fileID: 436746013411857902, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
-      propertyPath: startfp
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 436746013411857902, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: candlecon
       value: 
       objectReference: {fileID: 1106440043}
@@ -1220,7 +1216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436746013411857902, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: IsOnCandle
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}

@@ -14,9 +14,8 @@ public class Fire_test : MonoBehaviour
     [SerializeField] private float fireSpeed; // 火の玉状態の移動速度
     [SerializeField] private float flingtime; // 火の玉状態での生存時間
     private float t; // 火の玉状態になってからの経過時間
-    private Candle_test candle;
-    private CandleCon_test candlecon;
-    [SerializeField] private FirePosition_test startfp;
+    [SerializeField] private Candle_test candle;
+    [SerializeField] private CandleCon_test candlecon;
     //private bool IsBigFire = false;
     [SerializeField] private bool IsOnCandle = false;
     private bool IsGameOver = false;
@@ -31,7 +30,7 @@ public class Fire_test : MonoBehaviour
         //candle.WakeUp();
         if (IsOnCandle == true)
         {
-            Transfer(startfp);
+            Transfer(null);
         }
     }
 
@@ -154,8 +153,11 @@ public class Fire_test : MonoBehaviour
 
     public void Transfer(FirePosition_test NewCandle)//蝋燭に憑依
     {
-        candle = NewCandle.candle;
-        candlecon = NewCandle.candlecon;
+        if (NewCandle != null)
+        {
+            candle = NewCandle.candle;
+            candlecon = NewCandle.candlecon;
+        }
         IsOnCandle = true;
         candle.WakeUp();
         transform.localScale = startSize;
