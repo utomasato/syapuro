@@ -7,12 +7,12 @@ using UnityEngine;
 
 public class Candle_test : MonoBehaviour
 {
-    [SerializeField] private float life = 2f;       // 全体量
+    [SerializeField] public float life = 2f;       // 全体量
     [SerializeField] private float SpL;        // lifeと見た目の大きさの割合 同じ長さでも持つ時間が違うかも
     [SerializeField] private GameObject firePoint;  // 火がつくところ
     [SerializeField] private CandleCon_test candlecon; // 蝋燭の動きを司る
     private float size0; // 初期サイズ
-    [SerializeField] private float size; // 現在のサイズ
+    [SerializeField] public float size; // 現在のサイズ
     //private bool IsBurning = false;
     private Vector3 hedPos0; // 火がつく部分の初期位置
     private Vector3 hedPos; // 火がつく部分の位置

@@ -14,8 +14,8 @@ public class Fire_test : MonoBehaviour
     [SerializeField] private float fireSpeed; // 火の玉状態の移動速度
     [SerializeField] private float flingtime; // 火の玉状態での生存時間
     private float t; // 火の玉状態になってからの経過時間
-    [SerializeField] private Candle_test candle;
-    [SerializeField] private CandleCon_test candlecon;
+    [SerializeField] public Candle_test candle;
+    [SerializeField] public CandleCon_test candlecon;
     //private bool IsBigFire = false;
     [SerializeField] private bool IsOnCandle = false;
     private bool IsGameOver = false;
