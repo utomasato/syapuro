@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 public class GameOver : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject GameOverCanvas;
 
     [SerializeField]
     private GameObject Background;
@@ -21,7 +23,7 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private GameObject PL;
 
-
+    private Vector3 SaveScale;
     private Vector3 currentScale;
 
     private bool IsgameStart = false;
@@ -37,7 +39,7 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        SaveScale = PL.transform.localScale;
         GameOverAssets = new GameObject[] { GameOverText, ScoreParents, Button };
         foreach (GameObject asset in GameOverAssets)
         {
@@ -56,32 +58,37 @@ public class GameOver : MonoBehaviour
         GameOverSystem();
     }
 
-    void Test()
-    {
-        IsGameOver = true;
-    }
+
 
     void GameOverSystem()
     {
-        if (IsgameStart)
+        GameState_test state = GetComponent<GameState_test>();
+
+        currentScale = PL.transform.localScale;
+
+        if (!state.JudgeGameOver && currentScale.y <= 0)
         {
-            currentScale = PL.transform.localScale;
-            /*  if (currentScale.y < 0)
-              {
-                  IsGameOver = true;
-                  IsgameStart = false;
-              }*/
+
+            state.JudgeGameOver = true;
         }
-        if (IsGameOver)
+
+
+        if (state.JudgeGameOver)
         {
+            GameOverCanvas.SetActive(true);
             if (SampleCoroutine == null)
             {
-                Debug.Log("aaa");
+
                 SampleCoroutine = StartCoroutine(GameCoroutine(2.0f, GameOverAssets));
             }
 
             Background.SetActive(true);
             ScoreResult(ResultEndTime);
+        }
+        if (!state.JudgeGameOver)
+        {
+            ResultStartTime = 0.0f;
+            GameOverCanvas.SetActive(false);
         }
     }
 
@@ -107,6 +114,7 @@ public class GameOver : MonoBehaviour
 
     public IEnumerator GameCoroutine(float delay, GameObject[] Asset)
     {
+        GameState_test state = GetComponent<GameState_test>();
         while (i < Asset.Length)
         {
 
@@ -114,8 +122,17 @@ public class GameOver : MonoBehaviour
             i++;
             yield return new WaitForSeconds(delay);
         }
-        IsGameOver = false;
+        //state.NotGameOver();
         SampleCoroutine = null;
     }
+
+    public void PressRetry()//リトライボタンを押した時
+    {
+        GameState_test state = GetComponent<GameState_test>();
+        transform.localScale = SaveScale;
+        state.JudgeGameOver = false;
+    }
 }
+
+
 
