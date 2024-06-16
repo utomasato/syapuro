@@ -34,19 +34,17 @@ public class GameClear : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Invoke("Test", 2.0f);
+
         ClearSystem();
     }
-    void Test()
-    {
-        IsClear = true;
-    }
+
 
     void ClearSystem()
     {
         GameState_test state = GetComponent<GameState_test>();
         GameOver GO = GetComponent<GameOver>();
-        if (IsClear)
+        state.JudgeGameClear = true;
+        if (state.JudgeGameClear)
         {
             if (SampleCoroutine == null)
             {
