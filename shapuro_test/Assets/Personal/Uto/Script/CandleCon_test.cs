@@ -103,6 +103,11 @@ public class CandleCon_test : MonoBehaviour
         CanJump = true;
     }
 
+    void OnCollisionExit(Collision other)
+    {
+        CanJump = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (IsBurning && other.gameObject.CompareTag("Goal")) // 憑依状態でゴールしたら
