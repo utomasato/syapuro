@@ -44,6 +44,7 @@ public class GameClear : MonoBehaviour
 
     void ClearSystem()
     {
+        GameState_test state = GetComponent<GameState_test>();
         GameOver GO = GetComponent<GameOver>();
         if (IsClear)
         {

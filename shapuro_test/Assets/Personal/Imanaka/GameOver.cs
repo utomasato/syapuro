@@ -64,7 +64,10 @@ public class GameOver : MonoBehaviour
     {
         GameState_test state = GetComponent<GameState_test>();
 
-        currentScale = PL.transform.localScale;
+        if (PL != null)
+        {
+            currentScale = PL.transform.localScale;
+        }
 
         if (!state.JudgeGameOver && currentScale.y <= 0)
         {
