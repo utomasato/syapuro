@@ -22,7 +22,6 @@ public class GameState_test : MonoBehaviour
 
     void Update()
     {
-
         if (IsAddingUp)
         {
             apparentScore += 1;
@@ -56,16 +55,4 @@ public class GameState_test : MonoBehaviour
     {
         IsCleared = true;
     }
-
-    public void NotGameOver()
-    {
-        IsGameOver = false;
-    }
-    public bool JudgeGameOver
-    {
-        get { return IsGameOver; }
-        set { IsGameOver = value; }
-    }
-
-
 }
