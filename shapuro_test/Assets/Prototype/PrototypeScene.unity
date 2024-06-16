@@ -313,7 +313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &226463085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,11 +1016,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &487774378 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 436746013411857900, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
-  m_PrefabInstance: {fileID: 436746013085155848}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &493588189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,6 +1826,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 721162552}
   m_CullTransparentMesh: 1
+--- !u!1 &831569957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8297366870047698787, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
+  m_PrefabInstance: {fileID: 8297366868537011290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &875934467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2060,7 +2060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &890471003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2249,6 +2249,11 @@ RectTransform:
   m_AnchoredPosition: {x: 300, y: 200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &957361210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 665713411929689206, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
+  m_PrefabInstance: {fileID: 8297366868537011290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1016485452
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,7 +2567,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5449527758677259695, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
   m_PrefabInstance: {fileID: 8297366868537011290}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1563177589}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ffb4c104f9514173b407cd389e29e04, type: 3}
@@ -2767,7 +2772,10 @@ MonoBehaviour:
   ScoreParents: {fileID: 1016485452}
   Score_Text: {fileID: 369912557}
   Button: {fileID: 2130471945}
-  PL: {fileID: 487774378}
+  PL: {fileID: 831569957}
+  Firepos: {fileID: 2052476345}
+  Canldlecon: {fileID: 1563177589}
+  Foot: {fileID: 957361210}
   ResultEndTime: 3
 --- !u!114 &1280504897
 MonoBehaviour:
@@ -2776,7 +2784,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280504893}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3074f9655bc84a0eabdfe17e7649b20, type: 3}
   m_Name: 
@@ -3278,7 +3286,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8297366870047698784, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
   m_PrefabInstance: {fileID: 8297366868537011290}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 831569957}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c83d061d29a449f88e36ddb4a5ff5de, type: 3}
@@ -3381,6 +3389,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1563177589 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6165287202936739533, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
+  m_PrefabInstance: {fileID: 8297366868537011290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1618228332
 GameObject:
   m_ObjectHideFlags: 0
@@ -4244,6 +4257,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2052476345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8297366869918116962, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
+  m_PrefabInstance: {fileID: 8297366868537011290}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2071111505
 GameObject:
   m_ObjectHideFlags: 0
@@ -4675,6 +4693,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 436746013411857902, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 1280504895}
     - target: {fileID: 436746013411857902, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: candle
       value: 

@@ -17,8 +17,11 @@ public class Candle_test : MonoBehaviour
     private Vector3 hedPos0; // 火がつく部分の初期位置
     private Vector3 hedPos; // 火がつく部分の位置
 
+    private float SaveMaxLife;//全大量の初期値を保存
+
     void Start()
     {
+        SaveMaxLife = life;
         size0 = transform.lossyScale.y;
         size = size0;
         SpL = size0 / life;
@@ -45,9 +48,10 @@ public class Candle_test : MonoBehaviour
         if (life <= 0f)
         {
             Sleep();
-            Destroy(candlecon.gameObject);
-            Destroy(firePoint);
-            Destroy(this.gameObject);
+            candlecon.gameObject.SetActive(false);
+            firePoint.SetActive(false);
+            this.gameObject.SetActive(false);
+            life = SaveMaxLife;
         }
     }
 

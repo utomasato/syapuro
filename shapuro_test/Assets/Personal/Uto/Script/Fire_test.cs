@@ -18,6 +18,8 @@ public class Fire_test : MonoBehaviour
     [SerializeField] public CandleCon_test candlecon;
     //private bool IsBigFire = false;
     [SerializeField] private bool IsOnCandle = false;
+    [SerializeField]
+    private GameState_test state;
     private bool IsGameOver = false;
     private Vector3 startSize;
 
@@ -37,6 +39,7 @@ public class Fire_test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (candle == null)
         {
             fly();
@@ -45,92 +48,94 @@ public class Fire_test : MonoBehaviour
         {
             return;
         }
-
-        if (IsOnCandle) // 蝋燭に着いているとき
+        if (!state.JudgeGameOver)
         {
-            //Debug.Log(candle.GetHedPos());
-            transform.position = candle.GetHedPos();
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (IsOnCandle) // 蝋燭に着いているとき
             {
-                Vector3 s = transform.localScale;
-                s.y = 2f;
-                transform.localScale = s;
-                //IsBigFire = true;
-                movingSpeed = movingSpeed2;
-            }
-
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                Vector3 s = transform.localScale;
-                s.y = 1f;
-                transform.localScale = s;
-                //IsBigFire = false;
-                movingSpeed = movingSpeed1;
-            }
-
-            if (Input.GetKey(KeyCode.Space))
-            {
-                candle.Shorten(BurningRate2);
-            }
-            else
-            {
-                candle.Shorten(BurningRate1);
-            }
-
-            if (Input.GetKey(KeyCode.A))
-            {
-                candlecon.Move(-movingSpeed);
-            }
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                candlecon.Move(movingSpeed);
-            }
-
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                candlecon.Jump();
-            }
-
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                fly();
-            }
-        }
-        else // 飛んでいる時
-        {
-            t += Time.deltaTime;
-            transform.localScale = startSize * (1.0f - t / flingtime); // 火が小さくなっていく(火の玉状態での時間制限の可視化)
-            if (t >= flingtime) // 火の玉になってから一定時間過ぎた時
-            {
-                if (candle == null) // 直前に着いてた蝋燭がなくなっていれば
+                //Debug.Log(candle.GetHedPos());
+                transform.position = candle.GetHedPos();
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Debug.Log("GameOver");
-                    IsGameOver = true;
-                    GameObject.Find("GameState").GetComponent<GameState_test>().GameOver();
+                    Vector3 s = transform.localScale;
+                    s.y = 2f;
+                    transform.localScale = s;
+                    //IsBigFire = true;
+                    movingSpeed = movingSpeed2;
                 }
-                else // 直前に着いていた蝋燭が残っていれば
+
+                if (Input.GetKeyUp(KeyCode.Space))
                 {
-                    IsOnCandle = true; // 元いたところに戻る
-                    candle.WakeUp();
-                    transform.localScale = startSize;
+                    Vector3 s = transform.localScale;
+                    s.y = 1f;
+                    transform.localScale = s;
+                    //IsBigFire = false;
+                    movingSpeed = movingSpeed1;
+                }
+
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    candle.Shorten(BurningRate2);
+                }
+                else
+                {
+                    candle.Shorten(BurningRate1);
+                }
+
+                if (Input.GetKey(KeyCode.A))
+                {
+                    candlecon.Move(-movingSpeed);
+                }
+
+                if (Input.GetKey(KeyCode.D))
+                {
+                    candlecon.Move(movingSpeed);
+                }
+
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    candlecon.Jump();
+                }
+
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    fly();
                 }
             }
-            if (Input.GetKey(KeyCode.A))
+            else // 飛んでいる時
             {
-                transform.position += new Vector3(-fireSpeed * Time.deltaTime, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.position += new Vector3(fireSpeed * Time.deltaTime, 0, 0);
-            }
-            if (Input.GetKey(KeyCode.W))
-            {
-                transform.position += new Vector3(0, fireSpeed * Time.deltaTime, 0);
-            }
-            if (Input.GetKey(KeyCode.S))
-            {
-                transform.position += new Vector3(0, -fireSpeed * Time.deltaTime, 0);
+                t += Time.deltaTime;
+                transform.localScale = startSize * (1.0f - t / flingtime); // 火が小さくなっていく(火の玉状態での時間制限の可視化)
+                if (t >= flingtime) // 火の玉になってから一定時間過ぎた時
+                {
+                    if (candle == null) // 直前に着いてた蝋燭がなくなっていれば
+                    {
+                        Debug.Log("GameOver");
+                        IsGameOver = true;
+                        GameObject.Find("GameState").GetComponent<GameState_test>().GameOver();
+                    }
+                    else // 直前に着いていた蝋燭が残っていれば
+                    {
+                        IsOnCandle = true; // 元いたところに戻る
+                        candle.WakeUp();
+                        transform.localScale = startSize;
+                    }
+                }
+                if (Input.GetKey(KeyCode.A))
+                {
+                    transform.position += new Vector3(-fireSpeed * Time.deltaTime, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    transform.position += new Vector3(fireSpeed * Time.deltaTime, 0, 0);
+                }
+                if (Input.GetKey(KeyCode.W))
+                {
+                    transform.position += new Vector3(0, fireSpeed * Time.deltaTime, 0);
+                }
+                if (Input.GetKey(KeyCode.S))
+                {
+                    transform.position += new Vector3(0, -fireSpeed * Time.deltaTime, 0);
+                }
             }
         }
     }
