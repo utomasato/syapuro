@@ -55,4 +55,9 @@ public class GameState_test : MonoBehaviour
     {
         IsCleared = true;
     }
+    public bool JudgeGameOver
+    {
+        get { return IsGameOver; }
+        set { IsGameOver = value; }
+    }
 }
