@@ -1488,7 +1488,7 @@ MonoBehaviour:
   Score_Text: {fileID: 369912557}
   Button: {fileID: 2130471945}
   PL: {fileID: 487774378}
-  ResultEndTime: 2
+  ResultEndTime: 3
 --- !u!1 &1464863674
 GameObject:
   m_ObjectHideFlags: 0
