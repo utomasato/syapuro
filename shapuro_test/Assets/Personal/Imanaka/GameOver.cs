@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 public class GameOver : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject GameOverCanvas;
 
     [SerializeField]
     private GameObject Background;
@@ -63,6 +65,7 @@ public class GameOver : MonoBehaviour
 
     void GameOverSystem()
     {
+        GameState_test state = GetComponent<GameState_test>();
         if (IsgameStart)
         {
             currentScale = PL.transform.localScale;
@@ -72,7 +75,8 @@ public class GameOver : MonoBehaviour
                   IsgameStart = false;
               }*/
         }
-        if (IsGameOver)
+
+        if (state.JudgeGameOver)
         {
             if (SampleCoroutine == null)
             {
@@ -82,6 +86,10 @@ public class GameOver : MonoBehaviour
 
             Background.SetActive(true);
             ScoreResult(ResultEndTime);
+        }
+        if (!state.JudgeGameOver)
+        {
+            GameOverCanvas.SetActive(false);
         }
     }
 
@@ -107,6 +115,7 @@ public class GameOver : MonoBehaviour
 
     public IEnumerator GameCoroutine(float delay, GameObject[] Asset)
     {
+        GameState_test state = GetComponent<GameState_test>();
         while (i < Asset.Length)
         {
 
@@ -114,7 +123,7 @@ public class GameOver : MonoBehaviour
             i++;
             yield return new WaitForSeconds(delay);
         }
-        IsGameOver = false;
+        state.NotGameOver();
         SampleCoroutine = null;
     }
 }
