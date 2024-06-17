@@ -95,7 +95,7 @@ public class CandleCon_test : MonoBehaviour
         Vector3 p = transform.position;
         p.z = 2f;
         transform.position = p; // レイヤーを変える
-        //foot.transform.position = new Vector3(0f, -1000f, 0f); // 足をどっかやる
+        foot.transform.position = new Vector3(0f, -1000f, 0f); // 足をどっかやる
     }
 
     void OnCollisionEnter(Collision other)
