@@ -23,10 +23,9 @@ public class Lamp_test : MonoBehaviour
     public void Ignition()
     {
         //fire.GetComponent<MeshRenderer>().enabled = true;
-        if (!state.JudgeGameOver && !state.JudgeGameClear)
-        {
-            fire.GetComponent<SpriteRenderer>().enabled = true;
-        }
+
+        fire.GetComponent<SpriteRenderer>().enabled = true;
+
         state.AddScore(500);
     }
 }
