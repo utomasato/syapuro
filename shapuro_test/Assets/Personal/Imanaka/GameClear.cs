@@ -16,6 +16,8 @@ public class GameClear : MonoBehaviour
     private TMP_Text Score_Text;//スコア結果を表示するテキスト
     [SerializeField]
     private GameObject Button;
+    [SerializeField]
+    private GameObject PLFire;//プレイヤーの頭の炎
 
     GameObject[] GameClearAssets;
 
@@ -49,6 +51,7 @@ public class GameClear : MonoBehaviour
 
         if (state.JudgeGameClear)
         {
+            PLFire.SetActive(false);
             int ResultScore = state.JudgecurrentScore;
             Score_Text.text = ResultScore.ToString();
             ClearedCanvas.SetActive(true);
