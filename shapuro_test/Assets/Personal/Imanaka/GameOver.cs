@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class GameOver : MonoBehaviour
 {
@@ -142,18 +143,19 @@ public class GameOver : MonoBehaviour
 
     public void PressRetry()//リトライボタンを押した時
     {
-        GameState_test state = GetComponent<GameState_test>();
+        /* GameState_test state = GetComponent<GameState_test>();
 
 
-        Firepos.SetActive(true);
-        Canldlecon.SetActive(true);
-        PL.SetActive(true);
-        PL.transform.localScale = SaveScale;
-        PL.transform.position = SavePLpos;
-        Foot.SetActive(true);
-        Foot.transform.position = SaveFootpos;
-        state.JudgeGameOver = false;
-        Debug.Log("a");
+         Firepos.SetActive(true);
+         Canldlecon.SetActive(true);
+         PL.SetActive(true);
+         PL.transform.localScale = SaveScale;
+         PL.transform.position = SavePLpos;
+         Foot.SetActive(true);
+         Foot.transform.position = SaveFootpos;
+         state.JudgeGameOver = false;
+         Debug.Log("a");*/
+        SceneManager.LoadScene("PrototypeScene");
     }
 }
 
