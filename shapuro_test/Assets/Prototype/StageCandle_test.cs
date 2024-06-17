@@ -21,10 +21,11 @@ public class StageCandle_test : MonoBehaviour
                Stages[i] = obj;
                i++;
            }*/
-
-        for (int i = 0; i < StageList.Count; i++)
+        Stages = new int[StageList.Count];
+        foreach (int Light in StageList)
         {
-            Stages[i] = StageList[i];
+            Stages[i] = Light;
+            i++;
         }
     }
 
@@ -33,11 +34,19 @@ public class StageCandle_test : MonoBehaviour
     {
         GameState_test state = GetComponent<GameState_test>();
 
+        JudgeCurrentLight();
+
+
     }
 
     void JudgeCurrentLight()//現在のつけたライトの個数を確認
     {
+        GameState_test state = GetComponent<GameState_test>();
+        if (Stages[Currentlevel] == state.JudgeNumberCaldles)
+        {
+            state.JudgeGameClear = true;
 
+        }
     }
 
 }
