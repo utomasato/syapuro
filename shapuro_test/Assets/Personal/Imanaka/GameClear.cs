@@ -5,6 +5,8 @@ using TMPro;
 public class GameClear : MonoBehaviour
 {
     [SerializeField]
+    private GameObject ClearedCanvas;
+    [SerializeField]
     private GameObject Background;
     [SerializeField]
     private GameObject ClearText;
@@ -23,6 +25,7 @@ public class GameClear : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ClearedCanvas.SetActive(false);
         GameClearAssets = new GameObject[] { ClearText, ScoreParents, Button };
         foreach (GameObject asset in GameClearAssets)
         {
@@ -43,9 +46,12 @@ public class GameClear : MonoBehaviour
     {
         GameState_test state = GetComponent<GameState_test>();
         GameOver GO = GetComponent<GameOver>();
-        state.JudgeGameClear = true;
+
         if (state.JudgeGameClear)
         {
+            int ResultScore = state.JudgecurrentScore;
+            Score_Text.text = ResultScore.ToString();
+            ClearedCanvas.SetActive(true);
             if (SampleCoroutine == null)
             {
                 SampleCoroutine = StartCoroutine(GO.GameCoroutine(2.0f, GameClearAssets));

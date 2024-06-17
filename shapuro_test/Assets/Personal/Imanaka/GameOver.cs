@@ -114,15 +114,17 @@ public class GameOver : MonoBehaviour
 
     public void ScoreResult(float Endtime)
     {
+        GameState_test state = GetComponent<GameState_test>();
         ResultStartTime += Time.deltaTime;
         if (ResultStartTime < Endtime)
         {
-            int score = RandomScore(500, 1500);
-            Score_Text.text = score.ToString();
+            int Assignscore = RandomScore(500, 1500);
+            Score_Text.text = Assignscore.ToString();
         }
         else
         {
-            Score_Text.text = "200";//テスト用
+            int Assignscore = state.JudgecurrentScore;
+            Score_Text.text = Assignscore.ToString();//テスト用
         }
     }
 
@@ -155,7 +157,7 @@ public class GameOver : MonoBehaviour
          Foot.transform.position = SaveFootpos;
          state.JudgeGameOver = false;
          Debug.Log("a");*/
-        SceneManager.LoadScene("PrototypeScene");
+        SceneManager.LoadScene("PrototypeScene");//今だけ
     }
 }
 

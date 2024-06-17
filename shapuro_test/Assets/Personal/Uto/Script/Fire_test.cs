@@ -48,7 +48,7 @@ public class Fire_test : MonoBehaviour
         {
             return;
         }
-        if (!state.JudgeGameOver)
+        if (!state.JudgeGameOver && !state.JudgeGameClear)
         {
             if (IsOnCandle) // 蝋燭に着いているとき
             {
