@@ -8,7 +8,7 @@ public class GameState_test : MonoBehaviour
 
     private int NumberOfCaldles;//ロウソクをつけた個数
     private int apparentScore;
-    private bool IsStarted;
+    //private bool IsStarted;
     private bool IsCleared;
     private bool IsGameOver;
 
@@ -16,7 +16,7 @@ public class GameState_test : MonoBehaviour
 
     void Start()
     {
-        IsStarted = true;
+        //IsStarted = true;
         IsCleared = false;
         IsGameOver = false;
         score = 0;
