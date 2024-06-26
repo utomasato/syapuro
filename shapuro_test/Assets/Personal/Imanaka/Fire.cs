@@ -14,6 +14,8 @@ public class Fire : MonoBehaviour
     private Vector3 SaveScale;
 
     private Vector3 CurrentScale;
+
+    private bool IsBigFire;//炎の威力を強めているか
     // Start is called before the first frame update
     void Start()
     {
@@ -26,10 +28,14 @@ public class Fire : MonoBehaviour
     void Update()
     {
 
-        //  PL.transform.localScale = Candle.transform.localScale;
 
         PressKey();
-        SmallFire(Candle, 0.5f);
+        if (!IsBigFire)
+        {
+            SmallFire(Candle, 0.5f);
+        }
+
+
     }
 
     void PressKey()
@@ -37,12 +43,18 @@ public class Fire : MonoBehaviour
         Rigidbody rb;
         rb = GetComponent<Rigidbody>();
         CurrentScale = PL.transform.localScale;
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            float BigSize = ChangeSize(CurrentScale.y, 2.0f);
-            Debug.Log(BigSize);
-            CurrentScale.y = BigSize;
-            PL.transform.localScale = CurrentScale;
+
+            IsBigFire = true;
+
+
+            BigFire(Candle);
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            IsBigFire = false;
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -72,6 +84,13 @@ public class Fire : MonoBehaviour
 
     }
 
+    void BigFire(GameObject Target)//何をもとにして炎の大きさを強めるか
+    {
+        Vector3 TargScale = Target.transform.localScale;
+        float Size = ChangeSize(TargScale.y, 1.2f);
+        TargScale.y = Size;
+        PL.transform.localScale = TargScale;
+    }
     float ChangeSize(float currentScale, float s)
     {
         return currentScale * s;
@@ -82,10 +101,9 @@ public class Fire : MonoBehaviour
     {
         float y = target.transform.localScale.y;
         Vector3 targetscale = target.transform.localScale;
-        if (y < 1.0f)
-        {
-            PL.transform.localScale = new Vector3(targetscale.x + Size, targetscale.y + Size, targetscale.z + Size);
 
-        }
+        PL.transform.localScale = targetscale;
+
+
     }
 }

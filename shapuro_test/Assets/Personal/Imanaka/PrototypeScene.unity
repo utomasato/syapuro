@@ -2106,6 +2106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PL: {fileID: 781440455}
+  Candle: {fileID: 831569957}
   speed: 5000
 --- !u!54 &781440459
 Rigidbody:
@@ -2946,7 +2947,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 8297366868537011290}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563177589}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ffb4c104f9514173b407cd389e29e04, type: 3}
   m_Name: 
@@ -5296,7 +5297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436746013411857902, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 436746013411857902, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: IsOnCandle
@@ -5388,6 +5389,10 @@ PrefabInstance:
       propertyPath: legsize
       value: 0.6
       objectReference: {fileID: 0}
+    - target: {fileID: 5449527758677259695, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -5435,6 +5440,14 @@ PrefabInstance:
     - target: {fileID: 8297366867998125997, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
       propertyPath: m_Name
       value: Candle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297366870047698784, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
+      propertyPath: size
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297366870047698784, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
