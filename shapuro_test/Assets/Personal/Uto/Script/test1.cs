@@ -1,4 +1,4 @@
-// ただの動作確認用
+// Candle.csの動作確認用
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

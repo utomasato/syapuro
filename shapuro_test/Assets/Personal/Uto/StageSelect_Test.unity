@@ -800,6 +800,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 6
+  startPos: {x: -6, y: -2.5, z: -1}
   Stagelist:
   - PrototypeScene
   - GameMain
+  - candletest
