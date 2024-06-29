@@ -800,3 +800,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 6
+  Stagelist:
+  - PrototypeScene
+  - GameMain
