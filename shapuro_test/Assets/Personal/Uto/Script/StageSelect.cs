@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageSelect : MonoBehaviour
 {
@@ -8,13 +9,14 @@ public class StageSelect : MonoBehaviour
     int selectNumber = 0;
     bool IsMoving = false;
     float t = 0.0f;
-    int p0, p1;
+    int p0;
     Vector3 startPos;
+    [SerializeField] private List<string> Stagelist;
 
     void Start()
     {
         p0 = 0;
-        p1 = p0;
+        selectNumber = p0;
         IsMoving = false;
         startPos = transform.position;
     }
@@ -23,17 +25,22 @@ public class StageSelect : MonoBehaviour
     {
         if (!IsMoving)
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyDown(KeyCode.D) && selectNumber + 1 < Stagelist.Count)
             {
-                p1 += 1;
+                selectNumber += 1;
                 IsMoving = true;
                 t = 0.0f;
             }
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.A) && 0 < selectNumber)
             {
-                p1 -= 1;
+                selectNumber -= 1;
                 IsMoving = true;
                 t = 0.0f;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return) && selectNumber < Stagelist.Count && Stagelist[selectNumber] != null)
+            {
+                SceneManager.LoadScene(Stagelist[selectNumber]);
             }
         }
         else
@@ -43,10 +50,10 @@ public class StageSelect : MonoBehaviour
             {
                 t = 1.0f;
                 IsMoving = false;
-                p0 = p1;
+                p0 = selectNumber;
             }
             Vector3 pos = transform.position;
-            pos.x = startPos.x + Mathf.Lerp(p0 * interval, p1 * interval, t);
+            pos.x = startPos.x + Mathf.Lerp(p0 * interval, selectNumber * interval, t);
             transform.position = pos;
         }
     }
