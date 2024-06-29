@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6152572054186750485}
   - component: {fileID: 6152572054186750484}
   m_Layer: 0
-  m_Name: candlefoot
+  m_Name: footImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
