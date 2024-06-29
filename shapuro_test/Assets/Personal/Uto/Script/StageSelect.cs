@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class StageSelect : MonoBehaviour
 {
     [SerializeField] private float interval;
@@ -10,15 +11,26 @@ public class StageSelect : MonoBehaviour
     bool IsMoving = false;
     float t = 0.0f;
     int p0;
-    Vector3 startPos;
+    [SerializeField] Vector3 startPos;
     [SerializeField] private List<string> Stagelist;
 
     void Start()
     {
-        p0 = 0;
+        if (SceneSelectionState.selectedIndex == -1)
+        {
+            p0 = 0;
+            transform.position = startPos;
+        }
+        else
+        {
+            p0 = SceneSelectionState.selectedIndex;
+            Vector3 pos = startPos;
+            pos.x = startPos.x + p0 * interval;
+            transform.position = pos;
+        }
         selectNumber = p0;
         IsMoving = false;
-        startPos = transform.position;
+        //Debug.Log(SceneSelectionState.selectedIndex);
     }
 
     void Update()
@@ -40,6 +52,7 @@ public class StageSelect : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Return) && selectNumber < Stagelist.Count && Stagelist[selectNumber] != null)
             {
+                SceneSelectionState.selectedIndex = selectNumber;
                 SceneManager.LoadScene(Stagelist[selectNumber]);
             }
         }
