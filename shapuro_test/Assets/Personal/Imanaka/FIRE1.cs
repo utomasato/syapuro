@@ -19,15 +19,22 @@ public class FIRE1 : MonoBehaviour
     [SerializeField]
     private bool IsCandle;//ロウソクに炎がついているか
 
+
     [SerializeField]
     private Candle CandleScript;
 
-    [SerializeField]
-    private CandleCon_test CandleConScript;
+    /*[SerializeField]
+    private CandleCon_test CandleConScript;*/
 
     private Vector3 StartScale;
     [SerializeField]
     private GameObject Body;
+    [SerializeField]
+    private GameObject MainCandle;
+
+    private bool IsChangeCandle = false;
+
+    private GameObject TargetObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +51,7 @@ public class FIRE1 : MonoBehaviour
         }
         if (IsCandle)
         {
-            Debug.Log(Body.transform.position);
+
             if (!Body.activeSelf)
             {
 
@@ -62,6 +69,11 @@ public class FIRE1 : MonoBehaviour
         {
 
             NoCandle();
+        }
+
+        if (IsChangeCandle)
+        {
+            RecoveryFire();
         }
     }
 
@@ -94,11 +106,12 @@ public class FIRE1 : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            CandleConScript.Move(-MoveSpeed);
+
+            //    CandleConScript.Move(-MoveSpeed);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            CandleConScript.Move(MoveSpeed);
+            //CandleConScript.Move(MoveSpeed);
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -159,10 +172,40 @@ public class FIRE1 : MonoBehaviour
         IsCandle = true;
         CandleScript.WakeUp();
         transform.localScale = StartScale;
+        if (TargetObject != null)
+        {
+            MainCandle.transform.parent.gameObject.SetActive(true);
+            MainCandle.transform.position = TargetObject.transform.position;
+            MainCandle.transform.localScale = new Vector3(1, 1, 1);
+            MainCandle.transform.parent.position = TargetObject.transform.position;
+            CandleScript.WakeUp();
+            TargetObject.transform.parent.gameObject.SetActive(false);
+
+        }
+        IsChangeCandle = false;
+
     }
 
     public bool GetIsCandle()
     {
         return IsCandle;
+    }
+
+    public bool JudgeCandle
+    {
+        get { return IsCandle; }
+        set { IsCandle = value; }
+    }
+
+    public bool JudgeIsChange//転生準備完了したか
+    {
+        get { return IsChangeCandle; }
+        set { IsChangeCandle = value; }
+    }
+
+    public GameObject SetObject//転生座標セット
+    {
+
+        set { TargetObject = value; }
     }
 }
