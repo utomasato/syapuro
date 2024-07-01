@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &116071842 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6152572054318079191, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
-  m_PrefabInstance: {fileID: 6152572056149080121}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &256278645
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &523071290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,10 +288,8 @@ MonoBehaviour:
   BurnSpeed2: 0.3
   Firespeed: 1.5
   SurviveTime: 4
-  IsCandle: 0
   CandleScript: {fileID: 2103272688}
-  Body: {fileID: 1766117935}
-  MainCandle: {fileID: 116071842}
+  CurrentCandle: {fileID: 1579169389}
 --- !u!1 &1553488568
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +387,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1579169389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6152572055521215777, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
+  m_PrefabInstance: {fileID: 6152572056149080121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1618228332
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,11 +586,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1766117935 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6152572054976107908, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
-  m_PrefabInstance: {fileID: 6152572056149080121}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1796157302
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +759,8 @@ PrefabInstance:
       propertyPath: IsOnCandle
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 436746013411857902, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
 --- !u!1001 &2089365380
 PrefabInstance:
@@ -842,7 +836,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6152572054318079177, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
   m_PrefabInstance: {fileID: 6152572056149080121}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116071842}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d34c6effd2ff4883b9924f78d410c8f, type: 3}

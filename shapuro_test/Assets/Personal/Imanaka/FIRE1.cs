@@ -16,8 +16,8 @@ public class FIRE1 : MonoBehaviour
     private float SurviveTime;//火の玉状態の生存期間
 
     private float Firetime;//火の玉状態になってからの生存期間
-    [SerializeField]
-    private bool IsCandle;//ロウソクに炎がついているか
+
+    private bool IsCandle = true;//ロウソクに炎がついているか
 
 
     [SerializeField]
@@ -28,9 +28,9 @@ public class FIRE1 : MonoBehaviour
 
     private Vector3 StartScale;
     [SerializeField]
-    private GameObject Body;
-    [SerializeField]
-    private GameObject MainCandle;
+    private GameObject CurrentCandle;
+
+
 
     private bool IsChangeCandle = false;
 
@@ -45,24 +45,22 @@ public class FIRE1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (CandleScript == null)
         {
             FlyFire();
         }
         if (IsCandle)
         {
+            transform.position = CandleScript.GetHedPosition();
 
-            if (!Body.activeSelf)
-            {
 
-                IsCandle = false;
-            }
-            Vector3 BodyPos = Body.transform.position;
-            BodyPos.y += 0.95f;
-            transform.position = BodyPos;
             BigFire();
             MoveFire();
-
+            if (!CurrentCandle.activeSelf)
+            {
+                IsCandle = false;
+            }
 
         }
         if (!IsCandle)//炎がロウソクについてないとき
@@ -73,7 +71,7 @@ public class FIRE1 : MonoBehaviour
 
         if (IsChangeCandle)
         {
-            RecoveryFire();
+            //     RecoveryFire();
         }
     }
 
@@ -107,15 +105,19 @@ public class FIRE1 : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
 
-            //    CandleConScript.Move(-MoveSpeed);
+            CandleScript.Move(-MoveSpeed);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            //CandleConScript.Move(MoveSpeed);
+            CandleScript.Move(MoveSpeed);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            CandleScript.Jump();
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            FlyFire();
+            IsCandle = false;
         }
     }
 
@@ -160,6 +162,7 @@ public class FIRE1 : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
+
             transform.position += new Vector3(0, Firespeed * Time.deltaTime, 0);
         }
         if (Input.GetKey(KeyCode.S))
@@ -174,10 +177,7 @@ public class FIRE1 : MonoBehaviour
         transform.localScale = StartScale;
         if (TargetObject != null)
         {
-            MainCandle.transform.parent.gameObject.SetActive(true);
-            MainCandle.transform.position = TargetObject.transform.position;
-            MainCandle.transform.localScale = new Vector3(1, 1, 1);
-            MainCandle.transform.parent.position = TargetObject.transform.position;
+
             CandleScript.WakeUp();
             TargetObject.transform.parent.gameObject.SetActive(false);
 
