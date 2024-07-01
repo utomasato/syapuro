@@ -212,75 +212,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &444865569
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5449527758677259695, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: legsize
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125986, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125997, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_Name
-      value: Candle (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366867998125997, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8297366870047698784, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-      propertyPath: size
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
 --- !u!1 &523071289
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,17 +703,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &2071136285 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8297366870047698784, guid: 0513db92c18fe426fba2d91cff83f7c0, type: 3}
-  m_PrefabInstance: {fileID: 444865569}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c83d061d29a449f88e36ddb4a5ff5de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2103272688 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6152572054318079177, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
@@ -998,7 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffb4c104f9514173b407cd389e29e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  candle: {fileID: 2071136285}
+  candle: {fileID: 0}
   legsize: 0.6
   jumpPower: 8
   foot: {fileID: 1583533263}
