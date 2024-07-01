@@ -118,6 +118,7 @@ public class FIRE1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             IsCandle = false;
+            CandleScript.Sleep();
         }
     }
 
