@@ -280,6 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startLife: 2
+  size: 2
   minJumpPower: 1
   maxJumpPower: 10
   hed: {fileID: 6152572056011139340}

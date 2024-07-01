@@ -7,7 +7,7 @@ public class Candle : MonoBehaviour
     [SerializeField] private float startLife; // 初期ライフ
     private float life; // 現在のライフ
     private float startSize; // 初期サイズ
-    private float size; // 現在のサイズ
+    [SerializeField] private float size; // 現在のサイズ Start()でWakeUp()が呼び出されたときのために入力が必要
     [SerializeField] private float minJumpPower, maxJumpPower; // 最小ジャンプ力と最大ジャンプ力
     [SerializeField] private GameObject hed; // ロウソクの頭部
     [SerializeField] private GameObject body; // ロウソクの胴体
@@ -22,7 +22,10 @@ public class Candle : MonoBehaviour
     void Start()
     {
         life = startLife; // 初期ライフを設定
-        startSize = transform.lossyScale.y; // 初期サイズを設定
+        if (!IsBurning)
+            startSize = transform.lossyScale.y; // 初期サイズを設定
+        else
+            startSize = transform.lossyScale.y - footSize;
         size = startSize; // 現在のサイズを初期サイズに設定
 
         rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
@@ -107,6 +110,11 @@ public class Candle : MonoBehaviour
     public float GetSize() // 現在のサイズを返す
     {
         return size;
+    }
+
+    public Vector3 GetHedPosition()
+    {
+        return hed.transform.position;
     }
 
     void OnCollisionEnter(Collision other)
