@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &155608374 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6152572055521215777, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
+  m_PrefabInstance: {fileID: 6152572056149080121}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &256278645
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +381,7 @@ MonoBehaviour:
   IsCandle: 1
   CandleScript: {fileID: 2103272688}
   CandleConScript: {fileID: 6152572056149080125}
-  Body: {fileID: 6152572056149080122}
+  Body: {fileID: 155608374}
 --- !u!1 &1553488568
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,7 +788,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6152572054318079177, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
   m_PrefabInstance: {fileID: 6152572056149080121}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6152572056149080122}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d34c6effd2ff4883b9924f78d410c8f, type: 3}
@@ -892,7 +897,8 @@ PrefabInstance:
       propertyPath: movingSpeed1
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 436746013411857902, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
 --- !u!1001 &6152572056149080121
 PrefabInstance:
@@ -975,11 +981,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
---- !u!1 &6152572056149080122 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6152572054318079191, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
-  m_PrefabInstance: {fileID: 6152572056149080121}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6152572056149080124 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6152572054976107908, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}

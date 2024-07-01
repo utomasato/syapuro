@@ -44,8 +44,14 @@ public class FIRE1 : MonoBehaviour
         }
         if (IsCandle)
         {
+            Debug.Log(Body.transform.position);
+            if (!Body.activeSelf)
+            {
+
+                IsCandle = false;
+            }
             Vector3 BodyPos = Body.transform.position;
-            BodyPos.y += 0.8f;
+            BodyPos.y += 0.95f;
             transform.position = BodyPos;
             BigFire();
             MoveFire();
@@ -54,6 +60,7 @@ public class FIRE1 : MonoBehaviour
         }
         if (!IsCandle)//炎がロウソクについてないとき
         {
+
             NoCandle();
         }
     }
@@ -115,7 +122,7 @@ public class FIRE1 : MonoBehaviour
     void NoCandle()//ロウソクがなくなったとき
     {
         Firetime += Time.deltaTime;
-        //        transform.localScale = StartScale * (1.0f - Firetime / SurviveTime);
+        transform.localScale = StartScale * (1.0f - Firetime / SurviveTime);
         if (Firetime >= SurviveTime)
         {
             if (CandleScript == null)
@@ -124,7 +131,7 @@ public class FIRE1 : MonoBehaviour
             }
             if (CandleScript != null)
             {
-                IsCandle = true;
+                // IsCandle = true;
                 CandleScript.WakeUp();
                 transform.localScale = StartScale;
             }
@@ -152,5 +159,10 @@ public class FIRE1 : MonoBehaviour
         IsCandle = true;
         CandleScript.WakeUp();
         transform.localScale = StartScale;
+    }
+
+    public bool GetIsCandle()
+    {
+        return IsCandle;
     }
 }
