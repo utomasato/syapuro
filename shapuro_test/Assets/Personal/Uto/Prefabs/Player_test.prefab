@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 436746012556473787}
   - component: {fileID: 185493604798301970}
   - component: {fileID: 436746012556473791}
-  - component: {fileID: 436746012556473776}
+  - component: {fileID: 8739854230179418873}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -129,7 +129,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &436746012556473776
+--- !u!114 &8739854230179418873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,10 +138,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 436746012556473786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 482b91bb8e7214275832ffb59d4aed2f, type: 3}
+  m_Script: {fileID: 11500000, guid: e091ad470983d425a8a96f85652cd428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parent: {fileID: 436746013411857902}
+  parent: {fileID: 5921233088317968699}
 --- !u!1 &436746013411857900
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 436746013411857901}
-  - component: {fileID: 436746013411857902}
+  - component: {fileID: 5921233088317968699}
   m_Layer: 0
   m_Name: Player_test
   m_TagString: Player
@@ -176,7 +176,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &436746013411857902
+--- !u!114 &5921233088317968699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,17 +185,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 436746013411857900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f448694c56e8b474395bd9e58fa65df0, type: 3}
+  m_Script: {fileID: 11500000, guid: c9f3ed3f5828e4e92ae9b6b5a7af6105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movingSpeed1: 1
-  movingSpeed2: 2
-  BurningRate1: 0.1
-  BurningRate2: 0.3
-  fireSpeed: 1
-  flingtime: 3
-  candle: {fileID: 0}
-  candlecon: {fileID: 0}
+  PL: {fileID: 436746013411857900}
+  MoveSpeed: 3
+  Normal_BurnSpeed: 0.1
+  Strong_BurnSpeed: 0.3
+  Firespeed: 1.5
+  SurviveTime: 4
+  CandleScript: {fileID: 0}
 --- !u!1 &4058470359461120013
 GameObject:
   m_ObjectHideFlags: 0
