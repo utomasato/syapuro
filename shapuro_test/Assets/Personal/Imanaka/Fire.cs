@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-
+    [SerializeField] private GameObject PL;
     [SerializeField]
-    private GameObject PL;
     private float MoveSpeed;//ロウソクについている時の移動スピード
     [SerializeField]
     private float Normal_BurnSpeed;//通常時
@@ -106,7 +105,6 @@ public class Fire : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-
             CandleScript.Move(-MoveSpeed);
         }
         if (Input.GetKey(KeyCode.D))
@@ -119,9 +117,9 @@ public class Fire : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            IsCandle = false;
-            CandleScript.Sleep();
-            // FlyFire();
+            //IsCandle = false;
+            //CandleScript.Sleep();
+            FlyFire();
         }
     }
 
@@ -131,7 +129,7 @@ public class Fire : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
         transform.position += new Vector3(0, 0.6f, 0);
 
-        SurviveTime = 0;
+        Firetime = 0;
         if (CandleScript != null)
         {
             CandleScript.Sleep();
@@ -144,13 +142,9 @@ public class Fire : MonoBehaviour
         transform.localScale = StartScale * (1.0f - Firetime / SurviveTime);
         if (Firetime >= SurviveTime)
         {
-            if (CandleScript == null)
-            {
-                Debug.Log("GAMEOVER");
-            }
             if (CandleScript != null)
             {
-                // IsCandle = true;
+                IsCandle = true;
                 CandleScript.WakeUp();
                 transform.localScale = StartScale;
             }
@@ -214,8 +208,4 @@ public class Fire : MonoBehaviour
         set { TargetObject = value; }
     }
 
-    public void DestroyFire()
-    {
-        PL.SetActive(false);
-    }
 }
