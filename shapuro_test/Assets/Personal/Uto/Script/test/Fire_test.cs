@@ -16,7 +16,7 @@ public class Fire_test : MonoBehaviour
     private float t; // 火の玉状態になってからの経過時間
     [SerializeField] public Candle_test candle;
     [SerializeField] public CandleCon_test candlecon;
-    //private bool IsBigFire = false;
+    public bool IsBigFire = false;
     [SerializeField] private bool IsOnCandle = false;
     [SerializeField]
     private GameState_test state;
@@ -59,7 +59,7 @@ public class Fire_test : MonoBehaviour
                     Vector3 s = transform.localScale;
                     s.y = 2f;
                     transform.localScale = s;
-                    //IsBigFire = true;
+                    IsBigFire = true;
                     movingSpeed = movingSpeed2;
                 }
 
@@ -68,7 +68,7 @@ public class Fire_test : MonoBehaviour
                     Vector3 s = transform.localScale;
                     s.y = 1f;
                     transform.localScale = s;
-                    //IsBigFire = false;
+                    IsBigFire = false;
                     movingSpeed = movingSpeed1;
                 }
 
@@ -173,5 +173,14 @@ public class Fire_test : MonoBehaviour
         return IsOnCandle;
     }
 
-
+    public void inWater()
+    {
+        Debug.Log("gameover");
+        this.IsGameOver = true;
+    }
+    public void inWind()
+    {
+        Debug.Log("gameover");
+        this.IsGameOver = true;
+    }
 }

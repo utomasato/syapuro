@@ -5,23 +5,17 @@ using UnityEngine;
 public class wind : MonoBehaviour
 {
     public GameObject player;
-    private bool isBoost = false;
+    //   private bool isBoost = false;
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    bool inWind = true;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.Equals(player) && !isBoost)
+        if (inWind && other.gameObject.Equals(player) &&
+        !player.GetComponent<Fire_sub_test>().getParent().IsBigFire)
         {
-            Debug.Log("game over");
+            Debug.Log("gameover");
+            inWind = false;
+            player.GetComponent<Fire_sub_test>().getParent().inWind();
         }
     }
 }

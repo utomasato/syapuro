@@ -7,21 +7,14 @@ public class water : MonoBehaviour
     public GameObject player;
     //   private bool isBoost = false;
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    bool inWater = true;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.Equals(player))
+        if (inWater && other.gameObject.Equals(player))
         {
-            Debug.Log("game over");
+            Debug.Log("gameover");
+            inWater = false;
+            player.GetComponent<Fire_sub_test>().getParent().inWater();
         }
     }
 }

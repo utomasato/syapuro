@@ -32,4 +32,5 @@ public class Fire_sub_test : MonoBehaviour
             parent.Transfer(other.gameObject.GetComponent<FirePosition_test>());
         }
     }
+    public Fire_test getParent() { return parent; }
 }
