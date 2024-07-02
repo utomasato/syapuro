@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f3ed3f5828e4e92ae9b6b5a7af6105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 3
+  PL: {fileID: 1009079933}
   Normal_BurnSpeed: 0.1
   Strong_BurnSpeed: 0.3
   Firespeed: 1.5
