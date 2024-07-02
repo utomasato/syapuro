@@ -52,7 +52,7 @@ public class Fire : MonoBehaviour
         {
             FlyFire();
         }
-        if (IsCandle)
+        if (IsCandle)//炎がロウソクについている時
         {
             transform.position = CandleScript.GetHedPosition();
 
@@ -100,7 +100,7 @@ public class Fire : MonoBehaviour
         }
     }
 
-    void MoveFire()
+    void MoveFire()//ロウソクに炎がついてる時の移動
     {
         if (Input.GetKey(KeyCode.A))
         {
@@ -119,6 +119,7 @@ public class Fire : MonoBehaviour
         {
             IsCandle = false;
             CandleScript.Sleep();
+            // FlyFire();
         }
     }
 
