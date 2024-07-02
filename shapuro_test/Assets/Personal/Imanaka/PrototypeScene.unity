@@ -2105,9 +2105,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f3ed3f5828e4e92ae9b6b5a7af6105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PL: {fileID: 781440455}
-  Candle: {fileID: 831569957}
-  speed: 5000
+  PL: {fileID: 0}
+  Normal_BurnSpeed: 0
+  Strong_BurnSpeed: 0
+  Firespeed: 0
+  SurviveTime: 0
+  CandleScript: {fileID: 0}
+  CurrentCandle: {fileID: 0}
 --- !u!54 &781440459
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5215,6 +5219,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 436746012556473786, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 436746013411857900, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5233,7 +5241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 436746013411857901, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.61
+      value: -2.61
       objectReference: {fileID: 0}
     - target: {fileID: 436746013411857901, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: m_LocalPosition.y

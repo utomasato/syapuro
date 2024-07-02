@@ -6,7 +6,7 @@ public class Experiment : MonoBehaviour
 {
 
     [SerializeField]
-    private FIRE1 FireScript;
+    private Fire FireScript;
     // Start is called before the first frame update
     void Start()
     {
