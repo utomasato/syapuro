@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
+
     [SerializeField]
+    private GameObject PL;
     private float MoveSpeed;//ロウソクについている時の移動スピード
     [SerializeField]
     private float Normal_BurnSpeed;//通常時
@@ -212,4 +214,8 @@ public class Fire : MonoBehaviour
         set { TargetObject = value; }
     }
 
+    public void DestroyFire()
+    {
+        PL.SetActive(false);
+    }
 }
