@@ -77,6 +77,7 @@ public class Candle : MonoBehaviour
 
     public void WakeUp() // 足を生やして位置を調整
     {
+        if (IsBurning) return;
         IsBurning = true;
         Vector3 pos = transform.position;
         pos.y += footSize / 2; // 足の大きさに応じて位置を調整
@@ -89,6 +90,7 @@ public class Candle : MonoBehaviour
 
     public void Sleep() // 足を消して位置を調整
     {
+        if (!IsBurning) return;
         IsBurning = false;
         Vector3 pos = transform.position;
         pos.y += footSize / 2; // 足の消失に応じて位置を調整
@@ -115,6 +117,11 @@ public class Candle : MonoBehaviour
     public Vector3 GetHedPosition()
     {
         return hed.transform.position;
+    }
+
+    public bool GetBurnOut()
+    {
+        return IsBurnOut;
     }
 
     void OnCollisionEnter(Collision other)
