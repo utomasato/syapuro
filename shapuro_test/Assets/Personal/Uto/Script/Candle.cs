@@ -23,7 +23,12 @@ public class Candle : MonoBehaviour
     {
         life = startLife; // 初期ライフを設定
         if (!IsBurning)
+        {
             startSize = transform.lossyScale.y; // 初期サイズを設定
+            Vector3 pos = transform.position;
+            pos.z = 2;
+            transform.position = pos;
+        }
         else
             startSize = transform.lossyScale.y - footSize;
         size = startSize; // 現在のサイズを初期サイズに設定
@@ -77,8 +82,10 @@ public class Candle : MonoBehaviour
 
     public void WakeUp() // 足を生やして位置を調整
     {
+        if (IsBurning) return;
         IsBurning = true;
         Vector3 pos = transform.position;
+        pos.z = 0;
         pos.y += footSize / 2; // 足の大きさに応じて位置を調整
         transform.position = pos;
 
@@ -89,8 +96,10 @@ public class Candle : MonoBehaviour
 
     public void Sleep() // 足を消して位置を調整
     {
+        if (!IsBurning) return;
         IsBurning = false;
         Vector3 pos = transform.position;
+        pos.z = 2;
         pos.y += footSize / 2; // 足の消失に応じて位置を調整
         transform.position = pos;
 
@@ -115,6 +124,11 @@ public class Candle : MonoBehaviour
     public Vector3 GetHedPosition()
     {
         return hed.transform.position;
+    }
+
+    public bool GetBurnOut()
+    {
+        return IsBurnOut;
     }
 
     void OnCollisionEnter(Collision other)

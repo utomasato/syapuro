@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-
+    [SerializeField] private GameObject PL;
     [SerializeField]
-    private GameObject PL;
     private float MoveSpeed;//ロウソクについている時の移動スピード
     [SerializeField]
     private float Normal_BurnSpeed;//通常時
@@ -30,8 +29,6 @@ public class Fire : MonoBehaviour
 
     private Vector3 StartScale;
     [Tooltip("現段階では最初に憑依するcandleを参照してください")]
-    [SerializeField]
-    private GameObject CurrentCandle;
 
 
     /*転生用変数*/
@@ -43,7 +40,7 @@ public class Fire : MonoBehaviour
     void Start()
     {
         StartScale = transform.localScale;
-        RecoveryFire();
+        Transfer(null);
     }
 
     // Update is called once per frame
@@ -61,10 +58,6 @@ public class Fire : MonoBehaviour
 
             BigFire();
             MoveFire();
-            if (!CurrentCandle.activeSelf)
-            {
-                IsCandle = false;
-            }
 
         }
         if (!IsCandle)//炎がロウソクについてないとき
@@ -106,7 +99,6 @@ public class Fire : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-
             CandleScript.Move(-MoveSpeed);
         }
         if (Input.GetKey(KeyCode.D))
@@ -119,9 +111,9 @@ public class Fire : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            IsCandle = false;
-            CandleScript.Sleep();
-            // FlyFire();
+            //IsCandle = false;
+            //CandleScript.Sleep();
+            FlyFire();
         }
     }
 
@@ -131,7 +123,7 @@ public class Fire : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1);
         transform.position += new Vector3(0, 0.6f, 0);
 
-        SurviveTime = 0;
+        Firetime = 0;
         if (CandleScript != null)
         {
             CandleScript.Sleep();
@@ -144,13 +136,9 @@ public class Fire : MonoBehaviour
         transform.localScale = StartScale * (1.0f - Firetime / SurviveTime);
         if (Firetime >= SurviveTime)
         {
-            if (CandleScript == null)
-            {
-                Debug.Log("GAMEOVER");
-            }
             if (CandleScript != null)
             {
-                // IsCandle = true;
+                IsCandle = true;
                 CandleScript.WakeUp();
                 transform.localScale = StartScale;
             }
@@ -174,20 +162,16 @@ public class Fire : MonoBehaviour
             transform.position += new Vector3(0, -Firespeed * Time.deltaTime, 0);
         }
     }
-    public void RecoveryFire()//転生
+
+    public void Transfer(Candlewick NewCandle)//蝋燭に憑依
     {
+        if (NewCandle != null)
+        {
+            CandleScript = NewCandle.candle;
+        }
         IsCandle = true;
         CandleScript.WakeUp();
         transform.localScale = StartScale;
-        if (TargetObject != null)
-        {
-
-            CandleScript.WakeUp();
-            TargetObject.transform.parent.gameObject.SetActive(false);
-
-        }
-        IsChangeCandle = false;
-
     }
 
     public bool GetIsCandle()
@@ -214,8 +198,4 @@ public class Fire : MonoBehaviour
         set { TargetObject = value; }
     }
 
-    public void DestroyFire()
-    {
-        PL.SetActive(false);
-    }
 }
