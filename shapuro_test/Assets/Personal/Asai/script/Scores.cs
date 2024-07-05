@@ -5,15 +5,8 @@ using UnityEngine;
 public class Scores : MonoBehaviour
 {
     public int score;
-    // Start is called before the first frame update
-    void Start()
+    public void addscores(int x)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        score += x;
     }
 }

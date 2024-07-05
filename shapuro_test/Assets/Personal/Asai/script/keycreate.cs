@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class keycreate : MonoBehaviour
 {
+    public Fire_test fire_test;
     public RockedDoor RockedDoor;
     public float CreateTime;
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Fire")
+        if (other.gameObject.name == "Fire" && Input.GetKey(KeyCode.Space) && RockedDoor.Rock == false && fire_test.GetIsOnCandle())
         {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                Createkey();
-            }
+            Createkey();
         }
     }
     void Createkey()
