@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameMain.unity
     guid: 66664a82ea5014dfc97785852f770e19
   - enabled: 1
-    path: Assets/Personal/Uto/candletest.unity
-    guid: b701a7bbc23504335975012758e112ee
-  - enabled: 1
-    path: Assets/Personal/Uto/StageSelect_Test.unity
+    path: Assets/Personal/Uto/Scenes/StageSelect_Test.unity
     guid: c6c57dccd4ff34dd8af46d56a03b1e4b
+  - enabled: 1
+    path: Assets/Personal/Uto/Scenes/candletest_2.unity
+    guid: 13d20948c8eab475a91f7f1d9cbcc7de
   m_configObjects: {}
