@@ -127,6 +127,7 @@ public class Candle : MonoBehaviour
     {
         Debug.Log(this.name + " : BurnOut"); // 燃え尽きたことをログに出力
         IsBurnOut = true;
+        CurrentHPbar.value = 0;
         transform.parent.gameObject.SetActive(false); // 親オブジェクトを非アクティブ化
 
     }
