@@ -34,7 +34,6 @@ public class Fire : MonoBehaviour
     /*転生用変数*/
     private bool IsChangeCandle = false;//転生できているか　未完成
 
-    private GameObject TargetObject;//使うかわからん
     /*   */
     // Start is called before the first frame update
     void Start()
@@ -192,10 +191,5 @@ public class Fire : MonoBehaviour
         set { IsChangeCandle = value; }
     }
 
-    public GameObject SetObject//転生座標セット
-    {
-
-        set { TargetObject = value; }
-    }
 
 }

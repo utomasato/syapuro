@@ -527,7 +527,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: HitPoint
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8738465415821179501, guid: 7b29e0e040ab14147800c00d5d284f82, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7b29e0e040ab14147800c00d5d284f82, type: 3}
 --- !u!114 &1119404756 stripped
 MonoBehaviour:
@@ -932,6 +933,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6152572054318079177, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
+      propertyPath: CurrentHPbar
+      value: 
+      objectReference: {fileID: 1119404756}
     - target: {fileID: 6152572054318079181, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
       propertyPath: m_LocalScale.y
       value: 2
@@ -1014,6 +1019,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6152572054318079177, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
       propertyPath: HPbar
+      value: 
+      objectReference: {fileID: 1119404756}
+    - target: {fileID: 6152572054318079177, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
+      propertyPath: CurrentHPbar
       value: 
       objectReference: {fileID: 1119404756}
     - target: {fileID: 6152572054318079181, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
