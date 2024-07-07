@@ -14,8 +14,7 @@ public class Candle : MonoBehaviour
     [SerializeField] private GameObject foot; // ロウソクの足
     [SerializeField] private float footSize; // 足が生えたときの高さの増加分
 
-    /*急用でほとんどできてないのでバーのHPバーのコードは無視してもらって大丈夫です*/
-    [SerializeField] private Slider HPbar;//ロウソクの体力バー
+
 
     private bool IsBurning = false; // ロウソクが燃えているかどうか
     private bool CanJump; // ジャンプ可能かどうか
@@ -67,13 +66,7 @@ public class Candle : MonoBehaviour
         body.transform.localScale = ls;
         if (IsBurning) ls.y += footSize; // 燃えている場合はサイズを調整
         transform.localScale = ls;
-        if (HPbar != null)
-        {
-            HPbar.value = (float)size / startSize;
-            Debug.Log(size);
 
-
-        }
     }
 
     public void Move(float x) // ロウソクを水平に移動
@@ -125,10 +118,7 @@ public class Candle : MonoBehaviour
         Debug.Log(this.name + " : BurnOut"); // 燃え尽きたことをログに出力
         IsBurnOut = true;
         transform.parent.gameObject.SetActive(false); // 親オブジェクトを非アクティブ化
-        if (HPbar != null)
-        {
-            HPbar.value = 0;
-        }
+
     }
 
     public float GetSize() // 現在のサイズを返す
