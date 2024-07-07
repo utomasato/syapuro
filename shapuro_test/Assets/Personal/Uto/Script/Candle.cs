@@ -14,7 +14,8 @@ public class Candle : MonoBehaviour
     [SerializeField] private GameObject foot; // ロウソクの足
     [SerializeField] private float footSize; // 足が生えたときの高さの増加分
 
-
+    [Tooltip("HitPointプレファブの中にあるスライドを選択してください")]
+    [SerializeField] private Slider CurrentHPbar;//現在のロウソクのHP
 
     private bool IsBurning = false; // ロウソクが燃えているかどうか
     private bool CanJump; // ジャンプ可能かどうか
@@ -66,6 +67,10 @@ public class Candle : MonoBehaviour
         body.transform.localScale = ls;
         if (IsBurning) ls.y += footSize; // 燃えている場合はサイズを調整
         transform.localScale = ls;
+        if (CurrentHPbar != null)
+        {
+            CurrentHPbar.value = HPbar();
+        }
 
     }
 
@@ -96,6 +101,7 @@ public class Candle : MonoBehaviour
         Vector3 ls = transform.localScale;
         ls.y = size + footSize; // 足の大きさに応じてローカルスケールを調整
         transform.localScale = ls;
+
     }
 
     public void Sleep() // 足を消して位置を調整
@@ -111,6 +117,10 @@ public class Candle : MonoBehaviour
         ls.y = size; // ローカルスケールをリセット
         transform.localScale = ls;
         foot.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 足を画面外に移動
+        if (CurrentHPbar != null)
+        {
+            CurrentHPbar.value = 1;//HPバーリセット
+        }
     }
 
     public void BurnOut() // ロウソクの燃え尽き処理
@@ -145,4 +155,13 @@ public class Candle : MonoBehaviour
     {
         CanJump = false; // 衝突が終了したときジャンプ不可にする
     }
+    public float HPbar()
+    {
+        return size / startSize;
+    }
+
+
+
+
+
 }
