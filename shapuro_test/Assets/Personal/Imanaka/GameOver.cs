@@ -6,10 +6,11 @@ using TMPro;
 public class GameOver : MonoBehaviour
 {
     [SerializeField]
-    private GameObject GameOverCanvas;
+    private GameObject GameOverCanvas;//ゲームオーバーCanvasの親オブジェクト
 
     [SerializeField]
-    private GameObject Background;
+    private GameObject Background;//Image
+    [Tooltip("GAMEOVERと書かれているテキストを入れてください")]
     [SerializeField]
     private GameObject GameOverText;
     [SerializeField]
@@ -17,24 +18,7 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private TMP_Text Score_Text;//スコア結果を表示するテキスト
     [SerializeField]
-    private GameObject Button;
-
-
-    [SerializeField]
-    private GameObject PL;
-    [SerializeField]
-    private GameObject Firepos;
-    [SerializeField]
-    private GameObject Canldlecon;
-    [SerializeField]
-    private GameObject Foot;
-
-    private Vector3 SaveScale;
-
-    private Vector3 SaveFootpos;
-
-    private Vector3 SavePLpos;
-    private Vector3 currentScale;
+    private GameObject Button;//リトライとタイトルボタンをまとめた親オブジェクト
 
 
     private float ResultStartTime = 0.0f;//結果を出すまでの時間
@@ -48,9 +32,8 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SaveFootpos = Foot.transform.position;
-        SavePLpos = PL.transform.position;
-        SaveScale = PL.transform.localScale;
+
+
         GameOverAssets = new GameObject[] { GameOverText, ScoreParents, Button };
         foreach (GameObject asset in GameOverAssets)
         {
@@ -75,21 +58,10 @@ public class GameOver : MonoBehaviour
     {
         GameState_test state = GetComponent<GameState_test>();
 
-        if (PL != null)
-        {
-            currentScale = PL.transform.localScale;
-        }
-
-        if (!state.JudgeGameOver && currentScale.y <= 0)
-        {
-
-            state.JudgeGameOver = true;
-        }
-
 
         if (state.JudgeGameOver)
         {
-            Foot.SetActive(false);
+
             GameOverCanvas.SetActive(true);
             if (SampleCoroutine == null)
             {
