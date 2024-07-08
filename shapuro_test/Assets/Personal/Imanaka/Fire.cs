@@ -46,6 +46,11 @@ public class Fire : MonoBehaviour
     void Update()
     {
 
+        Vector3 CurrentScale = transform.localScale;
+        if (CurrentScale.y <= 0.1f)
+        {
+            CandleScript.BurnOut();
+        }
         if (CandleScript == null)
         {
             FlyFire();
@@ -196,6 +201,10 @@ public class Fire : MonoBehaviour
 
         return CandleScript;
 
+    }
+    public void Deletefire()
+    {
+        PL.SetActive(false);
     }
 
 }

@@ -360,11 +360,6 @@ PrefabInstance:
       objectReference: {fileID: 2103272688}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
---- !u!1 &304059567 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7810650591309387382, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
-  m_PrefabInstance: {fileID: 345473391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &345473391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -506,7 +501,7 @@ MonoBehaviour:
   GameOverCanvas: {fileID: 345473392}
   Background: {fileID: 1788045918}
   GameOverText: {fileID: 922501743}
-  ScoreParents: {fileID: 304059567}
+  ScoreParents: {fileID: 653218906}
   Score_Text: {fileID: 188620662}
   Button: {fileID: 1603391625}
   ResultEndTime: 3
@@ -632,6 +627,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectScene: StageSelect_Test
+--- !u!1 &653218906 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7810650593000065920, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
+  m_PrefabInstance: {fileID: 345473391}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &922501743 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7810650593092383807, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
