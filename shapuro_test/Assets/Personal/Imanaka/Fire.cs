@@ -191,5 +191,11 @@ public class Fire : MonoBehaviour
         set { IsChangeCandle = value; }
     }
 
+    public Candle UseCandle()//どのロウソクを使用しているか
+    {
+
+        return CandleScript;
+
+    }
 
 }
