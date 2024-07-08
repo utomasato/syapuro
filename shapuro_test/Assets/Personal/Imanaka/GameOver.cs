@@ -40,7 +40,7 @@ public class GameOver : MonoBehaviour
         GameOverAssets = new GameObject[] { GameOverText, ScoreParents, Button };
         foreach (GameObject asset in GameOverAssets)
         {
-            asset.SetActive(false);
+            asset.SetActive(false);//ゲームオーバー用のアセット非アクティブ化
         }
         Background.SetActive(false);
     }
@@ -59,7 +59,7 @@ public class GameOver : MonoBehaviour
 
     void GameOverSystem()
     {
-        candle = fire.UseCandle();
+        candle = fire.UseCandle();//使用しているキャンドルのスクリプトを使用
         GameState_test state = GetComponent<GameState_test>();
 
         if (candle.GetBurnOut())
@@ -72,12 +72,12 @@ public class GameOver : MonoBehaviour
             GameOverCanvas.SetActive(true);
             if (SampleCoroutine == null)
             {
-
+                //コルーチン開始
                 SampleCoroutine = StartCoroutine(GameCoroutine(2.0f, GameOverAssets));
             }
 
             Background.SetActive(true);
-            ScoreResult(ResultEndTime);
+            ScoreResult(ResultEndTime);//ResultEndTime時間ランダムにスコアを表示
         }
         if (!state.JudgeGameOver)
         {
@@ -113,7 +113,7 @@ public class GameOver : MonoBehaviour
         GameState_test state = GetComponent<GameState_test>();
         while (i < Asset.Length)
         {
-
+            //ゲームオーバアセット全て表示されるまで継続
             Asset[i].SetActive(true);
             i++;
             yield return new WaitForSeconds(delay);
