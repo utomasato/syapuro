@@ -25,6 +25,9 @@ public class GameOver : MonoBehaviour
 
     [SerializeField]
     private float ResultEndTime;//この時間を超えると結果を出す
+    private Candle candle;
+    [SerializeField]
+    private Fire fire;
 
     GameObject[] GameOverAssets;
 
@@ -56,9 +59,13 @@ public class GameOver : MonoBehaviour
 
     void GameOverSystem()
     {
+        candle = fire.UseCandle();
         GameState_test state = GetComponent<GameState_test>();
 
-
+        if (candle.GetBurnOut())
+        {
+            state.JudgeGameOver = true;
+        }
         if (state.JudgeGameOver)
         {
 

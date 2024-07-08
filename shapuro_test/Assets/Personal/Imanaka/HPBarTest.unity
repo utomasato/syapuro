@@ -204,6 +204,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+--- !u!114 &188620662 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7810650592370276129, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
+  m_PrefabInstance: {fileID: 345473391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &256278645
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,17 +360,11 @@ PrefabInstance:
       objectReference: {fileID: 2103272688}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
---- !u!114 &304059570 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7810650591309387376, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
+--- !u!1 &304059567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7810650591309387382, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
   m_PrefabInstance: {fileID: 345473391}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &345473391
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -501,10 +506,11 @@ MonoBehaviour:
   GameOverCanvas: {fileID: 345473392}
   Background: {fileID: 1788045918}
   GameOverText: {fileID: 922501743}
-  ScoreParents: {fileID: 653218906}
-  Score_Text: {fileID: 304059570}
+  ScoreParents: {fileID: 304059567}
+  Score_Text: {fileID: 188620662}
   Button: {fileID: 1603391625}
   ResultEndTime: 3
+  fire: {fileID: 1713776615}
 --- !u!114 &432884646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -626,11 +632,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SelectScene: StageSelect_Test
---- !u!1 &653218906 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7810650593000065920, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
-  m_PrefabInstance: {fileID: 345473391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &922501743 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7810650593092383807, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
@@ -835,6 +836,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1713776615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+  m_PrefabInstance: {fileID: 273526667}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f3ed3f5828e4e92ae9b6b5a7af6105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1745075026
 GameObject:
   m_ObjectHideFlags: 0
