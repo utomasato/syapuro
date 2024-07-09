@@ -6,7 +6,9 @@ public class Fire : MonoBehaviour
 {
     [SerializeField] private GameObject PL;
     [SerializeField]
-    private float MoveSpeed;//ロウソクについている時の移動スピード
+    private float MoveSpeed;//ロウソクについている時の通常移動スピード
+    [SerializeField]
+    private float DashMoveSpeed;//ロウソクについている時のダッシュ移動スピード
     [SerializeField]
     private float Normal_BurnSpeed;//通常時
     [SerializeField]
@@ -102,17 +104,31 @@ public class Fire : MonoBehaviour
 
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
-        if (Input.GetKey(KeyCode.A))
+        if (!Input.GetKey(KeyCode.Space))
         {
-            CandleScript.Move(-MoveSpeed);
+            if (Input.GetKey(KeyCode.A))
+            {
+                CandleScript.Move(-MoveSpeed);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                CandleScript.Move(MoveSpeed);
+            }
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.Space))
         {
-            CandleScript.Move(MoveSpeed);
+            if (Input.GetKey(KeyCode.A))
+            {
+                CandleScript.Move(-DashMoveSpeed);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                CandleScript.Move(DashMoveSpeed);
+            }
         }
         if (Input.GetKey(KeyCode.W))
         {
-            Deletefire();
+
             CandleScript.Jump();
         }
         if (Input.GetKeyDown(KeyCode.Return))
