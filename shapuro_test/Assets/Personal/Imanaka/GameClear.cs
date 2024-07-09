@@ -5,11 +5,12 @@ using TMPro;
 public class GameClear : MonoBehaviour
 {
     [SerializeField]
-    private GameObject ClearedCanvas;
+    private GameObject ClearedCanvas;//ゲームクリアキャンバス
     [SerializeField]
-    private GameObject Background;
+    private GameObject Background;//Image
+    [Tooltip("CLEARと書かれているテキストを挿入してください")]
     [SerializeField]
-    private GameObject ClearText;
+    private GameObject ClearText;//Clearと書かれているテキスト
     [SerializeField]
     private GameObject ScoreParents;//スコア表示の親オブジェクト
     [SerializeField]
@@ -17,11 +18,10 @@ public class GameClear : MonoBehaviour
     [SerializeField]
     private GameObject Button;
     [SerializeField]
-    private GameObject PLFire;//プレイヤーの頭の炎
+    private GameObject PLFire;//プレイヤー
 
     GameObject[] GameClearAssets;
 
-    private bool IsClear = false;
 
     private Coroutine SampleCoroutine;
     // Start is called before the first frame update
@@ -31,7 +31,7 @@ public class GameClear : MonoBehaviour
         GameClearAssets = new GameObject[] { ClearText, ScoreParents, Button };
         foreach (GameObject asset in GameClearAssets)
         {
-            asset.SetActive(false);
+            asset.SetActive(false);//クリアキャンバス非アクティブ化
         }
 
     }
@@ -47,7 +47,7 @@ public class GameClear : MonoBehaviour
     void ClearSystem()
     {
         GameState_test state = GetComponent<GameState_test>();
-        GameOver GO = GetComponent<GameOver>();
+        GameOver GO = GetComponent<GameOver>();//GameOverスクリプトの関数使用
 
         if (state.JudgeGameClear)
         {
