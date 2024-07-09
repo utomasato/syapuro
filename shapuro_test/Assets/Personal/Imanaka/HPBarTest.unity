@@ -459,6 +459,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7810650592890806166, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
 --- !u!1 &345473392 stripped
@@ -473,9 +477,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 585118061545729640, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 256278647}
     - target: {fileID: 585118061545729643, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_Name
       value: CREARCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 585118061545729643, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585118061545729655, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_Pivot.x

@@ -40,6 +40,7 @@ public class Fire : MonoBehaviour
     {
         StartScale = transform.localScale;
         Transfer(null);
+
     }
 
     // Update is called once per frame
@@ -111,6 +112,7 @@ public class Fire : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
+            Deletefire();
             CandleScript.Jump();
         }
         if (Input.GetKeyDown(KeyCode.Return))
@@ -202,9 +204,12 @@ public class Fire : MonoBehaviour
         return CandleScript;
 
     }
-    public void Deletefire()
+    public void Deletefire()//ゲームオーバーに？？
     {
+        //ゲームオーバースクリプトを設定している場合は、BurnOut()のコメントを解除してください
+
         PL.SetActive(false);
+        //CandleScript.BurnOut();
     }
 
 }
