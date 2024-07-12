@@ -13,6 +13,8 @@ public class Fade : MonoBehaviour
     private bool IsFadeOutNow;
     [SerializeField] private bool IsFadeInNow;
     [SerializeField] string NextScene;
+    [SerializeField] private bool IsInStage = false;
+    [SerializeField] private CameraZoom camera;
 
     void Start()
     {
@@ -44,6 +46,8 @@ public class Fade : MonoBehaviour
             if (elapsedTime > fadeDuration)
             {
                 IsFadeInNow = false;
+                if (IsInStage)
+                    camera.StartZoom();
             }
         }
     }
@@ -54,6 +58,15 @@ public class Fade : MonoBehaviour
         elapsedTime = 0.0f;
         fadeColor.a = 0;
         fadeImage.color = fadeColor;
+    }
+
+    public void FadeOutStart(string nextscene)
+    {
+        IsFadeOutNow = true;
+        elapsedTime = 0.0f;
+        fadeColor.a = 0;
+        fadeImage.color = fadeColor;
+        NextScene = nextscene;
     }
 
     public void FadeInStart()

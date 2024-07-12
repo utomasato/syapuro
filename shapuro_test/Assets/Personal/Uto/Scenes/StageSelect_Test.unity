@@ -819,6 +819,8 @@ MonoBehaviour:
   fadeDuration: 1
   IsFadeInNow: 1
   NextScene: 
+  IsInStage: 0
+  camera: {fileID: 0}
 --- !u!114 &1766581326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1067,3 +1069,4 @@ MonoBehaviour:
   - PrototypeScene
   - GameMain
   - candletest_2
+  fade: {fileID: 1766581325}
