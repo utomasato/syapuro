@@ -12,6 +12,7 @@ public class StageSelect : MonoBehaviour
     int p0; // 現在の位置
     [SerializeField] Vector3 startPos; // スタート位置
     [SerializeField] private List<string> Stagelist; // ステージのリスト
+    [SerializeField] private Fade fade;
 
     void Start()
     {
@@ -55,7 +56,8 @@ public class StageSelect : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) && selectNumber < Stagelist.Count && Stagelist[selectNumber] != null)
             {
                 SceneSelectionState.selectedIndex = selectNumber; // 現在の選択番号を保存
-                SceneManager.LoadScene(Stagelist[selectNumber]); // 選択されたステージをロード
+                fade.FadeOutStart(Stagelist[selectNumber]);
+                //SceneManager.LoadScene(Stagelist[selectNumber]); // 選択されたステージをロード
             }
         }
         else
