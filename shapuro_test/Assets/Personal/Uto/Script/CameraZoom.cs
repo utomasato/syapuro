@@ -17,7 +17,7 @@ public class CameraZoom : MonoBehaviour
     void Start()
     {
         startSize = Camera.main.orthographicSize;
-        StartZoom();
+        //StartZoom();
     }
 
     void Update()
