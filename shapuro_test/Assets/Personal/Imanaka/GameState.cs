@@ -9,13 +9,14 @@ public class GameState : MonoBehaviour
 
     private bool IsGameClear;
 
-    private int Score = 0;
+    private int score;
     // Start is called before the first frame update
     void Start()
     {
         IsGameStart = false;
         IsGameOver = false;
         IsGameClear = false;
+        score = 0;
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class GameState : MonoBehaviour
     }
     public int GetScore()
     {
-        return Score;
+        return score;
     }
     public void SetGameStart()//ゲームスタートしたか
     {
@@ -45,4 +46,6 @@ public class GameState : MonoBehaviour
         get { return IsGameClear; }
         set { IsGameClear = value; }
     }
+
+
 }

@@ -98,8 +98,11 @@ public class GameOver : MonoBehaviour
         }
         else
         {
-            int Assignscore = state.JudgecurrentScore;
-            Score_Text.text = Assignscore.ToString();//テスト用
+            if (state != null)
+            {
+                int Assignscore = state.GetScore();
+                Score_Text.text = Assignscore.ToString();//テスト用
+            }
         }
     }
 
