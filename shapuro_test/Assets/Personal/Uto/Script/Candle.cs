@@ -16,6 +16,7 @@ public class Candle : MonoBehaviour
 
     [Tooltip("HitPointプレファブの中にあるスライドを選択してください")]
     [SerializeField] private Slider CurrentHPbar;//現在のロウソクのHP
+    [SerializeField] private GameState GameStateScript;//燃え尽きたらゲームオーバーになる処理
 
     private bool IsBurning = false; // ロウソクが燃えているかどうか
     private bool CanJump; // ジャンプ可能かどうか
@@ -130,6 +131,10 @@ public class Candle : MonoBehaviour
         if (CurrentHPbar != null)
         {
             CurrentHPbar.gameObject.SetActive(false);
+        }
+        if (GameStateScript != null)
+        {
+            GameStateScript.JudgeGameOver = true;
         }
         transform.parent.gameObject.SetActive(false); // 親オブジェクトを非アクティブ化
 

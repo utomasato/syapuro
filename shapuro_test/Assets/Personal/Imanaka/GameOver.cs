@@ -60,12 +60,8 @@ public class GameOver : MonoBehaviour
     void GameOverSystem()
     {
         candle = fire.UseCandle();//使用しているキャンドルのスクリプトを使用
-        GameState_test state = GetComponent<GameState_test>();
+        GameState state = GetComponent<GameState>();
 
-        if (candle.GetBurnOut())
-        {
-            state.JudgeGameOver = true;
-        }
         if (state.JudgeGameOver)
         {
 
