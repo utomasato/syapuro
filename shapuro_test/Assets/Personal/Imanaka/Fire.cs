@@ -33,10 +33,8 @@ public class Fire : MonoBehaviour
     [Tooltip("現段階では最初に憑依するcandleを参照してください")]
 
 
-    /*転生用変数*/
-    private bool IsChangeCandle = false;//転生できているか　未完成
-
-    /*   */
+    [SerializeField]
+    private GameState GameStateScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,10 +71,7 @@ public class Fire : MonoBehaviour
             NoCandle();
         }
 
-        if (IsChangeCandle)
-        {
-            //     RecoveryFire();
-        }
+
     }
 
     void BigFire()
@@ -208,11 +203,7 @@ public class Fire : MonoBehaviour
         set { IsCandle = value; }
     }
 
-    public bool JudgeIsChange//転生準備完了したか
-    {
-        get { return IsChangeCandle; }
-        set { IsChangeCandle = value; }
-    }
+
 
     public Candle UseCandle()//どのロウソクを使用しているか
     {
@@ -222,10 +213,13 @@ public class Fire : MonoBehaviour
     }
     public void Deletefire()//ゲームオーバーに？？
     {
-        //ゲームオーバースクリプトを設定している場合は、BurnOut()のコメントを解除してください
-
+        //ゲームオーバースクリプトを設定している場合は、コメントを解除してください
+        /* if (GameStateScript != null)
+                {
+                    GameStateScript.JudgeGameOver = true;
+                }*/
         PL.SetActive(false);
-        //CandleScript.BurnOut();
+
     }
 
 }

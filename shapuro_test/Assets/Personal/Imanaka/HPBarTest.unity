@@ -362,6 +362,10 @@ PrefabInstance:
       propertyPath: DashMoveSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: GameStateScript
+      value: 
+      objectReference: {fileID: 432884649}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
 --- !u!1001 &345473391
@@ -465,7 +469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7810650592890806166, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
@@ -606,7 +610,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432884644}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5654c39be8b1243b48fdfc73f4779dd0, type: 3}
   m_Name: 
@@ -676,9 +680,9 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432884644}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b099d044f1e4214982bd54e0328b89, type: 3}
+  m_Script: {fileID: 11500000, guid: aaef485f629cf4388bfd4a46ee4850e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &523071289
@@ -1360,6 +1364,10 @@ PrefabInstance:
       propertyPath: CurrentHPbar
       value: 
       objectReference: {fileID: 8738465416257057048}
+    - target: {fileID: 6152572054318079177, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
+      propertyPath: GameStateScript
+      value: 
+      objectReference: {fileID: 432884649}
     - target: {fileID: 6152572054318079181, guid: ed1bd848b38b54864a81ccca55486a5f, type: 3}
       propertyPath: m_LocalScale.y
       value: 2
