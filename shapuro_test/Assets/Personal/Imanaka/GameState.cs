@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameState : MonoBehaviour
 {
+    private bool IsCountdown;
     private bool IsGameStart;
     private bool IsGameOver;
 
@@ -13,6 +14,7 @@ public class GameState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        IsCountdown = false;
         IsGameStart = false;
         IsGameOver = false;
         IsGameClear = false;
@@ -35,6 +37,11 @@ public class GameState : MonoBehaviour
     public bool GetIsGameStart()
     {
         return IsGameStart;
+    }
+    public bool JudgeCountdown//ゲームオーバーか判断　ゲッター・セッター
+    {
+        get { return IsCountdown; }
+        set { IsCountdown = value; }
     }
     public bool JudgeGameOver//ゲームオーバーか判断　ゲッター・セッター
     {
