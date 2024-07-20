@@ -46,6 +46,8 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //   if (GameStateScript.GetIsGameStart())
+        // {
 
         Vector3 CurrentScale = transform.localScale;
         if (CurrentScale.y <= 0.1f)
@@ -71,7 +73,7 @@ public class Fire : MonoBehaviour
             NoCandle();
         }
 
-
+        //   }
     }
 
     void BigFire()

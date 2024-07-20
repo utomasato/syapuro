@@ -11,17 +11,19 @@ public class GameStart : MonoBehaviour
     [SerializeField]
     private GameObject CountdownCandle;//Startボタン押した後に表示されるキャンバス
     [SerializeField]
-    private List<GameObject> FireImage = new List<GameObject>();
+    private List<GameObject> FireImage = new List<GameObject>(); //カウントダウン時の炎
 
     private GameObject[] FireImages;
 
     private Coroutine CountCoroutine;
-    int index = 0;
+    [SerializeField]
+    private GameObject PL;
+
     // Start is called before the first frame update
     void Start()
     {
 
-
+        int index = 0;
         //  StartCanvas.SetActive(false); コメント解除予定
         FireImages = new GameObject[FireImage.Count];
         StartCanvas.SetActive(true);
@@ -41,7 +43,7 @@ public class GameStart : MonoBehaviour
         GameState State = GetComponent<GameState>();
         if (State.JudgeCountdown && CountCoroutine == null)
         {
-            Debug.Log("aa");
+
             NotStartCanvas.SetActive(false);
             CountdownCandle.SetActive(true);
             CountCoroutine = StartCoroutine(CountdownCoroutine(1.0f));
@@ -50,6 +52,7 @@ public class GameStart : MonoBehaviour
     private int i = 0;
     IEnumerator CountdownCoroutine(float delay)
     {
+        GameState State = GetComponent<GameState>();
         while (i < FireImages.Length)
         {
             FireImages[i].SetActive(true);
@@ -57,6 +60,7 @@ public class GameStart : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
         StartCanvas.SetActive(false);
+        State.SetGameStart();
         CountCoroutine = null;
     }
     public void PushStart()//Startボタンプッシュ
