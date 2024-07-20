@@ -10,6 +10,8 @@ public class GameState : MonoBehaviour
 
     private bool IsGameClear;
 
+    private bool IsAddingUp;
+
     private int score;
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class GameState : MonoBehaviour
         IsGameStart = false;
         IsGameOver = false;
         IsGameClear = false;
+        IsAddingUp = false;
         score = 0;
     }
 
