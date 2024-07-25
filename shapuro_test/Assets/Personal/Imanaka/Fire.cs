@@ -46,7 +46,7 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //   if (GameStateScript.GetIsGameStart())
+        //if (GameStateScript.JudgeExplain&&GameStateScript.GetIsGameStart()&&!GameStateScript.JudgeGameClear&&!GameStateScript.JudgeGameOver)
         // {
 
         Vector3 CurrentScale = transform.localScale;
@@ -222,6 +222,17 @@ public class Fire : MonoBehaviour
                 }*/
         PL.SetActive(false);
 
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            if (GameStateScript != null)
+            {
+                GameStateScript.JudgeGameClear = true;
+            }
+        }
     }
 
 }

@@ -12,6 +12,7 @@ public class GameState : MonoBehaviour
 
     private bool IsAddingUp;
 
+    private bool IsExplain;
     private int score;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,7 @@ public class GameState : MonoBehaviour
         IsGameOver = false;
         IsGameClear = false;
         IsAddingUp = false;
+        IsExplain = false;
         score = 0;
     }
 
@@ -55,6 +57,11 @@ public class GameState : MonoBehaviour
     {
         get { return IsGameClear; }
         set { IsGameClear = value; }
+    }
+    public bool JudgeExplain//チュートリアル説明中か
+    {
+        get { return IsExplain; }
+        set { IsExplain = value; }
     }
 
 
