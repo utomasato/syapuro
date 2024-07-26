@@ -18,19 +18,20 @@ public class StageSelect : MonoBehaviour
     {
         if (SceneSelectionState.selectedIndex == -1)
         {
-            p0 = 0; // 初期位置を0に設定
-            transform.position = startPos; // スタート位置に設定
+            p0 = -1; // 初期位置を0に設定
+            selectNumber = 0; // 選択番号を設定
+            //transform.position = startPos; // スタート位置に設定
         }
         else
         {
             p0 = SceneSelectionState.selectedIndex; // 前回の選択位置を取得
-            Vector3 pos = startPos;
-            pos.x = startPos.x + p0 * interval; // 選択位置に応じてX座標を調整
-            transform.position = pos;
+
+            selectNumber = p0; // 選択番号を設定
         }
-        selectNumber = p0; // 選択番号を設定
+        Vector3 pos = startPos;
+        pos.x = startPos.x + p0 * interval; // 選択位置に応じてX座標を調整
+        transform.position = pos;
         IsMoving = false; // 移動中フラグをリセット
-        //Debug.Log(SceneSelectionState.selectedIndex);
     }
 
     void Update()
@@ -40,20 +41,16 @@ public class StageSelect : MonoBehaviour
             // 右キーが押された場合
             if (Input.GetKeyDown(KeyCode.D) && selectNumber + 1 < Stagelist.Count)
             {
-                selectNumber += 1; // 選択番号を増やす
-                IsMoving = true; // 移動中フラグを設定
-                t = 0.0f; // 補間の時間をリセット
+                Move(1);
             }
             // 左キーが押された場合
             if (Input.GetKeyDown(KeyCode.A) && 0 < selectNumber)
             {
-                selectNumber -= 1; // 選択番号を減らす
-                IsMoving = true; // 移動中フラグを設定
-                t = 0.0f; // 補間の時間をリセット
+                Move(-1);
             }
 
             // エンターキーが押された場合
-            if (Input.GetKeyDown(KeyCode.Return) && selectNumber < Stagelist.Count && Stagelist[selectNumber] != null)
+            if (Input.GetKeyDown(KeyCode.Return) && 0 <= selectNumber && selectNumber < Stagelist.Count && Stagelist[selectNumber] != null)
             {
                 SceneSelectionState.selectedIndex = selectNumber; // 現在の選択番号を保存
                 fade.FadeOutStart(Stagelist[selectNumber]);
@@ -63,7 +60,7 @@ public class StageSelect : MonoBehaviour
         else
         {
             t += Time.deltaTime; // 補間の時間を更新
-            if (t >= 1.0f)
+            if (t >= 1.0f || p0 == selectNumber)
             {
                 t = 1.0f; // 補間時間の上限を1.0に設定
                 IsMoving = false; // 移動中フラグをリセット
@@ -73,5 +70,12 @@ public class StageSelect : MonoBehaviour
             pos.x = startPos.x + Mathf.Lerp(p0 * interval, selectNumber * interval, t); // 補間を用いてX座標を計算
             transform.position = pos; // 新しい位置を設定
         }
+    }
+
+    public void Move(int delta)
+    {
+        selectNumber += delta; // 選択番号を増やす
+        IsMoving = true; // 移動中フラグを設定
+        t = 0.0f; // 補間の時間をリセット
     }
 }

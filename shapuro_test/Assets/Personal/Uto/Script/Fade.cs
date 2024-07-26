@@ -14,6 +14,7 @@ public class Fade : MonoBehaviour
     [SerializeField] private bool IsFadeInNow;
     [SerializeField] string NextScene;
     [SerializeField] private bool IsInStage = false;
+    [SerializeField] private StageSelect select;
     [SerializeField] private CameraZoom camera;
 
     void Start()
@@ -24,7 +25,7 @@ public class Fade : MonoBehaviour
 
     void Update()
     {
-        if (IsFadeOutNow)
+        if (IsFadeOutNow) // だんだん明るく
         {
             elapsedTime += Time.deltaTime;
             fadeColor.a = Mathf.Clamp01(elapsedTime / fadeDuration);
@@ -38,7 +39,7 @@ public class Fade : MonoBehaviour
                 }
             }
         }
-        if (IsFadeInNow)
+        if (IsFadeInNow) // だんだん暗く
         {
             elapsedTime += Time.deltaTime;
             fadeColor.a = Mathf.Clamp01(1.0f - elapsedTime / fadeDuration);
@@ -48,6 +49,8 @@ public class Fade : MonoBehaviour
                 IsFadeInNow = false;
                 if (IsInStage)
                     camera.StartZoom();
+                if (select != null)
+                    select.Move(0);
             }
         }
     }
