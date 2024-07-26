@@ -820,6 +820,7 @@ MonoBehaviour:
   IsFadeInNow: 1
   NextScene: 
   IsInStage: 0
+  select: {fileID: 1897496554}
   camera: {fileID: 0}
 --- !u!114 &1766581326
 MonoBehaviour:
@@ -1066,7 +1067,7 @@ MonoBehaviour:
   interval: 6
   startPos: {x: -6, y: -2.5, z: -1}
   Stagelist:
-  - PrototypeScene
-  - GameMain
+  - candletest_2
+  - candletest_2
   - candletest_2
   fade: {fileID: 1766581325}
