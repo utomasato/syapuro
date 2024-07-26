@@ -20,7 +20,7 @@ public class GameState : MonoBehaviour
         IsCountdown = false;
         IsGameStart = false;
         IsGameOver = false;
-        IsGameClear = false;
+        IsGameClear = true;
         IsAddingUp = false;
         IsExplain = false;
         score = 0;
@@ -30,6 +30,11 @@ public class GameState : MonoBehaviour
     void Update()
     {
 
+    }
+    public void AddScore(int addscore)
+    {
+        score += addscore;
+        Debug.Log(score);
     }
     public int GetScore()
     {
@@ -43,7 +48,7 @@ public class GameState : MonoBehaviour
     {
         return IsGameStart;
     }
-    public bool JudgeCountdown//ゲームオーバーか判断　ゲッター・セッター
+    public bool JudgeCountdown//スタート時、カウントダウンが始まっているか
     {
         get { return IsCountdown; }
         set { IsCountdown = value; }

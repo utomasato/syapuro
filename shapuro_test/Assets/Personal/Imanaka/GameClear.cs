@@ -46,19 +46,20 @@ public class GameClear : MonoBehaviour
 
     void ClearSystem()
     {
-        GameState_test state = GetComponent<GameState_test>();
-        GameOver GO = GetComponent<GameOver>();//GameOverスクリプトの関数使用
+        GameState state = GetComponent<GameState>();
+        GameOver GO = GetComponent<GameOver>();
 
         if (state.JudgeGameClear)
         {
             PLFire.SetActive(false);
-            int ResultScore = state.JudgecurrentScore;
+            int ResultScore = state.GetScore();
             Score_Text.text = ResultScore.ToString();
             ClearedCanvas.SetActive(true);
             if (SampleCoroutine == null)
             {
                 SampleCoroutine = StartCoroutine(GO.GameCoroutine(2.0f, GameClearAssets));
             }
+            GO.ScoreResult(3.0f, Score_Text);
         }
     }
 }

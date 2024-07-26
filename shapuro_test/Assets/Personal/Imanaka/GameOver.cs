@@ -51,7 +51,7 @@ public class GameOver : MonoBehaviour
     void Update()
     {
 
-        //  Invoke("Test", 2.0f);
+
         GameOverSystem();
     }
 
@@ -73,7 +73,7 @@ public class GameOver : MonoBehaviour
             }
 
             Background.SetActive(true);
-            ScoreResult(ResultEndTime);//ResultEndTime時間ランダムにスコアを表示
+            ScoreResult(ResultEndTime, Score_Text);//ResultEndTime時間ランダムにスコアを表示
         }
         if (!state.JudgeGameOver)
         {
@@ -87,21 +87,21 @@ public class GameOver : MonoBehaviour
         return Random.Range(min, max);
     }
 
-    public void ScoreResult(float Endtime)
+    public void ScoreResult(float Endtime, TMP_Text ScoreText)
     {
         GameState_test state = GetComponent<GameState_test>();
         ResultStartTime += Time.deltaTime;
         if (ResultStartTime < Endtime)
         {
             int Assignscore = RandomScore(500, 1500);
-            Score_Text.text = Assignscore.ToString();
+            ScoreText.text = Assignscore.ToString();
         }
         else
         {
             if (state != null)
             {
                 int Assignscore = state.GetScore();
-                Score_Text.text = Assignscore.ToString();//テスト用
+                ScoreText.text = Assignscore.ToString();
             }
         }
     }
@@ -117,7 +117,7 @@ public class GameOver : MonoBehaviour
             i++;
             yield return new WaitForSeconds(delay);
         }
-        //state.NotGameOver();
+
         SampleCoroutine = null;
     }
 
