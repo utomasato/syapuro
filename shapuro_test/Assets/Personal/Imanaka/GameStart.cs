@@ -26,7 +26,7 @@ public class GameStart : MonoBehaviour
         int index = 0;
         //  StartCanvas.SetActive(false); コメント解除予定
         FireImages = new GameObject[FireImage.Count];
-        StartCanvas.SetActive(true);
+        //  StartCanvas.SetActive(true);
         foreach (GameObject obj in FireImage)
         {
             FireImages[index] = obj;

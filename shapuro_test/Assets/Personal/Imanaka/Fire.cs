@@ -234,5 +234,13 @@ public class Fire : MonoBehaviour
             }
         }
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("lamp"))
+        {
+            Debug.Log("aaa");
+            other.GetComponent<SpriteRenderer>().enabled = true;
+        }
+    }
 
 }
