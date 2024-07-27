@@ -226,6 +226,7 @@ public class Fire : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+
         if (other.gameObject.CompareTag("Goal"))
         {
             if (GameStateScript != null)
@@ -233,6 +234,12 @@ public class Fire : MonoBehaviour
                 GameStateScript.JudgeGameClear = true;
             }
         }
+
+    }
+
+    public bool CanLampOn()
+    {
+        return IsCandle;
     }
 
 
