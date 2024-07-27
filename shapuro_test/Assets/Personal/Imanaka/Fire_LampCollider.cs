@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Fire_LampCollider : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,10 +18,15 @@ public class Fire_LampCollider : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("lamp"))
+        Fire fire = GetComponentInParent<Fire>();
+        if (fire.CanLampOn())
         {
-            other.gameObject.GetComponent<LampON>().Ignition();
+            if (other.gameObject.CompareTag("lamp"))
+            {
+                other.gameObject.GetComponent<LampON>().Ignition();
 
+            }
         }
+
     }
 }
