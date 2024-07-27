@@ -234,4 +234,8 @@ public class Fire : MonoBehaviour
     {
         return IsNormal;
     }
+    public bool CanLampOn()
+    {
+        return IsCandle;
+    }
 }
