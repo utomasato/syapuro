@@ -52,7 +52,7 @@ public class Fire : MonoBehaviour
         Vector3 CurrentScale = transform.localScale;
         if (CurrentScale.y <= 0.1f)
         {
-            CandleScript.BurnOut();
+            //  CandleScript.BurnOut();
         }
         if (CandleScript == null)
         {
