@@ -8,6 +8,8 @@ TagManager:
   - FirePosition
   - Goal
   - RecoveryItem
+  - water
+  - wind
   layers:
   - Default
   - TransparentFX

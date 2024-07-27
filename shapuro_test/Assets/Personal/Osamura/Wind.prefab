@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5166739669449915823}
   m_Layer: 0
   m_Name: Wind
-  m_TagString: Untagged
+  m_TagString: wind
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 5166739670060408798}
   m_Layer: 0
   m_Name: WindArea
-  m_TagString: Untagged
+  m_TagString: wind
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

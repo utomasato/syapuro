@@ -19,6 +19,7 @@ public class balloon : MonoBehaviour
             t = 0F;
             if (isRise)
             {
+                Debug.Log("OK");
                 rise = this.gameObject.transform.localPosition;
                 this.gameObject.transform.localPosition = new Vector3(rise.x, rise.y + 0.2F, rise.z);
                 rise = player.transform.localPosition;
@@ -27,8 +28,13 @@ public class balloon : MonoBehaviour
             }
         }
     }
-    /*    void OnTriggerEnter(Collision other)
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("何かにぶつかった");
+        if (other.gameObject.Equals(player))
         {
-            isRise = (other.gameObject.Equals(player)/*&&player.GetComponent<player>().isBoost);
-        }*/
+            Debug.Log("プレイヤー");
+            isRise = true;
+        }
+    }
 }
