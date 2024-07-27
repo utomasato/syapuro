@@ -22,6 +22,7 @@ public class Fire : MonoBehaviour
     private float Firetime;//火の玉状態になってからの生存期間
 
     private bool IsCandle = true;//ロウソクに炎がついているか
+    private bool IsNormal = true;
 
     [Tooltip("現段階では最初に憑依するcandleを参照してください")]
     [SerializeField]
@@ -33,8 +34,10 @@ public class Fire : MonoBehaviour
     [Tooltip("現段階では最初に憑依するcandleを参照してください")]
 
 
-    [SerializeField]
-    private GameState GameStateScript;
+    /*転生用変数*/
+    private bool IsChangeCandle = false;//転生できているか　未完成
+
+    /*   */
     // Start is called before the first frame update
     void Start()
     {
@@ -46,13 +49,11 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (GameStateScript.JudgeExplain&&GameStateScript.GetIsGameStart()&&!GameStateScript.JudgeGameClear&&!GameStateScript.JudgeGameOver)
-        // {
 
         Vector3 CurrentScale = transform.localScale;
         if (CurrentScale.y <= 0.1f)
         {
-            //  CandleScript.BurnOut();
+            CandleScript.BurnOut();
         }
         if (CandleScript == null)
         {
@@ -73,13 +74,17 @@ public class Fire : MonoBehaviour
             NoCandle();
         }
 
-        //   }
+        if (IsChangeCandle)
+        {
+            //     RecoveryFire();
+        }
     }
 
     void BigFire()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            IsNormal = false;
             Vector3 CurrentSize = transform.localScale;
             CurrentSize.y *= 2f;
             transform.localScale = CurrentSize;
@@ -87,6 +92,7 @@ public class Fire : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            IsNormal = true;
             transform.localScale = StartScale;
         }
         if (Input.GetKey(KeyCode.Space))
@@ -205,7 +211,11 @@ public class Fire : MonoBehaviour
         set { IsCandle = value; }
     }
 
-
+    public bool JudgeIsChange//転生準備完了したか
+    {
+        get { return IsChangeCandle; }
+        set { IsChangeCandle = value; }
+    }
 
     public Candle UseCandle()//どのロウソクを使用しているか
     {
@@ -215,32 +225,13 @@ public class Fire : MonoBehaviour
     }
     public void Deletefire()//ゲームオーバーに？？
     {
-        //ゲームオーバースクリプトを設定している場合は、コメントを解除してください
-        /* if (GameStateScript != null)
-                {
-                    GameStateScript.JudgeGameOver = true;
-                }*/
+        //ゲームオーバースクリプトを設定している場合は、BurnOut()のコメントを解除してください
+
         PL.SetActive(false);
-
+        //CandleScript.BurnOut();
     }
-
-    void OnCollisionEnter(Collision other)
+    public bool getIsNormal()
     {
-
-        if (other.gameObject.CompareTag("Goal"))
-        {
-            if (GameStateScript != null)
-            {
-                GameStateScript.JudgeGameClear = true;
-            }
-        }
-
+        return IsNormal;
     }
-
-    public bool CanLampOn()
-    {
-        return IsCandle;
-    }
-
-
 }
