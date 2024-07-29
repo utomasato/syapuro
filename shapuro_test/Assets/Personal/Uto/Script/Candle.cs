@@ -124,7 +124,7 @@ public class Candle : MonoBehaviour
         }
     }
 
-    public void BurnOut() // ロウソクの燃え尽き処理
+    private void BurnOut() // ロウソクの燃え尽き処理
     {
         Debug.Log(this.name + " : BurnOut"); // 燃え尽きたことをログに出力
         IsBurnOut = true;
