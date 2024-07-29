@@ -157,13 +157,29 @@ public class Candle : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        CanJump = true; // 衝突を検出したときジャンプ可能にする
+        // 接触点の法線ベクトルが上向きであるかどうかをチェック
+        foreach (ContactPoint contact in other.contacts)
+        {
+            if (contact.normal.y > 0.5f)
+            {
+                CanJump = true;
+                break; // 上向きの法線ベクトルが見つかったらループを抜ける
+            }
+        }
     }
 
     void OnCollisionExit(Collision other)
     {
-        CanJump = false; // 衝突が終了したときジャンプ不可にする
+        foreach (ContactPoint contact in other.contacts)
+        {
+            if (contact.normal.y > 0.5f)
+            {
+                CanJump = false;
+                break; // 上向きの法線ベクトルが見つかったらループを抜ける
+            }
+        }
     }
+
     public float HPbar()
     {
         return size / startSize;
