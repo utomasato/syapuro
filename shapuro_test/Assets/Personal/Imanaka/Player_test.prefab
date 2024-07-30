@@ -47,13 +47,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PL: {fileID: 6180941077445292355}
   MoveSpeed: 3
-  DashMoveSpeed: 0
+  DashMoveSpeed: 5
   Normal_BurnSpeed: 0.1
   Strong_BurnSpeed: 0.3
   Firespeed: 1.5
   SurviveTime: 4
   CandleScript: {fileID: 0}
-  GameStateScript: {fileID: 0}
 --- !u!1 &7753556214711430306
 GameObject:
   m_ObjectHideFlags: 0

@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 256278648}
   - component: {fileID: 256278647}
   - component: {fileID: 256278646}
-  - component: {fileID: 256278649}
+  - component: {fileID: 256278650}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -289,7 +289,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &256278649
+--- !u!114 &256278650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,12 +298,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 256278645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d7e2b1bfb2624024b5f105a02f6a127, type: 3}
+  m_Script: {fileID: 11500000, guid: bcf8c3888ffae4530a9b216110ceb244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeImage: {fileID: 1650726769}
+  fadeTime: 1
   endSize: 10
   endPosition: {x: 2.7, y: 5.4, z: -10}
-  time: 2
+  zoomTime: 1
+  IsInStage: 1
 --- !u!1001 &273526667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,6 +366,10 @@ PrefabInstance:
       propertyPath: CandleScript
       value: 
       objectReference: {fileID: 2103272688}
+    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: DashMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
 --- !u!1 &523071289
@@ -615,7 +622,6 @@ GameObject:
   - component: {fileID: 1650726767}
   - component: {fileID: 1650726770}
   - component: {fileID: 1650726769}
-  - component: {fileID: 1650726768}
   m_Layer: 5
   m_Name: FadeImage
   m_TagString: Untagged
@@ -643,24 +649,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1650726768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1650726766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4027c6b13b096402fbab4c4f3918bb83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeImage: {fileID: 1650726769}
-  fadeDuration: 1
-  IsFadeInNow: 1
-  NextScene: 
-  IsInStage: 1
-  camera: {fileID: 256278649}
 --- !u!114 &1650726769
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,12 +10,8 @@ public class Title : MonoBehaviour
     [SerializeField] private Color32 endColor = new Color32(255, 255, 255, 64);
     [SerializeField] private float duration = 1.0f;
     private bool hasKeyBeenPressed = false;
-    [SerializeField] private Fade fade;
-
-    void Start()
-    {
-
-    }
+    [SerializeField] private SceneChange sceneChange;
+    [SerializeField] private string NextScene;
 
     void Update()
     {
@@ -23,7 +19,7 @@ public class Title : MonoBehaviour
         if (!hasKeyBeenPressed && Input.anyKeyDown)
         {
             hasKeyBeenPressed = true;
-            fade.FadeOutStart();
+            sceneChange.StartFadeOut(NextScene);
             Debug.Log("Pressed any key");
         }
     }
