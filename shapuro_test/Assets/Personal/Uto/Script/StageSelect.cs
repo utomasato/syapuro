@@ -12,30 +12,50 @@ public class StageSelect : MonoBehaviour
     int p0; // 現在の位置
     [SerializeField] Vector3 startPos; // スタート位置
     [SerializeField] private List<string> Stagelist; // ステージのリスト
-    [SerializeField] private Fade fade;
+    [SerializeField] private SceneChange sceneChange;
+    bool IsNoSelect = false;
+    float p;
 
     void Start()
     {
         if (SceneSelectionState.selectedIndex == -1)
         {
-            p0 = -1; // 初期位置を0に設定
+            p0 = 0; // 初期位置を0に設定
             selectNumber = 0; // 選択番号を設定
-            //transform.position = startPos; // スタート位置に設定
+            sceneChange.StartFadeIn();
+            IsNoSelect = true;
+            p = transform.position.x;
         }
         else
         {
             p0 = SceneSelectionState.selectedIndex; // 前回の選択位置を取得
-
             selectNumber = p0; // 選択番号を設定
+            IsNoSelect = false;
+            Vector3 pos = startPos;
+            pos.x = startPos.x + p0 * interval; // 選択位置に応じてX座標を調整
+            transform.position = pos;
+            sceneChange.StartFadeIn();
         }
-        Vector3 pos = startPos;
-        pos.x = startPos.x + p0 * interval; // 選択位置に応じてX座標を調整
-        transform.position = pos;
+
         IsMoving = false; // 移動中フラグをリセット
     }
 
     void Update()
     {
+        if (IsNoSelect)
+        {
+            t += Time.deltaTime; // 補間の時間を更新
+            if (t >= 1.0f)
+            {
+                t = 1.0f; // 補間時間の上限を1.0に設定
+                IsNoSelect = false; // 移動中フラグをリセット
+            }
+            Vector3 pos = transform.position;
+            pos.x = Mathf.Lerp(p, startPos.x, t); // 補間を用いてX座標を計算
+            transform.position = pos; // 新しい位置を設定
+            return;
+        }
+
         if (!IsMoving)
         {
             // 右キーが押された場合
@@ -53,7 +73,7 @@ public class StageSelect : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) && 0 <= selectNumber && selectNumber < Stagelist.Count && Stagelist[selectNumber] != null)
             {
                 SceneSelectionState.selectedIndex = selectNumber; // 現在の選択番号を保存
-                fade.FadeOutStart(Stagelist[selectNumber]);
+                sceneChange.StartFadeOut(Stagelist[selectNumber]);
                 //SceneManager.LoadScene(Stagelist[selectNumber]); // 選択されたステージをロード
             }
         }

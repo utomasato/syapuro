@@ -748,7 +748,6 @@ GameObject:
   - component: {fileID: 1907005842}
   - component: {fileID: 1907005844}
   - component: {fileID: 1907005843}
-  - component: {fileID: 1907005845}
   m_Layer: 5
   m_Name: FadeImage
   m_TagString: Untagged
@@ -814,22 +813,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907005841}
   m_CullTransparentMesh: 1
---- !u!114 &1907005845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907005841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4027c6b13b096402fbab4c4f3918bb83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadeImage: {fileID: 1907005843}
-  fadeDuration: 1
-  IsFadeInNow: 0
-  NextScene: StageSelect_Test
 --- !u!1 &2056334554
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +824,7 @@ GameObject:
   - component: {fileID: 2056334557}
   - component: {fileID: 2056334556}
   - component: {fileID: 2056334555}
+  - component: {fileID: 2056334558}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -914,6 +898,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2056334558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056334554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf8c3888ffae4530a9b216110ceb244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 1907005843}
+  fadeTime: 1
+  endSize: 0
+  endPosition: {x: 0, y: 0, z: 0}
+  zoomTime: 0
+  IsInStage: 0
 --- !u!1 &2123825474
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,4 +968,5 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 1090519039
   duration: 1
-  fade: {fileID: 1907005845}
+  sceneChange: {fileID: 2056334558}
+  NextScene: StageSelect_Test
