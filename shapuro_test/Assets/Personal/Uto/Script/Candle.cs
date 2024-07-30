@@ -9,9 +9,11 @@ public class Candle : MonoBehaviour
     private float startSize; // 初期サイズ
     [SerializeField] private float size; // 現在のサイズ Start()でWakeUp()が呼び出されたときのために入力が必要
     [SerializeField] private float minJumpPower, maxJumpPower; // 最小ジャンプ力と最大ジャンプ力
-    [SerializeField] private GameObject hed; // ロウソクの頭部
+    [SerializeField] private GameObject head; // ロウソクの頭部
+    [SerializeField] private GameObject hand; // ロウソクの腕
     [SerializeField] private GameObject body; // ロウソクの胴体
     [SerializeField] private GameObject foot; // ロウソクの足
+    [SerializeField] private float handCoefficient; // 腕の位置補正値
     [SerializeField] private float footSize; // 足が生えたときの高さの増加分
 
     [Tooltip("HitPointプレファブの中にあるスライドを選択してください")]
@@ -22,6 +24,7 @@ public class Candle : MonoBehaviour
     private bool CanJump; // ジャンプ可能かどうか
     private bool IsBurnOut = false; // ロウソクが燃え尽きたかどうか
     private Rigidbody rb; // 物理挙動のためのRigidbodyコンポーネント
+    private bool IsRightFacing = true;
 
 
     void Start()
@@ -39,6 +42,7 @@ public class Candle : MonoBehaviour
         size = startSize; // 現在のサイズを初期サイズに設定
 
         rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
+        hand.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 腕を画面外に移動
         foot.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 足を画面外に移動
     }
 
@@ -47,11 +51,12 @@ public class Candle : MonoBehaviour
         body.transform.position = transform.position; // 胴体の位置をロウソクの位置に合わせる
         if (IsBurning)
         {
-            // ロウソクが燃えているときの胴体と足の位置を調整
+            // ロウソクが燃えているときの胴体と足、腕の位置を調整
             body.transform.position += new Vector3(0.0f, footSize / 2.0f, 0.0f);
             foot.transform.position = body.transform.position - new Vector3(0.0f, size / 2.0f, 0.0f);
+            hand.transform.position = foot.transform.position + new Vector3(0.0f, size * handCoefficient, 0.0f);
         }
-        hed.transform.position = body.transform.position + new Vector3(0.0f, size / 2.0f, 0.0f); // 頭部の位置を正しく設定
+        head.transform.position = body.transform.position + new Vector3(0.0f, size / 2.0f, 0.0f); // 頭部の位置を正しく設定
     }
 
     public void Shorten(float burningSpeed) // ロウソクを短くする（燃焼速度に応じて）
@@ -65,8 +70,14 @@ public class Candle : MonoBehaviour
         }
         Vector3 ls = transform.localScale; // ローカルスケールを更新
         ls.y = size;
+        if (IsRightFacing)
+            ls.x = 1.0f;
+        else
+            ls.x = -1.0f;
         body.transform.localScale = ls;
-        if (IsBurning) ls.y += footSize; // 燃えている場合はサイズを調整
+
+        if (IsBurning)
+            ls.y += footSize; // 燃えている場合はサイズを調整
         transform.localScale = ls;
         if (CurrentHPbar != null)
         {
@@ -78,6 +89,20 @@ public class Candle : MonoBehaviour
     public void Move(float x) // ロウソクを水平に移動
     {
         transform.position += new Vector3(x * Time.deltaTime, 0, 0);
+        if (0 < x)
+            IsRightFacing = true;
+        else
+            IsRightFacing = false;
+        foreach (GameObject obj in new List<GameObject>() { head, body, hand, foot })
+        {
+            Vector3 ls = obj.transform.localScale;
+            if (0 < x)
+                ls.x = 1.0f;
+            else
+                ls.x = -1.0f;
+            obj.transform.localScale = ls;
+        }
+
     }
 
     public void Jump() // ロウソクをジャンプさせる
@@ -117,6 +142,7 @@ public class Candle : MonoBehaviour
         Vector3 ls = transform.localScale;
         ls.y = size; // ローカルスケールをリセット
         transform.localScale = ls;
+        hand.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 腕を画面外に移動
         foot.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 足を画面外に移動
         if (CurrentHPbar != null)
         {
@@ -145,9 +171,9 @@ public class Candle : MonoBehaviour
         return size;
     }
 
-    public Vector3 GetHedPosition()
+    public Vector3 GetHeadPosition()
     {
-        return hed.transform.position;
+        return head.transform.position;
     }
 
     public bool GetBurnOut()
@@ -184,9 +210,4 @@ public class Candle : MonoBehaviour
     {
         return size / startSize;
     }
-
-
-
-
-
 }

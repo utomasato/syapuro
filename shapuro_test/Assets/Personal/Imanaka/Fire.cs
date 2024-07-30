@@ -61,7 +61,7 @@ public class Fire : MonoBehaviour
         }
         if (IsCandle)//炎がロウソクについている時
         {
-            transform.position = CandleScript.GetHedPosition();
+            transform.position = CandleScript.GetHeadPosition();
 
 
             BigFire();
