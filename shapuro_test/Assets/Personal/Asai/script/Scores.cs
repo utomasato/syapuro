@@ -9,4 +9,8 @@ public class Scores : MonoBehaviour
     {
         score += x;
     }
+    public int getscores()
+    {
+        return score;
+    }
 }
