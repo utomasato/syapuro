@@ -1174,9 +1174,17 @@ MonoBehaviour:
   body: {fileID: 6152572054976107908}
   foot: {fileID: 6152572055048551720}
   handCoefficient: 0
-  footSize: 0.6
+  footSize: 0.65
   CurrentHPbar: {fileID: 0}
   GameStateScript: {fileID: 0}
+  animatorList:
+  - {fileID: 3150525699549758372}
+  - {fileID: 6202276652212911940}
+  - {fileID: 8399986994082954225}
+  - {fileID: 4454886698889277567}
+  - {fileID: 7869728413054141830}
+  - {fileID: 6000249022172870487}
+  - {fileID: 572130618266292609}
 --- !u!54 &6152572054318079190
 Rigidbody:
   m_ObjectHideFlags: 0

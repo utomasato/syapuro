@@ -26,6 +26,9 @@ public class Candle : MonoBehaviour
     private Rigidbody rb; // 物理挙動のためのRigidbodyコンポーネント
     private bool IsRightFacing = true;
 
+    [SerializeField] private List<Animator> animatorList;
+    private float speed;
+
 
     void Start()
     {
@@ -36,6 +39,10 @@ public class Candle : MonoBehaviour
             Vector3 pos = transform.position;
             pos.z = 2;
             transform.position = pos;
+            foreach (Animator animator in animatorList)
+            {
+                animator.SetBool("IsBurning", false);
+            }
         }
         else
             startSize = transform.lossyScale.y - footSize;
@@ -55,6 +62,16 @@ public class Candle : MonoBehaviour
             body.transform.position += new Vector3(0.0f, footSize / 2.0f, 0.0f);
             foot.transform.position = body.transform.position - new Vector3(0.0f, size / 2.0f, 0.0f);
             hand.transform.position = foot.transform.position + new Vector3(0.0f, size * handCoefficient, 0.0f);
+            if (speed == 0.0f)
+            {
+                body.transform.position += new Vector3(0.0f, 0.1f - (startSize - size) * 0.2f, 0.0f);
+                foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+            }
+            foreach (Animator animator in animatorList)
+            {
+                animator.SetFloat("speed", Mathf.Abs(speed));
+            }
+            speed = 0.0f;
         }
         head.transform.position = body.transform.position + new Vector3(0.0f, size / 2.0f, 0.0f); // 頭部の位置を正しく設定
     }
@@ -102,7 +119,7 @@ public class Candle : MonoBehaviour
                 ls.x = -1.0f;
             obj.transform.localScale = ls;
         }
-
+        speed = x;
     }
 
     public void Jump() // ロウソクをジャンプさせる
@@ -128,6 +145,10 @@ public class Candle : MonoBehaviour
         ls.y = size + footSize; // 足の大きさに応じてローカルスケールを調整
         transform.localScale = ls;
 
+        foreach (Animator animator in animatorList)
+        {
+            animator.SetBool("IsBurning", true);
+        }
     }
 
     public void Sleep() // 足を消して位置を調整
@@ -147,6 +168,11 @@ public class Candle : MonoBehaviour
         if (CurrentHPbar != null)
         {
             CurrentHPbar.value = 1;//HPバーリセット
+        }
+
+        foreach (Animator animator in animatorList)
+        {
+            animator.SetBool("IsBurning", false);
         }
     }
 
