@@ -16,6 +16,8 @@ public class StageSelect : MonoBehaviour
     bool IsNoSelect = false;
     float p;
 
+    [SerializeField] private Animator animator;
+
     void Start()
     {
         if (SceneSelectionState.selectedIndex == -1)
@@ -25,6 +27,7 @@ public class StageSelect : MonoBehaviour
             sceneChange.StartFadeIn();
             IsNoSelect = true;
             p = transform.position.x;
+            animator.SetBool("Moving", true);
         }
         else
         {
@@ -35,6 +38,8 @@ public class StageSelect : MonoBehaviour
             pos.x = startPos.x + p0 * interval; // 選択位置に応じてX座標を調整
             transform.position = pos;
             sceneChange.StartFadeIn();
+            animator.SetBool("Moving", false);
+            transform.position += new Vector3(0.0f, 0.1f, 0.0f);
         }
 
         IsMoving = false; // 移動中フラグをリセット
@@ -49,6 +54,8 @@ public class StageSelect : MonoBehaviour
             {
                 t = 1.0f; // 補間時間の上限を1.0に設定
                 IsNoSelect = false; // 移動中フラグをリセット
+                animator.SetBool("Moving", false);
+                transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
             Vector3 pos = transform.position;
             pos.x = Mathf.Lerp(p, startPos.x, t); // 補間を用いてX座標を計算
@@ -85,6 +92,8 @@ public class StageSelect : MonoBehaviour
                 t = 1.0f; // 補間時間の上限を1.0に設定
                 IsMoving = false; // 移動中フラグをリセット
                 p0 = selectNumber; // 現在の位置を更新
+                animator.SetBool("Moving", false);
+                transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
             Vector3 pos = transform.position;
             pos.x = startPos.x + Mathf.Lerp(p0 * interval, selectNumber * interval, t); // 補間を用いてX座標を計算
@@ -97,5 +106,11 @@ public class StageSelect : MonoBehaviour
         selectNumber += delta; // 選択番号を増やす
         IsMoving = true; // 移動中フラグを設定
         t = 0.0f; // 補間の時間をリセット
+        animator.SetBool("Moving", true);
+        transform.position -= new Vector3(0.0f, 0.1f, 0.0f);
+        Vector3 ls = transform.localScale;
+        if (delta > 0) ls.x = 1.0f;
+        else ls.x = -1.0f;
+        transform.localScale = ls;
     }
 }
