@@ -15,6 +15,7 @@ public class Candle : MonoBehaviour
     [SerializeField] private GameObject foot; // ロウソクの足
     [SerializeField] private float handCoefficient; // 腕の位置補正値
     [SerializeField] private float footSize; // 足が生えたときの高さの増加分
+    [SerializeField] private float marginSize; // 燃え尽きる時のサイズ
 
     [Tooltip("HitPointプレファブの中にあるスライドを選択してください")]
     [SerializeField] private Slider CurrentHPbar;//現在のロウソクのHP
@@ -45,7 +46,7 @@ public class Candle : MonoBehaviour
             }
         }
         else
-            startSize = transform.lossyScale.y - footSize;
+            startSize = transform.lossyScale.y - footSize - marginSize; ;
         size = startSize; // 現在のサイズを初期サイズに設定
 
         rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
@@ -62,6 +63,7 @@ public class Candle : MonoBehaviour
             body.transform.position += new Vector3(0.0f, footSize / 2.0f, 0.0f);
             foot.transform.position = body.transform.position - new Vector3(0.0f, size / 2.0f, 0.0f);
             hand.transform.position = foot.transform.position + new Vector3(0.0f, size * handCoefficient, 0.0f);
+            head.transform.position = body.transform.position + new Vector3(0.0f, size / 2.0f, 0.0f);
             if (speed == 0.0f)
             {
                 body.transform.position += new Vector3(0.0f, 0.1f - (startSize - size) * 0.2f, 0.0f);
@@ -73,13 +75,16 @@ public class Candle : MonoBehaviour
             }
             speed = 0.0f;
         }
-        head.transform.position = body.transform.position + new Vector3(0.0f, size / 2.0f, 0.0f); // 頭部の位置を正しく設定
+        else
+        {
+            head.transform.position = body.transform.position + new Vector3(0.0f, size / 2.0f, 0.0f); // 頭部の位置を正しく設定
+        }
     }
 
     public void Shorten(float burningSpeed) // ロウソクを短くする（燃焼速度に応じて）
     {
         life -= burningSpeed * Time.deltaTime; // ライフを減らす
-        size = startSize * (life / startLife); // ライフに応じてサイズを更新
+        size = startSize * (life / startLife) + marginSize; // ライフに応じてサイズを更新
         if (life <= 0.0f)
         {
             if (!IsBurnOut) BurnOut(); // ライフが0になったら燃え尽き処理を実行
@@ -141,6 +146,8 @@ public class Candle : MonoBehaviour
         pos.y += footSize / 2; // 足の大きさに応じて位置を調整
         transform.position = pos;
 
+        size += marginSize;
+
         Vector3 ls = transform.localScale;
         ls.y = size + footSize; // 足の大きさに応じてローカルスケールを調整
         transform.localScale = ls;
@@ -160,9 +167,12 @@ public class Candle : MonoBehaviour
         pos.y += footSize / 2; // 足の消失に応じて位置を調整
         transform.position = pos;
 
+        size = startSize * (life / startLife);
+
         Vector3 ls = transform.localScale;
         ls.y = size; // ローカルスケールをリセット
         transform.localScale = ls;
+        body.transform.localScale = ls;
         hand.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 腕を画面外に移動
         foot.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 足を画面外に移動
         if (CurrentHPbar != null)
