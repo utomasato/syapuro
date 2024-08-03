@@ -207,6 +207,11 @@ public class Candle : MonoBehaviour
         return size;
     }
 
+    public float GetLife()
+    {
+        return life;
+    }
+
     public Vector3 GetHeadPosition()
     {
         return head.transform.position;
