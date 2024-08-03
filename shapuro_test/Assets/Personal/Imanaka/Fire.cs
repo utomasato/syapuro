@@ -37,6 +37,8 @@ public class Fire : MonoBehaviour
     /*転生用変数*/
     private bool IsChangeCandle = false;//転生できているか　未完成
 
+    [SerializeField] private GaugeController gaugeControllor; // 20240803 宇藤追加
+
     /*   */
     // Start is called before the first frame update
     void Start()
@@ -66,6 +68,8 @@ public class Fire : MonoBehaviour
 
             BigFire();
             MoveFire();
+
+            gaugeControllor.UpdateCandleGauge(CandleScript.GetLife()); // 20240803 宇藤追加
 
         }
         if (!IsCandle)//炎がロウソクについてないとき
@@ -153,19 +157,24 @@ public class Fire : MonoBehaviour
         {
             CandleScript.Sleep();
         }
+        gaugeControllor.SetCandleGaugeGrayOut(true); // 20240803 宇藤追加
     }
 
     void NoCandle()//ロウソクがなくなったとき
     {
         Firetime += Time.deltaTime;
         transform.localScale = StartScale * (1.0f - Firetime / SurviveTime);
+        gaugeControllor.UpdateFireGauge(1.0f - Firetime / SurviveTime); // 20240803 宇藤追加
         if (Firetime >= SurviveTime)
         {
             if (CandleScript != null)
             {
+                /* 20240803 宇藤コメントアウト
                 IsCandle = true;
                 CandleScript.WakeUp();
                 transform.localScale = StartScale;
+                */
+                Transfer();
             }
         }
 
@@ -188,7 +197,7 @@ public class Fire : MonoBehaviour
         }
     }
 
-    public void Transfer(Candlewick NewCandle)//蝋燭に憑依
+    public void Transfer(Candlewick NewCandle = null)//蝋燭に憑依
     {
         if (NewCandle != null)
         {
@@ -197,6 +206,8 @@ public class Fire : MonoBehaviour
         IsCandle = true;
         CandleScript.WakeUp();
         transform.localScale = StartScale;
+        gaugeControllor.SetCandleGaugeGrayOut(false); // 20240803 宇藤追加
+        gaugeControllor.FillFireGauge();
     }
 
     public bool GetIsCandle()
