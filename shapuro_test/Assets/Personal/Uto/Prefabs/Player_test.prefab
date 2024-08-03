@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PL: {fileID: 436746013411857900}
   MoveSpeed: 3
+  DashMoveSpeed: 5
   Normal_BurnSpeed: 0.1
   Strong_BurnSpeed: 0.3
   Firespeed: 1.5

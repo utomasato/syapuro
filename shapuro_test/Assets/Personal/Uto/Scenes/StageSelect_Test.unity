@@ -1173,8 +1173,8 @@ MonoBehaviour:
   interval: 6
   startPos: {x: -6, y: -2.5, z: -1}
   Stagelist:
-  - candletest_2
-  - candletest_2
-  - candletest_2
+  - animationTest
+  - animationTest
+  - animationTest
   sceneChange: {fileID: 256278649}
   animator: {fileID: 1321304391}
