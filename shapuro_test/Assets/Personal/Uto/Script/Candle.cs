@@ -29,6 +29,8 @@ public class Candle : MonoBehaviour
 
     [SerializeField] private List<Animator> animatorList;
     private float speed;
+    private float animationSpeed;
+    private bool animatiorIsPlaying = true;
 
 
     void Start()
@@ -201,6 +203,28 @@ public class Candle : MonoBehaviour
         transform.parent.gameObject.SetActive(false); // 親オブジェクトを非アクティブ化
 
     }
+
+    public void StopAnimation()
+    {
+        if (!animatiorIsPlaying)
+            return;
+        animationSpeed = animatorList[0].speed;
+        foreach (Animator animator in animatorList)
+        {
+            animator.speed = 0.0f;
+        }
+        animatiorIsPlaying = false;
+    }
+
+    public void PlayAnimation()
+    {
+        foreach (Animator animator in animatorList)
+        {
+            animator.speed = animationSpeed;
+        }
+        animatiorIsPlaying = true;
+    }
+
 
     public float GetSize() // 現在のサイズを返す
     {

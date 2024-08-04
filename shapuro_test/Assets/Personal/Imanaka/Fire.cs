@@ -82,6 +82,7 @@ public class Fire : MonoBehaviour
         {
             //     RecoveryFire();
         }
+
     }
 
     void BigFire()
