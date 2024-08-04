@@ -40,6 +40,8 @@ public class GaugeController : MonoBehaviour
 
     public void FillFireGauge()
     {
+        if (fireImg == null)
+            fireImg = fireGauge.GetComponent<Image>();
         fireImg.fillAmount = 1.0f;
     }
 
@@ -51,6 +53,8 @@ public class GaugeController : MonoBehaviour
         }
         else
         {
+            if (candleImg == null)
+                candleImg = candleGauge.GetComponent<Image>();
             candleImg.color = normalColor; // Fill部分の色を通常に設定
         }
     }
