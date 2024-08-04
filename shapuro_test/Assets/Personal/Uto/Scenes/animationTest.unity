@@ -591,10 +591,6 @@ PrefabInstance:
       propertyPath: gaugeControllor
       value: 
       objectReference: {fileID: 1675826847}
-    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
-      propertyPath: Normal_BurnSpeed
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
 --- !u!1 &396350225
