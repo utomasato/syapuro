@@ -14,6 +14,8 @@ public class GameState : MonoBehaviour
 
     private bool IsExplain;
     private int score;
+
+    private int LampCount = 0;
     // Start is called before the first frame update
     void Start()
     {
