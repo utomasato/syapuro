@@ -20,7 +20,7 @@ public class GameState : MonoBehaviour
         IsCountdown = false;
         IsGameStart = false;
         IsGameOver = false;
-        IsGameClear = true;
+        IsGameClear = false;
         IsAddingUp = false;
         IsExplain = false;
         score = 0;
@@ -29,7 +29,7 @@ public class GameState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log(IsGameClear);
     }
     public void AddScore(int addscore)
     {
