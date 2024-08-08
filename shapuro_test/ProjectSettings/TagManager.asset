@@ -6,6 +6,10 @@ TagManager:
   tags:
   - lamp
   - FirePosition
+  - Goal
+  - RecoveryItem
+  - water
+  - wind
   layers:
   - Default
   - TransparentFX
