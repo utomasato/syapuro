@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GameState : MonoBehaviour
 {
     private bool IsCountdown;
@@ -14,9 +14,9 @@ public class GameState : MonoBehaviour
 
     private bool IsExplain;
     private int score;
-
     private int LampCount = 0;
-
+    [SerializeField]
+    private int MaxLampPerStage = 0;//ステージごとのランプ個数
     [SerializeField] private GaugeController gaugeController;
     // Start is called before the first frame update
     void Start()
@@ -57,6 +57,8 @@ public class GameState : MonoBehaviour
     {
         return IsGameStart;
     }
+
+
     public bool JudgeCountdown//スタート時、カウントダウンが始まっているか
     {
         get { return IsCountdown; }
@@ -77,6 +79,33 @@ public class GameState : MonoBehaviour
         get { return IsExplain; }
         set { IsExplain = value; }
     }
-
-
+    public int GetMaxLamp()
+    {
+        return MaxLampPerStage;
+    }
+    public TMP_Text JudgeRank()
+    {
+        TMP_Text RankText = null;
+        if (MaxLampPerStage == LampCount)
+        {
+            RankText.text = "S";
+        }
+        else if (LampCount >= (int)MaxLampPerStage * 0.8)//ランプ8割つけることができれば
+        {
+            RankText.text = "A";
+        }
+        else if (LampCount >= (int)MaxLampPerStage * 0.6)
+        {
+            RankText.text = "B";
+        }
+        else if (LampCount >= (int)MaxLampPerStage * 0.3)
+        {
+            RankText.text = "C";
+        }
+        else
+        {
+            RankText.text = "D";
+        }
+        return RankText;
+    }
 }
