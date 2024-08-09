@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GaugeController : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class GaugeController : MonoBehaviour
     private Image fireImg;
 
     RectTransform fireRectTransform;
-
+    [SerializeField] private TextMeshProUGUI Counter;
 
     void Start()
     {
@@ -57,5 +58,10 @@ public class GaugeController : MonoBehaviour
                 candleImg = candleGauge.GetComponent<Image>();
             candleImg.color = normalColor; // Fill部分の色を通常に設定
         }
+    }
+
+    public void UpdateCount(int lampCount)
+    {
+        Counter.text = lampCount.ToString();
     }
 }
