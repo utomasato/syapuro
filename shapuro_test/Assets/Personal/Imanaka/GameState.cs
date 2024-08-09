@@ -16,6 +16,8 @@ public class GameState : MonoBehaviour
     private int score;
 
     private int LampCount = 0;
+
+    [SerializeField] private GaugeController gaugeController;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +43,11 @@ public class GameState : MonoBehaviour
     public int GetScore()
     {
         return score;
+    }
+    public void AddLampCount()//20240809 宇藤追加
+    {
+        LampCount++;
+        gaugeController.UpdateCount(LampCount);
     }
     public void SetGameStart()//ゲームスタートしたか
     {
