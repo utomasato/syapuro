@@ -24,7 +24,7 @@ public class GameState : MonoBehaviour
         IsCountdown = false;
         IsGameStart = false;
         IsGameOver = false;
-        IsGameClear = false;
+        IsGameClear = true;
         IsAddingUp = false;
         IsExplain = false;
         score = 0;
@@ -83,9 +83,9 @@ public class GameState : MonoBehaviour
     {
         return MaxLampPerStage;
     }
-    public TMP_Text JudgeRank()
+    public TMP_Text JudgeRank(TMP_Text RankText)
     {
-        TMP_Text RankText = null;
+
         if (MaxLampPerStage == LampCount)
         {
             RankText.text = "S";

@@ -52,14 +52,13 @@ public class GameClear : MonoBehaviour
         if (state.JudgeGameClear)
         {
             PLFire.SetActive(false);
-            int ResultScore = state.GetScore();
-            Score_Text.text = ResultScore.ToString();
+            state.JudgeRank(Score_Text);
             ClearedCanvas.SetActive(true);
             if (SampleCoroutine == null)
             {
                 SampleCoroutine = StartCoroutine(GO.GameCoroutine(2.0f, GameClearAssets));
             }
-            GO.ScoreResult(3.0f, Score_Text);
+
         }
     }
 }
