@@ -20,10 +20,6 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private GameObject Button;//リトライとタイトルボタンをまとめた親オブジェクト
 
-
-
-
-
     private Candle candle;
     [SerializeField]
     private Fire fire;
@@ -31,11 +27,11 @@ public class GameOver : MonoBehaviour
     GameObject[] GameOverAssets;
 
     private Coroutine SampleCoroutine = null;
-    // Start is called before the first frame update
+
+    [SerializeField] GameState gameState;
+
     void Start()
     {
-
-
         GameOverAssets = new GameObject[] { GameOverText, ScoreParents, Button };
         foreach (GameObject asset in GameOverAssets)
         {
@@ -44,41 +40,21 @@ public class GameOver : MonoBehaviour
         Background.SetActive(false);
     }
 
-    // Update is called once per frame
-
     private int i = 0;
-    void Update()
-    {
 
-
-        GameOverSystem();
-    }
-
-
-
-    void GameOverSystem()
+    public void GameOverSystem()
     {
         candle = fire.UseCandle();//使用しているキャンドルのスクリプトを使用
-        GameState state = GetComponent<GameState>();
 
-        if (state.JudgeGameOver)
+        GameOverCanvas.SetActive(true);
+        if (SampleCoroutine == null)
         {
-
-            GameOverCanvas.SetActive(true);
-            if (SampleCoroutine == null)
-            {
-                //コルーチン開始
-                SampleCoroutine = StartCoroutine(GameCoroutine(2.0f, GameOverAssets));
-            }
-
-            Background.SetActive(true);
-            state.JudgeRank(Score_Text);
-            if (!state.JudgeGameOver)
-            {
-
-                GameOverCanvas.SetActive(false);
-            }
+            //コルーチン開始
+            SampleCoroutine = StartCoroutine(GameCoroutine(2.0f, GameOverAssets));
         }
+
+        Background.SetActive(true);
+        gameState.JudgeRank(Score_Text);
     }
 
     /*public int RandomScore(int min, int max)
@@ -120,6 +96,7 @@ public class GameOver : MonoBehaviour
         SampleCoroutine = null;
     }
 
+
     public void PressRetry()//リトライボタンを押した時
     {
         /* GameState_test state = GetComponent<GameState_test>();
@@ -134,7 +111,7 @@ public class GameOver : MonoBehaviour
          Foot.transform.position = SaveFootpos;
          state.JudgeGameOver = false;
          Debug.Log("a");*/
-        SceneManager.LoadScene("PrototypeScene");//今だけ
+        SceneManager.LoadScene("SceneManager.GetActiveScene().name");
     }
 }
 

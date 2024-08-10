@@ -37,6 +37,7 @@ public class Fire : MonoBehaviour
     /*転生用変数*/
     private bool IsChangeCandle = false;//転生できているか　未完成
 
+    [SerializeField] private GameState gameState;
     [SerializeField] private GaugeController gaugeControllor; // 20240803 宇藤追加
 
     /*   */
@@ -51,6 +52,8 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!gameState.JudgeState("GamePlay"))
+            return;
 
         Vector3 CurrentScale = transform.localScale;
         if (CurrentScale.y <= 0.1f)
@@ -136,7 +139,6 @@ public class Fire : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-
             CandleScript.Jump();
         }
         if (Input.GetKeyDown(KeyCode.Return))

@@ -24,7 +24,7 @@ public class GameClear : MonoBehaviour
 
 
     private Coroutine SampleCoroutine;
-    // Start is called before the first frame update
+
     void Start()
     {
         ClearedCanvas.SetActive(false);
@@ -36,29 +36,33 @@ public class GameClear : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-        ClearSystem();
-    }
-
-
-    void ClearSystem()
+    public void ClearSystem()
     {
         GameState state = GetComponent<GameState>();
-        GameOver GO = GetComponent<GameOver>();
+        //GameOver GO = GetComponent<GameOver>();
 
-        if (state.JudgeGameClear)
+        PLFire.SetActive(false);
+        state.JudgeRank(Score_Text);
+        ClearedCanvas.SetActive(true);
+        if (SampleCoroutine == null)
         {
-            PLFire.SetActive(false);
-            state.JudgeRank(Score_Text);
-            ClearedCanvas.SetActive(true);
-            if (SampleCoroutine == null)
-            {
-                SampleCoroutine = StartCoroutine(GO.GameCoroutine(2.0f, GameClearAssets));
-            }
-
+            SampleCoroutine = StartCoroutine(GameCoroutine(2.0f, GameClearAssets));
         }
+    }
+
+    public IEnumerator GameCoroutine(float delay, GameObject[] Asset)
+    {
+        int i = 0;
+        GameState_test state = GetComponent<GameState_test>();
+        while (i < Asset.Length)
+        {
+            //ゲームクリアアセット全て表示されるまで継続
+            Asset[i].SetActive(true);
+            i++;
+            yield return new WaitForSeconds(delay);
+        }
+
+        SampleCoroutine = null;
     }
 }

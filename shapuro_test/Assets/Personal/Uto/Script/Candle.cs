@@ -19,7 +19,7 @@ public class Candle : MonoBehaviour
 
     [Tooltip("HitPointプレファブの中にあるスライドを選択してください")]
     [SerializeField] private Slider CurrentHPbar;//現在のロウソクのHP
-    [SerializeField] private GameState GameStateScript;//燃え尽きたらゲームオーバーになる処理
+    [SerializeField] private GameState gameState;//燃え尽きたらゲームオーバーになる処理
 
     private bool IsBurning = false; // ロウソクが燃えているかどうか
     private bool CanJump; // ジャンプ可能かどうか
@@ -35,6 +35,7 @@ public class Candle : MonoBehaviour
 
     void Start()
     {
+        gameState = GameObject.Find("GameState").GetComponent<GameState>();
         life = startLife; // 初期ライフを設定
         if (!IsBurning)
         {
@@ -196,9 +197,9 @@ public class Candle : MonoBehaviour
         {
             CurrentHPbar.gameObject.SetActive(false);
         }
-        if (GameStateScript != null)
+        if (gameState != null)
         {
-            GameStateScript.JudgeGameOver = true;
+            gameState.GameOver();
         }
         transform.parent.gameObject.SetActive(false); // 親オブジェクトを非アクティブ化
 
@@ -268,6 +269,14 @@ public class Candle : MonoBehaviour
                 CanJump = false;
                 break; // 上向きの法線ベクトルが見つかったらループを抜ける
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Goal") && IsBurning)
+        {
+            gameState.GameClear();
         }
     }
 
