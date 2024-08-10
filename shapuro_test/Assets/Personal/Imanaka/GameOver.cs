@@ -21,10 +21,9 @@ public class GameOver : MonoBehaviour
     private GameObject Button;//リトライとタイトルボタンをまとめた親オブジェクト
 
 
-    private float ResultStartTime = 0.0f;//結果を出すまでの時間
 
-    [SerializeField]
-    private float ResultEndTime;//この時間を超えると結果を出す
+
+
     private Candle candle;
     [SerializeField]
     private Fire fire;
@@ -73,16 +72,16 @@ public class GameOver : MonoBehaviour
             }
 
             Background.SetActive(true);
-            ScoreResult(ResultEndTime, Score_Text);//ResultEndTime時間ランダムにスコアを表示
-        }
-        if (!state.JudgeGameOver)
-        {
-            ResultStartTime = 0.0f;
-            GameOverCanvas.SetActive(false);
+            state.JudgeRank(Score_Text);
+            if (!state.JudgeGameOver)
+            {
+
+                GameOverCanvas.SetActive(false);
+            }
         }
     }
 
-    public int RandomScore(int min, int max)
+    /*public int RandomScore(int min, int max)
     {
         return Random.Range(min, max);
     }
@@ -105,7 +104,7 @@ public class GameOver : MonoBehaviour
             }
         }
     }
-
+*/
 
     public IEnumerator GameCoroutine(float delay, GameObject[] Asset)
     {

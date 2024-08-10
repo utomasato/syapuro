@@ -899,6 +899,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 585118060018199018, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_text
+      value: D
+      objectReference: {fileID: 0}
     - target: {fileID: 585118060140991575, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
@@ -917,7 +921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 585118061545729643, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 585118061545729655, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_Pivot.x
@@ -1944,6 +1948,7 @@ MonoBehaviour:
     rgba: 4286611584
   fireGauge: {fileID: 105289025}
   fireEndPosition: {x: 1780, y: -760, z: 0}
+  Counter: {fileID: 0}
 --- !u!1 &1703191838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 436746013411857900, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
@@ -2340,11 +2345,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043037585}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aaef485f629cf4388bfd4a46ee4850e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxLampPerStage: 5
+  gaugeController: {fileID: 1675826847}
 --- !u!114 &2043037590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2382,7 +2389,7 @@ MonoBehaviour:
   ScoreParents: {fileID: 715721559}
   Score_Text: {fileID: 1393065989}
   Button: {fileID: 194050520}
-  ResultEndTime: 3
+  ResultEndTime: 0
   fire: {fileID: 1010044247}
 --- !u!1001 &2089365380
 PrefabInstance:
