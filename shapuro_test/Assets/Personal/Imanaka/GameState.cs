@@ -4,61 +4,106 @@ using UnityEngine;
 using TMPro;
 public class GameState : MonoBehaviour
 {
+    /*
     private bool IsCountdown;
     private bool IsGameStart;
     private bool IsGameOver;
-
     private bool IsGameClear;
-
     private bool IsAddingUp;
-
     private bool IsExplain;
+    */
     private int score;
     private int LampCount = 0;
     [SerializeField]
     private int MaxLampPerStage = 0;//ステージごとのランプ個数
+
+    [SerializeField] private Fire plyer;
     [SerializeField] private GaugeController gaugeController;
-    // Start is called before the first frame update
+    [SerializeField] private GameClear gameClear;
+    [SerializeField] private GameOver gameOver;
+
+    public enum State
+    {
+        BeforeStart, //スタート前
+        GamePlay,  // スタート後
+        Explain, // 説明中
+        Pause, // ポーズ中
+        GameClear, // クリア
+        GameOver // ゲームオーバー
+    }
+    [SerializeField] private State state;
+    private State beforePauseState;
+
     void Start()
     {
+        state = State.BeforeStart;
+        /*
         IsCountdown = false;
         IsGameStart = false;
         IsGameOver = false;
         IsGameClear = true;
         IsAddingUp = false;
         IsExplain = false;
+        */
         score = 0;
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log(IsGameClear);
-    }
     public void AddScore(int addscore)
     {
         score += addscore;
         Debug.Log(score);
     }
+
     public int GetScore()
     {
         return score;
     }
+
     public void AddLampCount()//20240809 宇藤追加
     {
         LampCount++;
         gaugeController.UpdateCount(LampCount);
     }
-    public void SetGameStart()//ゲームスタートしたか
+
+    public void GameStart()//20240810uto
     {
-        IsGameStart = true;
-    }
-    public bool GetIsGameStart()
-    {
-        return IsGameStart;
+        state = State.GamePlay;
     }
 
+    public void Pause()//20240810uto
+    {
+        beforePauseState = state;
+        state = State.Pause;
+        plyer.UseCandle().StopAnimation();
+    }
 
+    public void Resume()//20240810uto
+    {
+        state = beforePauseState;
+        plyer.UseCandle().PlayAnimation();
+    }
+
+    public void GameClear()//20240810uto
+    {
+        if (state == State.GameClear) return;
+        state = State.GameClear;
+        gameClear.ClearSystem();
+    }
+
+    public void GameOver()//20240810uto
+    {
+        if (state == State.GameOver) return;
+        state = State.GameOver;
+        gameOver.GameOverSystem();
+    }
+
+    public bool JudgeState(string targetState)//20240810uto
+    {
+        //Debug.Log(state);
+        return state.ToString() == targetState;
+    }
+    /*
     public bool JudgeCountdown//スタート時、カウントダウンが始まっているか
     {
         get { return IsCountdown; }
@@ -79,10 +124,12 @@ public class GameState : MonoBehaviour
         get { return IsExplain; }
         set { IsExplain = value; }
     }
+    */
     public int GetMaxLamp()
     {
         return MaxLampPerStage;
     }
+
     public TMP_Text JudgeRank(TMP_Text RankText)
     {
 

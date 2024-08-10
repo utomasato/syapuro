@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameStart : MonoBehaviour
 {
+
     [SerializeField]
     private GameObject StartCanvas;
     [SerializeField]
@@ -19,7 +20,6 @@ public class GameStart : MonoBehaviour
     [SerializeField]
     private GameObject PL;
 
-    // Start is called before the first frame update
     void Start()
     {
 
@@ -37,11 +37,10 @@ public class GameStart : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         GameState State = GetComponent<GameState>();
-        if (State.JudgeCountdown && CountCoroutine == null)
+        if (/*State.JudgeCountdown &&*/ CountCoroutine == null)
         {
 
             NotStartCanvas.SetActive(false);
@@ -49,6 +48,7 @@ public class GameStart : MonoBehaviour
             CountCoroutine = StartCoroutine(CountdownCoroutine(1.0f));
         }
     }
+
     private int i = 0;
     IEnumerator CountdownCoroutine(float delay)
     {
@@ -60,12 +60,14 @@ public class GameStart : MonoBehaviour
             yield return new WaitForSeconds(delay);
         }
         StartCanvas.SetActive(false);
-        State.SetGameStart();
+        //State.SetGameStart();
         CountCoroutine = null;
     }
+
     public void PushStart()//Startボタンプッシュ
     {
         GameState State = GetComponent<GameState>();
-        State.JudgeCountdown = true;
+        //State.JudgeCountdown = true;
     }
+
 }

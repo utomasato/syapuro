@@ -23,6 +23,7 @@ public class SceneChange : MonoBehaviour
     private float elapsedTime = 0.0f;
 
     [SerializeField] private bool IsInStage = false;
+    [SerializeField] private GameState gameState;
 
     void Start()
     {
@@ -72,6 +73,8 @@ public class SceneChange : MonoBehaviour
                 Camera.main.orthographicSize = endSize;
                 transform.position = endPosition;
                 IsZoomNow = false;
+                if (IsInStage)
+                    gameState.GameStart();
             }
         }
     }
