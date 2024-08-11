@@ -72,11 +72,6 @@ public class Candle : MonoBehaviour
                 body.transform.position += new Vector3(0.0f, 0.1f - (startSize - size) * 0.2f, 0.0f);
                 foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
-            foreach (Animator animator in animatorList)
-            {
-                animator.SetFloat("speed", Mathf.Abs(speed));
-            }
-            speed = 0.0f;
         }
         else
         {
@@ -116,18 +111,22 @@ public class Candle : MonoBehaviour
         transform.position += new Vector3(x * Time.deltaTime, 0, 0);
         if (0 < x)
             IsRightFacing = true;
-        else
+        else if (x < 0)
             IsRightFacing = false;
         foreach (GameObject obj in new List<GameObject>() { head, body, hand, foot })
         {
             Vector3 ls = obj.transform.localScale;
             if (0 < x)
                 ls.x = 1.0f;
-            else
+            else if (x < 0)
                 ls.x = -1.0f;
             obj.transform.localScale = ls;
         }
         speed = x;
+        foreach (Animator animator in animatorList)
+        {
+            animator.SetFloat("speed", Mathf.Abs(speed));
+        }
     }
 
     public void Jump() // ロウソクをジャンプさせる
