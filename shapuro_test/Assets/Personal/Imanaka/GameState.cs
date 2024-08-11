@@ -23,6 +23,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private GaugeController gaugeController;
     [SerializeField] private GameClear gameClear;
     [SerializeField] private GameOver gameOver;
+    [SerializeField] private GameObject pauseCanvas;
     [SerializeField] private SceneChange sceneChange;
     [SerializeField] private string selectScene;
 
@@ -77,12 +78,28 @@ public class GameState : MonoBehaviour
 
     public void Pause()//20240810uto
     {
+        if (state == State.Pause) return;
         beforePauseState = state;
         state = State.Pause;
         plyer.UseCandle().StopAnimation();
+        pauseCanvas.SetActive(true);
     }
 
     public void Resume()//20240810uto
+    {
+        state = beforePauseState;
+        plyer.UseCandle().PlayAnimation();
+        pauseCanvas.SetActive(false);
+    }
+
+    public void OpenExplain()//20240811uto
+    {
+        beforePauseState = state;
+        state = State.Explain;
+        plyer.UseCandle().StopAnimation();
+    }
+
+    public void CloseExplain()//20240811uto
     {
         state = beforePauseState;
         plyer.UseCandle().PlayAnimation();

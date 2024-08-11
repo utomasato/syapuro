@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneChange : MonoBehaviour
 {
+    [SerializeField] private GameObject fadeCanvas;
     [SerializeField] private Image fadeImage; // フェードインアウト用のイメージ
     [SerializeField] private float fadeTime = 1.0f; // フェードインアウトにかかる時間
     private Color fadeColor;
@@ -29,6 +30,7 @@ public class SceneChange : MonoBehaviour
     {
         fadeColor = fadeImage.color;
         IsFadeOutNow = false;
+        fadeCanvas.SetActive(false);
         if (IsInStage)
             StartFadeIn();
     }
@@ -43,6 +45,7 @@ public class SceneChange : MonoBehaviour
             if (elapsedTime > fadeTime)
             {
                 IsFadeOutNow = false;
+                //fadeCanvas.SetActive(false);
                 if (NextScene != null)
                 {
                     SceneManager.LoadScene(NextScene);
@@ -58,6 +61,7 @@ public class SceneChange : MonoBehaviour
             if (elapsedTime > fadeTime)
             {
                 IsFadeInNow = false;
+                fadeCanvas.SetActive(false);
                 if (IsInStage)
                     StartZoom();
             }
@@ -81,6 +85,7 @@ public class SceneChange : MonoBehaviour
 
     public void StartFadeOut(string nextscene = null) // だんだん暗く
     {
+        fadeCanvas.SetActive(true);
         IsFadeOutNow = true;
         elapsedTime = 0.0f;
         fadeColor.a = 0;
@@ -90,6 +95,7 @@ public class SceneChange : MonoBehaviour
 
     public void StartFadeIn() // だんだん明るく
     {
+        fadeCanvas.SetActive(true);
         IsFadeInNow = true;
         elapsedTime = 0.0f;
         fadeColor.a = 1;
