@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 public class GameState : MonoBehaviour
 {
     /*
@@ -21,6 +23,8 @@ public class GameState : MonoBehaviour
     [SerializeField] private GaugeController gaugeController;
     [SerializeField] private GameClear gameClear;
     [SerializeField] private GameOver gameOver;
+    [SerializeField] private SceneChange sceneChange;
+    [SerializeField] private string selectScene;
 
     public enum State
     {
@@ -154,5 +158,15 @@ public class GameState : MonoBehaviour
             RankText.text = "D";
         }
         return RankText;
+    }
+
+    public void Retry() // シーンをリロードする
+    {
+        sceneChange.StartFadeOut(SceneManager.GetActiveScene().name);
+    }
+
+    public void ExitStage() // セレクト画面に戻る
+    {
+        sceneChange.StartFadeOut(selectScene);
     }
 }

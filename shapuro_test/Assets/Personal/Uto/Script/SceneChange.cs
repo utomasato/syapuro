@@ -79,7 +79,7 @@ public class SceneChange : MonoBehaviour
         }
     }
 
-    public void StartFadeOut(string nextscene = null)
+    public void StartFadeOut(string nextscene = null) // だんだん暗く
     {
         IsFadeOutNow = true;
         elapsedTime = 0.0f;
@@ -88,7 +88,7 @@ public class SceneChange : MonoBehaviour
         NextScene = nextscene;
     }
 
-    public void StartFadeIn()
+    public void StartFadeIn() // だんだん明るく
     {
         IsFadeInNow = true;
         elapsedTime = 0.0f;
