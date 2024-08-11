@@ -111,7 +111,7 @@ public class GameOver : MonoBehaviour
          Foot.transform.position = SaveFootpos;
          state.JudgeGameOver = false;
          Debug.Log("a");*/
-        SceneManager.LoadScene("SceneManager.GetActiveScene().name");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
 

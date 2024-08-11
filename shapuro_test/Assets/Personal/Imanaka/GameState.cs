@@ -24,14 +24,14 @@ public class GameState : MonoBehaviour
 
     public enum State
     {
-        BeforeStart, //スタート前
-        GamePlay,  // スタート後
-        Explain, // 説明中
-        Pause, // ポーズ中
-        GameClear, // クリア
-        GameOver // ゲームオーバー
+        BeforeStart,
+        GamePlay,
+        Explain,
+        Pause,
+        GameClear,
+        GameOver
     }
-    [SerializeField] private State state;
+    [SerializeField] private State state; // ゲームの状態を管理する
     private State beforePauseState;
 
     void Start()
