@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class GameClear : MonoBehaviour
 {
@@ -23,7 +23,6 @@ public class GameClear : MonoBehaviour
     private GameObject PLFire;//プレイヤー
 
     GameObject[] GameClearAssets;
-
 
     private Coroutine SampleCoroutine;
 
@@ -66,10 +65,5 @@ public class GameClear : MonoBehaviour
         }
 
         SampleCoroutine = null;
-    }
-
-    public void Retry()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

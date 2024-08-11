@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 using TMPro;
 public class GameOver : MonoBehaviour
 {
@@ -96,7 +96,7 @@ public class GameOver : MonoBehaviour
         SampleCoroutine = null;
     }
 
-
+    /*
     public void PressRetry()//リトライボタンを押した時
     {
         /* GameState_test state = GetComponent<GameState_test>();
@@ -110,9 +110,11 @@ public class GameOver : MonoBehaviour
          Foot.SetActive(true);
          Foot.transform.position = SaveFootpos;
          state.JudgeGameOver = false;
-         Debug.Log("a");*/
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+         Debug.Log("a");
+         * /
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    */
 }
 
 
