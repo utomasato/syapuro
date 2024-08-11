@@ -142,7 +142,7 @@ public class Candle : MonoBehaviour
 
     public void WakeUp() // 足を生やして位置を調整
     {
-        if (IsBurning) return;
+        if (IsBurning) return; // すでに憑依状態だったら何もしない
         IsBurning = true;
         Vector3 pos = transform.position;
         pos.z = 0;
@@ -155,7 +155,7 @@ public class Candle : MonoBehaviour
         ls.y = size + footSize; // 足の大きさに応じてローカルスケールを調整
         transform.localScale = ls;
 
-        foreach (Animator animator in animatorList)
+        foreach (Animator animator in animatorList) // 蝋燭の見た目を憑依状態にする
         {
             animator.SetBool("IsBurning", true);
         }
@@ -183,7 +183,7 @@ public class Candle : MonoBehaviour
             CurrentHPbar.value = 1;//HPバーリセット
         }
 
-        foreach (Animator animator in animatorList)
+        foreach (Animator animator in animatorList) // 蝋燭の見た目を抜け殻状態にする
         {
             animator.SetBool("IsBurning", false);
         }
@@ -205,21 +205,21 @@ public class Candle : MonoBehaviour
 
     }
 
-    public void StopAnimation()
+    public void StopAnimation() // アニメーションを停止させる
     {
-        if (!animatiorIsPlaying)
+        if (!animatiorIsPlaying) // すでに停止していたら何もしない
             return;
-        animationSpeed = animatorList[0].speed;
-        foreach (Animator animator in animatorList)
+        animationSpeed = animatorList[0].speed; // 停止する前の再生速度を保存する
+        foreach (Animator animator in animatorList) // アニメーションの速度を0にする
         {
             animator.speed = 0.0f;
         }
         animatiorIsPlaying = false;
     }
 
-    public void PlayAnimation()
+    public void PlayAnimation() // アニメーションを再生する
     {
-        foreach (Animator animator in animatorList)
+        foreach (Animator animator in animatorList) // アニメーションの速度を元に戻す
         {
             animator.speed = animationSpeed;
         }
@@ -232,17 +232,17 @@ public class Candle : MonoBehaviour
         return size;
     }
 
-    public float GetLife()
+    public float GetLife() // 残りのライフを返す
     {
         return life;
     }
 
-    public Vector3 GetHeadPosition()
+    public Vector3 GetHeadPosition() // 頭の位置を返す
     {
         return head.transform.position;
     }
 
-    public bool GetBurnOut()
+    public bool GetBurnOut() // 蝋燭が燃え尽きているかを返す
     {
         return IsBurnOut;
     }
@@ -262,6 +262,7 @@ public class Candle : MonoBehaviour
 
     void OnCollisionExit(Collision other)
     {
+        // 離れた接触点の法線ベクトルが上向であるかをチェック
         foreach (ContactPoint contact in other.contacts)
         {
             if (contact.normal.y > 0.5f)
@@ -274,6 +275,7 @@ public class Candle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // 蝋燭についているときにゴールに触れたらクリア
         if (other.gameObject.CompareTag("Goal") && IsBurning)
         {
             gameState.GameClear();
