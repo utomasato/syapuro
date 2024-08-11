@@ -9,7 +9,6 @@ public class test2 : MonoBehaviour
     [SerializeField] private string SelectScene;
     [SerializeField] private GameState state;
     [SerializeField] private Candle candle;
-    bool b = true;
 
     void Update()
     {
@@ -19,11 +18,7 @@ public class test2 : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.P)) // ポーズ画面にする
         {
-            if (b)
-                state.Pause();
-            else
-                state.Resume();
-            b = !b;
+            state.Pause();
         }
     }
 }
