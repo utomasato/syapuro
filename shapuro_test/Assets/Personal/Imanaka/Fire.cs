@@ -123,10 +123,18 @@ public class Fire : MonoBehaviour
                 {
                     CandleScript.Move(-MoveSpeed);
                 }
-                if (Input.GetKey(KeyCode.D))
+                else if (Input.GetKey(KeyCode.D))
                 {
                     CandleScript.Move(MoveSpeed);
                 }
+                else
+                {
+                    CandleScript.Move(0);
+                }
+            }
+            else
+            {
+                CandleScript.Move(0);
             }
         }
         if (Input.GetKey(KeyCode.Space))

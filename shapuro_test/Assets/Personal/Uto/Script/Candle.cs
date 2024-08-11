@@ -32,6 +32,10 @@ public class Candle : MonoBehaviour
     private float animationSpeed;
     private bool animatiorIsPlaying = true;
 
+    private Vector3 savedVelocity;
+    private Vector3 savedAngularVelocity;
+    private bool isPaused = false;
+
 
     void Start()
     {
@@ -72,11 +76,6 @@ public class Candle : MonoBehaviour
                 body.transform.position += new Vector3(0.0f, 0.1f - (startSize - size) * 0.2f, 0.0f);
                 foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
-            foreach (Animator animator in animatorList)
-            {
-                animator.SetFloat("speed", Mathf.Abs(speed));
-            }
-            speed = 0.0f;
         }
         else
         {
@@ -116,18 +115,22 @@ public class Candle : MonoBehaviour
         transform.position += new Vector3(x * Time.deltaTime, 0, 0);
         if (0 < x)
             IsRightFacing = true;
-        else
+        else if (x < 0)
             IsRightFacing = false;
         foreach (GameObject obj in new List<GameObject>() { head, body, hand, foot })
         {
             Vector3 ls = obj.transform.localScale;
             if (0 < x)
                 ls.x = 1.0f;
-            else
+            else if (x < 0)
                 ls.x = -1.0f;
             obj.transform.localScale = ls;
         }
         speed = x;
+        foreach (Animator animator in animatorList)
+        {
+            animator.SetFloat("speed", Mathf.Abs(speed));
+        }
     }
 
     public void Jump() // ロウソクをジャンプさせる
@@ -205,7 +208,27 @@ public class Candle : MonoBehaviour
 
     }
 
-    public void StopAnimation() // アニメーションを停止させる
+    public void Pause()
+    {
+        if (!isPaused)
+        {
+            StopAnimation();
+            PauseRigidbody();
+            isPaused = true;
+        }
+    }
+
+    public void Resume()
+    {
+        if (isPaused)
+        {
+            PlayAnimation();
+            ResumeRigidbody();
+            isPaused = false;
+        }
+    }
+
+    private void StopAnimation() // アニメーションを停止させる
     {
         if (!animatiorIsPlaying) // すでに停止していたら何もしない
             return;
@@ -217,7 +240,7 @@ public class Candle : MonoBehaviour
         animatiorIsPlaying = false;
     }
 
-    public void PlayAnimation() // アニメーションを再生する
+    private void PlayAnimation() // アニメーションを再生する
     {
         foreach (Animator animator in animatorList) // アニメーションの速度を元に戻す
         {
@@ -226,6 +249,22 @@ public class Candle : MonoBehaviour
         animatiorIsPlaying = true;
     }
 
+    private void PauseRigidbody()
+    {
+        // 現在の速度と回転速度を保存
+        savedVelocity = rb.velocity;
+        savedAngularVelocity = rb.angularVelocity;
+        // Rigidbodyをキネマティックにして一時停止
+        rb.isKinematic = true;
+    }
+
+    public void ResumeRigidbody()
+    {
+        // Rigidbodyを非キネマティックに戻し、保存した速度と回転速度を復元
+        rb.isKinematic = false;
+        rb.velocity = savedVelocity;
+        rb.angularVelocity = savedAngularVelocity;
+    }
 
     public float GetSize() // 現在のサイズを返す
     {

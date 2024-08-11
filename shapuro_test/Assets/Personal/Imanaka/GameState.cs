@@ -81,14 +81,14 @@ public class GameState : MonoBehaviour
         if (state == State.Pause) return;
         beforePauseState = state;
         state = State.Pause;
-        plyer.UseCandle().StopAnimation();
+        plyer.UseCandle().Pause();
         pauseCanvas.SetActive(true);
     }
 
     public void Resume()//20240810uto
     {
         state = beforePauseState;
-        plyer.UseCandle().PlayAnimation();
+        plyer.UseCandle().Resume();
         pauseCanvas.SetActive(false);
     }
 
@@ -96,13 +96,13 @@ public class GameState : MonoBehaviour
     {
         beforePauseState = state;
         state = State.Explain;
-        plyer.UseCandle().StopAnimation();
+        plyer.UseCandle().Pause();
     }
 
     public void CloseExplain()//20240811uto
     {
         state = beforePauseState;
-        plyer.UseCandle().PlayAnimation();
+        plyer.UseCandle().Resume();
     }
 
     public void GameClear()//20240810uto
