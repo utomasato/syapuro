@@ -325,10 +325,11 @@ public class Candle : MonoBehaviour
         if (other.gameObject.CompareTag("Goal") && IsBurning)
         {
             gameState.GameClear();
-            foreach (Animator animator in animatorList)
+            /*foreach (Animator animator in animatorList)
             {
                 animator.SetFloat("speed", 0.0f);
-            }
+            }*/
+            Move(0.0f);
         }
     }
 
