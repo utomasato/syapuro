@@ -21,6 +21,8 @@ public class Candle : MonoBehaviour
     [SerializeField] private Slider CurrentHPbar;//現在のロウソクのHP
     [SerializeField] private GameState gameState;//燃え尽きたらゲームオーバーになる処理
 
+    [SerializeField] private Fire fire;//効果音を入れるため
+
     private bool IsBurning = false; // ロウソクが燃えているかどうか
     private bool CanJump; // ジャンプ可能かどうか
     private bool IsBurnOut = false; // ロウソクが燃え尽きたかどうか
@@ -138,6 +140,7 @@ public class Candle : MonoBehaviour
         float jumpPower = Mathf.Lerp(minJumpPower, maxJumpPower, 1.0f - life / startLife); // ライフに応じてジャンプ力を計算
         if (CanJump)
         {
+            fire.JumpSE_Func();
             rb.velocity = Vector3.up * jumpPower; // ジャンプ力を適用
             CanJump = false; // 衝突が再び検出されるまでジャンプ不可にする
         }

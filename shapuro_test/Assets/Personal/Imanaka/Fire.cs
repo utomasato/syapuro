@@ -40,20 +40,37 @@ public class Fire : MonoBehaviour
     [SerializeField] private GameState gameState;
     [SerializeField] private GaugeController gaugeControllor; // 20240803 宇藤追加
 
-    /*   */
+
+    private AudioSource SE;//効果音
+
+    private AudioSource SE2;//効果音
+    private AudioSource SE3;//効果音
+
+    [SerializeField] private AudioClip JumpSE;//ジャンプの効果音
+
+    [SerializeField] private AudioClip NormalBurnSE;//通常火の効果音
+
+    [SerializeField] private AudioClip StrongBurnSE;//強火の効果音
+
+
     // Start is called before the first frame update
     void Start()
     {
         StartScale = transform.localScale;
         Transfer(null);
-
+        SE = GetComponent<AudioSource>();
+        SE.volume = 0.1f;
+        SE2 = GetComponent<AudioSource>();
+        SE2.volume = 0.3f;
+        SE3 = GetComponent<AudioSource>();
+        SE3.volume = 0.3f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!gameState.JudgeState("GamePlay"))
-            return;
+        // if (!gameState.JudgeState("GamePlay"))
+        //   return;
 
         Vector3 CurrentScale = transform.localScale;
         if (CurrentScale.y <= 0.1f)
@@ -86,12 +103,28 @@ public class Fire : MonoBehaviour
             //     RecoveryFire();
         }
 
+        if (!IsNormal && SE2.isPlaying)
+        {
+            if (SE3.time >= 1.7f)
+            {
+                SE3.time = 1.5f;
+            }
+        }
+        if (IsNormal && SE3.isPlaying)
+        {
+            if (SE2.time >= 1.7f)
+            {
+                SE2.time = 1.5f;
+            }
+        }
+
     }
 
     void BigFire()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            StrongBurnSE_Func();
             IsNormal = false;
             Vector3 CurrentSize = transform.localScale;
             CurrentSize.y *= 2f;
@@ -100,6 +133,7 @@ public class Fire : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
+            SE2.Stop();
             IsNormal = true;
             transform.localScale = StartScale;
         }
@@ -109,6 +143,10 @@ public class Fire : MonoBehaviour
         }
         else
         {
+            if (!SE2.isPlaying)
+            {
+                NormalBurnSE_Func();
+            }
             CandleScript.Shorten(Normal_BurnSpeed);
         }
     }
@@ -262,5 +300,24 @@ public class Fire : MonoBehaviour
     public bool CanLampOn()
     {
         return IsCandle;
+    }
+
+    public void JumpSE_Func()
+    {
+        SE.PlayOneShot(JumpSE);
+    }
+    public void NormalBurnSE_Func()
+    {
+        SE2.clip = NormalBurnSE;
+        SE2.time = 1.5f;
+        SE2.Play();
+
+    }
+    public void StrongBurnSE_Func()
+    {
+        SE3.clip = StrongBurnSE;
+        SE3.time = 1.5f;
+        SE3.Play();
+
     }
 }
