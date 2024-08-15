@@ -321,10 +321,14 @@ public class Candle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // 蝋燭についているときにゴールに触れたらクリア
+        // 火がついているときにゴールに触れたらクリア
         if (other.gameObject.CompareTag("Goal") && IsBurning)
         {
             gameState.GameClear();
+            foreach (Animator animator in animatorList)
+            {
+                animator.SetFloat("speed", 0.0f);
+            }
         }
     }
 
