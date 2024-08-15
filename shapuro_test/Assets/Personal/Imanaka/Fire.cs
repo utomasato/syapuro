@@ -69,8 +69,8 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (!gameState.JudgeState("GamePlay"))
-        //   return;
+        if (!gameState.JudgeState("GamePlay"))
+            return;
 
         Vector3 CurrentScale = transform.localScale;
         if (CurrentScale.y <= 0.1f)
