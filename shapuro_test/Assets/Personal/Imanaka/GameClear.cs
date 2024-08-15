@@ -43,7 +43,7 @@ public class GameClear : MonoBehaviour
         GameState state = GetComponent<GameState>();
         //GameOver GO = GetComponent<GameOver>();
 
-        PLFire.SetActive(false);
+        //PLFire.SetActive(false);
         state.JudgeRank(Score_Text);
         ClearedCanvas.SetActive(true);
         if (SampleCoroutine == null)
