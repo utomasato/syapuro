@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameState : MonoBehaviour
 {
@@ -23,9 +26,14 @@ public class GameState : MonoBehaviour
     [SerializeField] private GaugeController gaugeController;
     [SerializeField] private GameClear gameClear;
     [SerializeField] private GameOver gameOver;
-    [SerializeField] private GameObject pauseCanvas;
+    [SerializeField] private Pause pause;
     [SerializeField] private SceneChange sceneChange;
     [SerializeField] private string selectScene;
+
+    private UnityEngine.UI.Button lastSelectedButton;
+    //private List<UnityEngine.UI.Button> buttons = null; // ボタンのリスト
+    //private int currentIndex = 0; // 現在選択されているボタンのインデックス
+    //private RectTransform selectPointer;
 
     public enum State
     {
@@ -51,7 +59,27 @@ public class GameState : MonoBehaviour
         IsExplain = false;
         */
         score = 0;
+    }
 
+    void Update()
+    {
+        if (state == State.Pause)
+        {
+            GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
+
+            // 現在選択されているものがボタンでない場合、最後に選択されたボタンを再選択する
+            if (currentSelected == null || currentSelected.GetComponent<UnityEngine.UI.Button>() == null)
+            {
+                if (lastSelectedButton != null)
+                {
+                    EventSystem.current.SetSelectedGameObject(lastSelectedButton.gameObject);
+                }
+            }
+            else // 現在選択されているものがボタンであれば、それを記憶
+            {
+                lastSelectedButton = currentSelected.GetComponent<UnityEngine.UI.Button>();
+            }
+        }
     }
 
     public void AddScore(int addscore)
@@ -82,14 +110,19 @@ public class GameState : MonoBehaviour
         beforePauseState = state;
         state = State.Pause;
         plyer.UseCandle().Pause();
-        pauseCanvas.SetActive(true);
+        pause.PauseSystem();
     }
 
     public void Resume()//20240810uto
     {
-        state = beforePauseState;
-        plyer.UseCandle().Resume();
-        pauseCanvas.SetActive(false);
+        StartCoroutine(ExecuteAfterOneFrame(() =>
+        {
+            state = beforePauseState;
+            plyer.UseCandle().Resume();
+            pause.ResumeSystem();
+            //button = null;
+        }));
+
     }
 
     public void OpenExplain()//20240811uto
@@ -124,6 +157,12 @@ public class GameState : MonoBehaviour
         //Debug.Log(state);
         return state.ToString() == targetState;
     }
+
+    public void SetButton(UnityEngine.UI.Button setButton)
+    {
+        EventSystem.current.SetSelectedGameObject(setButton.gameObject);
+    }
+
     /*
     public bool JudgeCountdown//スタート時、カウントダウンが始まっているか
     {
@@ -186,4 +225,11 @@ public class GameState : MonoBehaviour
     {
         sceneChange.StartFadeOut(selectScene);
     }
+
+    IEnumerator ExecuteAfterOneFrame(Action action) // 実行を１フレーム遅らせる
+    {
+        yield return null; // 1フレーム待つ
+        action?.Invoke(); // 渡された処理を実行
+    }
 }
+
