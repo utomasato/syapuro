@@ -51,10 +51,14 @@ public class Candle : MonoBehaviour
             {
                 animator.SetBool("IsBurning", false);
             }
+            size = startSize; // 現在のサイズを初期サイズに設定
         }
         else
-            startSize = transform.lossyScale.y - footSize - marginSize; ;
-        size = startSize; // 現在のサイズを初期サイズに設定
+        {
+            startSize = transform.lossyScale.y - footSize - marginSize;
+            Shorten(0.0f); // 諸々の大きさと位置を合わすならこれが楽
+        }
+
 
         rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
         hand.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 腕を画面外に移動
