@@ -9,14 +9,7 @@ using UnityEngine.EventSystems;
 
 public class GameState : MonoBehaviour
 {
-    /*
-    private bool IsCountdown;
-    private bool IsGameStart;
-    private bool IsGameOver;
-    private bool IsGameClear;
-    private bool IsAddingUp;
-    private bool IsExplain;
-    */
+
     private int score;
     private int LampCount = 0;
     [SerializeField]
@@ -31,9 +24,6 @@ public class GameState : MonoBehaviour
     [SerializeField] private string selectScene;
 
     private UnityEngine.UI.Button lastSelectedButton;
-    //private List<UnityEngine.UI.Button> buttons = null; // ボタンのリスト
-    //private int currentIndex = 0; // 現在選択されているボタンのインデックス
-    //private RectTransform selectPointer;
 
     public enum State
     {
@@ -50,19 +40,19 @@ public class GameState : MonoBehaviour
     void Start()
     {
         state = State.BeforeStart;
-        /*
-        IsCountdown = false;
-        IsGameStart = false;
-        IsGameOver = false;
-        IsGameClear = true;
-        IsAddingUp = false;
-        IsExplain = false;
-        */
         score = 0;
     }
 
     void Update()
     {
+        if (state == State.GamePlay)
+        {
+            if (Input.GetKeyDown(KeyCode.P)) // ポーズ画面にする
+            {
+                Pause();
+            }
+        }
+
         if (state == State.Pause)
         {
             GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
@@ -115,12 +105,13 @@ public class GameState : MonoBehaviour
 
     public void Resume()//20240810uto
     {
+        // ポーズでの選択のEnter/Spaceが火の玉/ジャンプにならないように1フレーム遅らせる
         StartCoroutine(ExecuteAfterOneFrame(() =>
         {
             state = beforePauseState;
             plyer.UseCandle().Resume();
             pause.ResumeSystem();
-            //button = null;
+            lastSelectedButton = null;
         }));
 
     }
@@ -158,7 +149,7 @@ public class GameState : MonoBehaviour
         return state.ToString() == targetState;
     }
 
-    public void SetButton(UnityEngine.UI.Button setButton)
+    public void SetButton(UnityEngine.UI.Button setButton = null)
     {
         EventSystem.current.SetSelectedGameObject(setButton.gameObject);
     }
