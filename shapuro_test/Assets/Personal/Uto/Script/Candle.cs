@@ -147,6 +147,10 @@ public class Candle : MonoBehaviour
             fire.JumpSE_Func();
             rb.velocity = Vector3.up * jumpPower; // ジャンプ力を適用
             CanJump = false; // 衝突が再び検出されるまでジャンプ不可にする
+            foreach (Animator animator in animatorList)
+            {
+                animator.SetBool("InAir", true);
+            }
         }
     }
 
@@ -168,6 +172,7 @@ public class Candle : MonoBehaviour
         foreach (Animator animator in animatorList) // 蝋燭の見た目を憑依状態にする
         {
             animator.SetBool("IsBurning", true);
+            animator.SetBool("InAir", false);
         }
     }
 
@@ -196,6 +201,7 @@ public class Candle : MonoBehaviour
         foreach (Animator animator in animatorList) // 蝋燭の見た目を抜け殻状態にする
         {
             animator.SetBool("IsBurning", false);
+            animator.SetBool("InAir", false);
         }
     }
 
@@ -301,6 +307,11 @@ public class Candle : MonoBehaviour
             if (contact.normal.y > 0.5f)
             {
                 CanJump = true;
+                Debug.Log("CanJump:true");
+                foreach (Animator animator in animatorList)
+                {
+                    animator.SetBool("InAir", false);
+                }
                 break; // 上向きの法線ベクトルが見つかったらループを抜ける
             }
         }
@@ -308,12 +319,20 @@ public class Candle : MonoBehaviour
 
     void OnCollisionExit(Collision other)
     {
+        //Debug.Log(other.gameObject.name);
+        //Debug.Log(other.contacts);
         // 離れた接触点の法線ベクトルが上向であるかをチェック
         foreach (ContactPoint contact in other.contacts)
         {
+            Debug.Log(contact.normal.y);
             if (contact.normal.y > 0.5f)
             {
                 CanJump = false;
+                Debug.Log("CanJump:false");
+                foreach (Animator animator in animatorList)
+                {
+                    animator.SetBool("InAir", true);
+                }
                 break; // 上向きの法線ベクトルが見つかったらループを抜ける
             }
         }
