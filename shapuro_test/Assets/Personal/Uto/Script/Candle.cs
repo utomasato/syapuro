@@ -77,14 +77,14 @@ public class Candle : MonoBehaviour
         body.transform.position = transform.position; // 胴体の位置をロウソクの位置に合わせる
         if (IsBurning)
         {
-            // ロウソクが燃えているときの胴体と足、腕の位置を調整
+            // ロウソクが燃えているときの胴体と足、腕、頭の位置を調整
             body.transform.position += new Vector3(0.0f, footSize / 2.0f, 0.0f);
             foot.transform.position = body.transform.position - new Vector3(0.0f, size / 2.0f, 0.0f);
             hand.transform.position = foot.transform.position + new Vector3(0.0f, size * handCoefficient, 0.0f);
             head.transform.position = body.transform.position + new Vector3(0.0f, size / 2.0f, 0.0f);
             if (speed == 0.0f)
             {
-                body.transform.position += new Vector3(0.0f, 0.1f - (startSize - size) * 0.2f, 0.0f);
+                body.transform.position += new Vector3(0.0f, 0.1f - (1.3f - size) * 0.2f, 0.0f);
                 foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
 
@@ -179,7 +179,7 @@ public class Candle : MonoBehaviour
     {
         if (CanStopJump && rb.velocity.y > 0.1f)
         {
-            rb.velocity = Vector3.up * 4f;
+            rb.velocity *= 0.3f;
             CanStopJump = false;
         }
     }
