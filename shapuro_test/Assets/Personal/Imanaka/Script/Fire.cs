@@ -44,7 +44,7 @@ public class Fire : MonoBehaviour
     private AudioSource SE;//効果音
 
     private AudioSource SE2;//効果音
-    private AudioSource SE3;//効果音
+
 
     [SerializeField] private AudioClip JumpSE;//ジャンプの効果音
 
@@ -59,11 +59,9 @@ public class Fire : MonoBehaviour
         StartScale = transform.localScale;
         Transfer(null);
         SE = GetComponent<AudioSource>();
-        SE.volume = 0.1f;
+        SE.volume = 0.3f;
         SE2 = GetComponent<AudioSource>();
         SE2.volume = 0.3f;
-        SE3 = GetComponent<AudioSource>();
-        SE3.volume = 0.3f;
     }
 
     // Update is called once per frame
@@ -105,12 +103,12 @@ public class Fire : MonoBehaviour
 
         if (!IsNormal && SE2.isPlaying)
         {
-            if (SE3.time >= 1.7f)
+            if (SE2.time >= 1.7f)
             {
-                SE3.time = 1.5f;
+                SE2.time = 1.5f;
             }
         }
-        if (IsNormal && SE3.isPlaying)
+        if (IsNormal && SE2.isPlaying)
         {
             if (SE2.time >= 1.7f)
             {
@@ -315,9 +313,9 @@ public class Fire : MonoBehaviour
     }
     public void StrongBurnSE_Func()
     {
-        SE3.clip = StrongBurnSE;
-        SE3.time = 1.5f;
-        SE3.Play();
+        SE2.clip = StrongBurnSE;
+        SE2.time = 1.5f;
+        SE2.Play();
 
     }
 }
