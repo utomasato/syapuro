@@ -368,6 +368,12 @@ public class Candle : MonoBehaviour
             Move(0.0f);
         }
     }
+    private void OnTriggerStay(Collider other) {
+        if (other.gameObject.CompareTag("fire"))
+        {
+            Shorten(2.5F);
+        }
+    }
 
     public float HPbar()
     {

@@ -10,6 +10,9 @@ TagManager:
   - RecoveryItem
   - water
   - wind
+  - switch
+  - candle
+  - fire
   layers:
   - Default
   - TransparentFX

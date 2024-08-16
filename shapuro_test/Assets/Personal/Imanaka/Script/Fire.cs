@@ -344,4 +344,7 @@ public class Fire : MonoBehaviour
         SE2.Play();
 
     }
+    public Candle GetCandle() {
+            return CandleScript;
+        }
 }
