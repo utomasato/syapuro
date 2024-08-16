@@ -326,7 +326,6 @@ public class Candle : MonoBehaviour
             if (contact.normal.y > 0.5f)
             {
                 CanJump = true;
-                Debug.Log("CanJump:true");
                 foreach (Animator animator in animatorList)
                 {
                     animator.SetBool("InAir", false);
