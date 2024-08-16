@@ -25,6 +25,7 @@ public class Candle : MonoBehaviour
 
     private bool IsBurning = false; // ロウソクが燃えているかどうか
     private bool CanJump; // ジャンプ可能かどうか
+    private bool CanStopJump;
     private bool IsBurnOut = false; // ロウソクが燃え尽きたかどうか
     private Rigidbody rb; // 物理挙動のためのRigidbodyコンポーネント
     private bool IsRightFacing = true;
@@ -166,10 +167,20 @@ public class Candle : MonoBehaviour
             fire.JumpSE_Func();
             rb.velocity = Vector3.up * jumpPower; // ジャンプ力を適用
             CanJump = false; // 衝突が再び検出されるまでジャンプ不可にする
+            CanStopJump = true;
             foreach (Animator animator in animatorList)
             {
                 animator.SetBool("InAir", true);
             }
+        }
+    }
+
+    public void StopJump()
+    {
+        if (CanStopJump && rb.velocity.y > 0.1f)
+        {
+            rb.velocity = Vector3.up * 4f;
+            CanStopJump = false;
         }
     }
 
@@ -247,6 +258,7 @@ public class Candle : MonoBehaviour
             StopAnimation();
             PauseRigidbody();
             isPaused = true;
+            CanStopJump = false;
         }
     }
 

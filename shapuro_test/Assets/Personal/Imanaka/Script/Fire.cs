@@ -200,9 +200,13 @@ public class Fire : MonoBehaviour
                 CandleScript.Move(0);
             }
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
             CandleScript.Jump();
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            CandleScript.StopJump();
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
