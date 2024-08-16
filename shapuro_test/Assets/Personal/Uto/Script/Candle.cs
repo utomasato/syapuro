@@ -61,6 +61,10 @@ public class Candle : MonoBehaviour
             Shorten(0.0f); // 諸々の大きさと位置を合わすならこれが楽
         }
 
+        foreach (Animator animator in animatorList)
+        {
+            animator.SetBool("InAir", false);
+        }
 
         rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
         hand.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 腕を画面外に移動
@@ -81,6 +85,21 @@ public class Candle : MonoBehaviour
             {
                 body.transform.position += new Vector3(0.0f, 0.1f - (startSize - size) * 0.2f, 0.0f);
                 foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+            }
+
+            if (CanJump && Mathf.Abs(rb.velocity.y) < 0.5f)
+            {
+                foreach (Animator animator in animatorList)
+                {
+                    animator.SetBool("InAir", false);
+                }
+            }
+            else
+            {
+                foreach (Animator animator in animatorList)
+                {
+                    animator.SetBool("InAir", true);
+                }
             }
         }
         else
@@ -142,7 +161,7 @@ public class Candle : MonoBehaviour
     public void Jump() // ロウソクをジャンプさせる
     {
         float jumpPower = Mathf.Lerp(minJumpPower, maxJumpPower, 1.0f - life / startLife); // ライフに応じてジャンプ力を計算
-        if (CanJump)
+        if (CanJump && Mathf.Abs(rb.velocity.y) < 0.1f)
         {
             fire.JumpSE_Func();
             rb.velocity = Vector3.up * jumpPower; // ジャンプ力を適用
@@ -319,22 +338,9 @@ public class Candle : MonoBehaviour
 
     void OnCollisionExit(Collision other)
     {
-        //Debug.Log(other.gameObject.name);
-        //Debug.Log(other.contacts);
-        // 離れた接触点の法線ベクトルが上向であるかをチェック
-        foreach (ContactPoint contact in other.contacts)
+        foreach (Animator animator in animatorList)
         {
-            Debug.Log(contact.normal.y);
-            if (contact.normal.y > 0.5f)
-            {
-                CanJump = false;
-                Debug.Log("CanJump:false");
-                foreach (Animator animator in animatorList)
-                {
-                    animator.SetBool("InAir", true);
-                }
-                break; // 上向きの法線ベクトルが見つかったらループを抜ける
-            }
+            animator.SetBool("InAir", true);
         }
     }
 
