@@ -57,7 +57,7 @@ public class Fire : MonoBehaviour
     void Start()
     {
         StartScale = transform.localScale;
-        Transfer(null);
+        Transfer();
         SE = GetComponent<AudioSource>();
         SE.volume = 0.3f;
         GameObject FireSE = GameObject.Find("Fire");
@@ -267,6 +267,10 @@ public class Fire : MonoBehaviour
     {
         if (NewCandle != null)
         {
+            if (NewCandle.candle == CandleScript)
+            {
+                return;
+            }
             CandleScript = NewCandle.candle;
         }
         IsCandle = true;
