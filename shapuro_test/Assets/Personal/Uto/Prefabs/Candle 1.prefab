@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ae00c3ca582ee44cc8abac258fb250b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5e2b8fea89a349189eefe167738e7d1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -286,7 +286,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 32194402431c84c04aa1e67a0c2155ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62c1e24f8e5b04edb8d8733b66d4b5a6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -392,7 +392,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b95e57c593da244dd8ccfdd045707f24, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 52bd767df999c4960a4615156040bb70, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -642,7 +642,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8b42da4e949f548cc8da6a722ac6b3db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e2ee3a738dee94f52ba2a388f0cd8f6c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -748,7 +748,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 94b4102188aed402b9222aa5ca97d175, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac4a683e07957443c99eff670ce31ff5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -854,7 +854,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 17055f1841e41477093e643ccfa61704, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f37bd89807dfd4af5a6962279a5371be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1177,7 +1177,8 @@ MonoBehaviour:
   footSize: 0.65
   marginSize: 0.2
   CurrentHPbar: {fileID: 0}
-  GameStateScript: {fileID: 0}
+  gameState: {fileID: 0}
+  fire: {fileID: 0}
   animatorList:
   - {fileID: 3150525699549758372}
   - {fileID: 6202276652212911940}
@@ -1565,7 +1566,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 540185ca33ee74ac1a9c1336f7bc25e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 611bb054b1f3840d0b7367b6d21ce07f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
