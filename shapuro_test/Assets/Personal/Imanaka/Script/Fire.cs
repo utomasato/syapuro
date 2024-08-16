@@ -41,9 +41,9 @@ public class Fire : MonoBehaviour
     [SerializeField] private GaugeController gaugeControllor; // 20240803 宇藤追加
 
 
-    private AudioSource SE;//効果音
+    private AudioSource SE;//ジャンプ用効果音
 
-    private AudioSource SE2;//効果音
+    private AudioSource SE2;//弱火と強火用効果音
 
 
     [SerializeField] private AudioClip JumpSE;//ジャンプの効果音
@@ -60,7 +60,12 @@ public class Fire : MonoBehaviour
         Transfer(null);
         SE = GetComponent<AudioSource>();
         SE.volume = 0.3f;
-        SE2 = GetComponent<AudioSource>();
+        GameObject FireSE = GameObject.Find("Fire");
+        if (SE2 == null)
+        {//Playerの子オブジェクトのFireに弱火と強火のSEを入れる
+            SE2 = FireSE.AddComponent<AudioSource>();
+        }
+        SE2 = FireSE.GetComponent<AudioSource>();
         SE2.volume = 0.3f;
     }
 
@@ -308,6 +313,7 @@ public class Fire : MonoBehaviour
     {
         SE2.clip = NormalBurnSE;
         SE2.time = 1.5f;
+        SE2.volume = 0.4f;
         SE2.Play();
 
     }
@@ -315,6 +321,7 @@ public class Fire : MonoBehaviour
     {
         SE2.clip = StrongBurnSE;
         SE2.time = 1.5f;
+        SE2.volume = 0.6f;
         SE2.Play();
 
     }
