@@ -180,13 +180,24 @@ public class Fire : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            if (Input.GetKey(KeyCode.A))
+            if (!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.D))// AとDが同時に押されてる時は動かない
             {
-                CandleScript.Move(-DashMoveSpeed);
+                if (Input.GetKey(KeyCode.A))
+                {
+                    CandleScript.Move(-DashMoveSpeed);
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    CandleScript.Move(DashMoveSpeed);
+                }
+                else
+                {
+                    CandleScript.Move(0);
+                }
             }
-            if (Input.GetKey(KeyCode.D))
+            else
             {
-                CandleScript.Move(DashMoveSpeed);
+                CandleScript.Move(0);
             }
         }
         if (Input.GetKey(KeyCode.W))

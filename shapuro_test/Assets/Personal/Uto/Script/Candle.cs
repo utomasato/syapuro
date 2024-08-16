@@ -61,6 +61,10 @@ public class Candle : MonoBehaviour
             Shorten(0.0f); // 諸々の大きさと位置を合わすならこれが楽
         }
 
+        foreach (Animator animator in animatorList)
+        {
+            animator.SetBool("InAir", false);
+        }
 
         rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
         hand.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 腕を画面外に移動
@@ -83,7 +87,7 @@ public class Candle : MonoBehaviour
                 foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
 
-            if (CanJump && Mathf.Abs(rb.velocity.y) < 0.1f)
+            if (CanJump && Mathf.Abs(rb.velocity.y) < 0.5f)
             {
                 foreach (Animator animator in animatorList)
                 {
