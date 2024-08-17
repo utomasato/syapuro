@@ -924,7 +924,6 @@ MonoBehaviour:
   ScoreParents: {fileID: 1662565987}
   Button: {fileID: 230780878}
   PLFire: {fileID: 1703191838}
-  Lamp: {fileID: 4886581902937728121, guid: 4c19da0a393fc49ccb5f2b41e1150d89, type: 3}
 --- !u!114 &312465510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaef485f629cf4388bfd4a46ee4850e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLampPerStage: 5
+  MaxLampPerStage: 8
   plyer: {fileID: 1010044247}
   gaugeController: {fileID: 1675826847}
   gameClear: {fileID: 312465509}
@@ -954,7 +953,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312465507}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.74, y: -2.6458497, z: 1}
+  m_LocalPosition: {x: 8, y: -2.6458497, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2830,6 +2829,10 @@ PrefabInstance:
       propertyPath: fire
       value: 
       objectReference: {fileID: 1010044247}
+    - target: {fileID: 6152572054318079177, guid: 14e3e0f6075c247ff9edb2f43941bac1, type: 3}
+      propertyPath: gameState
+      value: 
+      objectReference: {fileID: 312465510}
     - target: {fileID: 6152572054318079190, guid: 14e3e0f6075c247ff9edb2f43941bac1, type: 3}
       propertyPath: m_Interpolate
       value: 0

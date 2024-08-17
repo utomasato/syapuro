@@ -24,8 +24,8 @@ public class GameClear : MonoBehaviour
 
     private Coroutine SampleCoroutine;
 
-    //[SerializeField]
-    //private GameObject Lamp;//仮
+    // [SerializeField]
+    // private GameObject Lamp;//仮
     void Start()
     {
         ClearedCanvas.SetActive(false);
@@ -42,7 +42,7 @@ public class GameClear : MonoBehaviour
     {
         GameState state = GetComponent<GameState>();
 
-        // InitializeLamp(state.GetMaxLamp());
+        InitializeLamp(state.GetMaxLamp());
         ClearedCanvas.SetActive(true);
         if (SampleCoroutine == null)
         {
@@ -65,28 +65,25 @@ public class GameClear : MonoBehaviour
         SampleCoroutine = null;
     }
 
-    /*void InitializeLamp(int lampCount)
+    void InitializeLamp(int lampCount)
     {
-        // 画面サイズを取得
-        float screenHeight = Screen.height;
-        float screenWidth = Screen.width;
+        /*今だけ無理矢理修正しています*/
+        GameObject lamp = GameObject.Find("lamp (1)");
+        float ScreenHeight = Screen.height;
+        float ScreenWidth = 30;
 
-        // Lampのy座標を画面中央に設定
-        float yPosition = screenHeight / 2;
-
-        // 横幅をlampCount個に分割
-        float totalWidth = screenWidth;
-        float space = totalWidth / (lampCount + 1); // +1で両端に余白を追加
+        float Space = ScreenWidth / (lampCount + 1); // +1で両端に余白を追加
 
         for (int i = 0; i < lampCount; i++)
         {
-            GameObject LampInstance = Instantiate(Lamp);
+            GameObject LampInstance = Instantiate(lamp);
+            LampInstance.transform.localScale *= 3f;
 
             // Lampのx座標を計算し、等間隔に配置
-            float xPosition = space * (i + 1);
+            float xPos = Space * (i + 1);
 
             // LampのTransformを設定
-            LampInstance.transform.position = new Vector3(xPosition, yPosition, 0);
+            LampInstance.transform.position = new Vector3(xPos - 13, 4, -17);
         }
-    }*/
+    }
 }
