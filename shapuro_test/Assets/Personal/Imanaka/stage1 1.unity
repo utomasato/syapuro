@@ -922,7 +922,6 @@ MonoBehaviour:
   Background: {fileID: 531590464}
   ClearText: {fileID: 1968589712}
   ScoreParents: {fileID: 1662565987}
-  Score_Text: {fileID: 352566380}
   Button: {fileID: 230780878}
   PLFire: {fileID: 1703191838}
 --- !u!114 &312465510
@@ -1300,17 +1299,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 334070830}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &352566380 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 585118060018199018, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
-  m_PrefabInstance: {fileID: 820558998}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &374214708 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7810650592890806166, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
