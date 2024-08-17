@@ -17,7 +17,8 @@ public class Fire_Switch : MonoBehaviour
     void Update()
     {
         t += Time.deltaTime;
-        if(t>0.02){
+        if (t > 0.02)
+        {
             if (isPushed && locate < 10)
             {
                 y1 = this.gameObject.transform.localPosition;
@@ -29,9 +30,11 @@ public class Fire_Switch : MonoBehaviour
     }
     void OnCollisionEnter(Collision other)
     {
-       Debug.Log("ok");
-       if (other.gameObject.CompareTag("candle")){
+        //Debug.Log(other.gameObject.tag);
+        if (other.gameObject.CompareTag("candle"))
+        {
+            Debug.Log("ok");
             isPushed = true;
-       }
+        }
     }
 }
