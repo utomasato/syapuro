@@ -24,7 +24,6 @@ public class Fire_LampCollider : MonoBehaviour
             if (other.gameObject.CompareTag("lamp"))
             {
                 other.gameObject.GetComponent<LampON>().Ignition();
-
             }
         }
 
