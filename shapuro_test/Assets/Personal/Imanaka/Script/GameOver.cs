@@ -16,8 +16,6 @@ public class GameOver : MonoBehaviour
     [SerializeField]
     private GameObject ScoreParents;//スコア表示の親オブジェクト
     [SerializeField]
-    private TMP_Text Score_Text;//スコア結果を表示するテキスト
-    [SerializeField]
     private GameObject Button;//リトライとタイトルボタンをまとめた親オブジェクト
 
     private Candle candle;
@@ -54,7 +52,6 @@ public class GameOver : MonoBehaviour
         }
 
         Background.SetActive(true);
-        gameState.JudgeRank(Score_Text);
     }
 
     /*public int RandomScore(int min, int max)

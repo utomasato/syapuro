@@ -16,8 +16,6 @@ public class GameClear : MonoBehaviour
     [SerializeField]
     private GameObject ScoreParents;//スコア表示の親オブジェクト
     [SerializeField]
-    private TMP_Text Score_Text;//スコア結果を表示するテキスト
-    [SerializeField]
     private GameObject Button;
     [SerializeField]
     private GameObject PLFire;//プレイヤー
@@ -44,7 +42,7 @@ public class GameClear : MonoBehaviour
         //GameOver GO = GetComponent<GameOver>();
 
         //PLFire.SetActive(false);
-        state.JudgeRank(Score_Text);
+
         ClearedCanvas.SetActive(true);
         if (SampleCoroutine == null)
         {
