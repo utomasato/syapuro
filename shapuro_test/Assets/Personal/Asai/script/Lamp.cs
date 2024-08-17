@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class Lamp : MonoBehaviour
 {
-    public GameObject fire;
-    public Scores score;
-    public Fire fire_script;
-    public bool burning = false;
-    void Start()
-    {
-        GameObject Gamestate = GameObject.Find("Player");
-        fire_script = Gamestate.GetComponent<Fire>();
-    }
+    [SerializeField] private GameObject fire; // 点火用の火
+    [SerializeField] private GameState state;
+    [SerializeField] private Fire player; // プレイヤー
+    private bool IsBurning = false; // 点火済みか
+
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Fire" && burning == false && fire_script.GetIsCandle())
+        if (other.gameObject.name == "Fire" && IsBurning == false && player.GetIsCandle())
         {
-            burning = true;
-            fire.GetComponent<SpriteRenderer>().enabled = true;
-            score.addscores(500);
+            IsBurning = true;
+            fire.GetComponent<SpriteRenderer>().enabled = true; // 点火する
+            state.AddLampCount(); // カウントをインクリメントする
         }
     }
 }
