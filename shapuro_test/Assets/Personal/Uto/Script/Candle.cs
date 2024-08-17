@@ -39,6 +39,8 @@ public class Candle : MonoBehaviour
     private Vector3 savedAngularVelocity;
     private bool isPaused = false;
 
+    [SerializeField] float BurningSpeedInTheFlameWall;
+
 
     void Start()
     {
@@ -368,10 +370,11 @@ public class Candle : MonoBehaviour
             Move(0.0f);
         }
     }
-    private void OnTriggerStay(Collider other) {
+    private void OnTriggerStay(Collider other)
+    { // 炎の壁に当たると短くなる
         if (other.gameObject.CompareTag("fire"))
         {
-            Shorten(2.5F);
+            Shorten(BurningSpeedInTheFlameWall);
         }
     }
 

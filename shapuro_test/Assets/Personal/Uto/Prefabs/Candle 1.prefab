@@ -1070,7 +1070,7 @@ GameObject:
   - component: {fileID: 6152572054318079190}
   m_Layer: 6
   m_Name: candle
-  m_TagString: Untagged
+  m_TagString: candle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1187,6 +1187,7 @@ MonoBehaviour:
   - {fileID: 7869728413054141830}
   - {fileID: 6000249022172870487}
   - {fileID: 572130618266292609}
+  BurningSpeedInTheFlameWall: 1
 --- !u!54 &6152572054318079190
 Rigidbody:
   m_ObjectHideFlags: 0
