@@ -181,7 +181,7 @@ public class GameState : MonoBehaviour
         return MaxLampPerStage;
     }
 
-    public TMP_Text JudgeRank(TMP_Text RankText)
+    /*public TMP_Text JudgeRank(TMP_Text RankText)
     {
 
         if (MaxLampPerStage == LampCount)
@@ -205,7 +205,7 @@ public class GameState : MonoBehaviour
             RankText.text = "D";
         }
         return RankText;
-    }
+    }*/
 
     public void Retry() // シーンをリロードする
     {
