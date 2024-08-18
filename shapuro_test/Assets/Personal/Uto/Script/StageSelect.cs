@@ -28,7 +28,7 @@ public class StageSelect : MonoBehaviour
     {
         gameStageSelectBGM();
         SE = GetComponent<AudioSource>();
-        SE.volume = 0.3f;
+        SE.volume = 0.1f;
         BGM = GetComponent<AudioSource>();
         if (SceneSelectionState.selectedIndex == -1)
         {
@@ -135,7 +135,7 @@ public class StageSelect : MonoBehaviour
         AudioSource audioSource = state.AddComponent<AudioSource>();
         BGM = audioSource;
         BGM.clip = StageSelectBGM;
-        BGM.volume = 0.1f;
+        BGM.volume = 0.06f;
         BGM.Play();
     }
 }

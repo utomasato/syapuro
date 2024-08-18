@@ -218,12 +218,12 @@ public class GameState : MonoBehaviour
     public void gameBGM()
     {
         BGM.clip = GameBGM;
-        BGM.volume = 0.2f;
+        BGM.volume = 0.1f;
         BGM.Play();
     }
     public void gameLampSE()
     {
-        SE.volume = 0.5f;
+        SE.volume = 0.15f;
         SE.PlayOneShot(LampSE);
     }
     public void gameOverSE()
@@ -233,17 +233,17 @@ public class GameState : MonoBehaviour
     }
     public void gameClearSE()
     {
-        SE.volume = 0.2f;
+        SE.volume = 0.15f;
         SE.PlayOneShot(GameClearSE);
     }
     public void gamePauseSE()
     {
-        SE.volume = 0.5f;
+        SE.volume = 0.1f;
         SE.PlayOneShot(PauseSE);
     }
     public void gameButtonSE()
     {
-        SE.volume = 0.1f;
+        SE.volume = 0.04f;
         SE.PlayOneShot(ButtonSE);
     }
 }
