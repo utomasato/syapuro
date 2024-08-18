@@ -23,7 +23,10 @@ public class GameState : MonoBehaviour
     [SerializeField] private SceneChange sceneChange;
     [SerializeField] private string selectScene;
 
-    AudioSource BGM;
+    /*AudioSourceを2つにして、片方をSEに、もう片方をBGMに入れてください*/
+    [SerializeField] AudioSource SE;
+    [SerializeField] AudioSource BGM;
+    [SerializeField] private AudioClip GameBGM;//プレイ中のBGM
     [SerializeField] private AudioClip GameOverSE;
     [SerializeField] private AudioClip GameClearSE;
     [SerializeField] private AudioClip PauseSE;//ポーズを押した時の音
@@ -46,12 +49,12 @@ public class GameState : MonoBehaviour
     {
         state = State.BeforeStart;
         score = 0;
-        if (BGM == null)
+        if (SE == null)
         {
-            BGM = gameObject.AddComponent<AudioSource>();
+            SE = gameObject.AddComponent<AudioSource>();
         }
-        BGM = GetComponent<AudioSource>();
-        BGM.volume = 0.5f;
+        SE = GetComponent<AudioSource>();
+        SE.volume = 0.5f;
     }
 
     void Update()
@@ -102,6 +105,7 @@ public class GameState : MonoBehaviour
 
     public void GameStart()//20240810uto
     {
+        gameBGM();
         state = State.GamePlay;
     }
 
@@ -146,6 +150,7 @@ public class GameState : MonoBehaviour
     {
         if (state == State.GameClear) return;
         state = State.GameClear;
+        BGM.Stop();
         gameClearSE();
         gameClear.ClearSystem();
     }
@@ -154,6 +159,7 @@ public class GameState : MonoBehaviour
     {
         if (state == State.GameOver) return;
         state = State.GameOver;
+        BGM.Stop();
         gameOverSE();
         gameOver.GameOverSystem();
     }
@@ -207,25 +213,31 @@ public class GameState : MonoBehaviour
         action?.Invoke(); // 渡された処理を実行
     }
 
+    public void gameBGM()
+    {
+        BGM.clip = GameBGM;
+        BGM.volume = 0.2f;
+        BGM.Play();
+    }
     public void gameOverSE()
     {
-        BGM.volume = 0.5f;
-        BGM.PlayOneShot(GameOverSE);
+        SE.volume = 0.5f;
+        SE.PlayOneShot(GameOverSE);
     }
     public void gameClearSE()
     {
-        BGM.volume = 0.2f;
-        BGM.PlayOneShot(GameClearSE);
+        SE.volume = 0.2f;
+        SE.PlayOneShot(GameClearSE);
     }
     public void gamePauseSE()
     {
-        BGM.volume = 0.5f;
-        BGM.PlayOneShot(PauseSE);
+        SE.volume = 0.5f;
+        SE.PlayOneShot(PauseSE);
     }
     public void gameButtonSE()
     {
-        BGM.volume = 0.1f;
-        BGM.PlayOneShot(ButtonSE);
+        SE.volume = 0.1f;
+        SE.PlayOneShot(ButtonSE);
     }
 }
 
