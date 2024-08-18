@@ -695,6 +695,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 312465510}
     - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: TransferSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 4042ac113f0114ab8a4d783d0ee07e3f, type: 3}
+    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: CandleScript
       value: 
       objectReference: {fileID: 1221838111}
@@ -949,6 +953,7 @@ MonoBehaviour:
   SE: {fileID: 312465513}
   BGM: {fileID: 312465514}
   GameBGM: {fileID: 8300000, guid: d371d24ccb4f2471f92d77280ec85d13, type: 3}
+  LampSE: {fileID: 8300000, guid: 2fd2bda46fcdb4fd2a20808ac97bd66f, type: 3}
   GameOverSE: {fileID: 8300000, guid: 79b7ee90d8c214fc2b9c50290dc90b86, type: 3}
   GameClearSE: {fileID: 8300000, guid: 9964675ab25044f98aff1b14df71b347, type: 3}
   PauseSE: {fileID: 8300000, guid: e22280fc92e874796a11a8d56327ab6f, type: 3}
@@ -1786,6 +1791,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 312465510}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1010044247}
     - target: {fileID: 4253589827236704253, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2533,6 +2546,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 312465510}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1010044247}
     - target: {fileID: 4253589827236704253, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2899,6 +2920,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 312465510}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1010044247}
     - target: {fileID: 4253589827236704253, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3212,6 +3241,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 312465510}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1010044247}
     - target: {fileID: 4253589827236704253, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3338,6 +3375,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 312465510}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1010044247}
     - target: {fileID: 4253589827236704253, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3711,6 +3756,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 312465510}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1010044247}
     - target: {fileID: 4253589827236704253, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -3837,6 +3890,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 312465510}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1010044247}
     - target: {fileID: 4253589827236704253, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5785,6 +5846,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: lamp
       objectReference: {fileID: 0}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: state
+      value: 
+      objectReference: {fileID: 312465510}
+    - target: {fileID: 3774177405561854729, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1010044247}
     - target: {fileID: 4253589827236704253, guid: 3c0df14c8aeea4b9d8e42ed75e7ef084, type: 3}
       propertyPath: m_Enabled
       value: 0

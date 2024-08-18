@@ -27,6 +27,7 @@ public class GameState : MonoBehaviour
     [SerializeField] AudioSource SE;
     [SerializeField] AudioSource BGM;
     [SerializeField] private AudioClip GameBGM;//プレイ中のBGM
+    [SerializeField] private AudioClip LampSE;//ランプをつけた時の効果音
     [SerializeField] private AudioClip GameOverSE;
     [SerializeField] private AudioClip GameClearSE;
     [SerializeField] private AudioClip PauseSE;//ポーズを押した時の音
@@ -101,6 +102,7 @@ public class GameState : MonoBehaviour
     {
         LampCount++;
         gaugeController.UpdateCount(LampCount);
+        gameLampSE();
     }
 
     public void GameStart()//20240810uto
@@ -218,6 +220,11 @@ public class GameState : MonoBehaviour
         BGM.clip = GameBGM;
         BGM.volume = 0.2f;
         BGM.Play();
+    }
+    public void gameLampSE()
+    {
+        SE.volume = 0.5f;
+        SE.PlayOneShot(LampSE);
     }
     public void gameOverSE()
     {
