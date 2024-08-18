@@ -181,31 +181,7 @@ public class GameState : MonoBehaviour
         return MaxLampPerStage;
     }
 
-    /*public TMP_Text JudgeRank(TMP_Text RankText)
-    {
 
-        if (MaxLampPerStage == LampCount)
-        {
-            RankText.text = "S";
-        }
-        else if (LampCount >= (int)MaxLampPerStage * 0.8)//ランプ8割つけることができれば
-        {
-            RankText.text = "A";
-        }
-        else if (LampCount >= (int)MaxLampPerStage * 0.6)
-        {
-            RankText.text = "B";
-        }
-        else if (LampCount >= (int)MaxLampPerStage * 0.3)
-        {
-            RankText.text = "C";
-        }
-        else
-        {
-            RankText.text = "D";
-        }
-        return RankText;
-    }*/
 
     public void Retry() // シーンをリロードする
     {

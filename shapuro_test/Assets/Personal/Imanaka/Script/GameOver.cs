@@ -93,25 +93,7 @@ public class GameOver : MonoBehaviour
         SampleCoroutine = null;
     }
 
-    /*
-    public void PressRetry()//リトライボタンを押した時
-    {
-        /* GameState_test state = GetComponent<GameState_test>();
 
-
-         Firepos.SetActive(true);
-         Canldlecon.SetActive(true);
-         PL.SetActive(true);
-         PL.transform.localScale = SaveScale;
-         PL.transform.position = SavePLpos;
-         Foot.SetActive(true);
-         Foot.transform.position = SaveFootpos;
-         state.JudgeGameOver = false;
-         Debug.Log("a");
-         * /
-    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    */
 }
 
 
