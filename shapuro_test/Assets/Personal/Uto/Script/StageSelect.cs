@@ -18,8 +18,13 @@ public class StageSelect : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
+    //AudioSource SE;
+
+    //[SerializeField] private AudioClip StageSelectSE;//ステージを選択した際の音
+
     void Start()
     {
+        //SE = GetComponent<AudioSource>();
         if (SceneSelectionState.selectedIndex == -1)
         {
             p0 = 0; // 初期位置を0に設定
@@ -113,4 +118,9 @@ public class StageSelect : MonoBehaviour
         else ls.x = -1.0f;
         transform.localScale = ls;
     }
+
+    /*void gameStageSelectSE()
+    {
+        SE.PlayOneShot(StageSelectSE);
+    }*/
 }
