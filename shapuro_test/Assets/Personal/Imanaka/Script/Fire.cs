@@ -51,6 +51,7 @@ public class Fire : MonoBehaviour
     [SerializeField] private AudioClip NormalBurnSE;//通常火の効果音
 
     [SerializeField] private AudioClip StrongBurnSE;//強火の効果音
+    [SerializeField] private AudioClip TransferSE;//転生のために火がロウソクを離れた時の音
 
 
     // Start is called before the first frame update
@@ -218,6 +219,7 @@ public class Fire : MonoBehaviour
 
     public void FlyFire()
     {
+        SE.PlayOneShot(TransferSE);
         IsCandle = false;
         transform.localScale = new Vector3(1, 1, 1);
         //transform.position += new Vector3(0, 0.6f, 0);
@@ -344,7 +346,8 @@ public class Fire : MonoBehaviour
         SE2.Play();
 
     }
-    public Candle GetCandle() {
-            return CandleScript;
-        }
+    public Candle GetCandle()
+    {
+        return CandleScript;
+    }
 }
