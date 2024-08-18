@@ -947,6 +947,8 @@ MonoBehaviour:
   selectScene: StageSelect
   GameOverSE: {fileID: 8300000, guid: 79b7ee90d8c214fc2b9c50290dc90b86, type: 3}
   GameClearSE: {fileID: 8300000, guid: 9964675ab25044f98aff1b14df71b347, type: 3}
+  PauseSE: {fileID: 8300000, guid: e22280fc92e874796a11a8d56327ab6f, type: 3}
+  ButtonSE: {fileID: 8300000, guid: 403149528bf5545d9954b36e026bc734, type: 3}
   state: 4
 --- !u!4 &312465511
 Transform:
