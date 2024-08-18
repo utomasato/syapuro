@@ -23,6 +23,9 @@ public class GameState : MonoBehaviour
     [SerializeField] private SceneChange sceneChange;
     [SerializeField] private string selectScene;
 
+    AudioSource BGM;
+    [SerializeField] private AudioClip GameOverSE;
+    [SerializeField] private AudioClip GameClearSE;
     private UnityEngine.UI.Button lastSelectedButton;
 
     public enum State
@@ -41,6 +44,8 @@ public class GameState : MonoBehaviour
     {
         state = State.BeforeStart;
         score = 0;
+        BGM = GetComponent<AudioSource>();
+        BGM.volume = 0.5f;
     }
 
     void Update()
@@ -133,6 +138,7 @@ public class GameState : MonoBehaviour
     {
         if (state == State.GameClear) return;
         state = State.GameClear;
+        gameClearSE();
         gameClear.ClearSystem();
     }
 
@@ -140,6 +146,7 @@ public class GameState : MonoBehaviour
     {
         if (state == State.GameOver) return;
         state = State.GameOver;
+        gameOverSE();
         gameOver.GameOverSystem();
     }
 
@@ -160,16 +167,7 @@ public class GameState : MonoBehaviour
         get { return IsCountdown; }
         set { IsCountdown = value; }
     }
-    public bool JudgeGameOver//ゲームオーバーか判断　ゲッター・セッター
-    {
-        get { return IsGameOver; }
-        set { IsGameOver = value; }
-    }
-    public bool JudgeGameClear//ゲームクリアか判断　ゲッター・セッター
-    {
-        get { return IsGameClear; }
-        set { IsGameClear = value; }
-    }
+   
     public bool JudgeExplain//チュートリアル説明中か
     {
         get { return IsExplain; }
@@ -197,6 +195,17 @@ public class GameState : MonoBehaviour
     {
         yield return null; // 1フレーム待つ
         action?.Invoke(); // 渡された処理を実行
+    }
+
+    public void gameOverSE()
+    {
+        BGM.volume = 0.5f;
+        BGM.PlayOneShot(GameOverSE);
+    }
+    public void gameClearSE()
+    {
+        BGM.volume = 0.3f;
+        BGM.PlayOneShot(GameClearSE);
     }
 }
 

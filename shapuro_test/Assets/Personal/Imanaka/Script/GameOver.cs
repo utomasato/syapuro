@@ -28,6 +28,7 @@ public class GameOver : MonoBehaviour
 
     [SerializeField] GameState gameState;
 
+
     void Start()
     {
         GameOverAssets = new GameObject[] { GameOverText, ScoreParents, Button };
