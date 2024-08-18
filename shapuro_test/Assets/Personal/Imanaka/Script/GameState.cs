@@ -20,6 +20,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private GameClear gameClear;
     [SerializeField] private GameOver gameOver;
     [SerializeField] private Pause pause;
+    [SerializeField] private FooterUI footer;
     [SerializeField] private SceneChange sceneChange;
     [SerializeField] private string selectScene;
 
@@ -109,6 +110,7 @@ public class GameState : MonoBehaviour
     {
         gameBGM();
         state = State.GamePlay;
+        footer.ActivateInstructionTexts();
     }
 
     public void Pause()//20240810uto
