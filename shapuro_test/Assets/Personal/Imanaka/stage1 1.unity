@@ -936,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaef485f629cf4388bfd4a46ee4850e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLampPerStage: 8
+  MaxLampPerStage: 9
   plyer: {fileID: 1010044247}
   gaugeController: {fileID: 1675826847}
   gameClear: {fileID: 312465509}
