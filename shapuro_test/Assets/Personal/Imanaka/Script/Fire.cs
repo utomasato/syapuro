@@ -308,7 +308,7 @@ public class Fire : MonoBehaviour
     public Candle UseCandle()//どのロウソクを使用しているか
     {
 
-        SE.PlayOneShot(CandleSetSE);
+
         return CandleScript;
 
     }
