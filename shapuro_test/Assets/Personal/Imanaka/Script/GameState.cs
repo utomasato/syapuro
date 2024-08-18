@@ -26,6 +26,8 @@ public class GameState : MonoBehaviour
     AudioSource BGM;
     [SerializeField] private AudioClip GameOverSE;
     [SerializeField] private AudioClip GameClearSE;
+    [SerializeField] private AudioClip PauseSE;//ポーズを押した時の音
+    [SerializeField] private AudioClip ButtonSE;//何らかのボタンを押した時の音
     private UnityEngine.UI.Button lastSelectedButton;
 
     public enum State
@@ -44,6 +46,10 @@ public class GameState : MonoBehaviour
     {
         state = State.BeforeStart;
         score = 0;
+        if (BGM == null)
+        {
+            BGM = gameObject.AddComponent<AudioSource>();
+        }
         BGM = GetComponent<AudioSource>();
         BGM.volume = 0.5f;
     }
@@ -104,6 +110,7 @@ public class GameState : MonoBehaviour
         if (state == State.Pause) return;
         beforePauseState = state;
         state = State.Pause;
+        gamePauseSE();
         plyer.UseCandle().Pause();
         pause.PauseSystem();
     }
@@ -113,6 +120,7 @@ public class GameState : MonoBehaviour
         // ポーズでの選択のEnter/Spaceが火の玉/ジャンプにならないように1フレーム遅らせる
         StartCoroutine(ExecuteAfterOneFrame(() =>
         {
+            gameButtonSE();
             state = beforePauseState;
             plyer.UseCandle().Resume();
             pause.ResumeSystem();
@@ -183,11 +191,13 @@ public class GameState : MonoBehaviour
 
     public void Retry() // シーンをリロードする
     {
+        gameButtonSE();
         sceneChange.StartFadeOut(SceneManager.GetActiveScene().name);
     }
 
     public void ExitStage() // セレクト画面に戻る
     {
+        gameButtonSE();
         sceneChange.StartFadeOut(selectScene);
     }
 
@@ -204,8 +214,18 @@ public class GameState : MonoBehaviour
     }
     public void gameClearSE()
     {
-        BGM.volume = 0.3f;
+        BGM.volume = 0.2f;
         BGM.PlayOneShot(GameClearSE);
+    }
+    public void gamePauseSE()
+    {
+        BGM.volume = 0.5f;
+        BGM.PlayOneShot(PauseSE);
+    }
+    public void gameButtonSE()
+    {
+        BGM.volume = 0.1f;
+        BGM.PlayOneShot(ButtonSE);
     }
 }
 
