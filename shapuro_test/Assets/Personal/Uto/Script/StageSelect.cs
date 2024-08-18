@@ -18,13 +18,18 @@ public class StageSelect : MonoBehaviour
 
     [SerializeField] private Animator animator;
 
-    //AudioSource SE;
+    AudioSource SE;
 
-    //[SerializeField] private AudioClip StageSelectSE;//ステージを選択した際の音
+    AudioSource BGM;
 
+    [SerializeField] private AudioClip StageSelectSE;//ステージを選択した際の音
+    [SerializeField] private AudioClip StageSelectBGM;//ステージを選択画面のBGM
     void Start()
     {
-        //SE = GetComponent<AudioSource>();
+        gameStageSelectBGM();
+        SE = GetComponent<AudioSource>();
+        SE.volume = 0.3f;
+        BGM = GetComponent<AudioSource>();
         if (SceneSelectionState.selectedIndex == -1)
         {
             p0 = 0; // 初期位置を0に設定
@@ -84,6 +89,7 @@ public class StageSelect : MonoBehaviour
             // エンターキーが押された場合
             if (Input.GetKeyDown(KeyCode.Return) && 0 <= selectNumber && selectNumber < Stagelist.Count && Stagelist[selectNumber] != null)
             {
+                gameStageSelectSE();
                 SceneSelectionState.selectedIndex = selectNumber; // 現在の選択番号を保存
                 sceneChange.StartFadeOut(Stagelist[selectNumber]);
                 //SceneManager.LoadScene(Stagelist[selectNumber]); // 選択されたステージをロード
@@ -119,8 +125,17 @@ public class StageSelect : MonoBehaviour
         transform.localScale = ls;
     }
 
-    /*void gameStageSelectSE()
+    void gameStageSelectSE()
     {
         SE.PlayOneShot(StageSelectSE);
-    }*/
+    }
+    void gameStageSelectBGM()
+    {
+        GameObject state = GameObject.Find("EventSystem");
+        AudioSource audioSource = state.AddComponent<AudioSource>();
+        BGM = audioSource;
+        BGM.clip = StageSelectBGM;
+        BGM.volume = 0.1f;
+        BGM.Play();
+    }
 }
