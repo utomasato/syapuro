@@ -699,6 +699,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 4042ac113f0114ab8a4d783d0ee07e3f, type: 3}
     - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: CandleSetSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 9927a7e8d868c4fc7b563b10671fe365, type: 3}
+    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: CandleScript
       value: 
       objectReference: {fileID: 1221838111}
