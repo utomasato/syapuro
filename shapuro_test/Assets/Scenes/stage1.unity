@@ -474,6 +474,10 @@ PrefabInstance:
       value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: footer
+      value: 
+      objectReference: {fileID: 549952375}
+    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: gameState
       value: 
       objectReference: {fileID: 312465510}
@@ -710,6 +714,7 @@ MonoBehaviour:
   gameClear: {fileID: 312465509}
   gameOver: {fileID: 312465508}
   pause: {fileID: 312465512}
+  footer: {fileID: 549952375}
   sceneChange: {fileID: 256278650}
   selectScene: StageSelect
   SE: {fileID: 312465514}
@@ -1815,6 +1820,17 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 1623642089512033925, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
+--- !u!114 &549952375 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 127285112068586685, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
+  m_PrefabInstance: {fileID: 549952374}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6270abbe551244a7996fb8a71e657a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &613386519
 GameObject:
   m_ObjectHideFlags: 0

@@ -332,6 +332,11 @@ public class Candle : MonoBehaviour
         return IsBurnOut;
     }
 
+    public bool GetCanJump() // ジャンプ可能か
+    {
+        return CanJump && Mathf.Abs(rb.velocity.y) < 0.5f;
+    }
+
     void OnCollisionEnter(Collision other)
     {
         // 接触点の法線ベクトルが上向きであるかどうかをチェック

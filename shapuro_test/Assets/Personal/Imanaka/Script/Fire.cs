@@ -39,6 +39,7 @@ public class Fire : MonoBehaviour
 
     [SerializeField] private GameState gameState;
     [SerializeField] private GaugeController gaugeControllor; // 20240803 宇藤追加
+    [SerializeField] private FooterUI footer;
 
 
     private AudioSource SE;//ジャンプ用効果音
@@ -94,7 +95,7 @@ public class Fire : MonoBehaviour
             MoveFire();
 
             gaugeControllor.UpdateCandleGauge(CandleScript.GetLife()); // 20240803 宇藤追加
-
+            footer.SetJumpTextGrayOut(!CandleScript.GetCanJump());
         }
         if (!IsCandle)//炎がロウソクについてないとき
         {
@@ -217,7 +218,7 @@ public class Fire : MonoBehaviour
         }
     }
 
-    public void FlyFire()
+    public void FlyFire()//蝋燭から離れる
     {
         gameTransferSE();
         IsCandle = false;
@@ -230,6 +231,7 @@ public class Fire : MonoBehaviour
             CandleScript.Sleep();
         }
         gaugeControllor.SetCandleGaugeGrayOut(true); // 20240803 宇藤追加
+        footer.SwitchInstructionTexts(false);
     }
 
     void NoCandle()//ロウソクがなくなったとき
@@ -285,6 +287,7 @@ public class Fire : MonoBehaviour
         transform.localScale = StartScale;
         gaugeControllor.SetCandleGaugeGrayOut(false); // 20240803 宇藤追加
         gaugeControllor.FillFireGauge();
+        footer.SwitchInstructionTexts(true);
     }
 
     public bool GetIsCandle()
