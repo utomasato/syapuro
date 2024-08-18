@@ -60,14 +60,14 @@ public class Fire : MonoBehaviour
         StartScale = transform.localScale;
         Transfer();
         SE = GetComponent<AudioSource>();
-        SE.volume = 0.3f;
+        SE.volume = 0.1f;
         GameObject FireSE = GameObject.Find("Fire");
         if (SE2 == null)
         {//Playerの子オブジェクトのFireに弱火と強火のSEを入れる
             SE2 = FireSE.AddComponent<AudioSource>();
         }
         SE2 = FireSE.GetComponent<AudioSource>();
-        SE2.volume = 0.3f;
+        SE2.volume = 0.2f;
     }
 
     // Update is called once per frame
@@ -219,7 +219,7 @@ public class Fire : MonoBehaviour
 
     public void FlyFire()
     {
-        SE.PlayOneShot(TransferSE);
+        gameTransferSE();
         IsCandle = false;
         transform.localScale = new Vector3(1, 1, 1);
         //transform.position += new Vector3(0, 0.6f, 0);
@@ -330,6 +330,7 @@ public class Fire : MonoBehaviour
 
     public void JumpSE_Func()
     {
+        SE.volume = 0.1f;
         SE.PlayOneShot(JumpSE);
     }
     public void NormalBurnSE_Func()
@@ -347,6 +348,11 @@ public class Fire : MonoBehaviour
         SE2.volume = 0.6f;
         SE2.Play();
 
+    }
+    void gameTransferSE()
+    {
+        SE.volume = 0.05f;
+        SE.PlayOneShot(TransferSE);
     }
     public Candle GetCandle()
     {
