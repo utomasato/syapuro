@@ -17,6 +17,8 @@ public class StageSelect : MonoBehaviour
     float p;
 
     [SerializeField] private Animator animator;
+    [SerializeField] private FooterUI footer;
+    [SerializeField] private string titleScene;
 
     AudioSource SE;
 
@@ -38,6 +40,7 @@ public class StageSelect : MonoBehaviour
             IsNoSelect = true;
             p = transform.position.x;
             animator.SetBool("Moving", true);
+            footer.GrayOutInstructionTexts();
         }
         else
         {
@@ -49,6 +52,7 @@ public class StageSelect : MonoBehaviour
             transform.position = pos;
             sceneChange.StartFadeIn();
             animator.SetBool("Moving", false);
+            footer.ActivateInstructionTexts();
             //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
         }
 
@@ -65,6 +69,7 @@ public class StageSelect : MonoBehaviour
                 t = 1.0f; // 補間時間の上限を1.0に設定
                 IsNoSelect = false; // 移動中フラグをリセット
                 animator.SetBool("Moving", false);
+                footer.ActivateInstructionTexts();
                 //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
             Vector3 pos = transform.position;
@@ -104,11 +109,17 @@ public class StageSelect : MonoBehaviour
                 IsMoving = false; // 移動中フラグをリセット
                 p0 = selectNumber; // 現在の位置を更新
                 animator.SetBool("Moving", false);
+                footer.ActivateInstructionTexts();
                 //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
             Vector3 pos = transform.position;
             pos.x = startPos.x + Mathf.Lerp(p0 * interval, selectNumber * interval, t); // 補間を用いてX座標を計算
             transform.position = pos; // 新しい位置を設定
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            sceneChange.StartFadeOut(titleScene);
         }
     }
 
@@ -118,6 +129,7 @@ public class StageSelect : MonoBehaviour
         IsMoving = true; // 移動中フラグを設定
         t = 0.0f; // 補間の時間をリセット
         animator.SetBool("Moving", true);
+        footer.GrayOutInstructionTexts();
         //transform.position -= new Vector3(0.0f, 0.1f, 0.0f);
         Vector3 ls = transform.localScale;
         if (delta > 0) ls.x = 1.0f;
