@@ -139,6 +139,18 @@ public class StageSelect : MonoBehaviour
         {
             sceneChange.StartFadeOut(titleScene);
         }
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            List<int> list = Save.saveData.lampCounts;
+            list[selectNumber] = 0;
+            Save.saveData.lampCounts = list;
+            Save.SaveGame();
+            for (int i = 0; i < Stagelist.Count; i++)
+            {
+                textList[i].text = Save.saveData.lampCounts[i].ToString();
+            }
+        }
     }
 
     public void Move(int delta)
