@@ -23,6 +23,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private FooterUI footer;
     [SerializeField] private SceneChange sceneChange;
     [SerializeField] private string selectScene;
+    [SerializeField] private bool buttonClicked;
 
     /*AudioSourceを2つにして、片方をSEに、もう片方をBGMに入れてください*/
     [SerializeField] AudioSource SE;
@@ -57,6 +58,8 @@ public class GameState : MonoBehaviour
         }
         SE = GetComponent<AudioSource>();
         SE.volume = 0.5f;
+        footer.GrayOutInstructionTexts();
+        buttonClicked = false;
     }
 
     void Update()
@@ -201,14 +204,22 @@ public class GameState : MonoBehaviour
 
     public void Retry() // シーンをリロードする
     {
-        gameButtonSE();
-        sceneChange.StartFadeOut(SceneManager.GetActiveScene().name);
+        if (!buttonClicked)
+        {
+            gameButtonSE();
+            sceneChange.StartFadeOut(SceneManager.GetActiveScene().name);
+            buttonClicked = true;
+        }
     }
 
     public void ExitStage() // セレクト画面に戻る
     {
-        gameButtonSE();
-        sceneChange.StartFadeOut(selectScene);
+        if (!buttonClicked)
+        {
+            gameButtonSE();
+            sceneChange.StartFadeOut(selectScene);
+            buttonClicked = true;
+        }
     }
 
     IEnumerator ExecuteAfterOneFrame(Action action) // 実行を１フレーム遅らせる

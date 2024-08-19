@@ -16,7 +16,7 @@ public class FooterUI : MonoBehaviour
 
     void Start()
     {
-        GrayOutInstructionTexts();
+        //GrayOutInstructionTexts();
         SwitchInstructionTexts(true);
     }
 
