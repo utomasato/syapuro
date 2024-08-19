@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
+
 public class GameOver : MonoBehaviour
 {
     [SerializeField]
@@ -27,6 +28,7 @@ public class GameOver : MonoBehaviour
     private Coroutine SampleCoroutine = null;
 
     [SerializeField] GameState gameState;
+    [SerializeField] private UnityEngine.UI.Button button;
 
 
     void Start()
@@ -88,8 +90,10 @@ public class GameOver : MonoBehaviour
             //ゲームオーバアセット全て表示されるまで継続
             Asset[i].SetActive(true);
             i++;
-            yield return new WaitForSeconds(delay);
+            if (i < Asset.Length)
+                yield return new WaitForSeconds(delay);
         }
+        gameState.SetButton(button);
 
         SampleCoroutine = null;
     }

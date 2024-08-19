@@ -678,6 +678,7 @@ MonoBehaviour:
   Button: {fileID: 194050520}
   fire: {fileID: 1010044247}
   gameState: {fileID: 312465510}
+  button: {fileID: 2049500672}
 --- !u!114 &312465509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +697,8 @@ MonoBehaviour:
   ScoreParents: {fileID: 1662565987}
   Button: {fileID: 230780878}
   PLFire: {fileID: 1703191838}
+  gameState: {fileID: 312465510}
+  button: {fileID: 1591559082}
 --- !u!114 &312465510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,11 +729,6 @@ MonoBehaviour:
   PauseSE: {fileID: 8300000, guid: e22280fc92e874796a11a8d56327ab6f, type: 3}
   ButtonSE: {fileID: 8300000, guid: 403149528bf5545d9954b36e026bc734, type: 3}
   state: 0
-  playData:
-    id: 0
-    name: 
-    maxLamp: 0
-    lampCount: 0
 --- !u!4 &312465511
 Transform:
   m_ObjectHideFlags: 0
@@ -2098,18 +2096,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 312465510}
-    - target: {fileID: 4970789696420924582, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitStage
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970789696420924582, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameState, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970789696420924582, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 6804302482706799925, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4007,6 +3993,17 @@ Transform:
   m_Father: {fileID: 626441496}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1591559082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 585118060467967894, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+  m_PrefabInstance: {fileID: 820558998}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1625279949
 GameObject:
   m_ObjectHideFlags: 0
@@ -5194,6 +5191,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2049500672 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7810650592860373942, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
+  m_PrefabInstance: {fileID: 1858886811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2112316679
 GameObject:
   m_ObjectHideFlags: 0

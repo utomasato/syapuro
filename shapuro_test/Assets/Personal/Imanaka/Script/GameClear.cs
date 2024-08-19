@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-//using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameClear : MonoBehaviour
 {
@@ -21,6 +21,9 @@ public class GameClear : MonoBehaviour
     private GameObject PLFire;//プレイヤー
 
     GameObject[] GameClearAssets;
+
+    [SerializeField] private GameState gameState;
+    [SerializeField] private UnityEngine.UI.Button button;
 
     private Coroutine SampleCoroutine;
 
@@ -59,8 +62,10 @@ public class GameClear : MonoBehaviour
             //ゲームクリアアセット全て表示されるまで継続
             Asset[i].SetActive(true);
             i++;
-            yield return new WaitForSeconds(delay);
+            if (i < Asset.Length)
+                yield return new WaitForSeconds(delay);
         }
+        gameState.SetButton(button);
 
         SampleCoroutine = null;
     }
