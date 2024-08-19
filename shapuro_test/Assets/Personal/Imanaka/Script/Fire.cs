@@ -223,7 +223,7 @@ public class Fire : MonoBehaviour
         gameTransferSE();
         IsCandle = false;
         transform.localScale = new Vector3(1, 1, 1);
-        //transform.position += new Vector3(0, 0.6f, 0);
+        transform.position += new Vector3(0, 0, -1);
 
         Firetime = 0;
         if (CandleScript != null)
