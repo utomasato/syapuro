@@ -20,6 +20,8 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private FooterUI footer;
     [SerializeField] private string titleScene;
 
+    [SerializeField] private List<StagePlayData> PlayDatas;
+
     AudioSource SE;
 
     AudioSource BGM;
@@ -41,6 +43,12 @@ public class StageSelect : MonoBehaviour
             p = transform.position.x;
             animator.SetBool("Moving", true);
             footer.GrayOutInstructionTexts();
+
+            StaticSave.stagePlayDatas.Clear();
+            foreach (StagePlayData data in PlayDatas)
+            {
+                StaticSave.stagePlayDatas.Add(data);
+            }
         }
         else
         {
@@ -54,6 +62,7 @@ public class StageSelect : MonoBehaviour
             animator.SetBool("Moving", false);
             footer.ActivateInstructionTexts();
             //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+            PlayDatas[p0] = StaticSave.stagePlayDatas[p0];
         }
 
         IsMoving = false; // 移動中フラグをリセット
