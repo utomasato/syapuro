@@ -62,8 +62,6 @@ public class GameState : MonoBehaviour
         SE.volume = 0.5f;
         footer.GrayOutInstructionTexts();
         buttonClicked = false;
-        if (SceneSelectionState.selectedIndex != -1)
-            playData = StaticSave.stagePlayDatas[SceneSelectionState.selectedIndex];
     }
 
     void Update()
@@ -164,9 +162,14 @@ public class GameState : MonoBehaviour
         BGM.Stop();
         gameClearSE();
         gameClear.ClearSystem();
-        playData.LampCount = LampCount;
+
         if (SceneSelectionState.selectedIndex != -1)
-            StaticSave.stagePlayDatas[SceneSelectionState.selectedIndex] = playData;
+        {
+            List<int> list = Save.saveData.lampCounts;
+            list[SceneSelectionState.selectedIndex] = LampCount;
+            Save.saveData.lampCounts = list;
+            Save.SaveGame();
+        }
     }
 
     public void GameOver()//20240810uto
