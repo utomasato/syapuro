@@ -61,4 +61,10 @@ public class Save : MonoBehaviour
         }
     }
 
+    public static void Reset()
+    {
+        saveData = new SaveData(new List<int>() { 0, 0, 0 });
+        SaveGame();
+    }
+
 }
