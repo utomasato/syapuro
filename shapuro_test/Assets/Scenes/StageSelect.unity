@@ -1268,6 +1268,19 @@ MonoBehaviour:
   animator: {fileID: 1321304391}
   footer: {fileID: 127285112510634481}
   titleScene: Title_test
+  PlayDatas:
+  - id: 0
+    name: aaa
+    maxLamp: 9
+    lampCount: 0
+  - id: 1
+    name: bbb
+    maxLamp: 5
+    lampCount: 0
+  - id: 2
+    name: ccc
+    maxLamp: 7
+    lampCount: 0
   StageSelectSE: {fileID: 8300000, guid: c32020a6f620f4fe79cc29f6b4c06fe9, type: 3}
   StageSelectBGM: {fileID: 8300000, guid: 88d262635f7b245baad48c1bd1780684, type: 3}
 --- !u!82 &1897496555

@@ -23,7 +23,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private FooterUI footer;
     [SerializeField] private SceneChange sceneChange;
     [SerializeField] private string selectScene;
-    [SerializeField] private bool buttonClicked;
+    private bool buttonClicked;
 
     /*AudioSourceを2つにして、片方をSEに、もう片方をBGMに入れてください*/
     [SerializeField] AudioSource SE;
@@ -48,6 +48,8 @@ public class GameState : MonoBehaviour
     [SerializeField] private State state; // ゲームの状態を管理する
     private State beforePauseState;
 
+    [SerializeField] private StagePlayData playData;
+
     void Start()
     {
         state = State.BeforeStart;
@@ -60,6 +62,8 @@ public class GameState : MonoBehaviour
         SE.volume = 0.5f;
         footer.GrayOutInstructionTexts();
         buttonClicked = false;
+        if (SceneSelectionState.selectedIndex != -1)
+            playData = StaticSave.stagePlayDatas[SceneSelectionState.selectedIndex];
     }
 
     void Update()
@@ -160,6 +164,9 @@ public class GameState : MonoBehaviour
         BGM.Stop();
         gameClearSE();
         gameClear.ClearSystem();
+        playData.LampCount = LampCount;
+        if (SceneSelectionState.selectedIndex != -1)
+            StaticSave.stagePlayDatas[SceneSelectionState.selectedIndex] = playData;
     }
 
     public void GameOver()//20240810uto
