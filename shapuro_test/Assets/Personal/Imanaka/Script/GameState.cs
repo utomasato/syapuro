@@ -48,7 +48,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private State state; // ゲームの状態を管理する
     private State beforePauseState;
 
-    [SerializeField] private StagePlayData playData;
+    //[SerializeField] private StagePlayData playData;
 
     void Start()
     {
@@ -66,30 +66,34 @@ public class GameState : MonoBehaviour
 
     void Update()
     {
-        if (state == State.GamePlay)
+        switch (state)
         {
-            if (Input.GetKeyDown(KeyCode.P)) // ポーズ画面にする
-            {
-                Pause();
-            }
-        }
-
-        if (state == State.Pause)
-        {
-            GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
-
-            // 現在選択されているものがボタンでない場合、最後に選択されたボタンを再選択する
-            if (currentSelected == null || currentSelected.GetComponent<UnityEngine.UI.Button>() == null)
-            {
-                if (lastSelectedButton != null)
+            case State.GamePlay:
+                if (Input.GetKeyDown(KeyCode.P)) // ポーズ画面にする
                 {
-                    EventSystem.current.SetSelectedGameObject(lastSelectedButton.gameObject);
+                    Pause();
                 }
-            }
-            else // 現在選択されているものがボタンであれば、それを記憶
-            {
-                lastSelectedButton = currentSelected.GetComponent<UnityEngine.UI.Button>();
-            }
+                break;
+
+            case State.Pause:
+            case State.GameClear:
+            case State.GameOver:
+                GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
+                // 現在選択されているものがボタンでない場合、最後に選択されたボタンを再選択する
+                if (currentSelected == null || currentSelected.GetComponent<UnityEngine.UI.Button>() == null)
+                {
+                    if (lastSelectedButton != null)
+                    {
+                        EventSystem.current.SetSelectedGameObject(lastSelectedButton.gameObject);
+                    }
+                }
+                else // 現在選択されているものがボタンであれば、それを記憶
+                {
+                    lastSelectedButton = currentSelected.GetComponent<UnityEngine.UI.Button>();
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -198,7 +202,7 @@ public class GameState : MonoBehaviour
         get { return IsCountdown; }
         set { IsCountdown = value; }
     }
-   
+
     public bool JudgeExplain//チュートリアル説明中か
     {
         get { return IsExplain; }
