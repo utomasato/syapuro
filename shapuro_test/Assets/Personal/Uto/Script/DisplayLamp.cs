@@ -7,22 +7,13 @@ public class DisplayLamp : MonoBehaviour
 {
     [SerializeField] private Lamp lamp;
     [SerializeField] private GameObject fire;
-    [SerializeField] private GameState state;
+    //[SerializeField] private GameState state;
 
-    public void Ignition()
+    public void Ignition(GameState state = null)
     {
-        if (lamp != null)
-        {
-            if (lamp.GetBurning)
-            {
-                fire.GetComponent<Image>().enabled = true;
-                state.gameLampSE();
-            }
-        }
-        else
-        {
-            fire.GetComponent<Image>().enabled = true;
-        }
+        fire.GetComponent<Image>().enabled = true;
+        if (state != null)
+            state.gameLampSE();
     }
 
     public void Extinguishment()

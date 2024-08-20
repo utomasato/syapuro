@@ -8,6 +8,7 @@ public class Lamp : MonoBehaviour
     [SerializeField] private GameState state;
     [SerializeField] private Fire player; // プレイヤー
     private bool IsBurning = false; // 点火済みか
+    [SerializeField] private int LampID;
 
     void OnTriggerStay(Collider other)
     {
@@ -15,9 +16,7 @@ public class Lamp : MonoBehaviour
         {
             IsBurning = true;
             fire.GetComponent<SpriteRenderer>().enabled = true; // 点火する
-            state.AddLampCount(); // カウントをインクリメントする
+            state.AddLampCount(LampID); // カウントをインクリメントする
         }
     }
-
-    public bool GetBurning => IsBurning;
 }

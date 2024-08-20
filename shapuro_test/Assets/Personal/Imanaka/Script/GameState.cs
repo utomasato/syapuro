@@ -47,6 +47,7 @@ public class GameState : MonoBehaviour
     }
     [SerializeField] private State state; // ゲームの状態を管理する
     private State beforePauseState;
+    private List<bool> BurningLampList;
 
     //[SerializeField] private StagePlayData playData;
 
@@ -62,6 +63,11 @@ public class GameState : MonoBehaviour
         SE.volume = 0.5f;
         footer.GrayOutInstructionTexts();
         buttonClicked = false;
+        BurningLampList = new List<bool>();
+        for (int i = 0; i < MaxLampPerStage; i++)
+        {
+            BurningLampList.Add(false);
+        }
     }
 
     void Update()
@@ -108,11 +114,18 @@ public class GameState : MonoBehaviour
         return score;
     }
 
-    public void AddLampCount()//20240809 宇藤追加
+    public void AddLampCount(int LampID = -1)//20240809 宇藤追加
     {
         LampCount++;
         gaugeController.UpdateCount(LampCount);
         gameLampSE();
+        if (LampID != -1)
+            BurningLampList[LampID] = true;
+    }
+
+    public List<bool> GetBurningLampList
+    {
+        get { return BurningLampList; }
     }
 
     public void GameStart()//20240810uto
