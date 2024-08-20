@@ -12,7 +12,7 @@ public class StageSelect : MonoBehaviour
     float t = 0.0f; // 補間のための時間
     int p0; // 現在の位置
     [SerializeField] Vector3 startPos; // スタート位置
-    [SerializeField] private List<string> Stagelist; // ステージのリスト
+    //[SerializeField] private List<string> Stagelist; // ステージのリスト
     [SerializeField] private SceneChange sceneChange;
     bool IsNoSelect = false;
     float p;
@@ -21,12 +21,29 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private FooterUI footer;
     [SerializeField] private string titleScene;
 
-    [SerializeField] private List<TextMeshProUGUI> textList;
+    //[SerializeField] private List<TextMeshProUGUI> lampCounters;
 
-    //[SerializeField] private List<StagePlayData> PlayDatas;
+    [System.Serializable]
+    public struct StageData
+    {
+        [SerializeField] private int stageID;
+        [SerializeField] private string stageName;
+        [SerializeField] private string stageScene;
+        [SerializeField] private int maxLampCount;
+        public TextMeshProUGUI StageNameTMP;
+        [SerializeField] private List<DisplayLamp> lampList;
+        public GameObject canvas;
+
+        public int StageID => stageID;
+        public string StageName => stageName;
+        public string StageScene => stageScene;
+        public int MaxLampCount => maxLampCount;
+        public List<DisplayLamp> LampList => lampList;
+    }
+    [SerializeField] private List<StageData> stageList;
+
 
     AudioSource SE;
-
     AudioSource BGM;
 
     [SerializeField] private AudioClip StageSelectSE;//ステージを選択した際の音
@@ -46,13 +63,6 @@ public class StageSelect : MonoBehaviour
             p = transform.position.x;
             animator.SetBool("Moving", true);
             footer.GrayOutInstructionTexts();
-            /*
-            StaticSave.stagePlayDatas.Clear();
-            foreach (StagePlayData data in PlayDatas)
-            {
-                StaticSave.stagePlayDatas.Add(data);
-            }
-            */
         }
         else
         {
@@ -65,16 +75,18 @@ public class StageSelect : MonoBehaviour
             sceneChange.StartFadeIn();
             animator.SetBool("Moving", false);
             footer.ActivateInstructionTexts();
-            //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+            stageList[selectNumber].canvas.SetActive(true);
         }
 
         IsMoving = false; // 移動中フラグをリセット
 
         Save.LoadGame();
-        for (int i = 0; i < Stagelist.Count; i++)
+
+        foreach (StageData stage in stageList)
         {
-            textList[i].text = Save.saveData.lampCounts[i].ToString();
+            UpdateCanvas(stage);
         }
+
     }
 
     void Update()
@@ -89,6 +101,7 @@ public class StageSelect : MonoBehaviour
                 animator.SetBool("Moving", false);
                 footer.ActivateInstructionTexts();
                 //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+                stageList[selectNumber].canvas.SetActive(true);
             }
             Vector3 pos = transform.position;
             pos.x = Mathf.Lerp(p, startPos.x, t); // 補間を用いてX座標を計算
@@ -99,7 +112,7 @@ public class StageSelect : MonoBehaviour
         if (!IsMoving)
         {
             // 右キーが押された場合
-            if (Input.GetKeyDown(KeyCode.D) && selectNumber + 1 < Stagelist.Count)
+            if (Input.GetKeyDown(KeyCode.D) && selectNumber + 1 < stageList.Count)
             {
                 Move(1);
             }
@@ -110,12 +123,11 @@ public class StageSelect : MonoBehaviour
             }
 
             // エンターキーが押された場合
-            if (Input.GetKeyDown(KeyCode.Return) && 0 <= selectNumber && selectNumber < Stagelist.Count && Stagelist[selectNumber] != null)
+            if (Input.GetKeyDown(KeyCode.Return) && 0 <= selectNumber && selectNumber < stageList.Count && stageList[selectNumber].StageName != "")
             {
                 gameStageSelectSE();
                 SceneSelectionState.selectedIndex = selectNumber; // 現在の選択番号を保存
-                sceneChange.StartFadeOut(Stagelist[selectNumber]);
-                //SceneManager.LoadScene(Stagelist[selectNumber]); // 選択されたステージをロード
+                sceneChange.StartFadeOut(stageList[selectNumber].StageScene);
             }
         }
         else
@@ -129,6 +141,7 @@ public class StageSelect : MonoBehaviour
                 animator.SetBool("Moving", false);
                 footer.ActivateInstructionTexts();
                 //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+                stageList[selectNumber].canvas.SetActive(true);
             }
             Vector3 pos = transform.position;
             pos.x = startPos.x + Mathf.Lerp(p0 * interval, selectNumber * interval, t); // 補間を用いてX座標を計算
@@ -146,15 +159,16 @@ public class StageSelect : MonoBehaviour
             list[selectNumber] = 0;
             Save.saveData.lampCounts = list;
             Save.SaveGame();
-            for (int i = 0; i < Stagelist.Count; i++)
+            foreach (StageData stage in stageList)
             {
-                textList[i].text = Save.saveData.lampCounts[i].ToString();
+                UpdateCanvas(stage);
             }
         }
     }
 
     public void Move(int delta)
     {
+        stageList[selectNumber].canvas.SetActive(false);
         selectNumber += delta; // 選択番号を増やす
         IsMoving = true; // 移動中フラグを設定
         t = 0.0f; // 補間の時間をリセット
@@ -165,6 +179,19 @@ public class StageSelect : MonoBehaviour
         if (delta > 0) ls.x = 1.0f;
         else ls.x = -1.0f;
         transform.localScale = ls;
+    }
+
+    private void UpdateCanvas(StageData data)
+    {
+        data.StageNameTMP.text = data.StageName;
+        foreach (DisplayLamp lamp in data.LampList)
+        {
+            lamp.Extinguishment();
+        }
+        for (int i = 0; i < Save.saveData.lampCounts[data.StageID]; i++)
+        {
+            data.LampList[i].Ignition();
+        }
     }
 
     void gameStageSelectSE()

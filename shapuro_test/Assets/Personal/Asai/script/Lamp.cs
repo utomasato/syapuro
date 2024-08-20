@@ -18,4 +18,6 @@ public class Lamp : MonoBehaviour
             state.AddLampCount(); // カウントをインクリメントする
         }
     }
+
+    public bool GetBurning => IsBurning;
 }

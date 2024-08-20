@@ -1,3 +1,7 @@
+/*
+LoadGame() : jsonから取得したものをsaveDataに格納する
+SaveGame() : saveDataをjsonに反映する
+*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
