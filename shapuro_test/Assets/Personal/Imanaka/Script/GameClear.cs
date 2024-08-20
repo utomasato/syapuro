@@ -72,8 +72,10 @@ public class GameClear : MonoBehaviour
                 for (int j = 0; j < dinplayLampList.Count; j++)
                 {
                     if (gameState.GetBurningLampList[j])
+                    {
                         dinplayLampList[j].GetComponent<DisplayLamp>().Ignition(gameState);
-                    yield return new WaitForSeconds(0.5f);
+                        yield return new WaitForSeconds(0.5f);
+                    }
                 }
             }
 
