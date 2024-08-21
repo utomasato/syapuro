@@ -1187,7 +1187,7 @@ MonoBehaviour:
   - {fileID: 7869728413054141830}
   - {fileID: 6000249022172870487}
   - {fileID: 572130618266292609}
-  BurningSpeedInTheFlameWall: 1
+  BurningSpeedInTheFlameWall: 0.8
 --- !u!54 &6152572054318079190
 Rigidbody:
   m_ObjectHideFlags: 0
