@@ -377,7 +377,7 @@ public class Candle : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     { // 炎の壁に当たると短くなる
-        if (other.gameObject.CompareTag("fire"))
+        if (other.gameObject.CompareTag("fire") && gameState.JudgeState("GamePlay"))
         {
             Shorten(BurningSpeedInTheFlameWall);
         }
