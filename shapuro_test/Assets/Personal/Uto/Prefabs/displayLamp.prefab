@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 5370332940987848756}
   - component: {fileID: 6343924379938891567}
   m_Layer: 5
-  m_Name: firespot
+  m_Name: displayLamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
