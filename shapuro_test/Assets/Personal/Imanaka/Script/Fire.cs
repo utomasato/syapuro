@@ -249,7 +249,9 @@ public class Fire : MonoBehaviour
                 CandleScript.WakeUp();
                 transform.localScale = StartScale;
                 */
+                gameGetCandleSE();
                 Transfer();
+
             }
         }
 
@@ -280,13 +282,14 @@ public class Fire : MonoBehaviour
             {
                 return;
             }
+            gameGetCandleSE();
             CandleScript = NewCandle.candle;
         }
         if (CandleScript.GetBurnOut()) // 憑依した蝋燭が既に燃え尽きていたら
         {
             gameState.GameOver();
         }
-        // SE.PlayOneShot(CandleSetSE);
+
         IsCandle = true;
         CandleScript.WakeUp();
         transform.localScale = StartScale;
@@ -362,6 +365,12 @@ public class Fire : MonoBehaviour
     {
         SE.volume = 0.05f;
         SE.PlayOneShot(TransferSE);
+    }
+    void gameGetCandleSE()
+    {
+        SE.Stop();
+        SE.volume = 0.2f;
+        SE.PlayOneShot(CandleSetSE);
     }
     public Candle GetCandle()
     {
