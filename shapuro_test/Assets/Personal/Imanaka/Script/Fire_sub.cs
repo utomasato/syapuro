@@ -12,7 +12,7 @@ public class Fire_sub : MonoBehaviour
         {
             parent.Transfer(other.gameObject.GetComponent<Candlewick>());
         }
-        if (other.gameObject.CompareTag("water"))
+        if (other.gameObject.CompareTag("water")) // 水に当たったら
         {
             parent.Deletefire();
         }

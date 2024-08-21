@@ -8,6 +8,7 @@ public class Fire_Switch : MonoBehaviour
     private int locate = 0;
     private Vector3 y1;
     private float t = 0;
+    [SerializeField] private FlameWall flame;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,10 @@ public class Fire_Switch : MonoBehaviour
         {
             Debug.Log("ok");
             isPushed = true;
+            if (flame != null)
+            {
+                flame.DyingOut();
+            }
         }
     }
 }
