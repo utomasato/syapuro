@@ -99,7 +99,8 @@ public class Fire : MonoBehaviour
         }
         if (!IsCandle)//炎がロウソクについてないとき
         {
-
+            gaugeControllor.UpdateCandleGauge(CandleScript.GetLife()); // 20240803 宇藤追加
+            gaugeControllor.UpdateFireGauge(1.0f - Firetime / SurviveTime);
             NoCandle();
         }
 
@@ -238,7 +239,7 @@ public class Fire : MonoBehaviour
     {
         Firetime += Time.deltaTime;
         transform.localScale = StartScale * (1.0f - Firetime / SurviveTime);
-        gaugeControllor.UpdateFireGauge(1.0f - Firetime / SurviveTime); // 20240803 宇藤追加
+
         if (Firetime >= SurviveTime)
         {
             if (CandleScript != null)
@@ -281,6 +282,10 @@ public class Fire : MonoBehaviour
             }
             CandleScript = NewCandle.candle;
         }
+        if (CandleScript.GetBurnOut()) // 憑依した蝋燭が既に燃え尽きていたら
+        {
+            gameState.GameOver();
+        }
         // SE.PlayOneShot(CandleSetSE);
         IsCandle = true;
         CandleScript.WakeUp();
@@ -320,6 +325,7 @@ public class Fire : MonoBehaviour
         //ゲームオーバースクリプトを設定している場合は、BurnOut()のコメントを解除してください
 
         PL.SetActive(false);
+        gameState.GameOver();
         //CandleScript.BurnOut();
     }
     public bool getIsNormal()

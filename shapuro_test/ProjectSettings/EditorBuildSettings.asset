@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Personal/Uto/Scenes/candletest_2.unity
     guid: 13d20948c8eab475a91f7f1d9cbcc7de
   - enabled: 0
-    path: Assets/Scenes/BaseStage.unity
+    path: Assets/Scenes/stage2.unity
     guid: 369341614759c42bcb8335cac73f2550
   - enabled: 0
     path: Assets/Scenes/stage2.unity

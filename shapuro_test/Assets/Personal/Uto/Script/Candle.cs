@@ -245,7 +245,7 @@ public class Candle : MonoBehaviour
         {
             CurrentHPbar.gameObject.SetActive(false);
         }
-        if (gameState != null)
+        if (gameState != null && IsBurning)
         {
             gameState.GameOver();
         }
