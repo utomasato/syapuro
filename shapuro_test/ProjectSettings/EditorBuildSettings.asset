@@ -5,12 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Prototype/PrototypeScene.unity
-    guid: 2aebca6c6d1cf4e82bc3ce309fd189b8
-  - enabled: 0
-    path: Assets/Scenes/GameMain.unity
-    guid: 66664a82ea5014dfc97785852f770e19
   - enabled: 1
     path: Assets/Scenes/Title_test.unity
     guid: a5966085e797c487ab0bde68acbe4d18
@@ -20,16 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/stage1.unity
     guid: 210481bc3530340778420f3f06e815fc
-  - enabled: 0
-    path: Assets/Personal/Uto/Scenes/candletest_2.unity
-    guid: 13d20948c8eab475a91f7f1d9cbcc7de
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/stage2.unity
     guid: 369341614759c42bcb8335cac73f2550
-  - enabled: 0
-    path: Assets/Scenes/stage2.unity
-    guid: 1e2867a84d09a40c3a63e899150f642c
-  - enabled: 0
-    path: Assets/Scenes/stage3.unity
-    guid: 43b80808713a04ac6aefd45355628f34
+  - enabled: 1
+    path: Assets/Scenes/chutrial.unity
+    guid: 5d8893d02594643ee9e31917e2a997c5
   m_configObjects: {}
