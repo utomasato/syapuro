@@ -225,6 +225,7 @@ public class Candle : MonoBehaviour
         body.transform.localScale = ls;
         hand.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 腕を画面外に移動
         foot.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 足を画面外に移動
+        //StopJump();
         if (CurrentHPbar != null)
         {
             CurrentHPbar.value = 1;//HPバーリセット
