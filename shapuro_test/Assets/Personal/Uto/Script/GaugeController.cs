@@ -30,8 +30,8 @@ public class GaugeController : MonoBehaviour
 
     public void UpdateCandleGauge(float life)
     {
-        candleImg.fillAmount = life / 2.0f;
-        fireRectTransform.anchoredPosition = Vector3.Lerp(fireEndPosition, fireStartPosition, life / 2.0f);
+        candleImg.fillAmount = (life / 2.0f)*(life / 2.0f);
+        fireRectTransform.anchoredPosition = Vector3.Lerp(fireEndPosition, fireStartPosition, (life / 2.0f)*(life / 2.0f));
     }
 
     public void UpdateFireGauge(float life)
