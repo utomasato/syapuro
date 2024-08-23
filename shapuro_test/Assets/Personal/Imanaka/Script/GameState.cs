@@ -75,7 +75,7 @@ public class GameState : MonoBehaviour
         switch (state)
         {
             case State.GamePlay:
-                if (Input.GetKeyDown(KeyCode.P)) // ポーズ画面にする
+                if (Input.GetKeyDown(KeyCode.Escape)) // ポーズ画面にする
                 {
                     Pause();
                 }

@@ -7029,6 +7029,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 1623642089291917063, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
+      propertyPath: m_text
+      value: 'esc : Pause'
+      objectReference: {fileID: 0}
     - target: {fileID: 1623642089512033925, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
       propertyPath: player
       value: 
@@ -7136,6 +7140,10 @@ PrefabInstance:
     - target: {fileID: 3233407404642591435, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4064754710092916638, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
+      propertyPath: m_text
+      value: 'esc : Pause'
       objectReference: {fileID: 0}
     - target: {fileID: 4064754710092916638, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
       propertyPath: m_Enabled
