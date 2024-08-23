@@ -4804,7 +4804,7 @@ MonoBehaviour:
   titleScene: Title_test
   stageList:
   - stageID: 0
-    stageName: Chutrial
+    stageName: Tutorial
     stageScene: chutrial
     maxLampCount: 5
     StageNameTMP: {fileID: 60625138}

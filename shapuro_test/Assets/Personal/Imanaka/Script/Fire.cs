@@ -137,7 +137,7 @@ public class Fire : MonoBehaviour
             transform.localScale = CurrentSize;
 
         }
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (!Input.GetKey(KeyCode.Space))
         {
             SE2.Stop();
             IsNormal = true;
