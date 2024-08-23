@@ -128,7 +128,7 @@ public class Fire : MonoBehaviour
 
     void BigFire()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             StrongBurnSE_Func();
             IsNormal = false;
@@ -137,13 +137,13 @@ public class Fire : MonoBehaviour
             transform.localScale = CurrentSize;
 
         }
-        if (!Input.GetKey(KeyCode.Space))
+        if (!Input.GetKey(KeyCode.LeftShift))
         {
             SE2.Stop();
             IsNormal = true;
             transform.localScale = StartScale;
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             CandleScript.Shorten(Strong_BurnSpeed);
         }
@@ -159,7 +159,7 @@ public class Fire : MonoBehaviour
 
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
-        if (!Input.GetKey(KeyCode.Space))
+        if (!Input.GetKey(KeyCode.LeftShift))
         {
             if (!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.D))// AとDが同時に押されてる時は動かない
             {
@@ -181,7 +181,7 @@ public class Fire : MonoBehaviour
                 CandleScript.Move(0);
             }
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             if (!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.D))// AとDが同時に押されてる時は動かない
             {
@@ -203,11 +203,11 @@ public class Fire : MonoBehaviour
                 CandleScript.Move(0);
             }
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             CandleScript.Jump();
         }
-        else if (Input.GetKeyUp(KeyCode.W))
+        else if (Input.GetKeyUp(KeyCode.Space))
         {
             CandleScript.StopJump();
         }
