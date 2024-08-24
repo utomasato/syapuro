@@ -7,3 +7,5 @@ ccc
 dddddd
 >>>>>>> db8805c92c20b62baf7592096bad25a00661ad52
 sss
+
+PATが効いているか確認
