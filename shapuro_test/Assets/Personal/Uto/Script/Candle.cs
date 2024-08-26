@@ -140,7 +140,10 @@ public class Candle : MonoBehaviour
 
     public void Move(float x) // ロウソクを水平に移動
     {
-        transform.position += new Vector3(x * Time.deltaTime, 0, 0);
+        //transform.position += new Vector3(x * Time.deltaTime, 0, 0);
+        Vector3 v = rb.velocity;
+        v.x = x;
+        rb.velocity = v;
         if (0 < x)
             IsRightFacing = true;
         else if (x < 0)
