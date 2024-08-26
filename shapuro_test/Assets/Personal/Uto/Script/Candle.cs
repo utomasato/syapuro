@@ -215,6 +215,11 @@ public class Candle : MonoBehaviour
     {
         if (!IsBurning) return;
         IsBurning = false;
+
+        Vector3 v = rb.velocity;
+        v.x = 0f;
+        rb.velocity = v;
+
         Vector3 pos = transform.position;
         pos.z = 2;
         pos.y += footSize / 2; // 足の消失に応じて位置を調整
