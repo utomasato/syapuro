@@ -22,7 +22,7 @@ public class Fire : MonoBehaviour
     private float Firetime;//火の玉状態になってからの生存期間
 
     private bool IsCandle = true;//ロウソクに炎がついているか
-    private bool IsNormal = true;
+    private bool IsNormal = true;//火の大きさが普通かどうか
 
     [Tooltip("現段階では最初に憑依するcandleを参照してください")]
     [SerializeField]
@@ -78,10 +78,6 @@ public class Fire : MonoBehaviour
             return;
 
         Vector3 CurrentScale = transform.localScale;
-        if (CurrentScale.y <= 0.1f)
-        {
-            //CandleScript.BurnOut();
-        }
         if (CandleScript == null)
         {
             FlyFire();
@@ -128,27 +124,27 @@ public class Fire : MonoBehaviour
 
     void BigFire()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            StrongBurnSE_Func();
-            IsNormal = false;
-            Vector3 CurrentSize = transform.localScale;
-            CurrentSize.y *= 2f;
-            transform.localScale = CurrentSize;
-
-        }
-        if (!Input.GetKey(KeyCode.LeftShift))
-        {
-            SE2.Stop();
-            IsNormal = true;
-            transform.localScale = StartScale;
-        }
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
+            if (IsNormal)
+            {
+                StrongBurnSE_Func();
+                IsNormal = false;
+                Vector3 CurrentSize = transform.localScale;
+                CurrentSize.y *= 2f;
+                transform.localScale = CurrentSize;
+            }
             CandleScript.Shorten(Strong_BurnSpeed);
         }
-        else
+        if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
         {
+            if (!IsNormal)
+            {
+                SE2.Stop();
+                IsNormal = true;
+                transform.localScale = StartScale;
+            }
+
             if (!SE2.isPlaying)
             {
                 NormalBurnSE_Func();
@@ -159,48 +155,28 @@ public class Fire : MonoBehaviour
 
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
-        if (!Input.GetKey(KeyCode.LeftShift))
+        float speed = 0f;
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
-            if (!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.D))// AとDが同時に押されてる時は動かない
-            {
-                if (Input.GetKey(KeyCode.A))
-                {
-                    CandleScript.Move(-MoveSpeed);
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    CandleScript.Move(MoveSpeed);
-                }
-                else
-                {
-                    CandleScript.Move(0);
-                }
-            }
-            else
-            {
-                CandleScript.Move(0);
-            }
+            speed = DashMoveSpeed;
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        else
         {
-            if (!Input.GetKey(KeyCode.A) || !Input.GetKey(KeyCode.D))// AとDが同時に押されてる時は動かない
+            speed = MoveSpeed;
+        }
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) == (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))) // 両方押されているまたは押されていない時
+        {
+            CandleScript.Move(0f);
+        }
+        else // 片方のみ押されている時
+        {
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
-                if (Input.GetKey(KeyCode.A))
-                {
-                    CandleScript.Move(-DashMoveSpeed);
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    CandleScript.Move(DashMoveSpeed);
-                }
-                else
-                {
-                    CandleScript.Move(0);
-                }
+                CandleScript.Move(-speed);
             }
-            else
+            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
-                CandleScript.Move(0);
+                CandleScript.Move(speed);
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -213,8 +189,6 @@ public class Fire : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            //IsCandle = false;
-            //CandleScript.Sleep();
             FlyFire();
         }
     }
@@ -244,31 +218,24 @@ public class Fire : MonoBehaviour
         {
             if (CandleScript != null)
             {
-                /* 20240803 宇藤コメントアウト
-                IsCandle = true;
-                CandleScript.WakeUp();
-                transform.localScale = StartScale;
-                */
                 gameGetCandleSE();
                 Transfer();
-
             }
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += new Vector3(-Firespeed * Time.deltaTime, 0, 0);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += new Vector3(Firespeed * Time.deltaTime, 0, 0);
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-
             transform.position += new Vector3(0, Firespeed * Time.deltaTime, 0);
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             transform.position += new Vector3(0, -Firespeed * Time.deltaTime, 0);
         }
@@ -359,7 +326,6 @@ public class Fire : MonoBehaviour
         SE2.time = 1.5f;
         SE2.volume = 0.6f;
         SE2.Play();
-
     }
     void gameTransferSE()
     {
