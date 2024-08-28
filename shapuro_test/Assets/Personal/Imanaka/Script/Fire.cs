@@ -209,7 +209,7 @@ public class Fire : MonoBehaviour
         footer.SwitchInstructionTexts(false);
     }
 
-    void NoCandle()//ロウソクがなくなったとき
+    void NoCandle()//ロウソクがない時の移動
     {
         Firetime += Time.deltaTime;
         transform.localScale = StartScale * (1.0f - Firetime / SurviveTime);
@@ -238,6 +238,11 @@ public class Fire : MonoBehaviour
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             transform.position += new Vector3(0, -Firespeed * Time.deltaTime, 0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return) && Firetime > 0.1f) // 転生キャンセル
+        {
+            Transfer();
         }
     }
 
