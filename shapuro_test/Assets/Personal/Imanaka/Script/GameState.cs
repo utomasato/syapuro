@@ -72,34 +72,33 @@ public class GameState : MonoBehaviour
 
     void Update()
     {
-        switch (state)
+        if (state == State.GamePlay)
         {
-            case State.GamePlay:
-                if (Input.GetKeyDown(KeyCode.Escape)) // ポーズ画面にする
+            if (Input.GetKeyDown(KeyCode.Escape)) // ポーズ画面にする
+            {
+                Pause();
+            }
+        }
+        else if (state != State.Explain)
+        {
+            if (state == State.Pause && Input.GetKeyDown(KeyCode.Escape)) // ポーズ解除
+            {
+                Resume();
+                return;
+            }
+            GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
+            // 現在選択されているものがボタンでない場合、最後に選択されたボタンを再選択する
+            if (currentSelected == null || currentSelected.GetComponent<UnityEngine.UI.Button>() == null)
+            {
+                if (lastSelectedButton != null)
                 {
-                    Pause();
+                    EventSystem.current.SetSelectedGameObject(lastSelectedButton.gameObject);
                 }
-                break;
-
-            case State.Pause:
-            case State.GameClear:
-            case State.GameOver:
-                GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
-                // 現在選択されているものがボタンでない場合、最後に選択されたボタンを再選択する
-                if (currentSelected == null || currentSelected.GetComponent<UnityEngine.UI.Button>() == null)
-                {
-                    if (lastSelectedButton != null)
-                    {
-                        EventSystem.current.SetSelectedGameObject(lastSelectedButton.gameObject);
-                    }
-                }
-                else // 現在選択されているものがボタンであれば、それを記憶
-                {
-                    lastSelectedButton = currentSelected.GetComponent<UnityEngine.UI.Button>();
-                }
-                break;
-            default:
-                break;
+            }
+            else // 現在選択されているものがボタンであれば、それを記憶
+            {
+                lastSelectedButton = currentSelected.GetComponent<UnityEngine.UI.Button>();
+            }
         }
     }
 
