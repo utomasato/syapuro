@@ -155,16 +155,13 @@ public class StageSelect : MonoBehaviour
         {
             if (IsPause)
             {
-                IsPause = false;
-                PauseCanvas.SetActive(false);
-                SettingCanvas.SetActive(false);
+                CloseMenu();
             }
             else
             {
                 IsPause = true;
                 PauseCanvas.SetActive(true);
             }
-            //sceneChange.StartFadeOut(titleScene);
         }
 
         if (Input.GetKeyDown(KeyCode.Backspace))
@@ -208,10 +205,16 @@ public class StageSelect : MonoBehaviour
         }
     }
 
-    public void Setting()
+    public void OpenSetting()
     {
         SettingCanvas.SetActive(true);
         PauseCanvas.SetActive(false);
+    }
+    public void CloseMenu()
+    {
+        IsPause = false;
+        PauseCanvas.SetActive(false);
+        SettingCanvas.SetActive(false);
     }
 
     public void GoTitle()
