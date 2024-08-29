@@ -69,6 +69,8 @@ public class Fire : MonoBehaviour
         }
         SE2 = FireSE.GetComponent<AudioSource>();
         SE2.volume = 0.2f;
+
+        KeyBindings.LoadConfig();
     }
 
     // Update is called once per frame
@@ -124,7 +126,12 @@ public class Fire : MonoBehaviour
 
     void BigFire()
     {
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        bool dashkey;
+        if (KeyBindings.DashKay == "shift")
+            dashkey = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        else
+            dashkey = Input.GetKey(KeyBindings.DashKay);
+        if (dashkey)
         {
             if (IsNormal)
             {
@@ -136,7 +143,7 @@ public class Fire : MonoBehaviour
             }
             CandleScript.Shorten(Strong_BurnSpeed);
         }
-        if (!Input.GetKey(KeyCode.LeftShift) && !Input.GetKey(KeyCode.RightShift))
+        if (!dashkey)
         {
             if (!IsNormal)
             {
@@ -156,7 +163,13 @@ public class Fire : MonoBehaviour
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
         float speed = 0f;
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        //if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        bool dashkey;
+        if (KeyBindings.DashKay == "shift")
+            dashkey = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        else
+            dashkey = Input.GetKey(KeyBindings.DashKay);
+        if (dashkey)
         {
             speed = DashMoveSpeed;
         }
@@ -179,15 +192,15 @@ public class Fire : MonoBehaviour
                 CandleScript.Move(speed);
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyBindings.JumpKay))
         {
             CandleScript.Jump();
         }
-        else if (Input.GetKeyUp(KeyCode.Space))
+        else if (Input.GetKeyUp(KeyBindings.JumpKay))
         {
             CandleScript.StopJump();
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyBindings.TransferKay))
         {
             FlyFire();
         }
@@ -240,7 +253,7 @@ public class Fire : MonoBehaviour
             transform.position += new Vector3(0, -Firespeed * Time.deltaTime, 0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Return) && Firetime > 0.1f) // 転生キャンセル
+        if (Input.GetKeyDown(KeyBindings.TransferKay) && Firetime > 0.1f) // 転生キャンセル
         {
             Transfer();
         }
