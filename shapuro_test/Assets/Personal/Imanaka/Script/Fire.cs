@@ -297,11 +297,8 @@ public class Fire : MonoBehaviour
     }
     public void Deletefire()//ゲームオーバーに？？
     {
-        //ゲームオーバースクリプトを設定している場合は、BurnOut()のコメントを解除してください
-
         PL.SetActive(false);
         gameState.GameOver();
-        //CandleScript.BurnOut();
     }
     public bool getIsNormal()
     {

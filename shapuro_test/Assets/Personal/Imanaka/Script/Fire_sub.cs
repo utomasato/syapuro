@@ -6,7 +6,7 @@ public class Fire_sub : MonoBehaviour
 {
     [SerializeField] private Fire parent;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (!parent.JudgeCandle && other.gameObject.CompareTag("FirePosition")) // 火の玉状態で蝋燭に当たったら
         {
