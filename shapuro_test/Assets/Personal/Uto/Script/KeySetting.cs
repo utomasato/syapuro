@@ -23,6 +23,8 @@ public class KeySetting : MonoBehaviour
     [SerializeField] private TextMeshProUGUI jump;
     [SerializeField] private TextMeshProUGUI detach;
 
+    [SerializeField] private StageSelect stageSelect;
+
     void Start()
     {
         KeyBindings.LoadConfig();
@@ -45,5 +47,6 @@ public class KeySetting : MonoBehaviour
         KeyBindings.keys.jumpKay = jump.text;
         KeyBindings.keys.transferKay = detach.text;
         KeyBindings.SaveConfig();
+        stageSelect.CloseMenu();
     }
 }
