@@ -128,12 +128,7 @@ public class Fire : MonoBehaviour
 
     void BigFire()
     {
-        bool dashkey;
-        if (list.IndexOf(KeyBindings.DashKay) >= 0)
-            dashkey = Input.GetKey("left " + KeyBindings.DashKay) || Input.GetKey("right " + KeyBindings.DashKay);
-        else
-            dashkey = Input.GetKey(KeyBindings.DashKay);
-        if (dashkey)
+        if (GetStay(KeyBindings.DashKay))
         {
             if (IsNormal)
             {
@@ -145,7 +140,7 @@ public class Fire : MonoBehaviour
             }
             CandleScript.Shorten(Strong_BurnSpeed);
         }
-        if (!dashkey)
+        else
         {
             if (!IsNormal)
             {
@@ -165,14 +160,7 @@ public class Fire : MonoBehaviour
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
         float speed = 0f;
-        bool dashkey = GetStay(KeyBindings.DashKay);
-        /*
-        if (list.IndexOf(KeyBindings.DashKay) >= 0)
-            dashkey = Input.GetKey("left " + KeyBindings.DashKay) || Input.GetKey("right " + KeyBindings.DashKay);
-        else
-            dashkey = Input.GetKey(KeyBindings.DashKay);
-        */
-        if (dashkey)
+        if (GetStay(KeyBindings.DashKay))
         {
             speed = DashMoveSpeed;
         }
