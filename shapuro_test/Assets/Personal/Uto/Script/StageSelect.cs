@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class StageSelect : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private string titleScene;
     [SerializeField] private GameObject PauseCanvas;
     [SerializeField] private GameObject SettingCanvas;
+    [SerializeField] private UnityEngine.UI.Button button;
+    private UnityEngine.UI.Button lastSelectedButton;
 
     //[SerializeField] private List<TextMeshProUGUI> lampCounters;
 
@@ -151,6 +155,20 @@ public class StageSelect : MonoBehaviour
             transform.position = pos; // 新しい位置を設定
         }
 
+        GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
+        // 現在選択されているものがボタンでない場合、最後に選択されたボタンを再選択する
+        if (currentSelected == null || currentSelected.GetComponent<UnityEngine.UI.Button>() == null)
+        {
+            if (lastSelectedButton != null)
+            {
+                EventSystem.current.SetSelectedGameObject(lastSelectedButton.gameObject);
+            }
+        }
+        else // 現在選択されているものがボタンであれば、それを記憶
+        {
+            lastSelectedButton = currentSelected.GetComponent<UnityEngine.UI.Button>();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (IsPause)
@@ -161,6 +179,7 @@ public class StageSelect : MonoBehaviour
             {
                 IsPause = true;
                 PauseCanvas.SetActive(true);
+                EventSystem.current.SetSelectedGameObject(button.gameObject);
             }
         }
 
