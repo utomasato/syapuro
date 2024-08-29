@@ -16,10 +16,13 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private SceneChange sceneChange;
     bool IsNoSelect = false;
     float p;
+    bool IsPause;
 
     [SerializeField] private Animator animator;
     [SerializeField] private FooterUI footer;
     [SerializeField] private string titleScene;
+    [SerializeField] private GameObject PauseCanvas;
+    [SerializeField] private GameObject SettingCanvas;
 
     //[SerializeField] private List<TextMeshProUGUI> lampCounters;
 
@@ -86,7 +89,7 @@ public class StageSelect : MonoBehaviour
         {
             UpdateCanvas(stage);
         }
-
+        IsPause = false;
     }
 
     void Update()
@@ -109,7 +112,7 @@ public class StageSelect : MonoBehaviour
             return;
         }
 
-        if (!IsMoving)
+        if (!IsMoving && !IsPause)
         {
             // 右キーが押された場合
             if (Input.GetKeyDown(KeyCode.D) && selectNumber + 1 < stageList.Count)
@@ -150,7 +153,18 @@ public class StageSelect : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            sceneChange.StartFadeOut(titleScene);
+            if (IsPause)
+            {
+                IsPause = false;
+                PauseCanvas.SetActive(false);
+                SettingCanvas.SetActive(false);
+            }
+            else
+            {
+                IsPause = true;
+                PauseCanvas.SetActive(true);
+            }
+            //sceneChange.StartFadeOut(titleScene);
         }
 
         if (Input.GetKeyDown(KeyCode.Backspace))
@@ -192,6 +206,17 @@ public class StageSelect : MonoBehaviour
         {
             data.LampList[i].Ignition();
         }
+    }
+
+    public void Setting()
+    {
+        SettingCanvas.SetActive(true);
+        PauseCanvas.SetActive(false);
+    }
+
+    public void GoTitle()
+    {
+        sceneChange.StartFadeOut(titleScene);
     }
 
     void gameStageSelectSE()

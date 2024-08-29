@@ -55,6 +55,8 @@ public class Fire : MonoBehaviour
     [SerializeField] private AudioClip TransferSE;//転生のために火がロウソクを離れた時の音
     [SerializeField] private AudioClip CandleSetSE;//転生完了の音
 
+    private List<string> list = new List<string>() { "shift", "ctrl", "alt", "cmd" };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -127,8 +129,8 @@ public class Fire : MonoBehaviour
     void BigFire()
     {
         bool dashkey;
-        if (KeyBindings.DashKay == "shift")
-            dashkey = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        if (list.IndexOf(KeyBindings.DashKay) >= 0)
+            dashkey = Input.GetKey("left " + KeyBindings.DashKay) || Input.GetKey("right " + KeyBindings.DashKay);
         else
             dashkey = Input.GetKey(KeyBindings.DashKay);
         if (dashkey)
@@ -163,10 +165,9 @@ public class Fire : MonoBehaviour
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
         float speed = 0f;
-        //if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         bool dashkey;
-        if (KeyBindings.DashKay == "shift")
-            dashkey = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        if (list.IndexOf(KeyBindings.DashKay) >= 0)
+            dashkey = Input.GetKey("left " + KeyBindings.DashKay) || Input.GetKey("right " + KeyBindings.DashKay);
         else
             dashkey = Input.GetKey(KeyBindings.DashKay);
         if (dashkey)
