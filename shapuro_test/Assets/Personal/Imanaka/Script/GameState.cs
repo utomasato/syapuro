@@ -74,14 +74,14 @@ public class GameState : MonoBehaviour
     {
         if (state == State.GamePlay)
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) // ポーズ画面にする
+            if (Input.GetKeyDown(KeyBindings.PauseKay)) // ポーズ画面にする
             {
                 Pause();
             }
         }
         else if (state != State.Explain)
         {
-            if (state == State.Pause && Input.GetKeyDown(KeyCode.Escape)) // ポーズ解除
+            if (state == State.Pause && Input.GetKeyDown(KeyBindings.PauseKay))// ポーズ解除
             {
                 Resume();
                 return;
