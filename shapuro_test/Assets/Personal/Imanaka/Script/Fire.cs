@@ -165,11 +165,13 @@ public class Fire : MonoBehaviour
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
         float speed = 0f;
-        bool dashkey;
+        bool dashkey = GetStay(KeyBindings.DashKay);
+        /*
         if (list.IndexOf(KeyBindings.DashKay) >= 0)
             dashkey = Input.GetKey("left " + KeyBindings.DashKay) || Input.GetKey("right " + KeyBindings.DashKay);
         else
             dashkey = Input.GetKey(KeyBindings.DashKay);
+        */
         if (dashkey)
         {
             speed = DashMoveSpeed;
@@ -193,15 +195,16 @@ public class Fire : MonoBehaviour
                 CandleScript.Move(speed);
             }
         }
-        if (Input.GetKeyDown(KeyBindings.JumpKay))
+
+        if (GetDown(KeyBindings.JumpKay))
         {
             CandleScript.Jump();
         }
-        else if (Input.GetKeyUp(KeyBindings.JumpKay))
+        else if (GetUp(KeyBindings.JumpKay))
         {
             CandleScript.StopJump();
         }
-        if (Input.GetKeyDown(KeyBindings.TransferKay))
+        if (GetDown(KeyBindings.TransferKay))
         {
             FlyFire();
         }
@@ -254,7 +257,7 @@ public class Fire : MonoBehaviour
             transform.position += new Vector3(0, -Firespeed * Time.deltaTime, 0);
         }
 
-        if (Input.GetKeyDown(KeyBindings.TransferKay) && Firetime > 0.1f) // 転生キャンセル
+        if (GetDown(KeyBindings.TransferKay) && Firetime > 0.1f) // 転生キャンセル
         {
             Transfer();
         }
@@ -282,6 +285,28 @@ public class Fire : MonoBehaviour
         gaugeControllor.SetCandleGaugeGrayOut(false); // 20240803 宇藤追加
         gaugeControllor.FillFireGauge();
         footer.SwitchInstructionTexts(true);
+    }
+
+    private bool GetDown(string key)
+    {
+        if (list.IndexOf(key) >= 0)
+            return Input.GetKeyDown("left " + key) || Input.GetKeyDown("right " + key);
+        else
+            return Input.GetKeyDown(key);
+    }
+    private bool GetUp(string key)
+    {
+        if (list.IndexOf(key) >= 0)
+            return Input.GetKeyUp("left " + key) || Input.GetKeyUp("right " + key);
+        else
+            return Input.GetKeyUp(key);
+    }
+    private bool GetStay(string key)
+    {
+        if (list.IndexOf(key) >= 0)
+            return Input.GetKey("left " + key) || Input.GetKey("right " + key);
+        else
+            return Input.GetKey(key);
     }
 
     public bool GetIsCandle()
