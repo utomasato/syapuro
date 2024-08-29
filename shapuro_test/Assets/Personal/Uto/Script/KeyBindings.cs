@@ -22,7 +22,7 @@ public struct Keys
 public class KeyBindings : MonoBehaviour
 {
     private static string configFilePath;
-    private static Keys keys;
+    public static Keys keys;
 
     public static string DashKay => keys.dashKay;
     public static string JumpKay => keys.jumpKay;
