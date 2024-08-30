@@ -35,6 +35,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private AudioClip PauseSE;//ポーズを押した時の音
     [SerializeField] private AudioClip ButtonSE;//何らかのボタンを押した時の音
     private UnityEngine.UI.Button lastSelectedButton;
+    private GameObject beforePauseButton;
 
     public enum State
     {
@@ -72,32 +73,35 @@ public class GameState : MonoBehaviour
 
     void Update()
     {
-        if (state == State.GamePlay)
+        if (state == State.GamePlay || state == State.Explain)
         {
             if (Input.GetKeyDown(KeyBindings.PauseKay)) // ポーズ画面にする
             {
                 Pause();
             }
         }
-        else if (state != State.Explain)
+        else
         {
             if (state == State.Pause && Input.GetKeyDown(KeyBindings.PauseKay))// ポーズ解除
             {
                 Resume();
                 return;
             }
-            GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
-            // 現在選択されているものがボタンでない場合、最後に選択されたボタンを再選択する
-            if (currentSelected == null || currentSelected.GetComponent<UnityEngine.UI.Button>() == null)
+            if (state != State.Explain)
             {
-                if (lastSelectedButton != null)
+                GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
+                // 現在選択されているものがボタンでない場合、最後に選択されたボタンを再選択する
+                if (currentSelected == null || currentSelected.GetComponent<UnityEngine.UI.Button>() == null)
                 {
-                    EventSystem.current.SetSelectedGameObject(lastSelectedButton.gameObject);
+                    if (lastSelectedButton != null)
+                    {
+                        EventSystem.current.SetSelectedGameObject(lastSelectedButton.gameObject);
+                    }
                 }
-            }
-            else // 現在選択されているものがボタンであれば、それを記憶
-            {
-                lastSelectedButton = currentSelected.GetComponent<UnityEngine.UI.Button>();
+                else // 現在選択されているものがボタンであれば、それを記憶
+                {
+                    lastSelectedButton = currentSelected.GetComponent<UnityEngine.UI.Button>();
+                }
             }
         }
     }
@@ -138,10 +142,12 @@ public class GameState : MonoBehaviour
     {
         if (state == State.Pause) return;
         beforePauseState = state;
+        beforePauseButton = EventSystem.current.currentSelectedGameObject;
         state = State.Pause;
         gamePauseSE();
         plyer.UseCandle().Pause();
         pause.PauseSystem();
+
     }
 
     public void Resume()//20240810uto
@@ -154,6 +160,7 @@ public class GameState : MonoBehaviour
             plyer.UseCandle().Resume();
             pause.ResumeSystem();
             lastSelectedButton = null;
+            EventSystem.current.SetSelectedGameObject(beforePauseButton);
         }));
 
     }
@@ -163,12 +170,14 @@ public class GameState : MonoBehaviour
         beforePauseState = state;
         state = State.Explain;
         plyer.UseCandle().Pause();
+
     }
 
     public void CloseExplain()//20240811uto
     {
         state = beforePauseState;
         plyer.UseCandle().Resume();
+
     }
 
     public void GameClear()//20240810uto
