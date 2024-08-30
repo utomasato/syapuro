@@ -7,6 +7,8 @@ public class FooterUI : MonoBehaviour
 {
     [SerializeField] List<TextMeshProUGUI> CandleText;
     [SerializeField] TextMeshProUGUI jumpText;
+    [SerializeField] TextMeshProUGUI dashText;
+    [SerializeField] TextMeshProUGUI detachText;
     [SerializeField] List<TextMeshProUGUI> FireText;
 
     [SerializeField] private Color32 normalColor = new Color32(255, 255, 255, 255); // 通常の色
@@ -18,6 +20,15 @@ public class FooterUI : MonoBehaviour
     {
         //GrayOutInstructionTexts();
         SwitchInstructionTexts(true);
+
+        if (KeyBindings.JumpKay == null)
+            KeyBindings.LoadConfig();
+        if (jumpText != null)
+            jumpText.text = "Jump : " + CapitalizeFirstLetter(KeyBindings.JumpKay);
+        if (dashText != null)
+            dashText.text = "Dash : " + CapitalizeFirstLetter(KeyBindings.DashKay);
+        if (detachText != null)
+            detachText.text = "Detach : " + CapitalizeFirstLetter(KeyBindings.TransferKay);
     }
 
     public void SwitchInstructionTexts(bool isOnCandle)
@@ -77,5 +88,16 @@ public class FooterUI : MonoBehaviour
             jumpText.color = grayColor;
         else
             jumpText.color = normalColor;
+    }
+
+    private string CapitalizeFirstLetter(string input)
+    {
+        if (string.IsNullOrEmpty(input) || char.IsDigit(input[0]))
+        {
+            return input;
+        }
+        input = input.Replace("right ", "R ");
+        input = input.Replace("left ", "L ");
+        return char.ToUpper(input[0]) + input.Substring(1);
     }
 }

@@ -1602,7 +1602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1623642089291917063, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
       propertyPath: m_text
-      value: 'esc : Pause'
+      value: 'Pause : Esc'
       objectReference: {fileID: 0}
     - target: {fileID: 1623642089512033926, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
       propertyPath: m_Name
