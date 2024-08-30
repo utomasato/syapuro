@@ -16,9 +16,10 @@ public class StageSelect : MonoBehaviour
     [SerializeField] Vector3 startPos; // スタート位置
     //[SerializeField] private List<string> Stagelist; // ステージのリスト
     [SerializeField] private SceneChange sceneChange;
-    bool IsNoSelect = false;
+    bool IsNoSelect = false; // 何も選んでいない
     float p;
     bool IsPause;
+    bool IsSelected; // 選択ずみ
 
     [SerializeField] private Animator animator;
     [SerializeField] private FooterUI footer;
@@ -94,6 +95,7 @@ public class StageSelect : MonoBehaviour
             UpdateCanvas(stage);
         }
         IsPause = false;
+        IsSelected = false;
     }
 
     void Update()
@@ -130,11 +132,12 @@ public class StageSelect : MonoBehaviour
             }
 
             // エンターキーが押された場合
-            if (Input.GetKeyDown(KeyCode.Return) && 0 <= selectNumber && selectNumber < stageList.Count && stageList[selectNumber].StageName != "")
+            if (!IsSelected && Input.GetKeyDown(KeyCode.Return) && 0 <= selectNumber && selectNumber < stageList.Count && stageList[selectNumber].StageName != "")
             {
                 gameStageSelectSE();
                 SceneSelectionState.selectedIndex = selectNumber; // 現在の選択番号を保存
                 sceneChange.StartFadeOut(stageList[selectNumber].StageScene);
+                IsSelected = true;
             }
         }
         else
