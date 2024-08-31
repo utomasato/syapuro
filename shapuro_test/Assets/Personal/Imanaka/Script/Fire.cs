@@ -382,5 +382,9 @@ public class Fire : MonoBehaviour
         SE.volume = 0.7f;
         SE.PlayOneShot(BurnInTheFireWallSE);
     }
+    public void SEstop()
+    {
+        SE.Stop();
+    }
 
 }
