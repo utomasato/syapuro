@@ -398,6 +398,14 @@ public class Candle : MonoBehaviour
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    { // 炎の壁に当たると短くなる
+        if (other.gameObject.CompareTag("fire") && gameState.JudgeState("GamePlay"))
+        {
+            fire.SEstop();
+        }
+    }
+
     public float HPbar()
     {
         return size / startSize;
