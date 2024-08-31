@@ -55,6 +55,9 @@ public class Fire : MonoBehaviour
     [SerializeField] private AudioClip TransferSE;//転生のために火がロウソクを離れた時の音
     [SerializeField] private AudioClip CandleSetSE;//転生完了の音
 
+    [SerializeField] private AudioClip BurnInTheFireWallSE;//FireWAllに当たった時の音
+
+
     private List<string> list = new List<string>() { "shift", "ctrl", "alt", "cmd" };
 
     // Start is called before the first frame update
@@ -336,6 +339,12 @@ public class Fire : MonoBehaviour
         return IsCandle;
     }
 
+    public Candle GetCandle()
+    {
+
+        return CandleScript;
+    }
+
     public void JumpSE_Func()
     {
         SE.volume = 0.1f;
@@ -367,9 +376,11 @@ public class Fire : MonoBehaviour
         SE.volume = 0.2f;
         SE.PlayOneShot(CandleSetSE);
     }
-    public Candle GetCandle()
-    {
 
-        return CandleScript;
+    public void FireWallSE()
+    {
+        SE.volume = 0.7f;
+        SE.PlayOneShot(BurnInTheFireWallSE);
     }
+
 }

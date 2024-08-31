@@ -373,6 +373,11 @@ public class Candle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("fire") && gameState.JudgeState("GamePlay"))
+        {
+            fire.FireWallSE();
+
+        }
         // 火がついているときにゴールに触れたらクリア
         if (other.gameObject.CompareTag("Goal") && IsBurning)
         {
@@ -388,6 +393,7 @@ public class Candle : MonoBehaviour
     { // 炎の壁に当たると短くなる
         if (other.gameObject.CompareTag("fire") && gameState.JudgeState("GamePlay"))
         {
+
             Shorten(BurningSpeedInTheFlameWall);
         }
     }
