@@ -53,6 +53,8 @@ public class Fire : MonoBehaviour
 
     [SerializeField] private AudioClip StrongBurnSE;//強火の効果音
     [SerializeField] private AudioClip TransferSE;//転生のために火がロウソクを離れた時の音
+
+    [SerializeField] private AudioClip WarningSE;//ロウソクが燃え尽きそうな時になる警告音（必要かわからないが念の為）
     [SerializeField] private AudioClip CandleSetSE;//転生完了の音
 
     [SerializeField] private AudioClip BurnInTheFireWallSE;//FireWAllに当たった時の音
@@ -377,6 +379,11 @@ public class Fire : MonoBehaviour
         SE.PlayOneShot(CandleSetSE);
     }
 
+    public void gameWarningSE()
+    {
+        SE.volume = 0.4f;
+        SE.PlayOneShot(WarningSE);
+    }
     public void FireWallSE()
     {
         SE.volume = 0.7f;
