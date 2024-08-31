@@ -9,9 +9,16 @@ public class Fire_Switch : MonoBehaviour
     private Vector3 y1;
     private float t = 0;
     [SerializeField] private FlameWall flame;
+
+    AudioSource SE;
+
+    [SerializeField] AudioClip FireButton;
+
     // Start is called before the first frame update
     void Start()
     {
+        SE = GetComponent<AudioSource>();
+        SE.volume = 0.2f;
     }
 
     // Update is called once per frame
@@ -35,6 +42,10 @@ public class Fire_Switch : MonoBehaviour
         if (other.gameObject.CompareTag("candle"))
         {
             Debug.Log("ok");
+            if (!isPushed)
+            {
+                SE.PlayOneShot(FireButton);
+            }
             isPushed = true;
             if (flame != null)
             {

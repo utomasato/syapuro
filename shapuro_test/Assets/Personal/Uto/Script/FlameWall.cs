@@ -12,6 +12,7 @@ public class FlameWall : MonoBehaviour
 
     void Start()
     {
+
         size = new Vector3(1f, 1f, 1f);
         gameState = GameObject.Find("GameState").GetComponent<GameState>();
     }
@@ -36,6 +37,7 @@ public class FlameWall : MonoBehaviour
 
     public void DyingOut()
     {
+
         isDying = true;
     }
 }
