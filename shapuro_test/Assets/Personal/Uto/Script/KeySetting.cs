@@ -49,4 +49,11 @@ public class KeySetting : MonoBehaviour
         KeyBindings.SaveConfig();
         stageSelect.CloseMenu();
     }
+
+    public void Reset()
+    {
+        dashDropdown.value = keyNames.IndexOf("shift");
+        jampDropdown.value = keyNames.IndexOf("space");
+        detachDropdown.value = keyNames.IndexOf("return");
+    }
 }
