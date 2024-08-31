@@ -28,6 +28,7 @@ public class GameState : MonoBehaviour
     /*AudioSourceを2つにして、片方をSEに、もう片方をBGMに入れてください*/
     [SerializeField] AudioSource SE;
     [SerializeField] AudioSource BGM;
+    [SerializeField] private AudioClip GameBGM_Tutorial;//チュートリアルのBGM
     [SerializeField] private AudioClip GameBGM_1;//ステージ１のBGM
     [SerializeField] private AudioClip GameBGM_2;//ステージ2のBGM
     [SerializeField] private AudioClip LampSE;//ランプをつけた時の効果音
@@ -134,6 +135,10 @@ public class GameState : MonoBehaviour
 
     public void GameStart()//20240810uto
     {
+        if (SceneManager.GetActiveScene().name == "chutrial")
+        {
+            TutorialBGM();
+        }
         if (SceneManager.GetActiveScene().name == "stage1")
         {
             gameBGM_Stage1();
@@ -273,7 +278,12 @@ public class GameState : MonoBehaviour
         yield return null; // 1フレーム待つ
         action?.Invoke(); // 渡された処理を実行
     }
-
+    public void TutorialBGM()
+    {
+        BGM.clip = GameBGM_Tutorial;
+        BGM.volume = 0.15f;
+        BGM.Play();
+    }
     public void gameBGM_Stage1()
     {
         BGM.clip = GameBGM_1;
@@ -283,7 +293,7 @@ public class GameState : MonoBehaviour
     public void gameBGM_Stage2()
     {
         BGM.clip = GameBGM_2;
-        BGM.volume = 0.1f;
+        BGM.volume = 0.08f;
         BGM.Play();
     }
     public void gameLampSE()

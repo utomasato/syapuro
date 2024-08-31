@@ -45,6 +45,7 @@ public class Event : MonoBehaviour
         Debug.Log("next01");
         if (Event_img.gameObject.name == "Event01_img")
         {
+            GameState.gameButtonSE();
             Event_img.SetActive(false);
             //Debug.Log("aaa");
         }
@@ -54,6 +55,7 @@ public class Event : MonoBehaviour
         Debug.Log("next02");
         if (Event_img.gameObject.name == "Event01_img")
         {
+            GameState.gameButtonSE();
             Event_img.SetActive(true);
             EventSystem.current.SetSelectedGameObject(button.gameObject);
             //Debug.Log("aaa");
@@ -64,6 +66,7 @@ public class Event : MonoBehaviour
         Debug.Log("end");
         if (Event_img.gameObject.name == "Event01_img")
         {
+            GameState.gameButtonSE();
             StartCoroutine(ExecuteAfterOneFrame());
             //Event_img.SetActive(false);
             //GameState.CloseExplain();
