@@ -717,7 +717,8 @@ MonoBehaviour:
   selectScene: StageSelect
   SE: {fileID: 312465514}
   BGM: {fileID: 312465513}
-  GameBGM: {fileID: 8300000, guid: d371d24ccb4f2471f92d77280ec85d13, type: 3}
+  GameBGM_1: {fileID: 8300000, guid: 60af118c636f14a81af04ac4e60cebc2, type: 3}
+  GameBGM_2: {fileID: 0}
   LampSE: {fileID: 8300000, guid: 2fd2bda46fcdb4fd2a20808ac97bd66f, type: 3}
   GameOverSE: {fileID: 8300000, guid: 79b7ee90d8c214fc2b9c50290dc90b86, type: 3}
   GameClearSE: {fileID: 8300000, guid: 9964675ab25044f98aff1b14df71b347, type: 3}
