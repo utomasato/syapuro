@@ -24,6 +24,7 @@ public class Fire : MonoBehaviour
     private bool IsCandle = true;//ロウソクに炎がついているか
     private bool IsNormal = true;//火の大きさが普通かどうか
 
+    private bool DidWarning = false;//警告音を出したか
     [Tooltip("現段階では最初に憑依するcandleを参照してください")]
     [SerializeField]
     private Candle CandleScript;
@@ -271,7 +272,7 @@ public class Fire : MonoBehaviour
         {
             gameState.GameOver();
         }
-
+        //   DidWarning = false;
         IsCandle = true;
         CandleScript.WakeUp();
         transform.localScale = StartScale;
@@ -381,8 +382,12 @@ public class Fire : MonoBehaviour
 
     public void gameWarningSE()
     {
-        SE.volume = 0.4f;
-        SE.PlayOneShot(WarningSE);
+        if (!DidWarning)
+        {
+            SE.volume = 0.4f;
+            SE.PlayOneShot(WarningSE);
+        }
+        DidWarning = true;
     }
     public void FireWallSE()
     {
@@ -393,5 +398,6 @@ public class Fire : MonoBehaviour
     {
         SE.Stop();
     }
+
 
 }
