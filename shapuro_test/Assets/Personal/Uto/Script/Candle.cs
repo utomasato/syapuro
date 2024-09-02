@@ -122,6 +122,10 @@ public class Candle : MonoBehaviour
         }
         Vector3 ls = transform.localScale; // ローカルスケールを更新
         ls.y = size;
+        /* if (ls.y <= 1.0)
+         {
+             fire.gameWarningSE();
+         }*/
         if (IsRightFacing)
             ls.x = 1.0f;
         else
