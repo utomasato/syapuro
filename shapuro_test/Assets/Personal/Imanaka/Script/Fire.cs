@@ -85,7 +85,11 @@ public class Fire : MonoBehaviour
     void Update()
     {
         if (!gameState.JudgeState("GamePlay"))
+        {
+            if (gameState.JudgeState("GameClear"))
+                transform.position = CandleScript.GetHeadPosition();
             return;
+        }
 
         Vector3 CurrentScale = transform.localScale;
         if (CandleScript == null)
@@ -95,7 +99,6 @@ public class Fire : MonoBehaviour
         if (IsCandle)//炎がロウソクについている時
         {
             transform.position = CandleScript.GetHeadPosition();
-
 
             BigFire();
             MoveFire();
@@ -230,6 +233,7 @@ public class Fire : MonoBehaviour
             if (CandleScript != null)
             {
                 gameGetCandleSE();
+                transform.position = CandleScript.GetHeadPosition();
                 Transfer();
             }
         }
@@ -323,10 +327,7 @@ public class Fire : MonoBehaviour
 
     public Candle UseCandle()//どのロウソクを使用しているか
     {
-
-
         return CandleScript;
-
     }
     public void Deletefire()//ゲームオーバーに？？
     {
