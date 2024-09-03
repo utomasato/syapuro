@@ -257,6 +257,7 @@ public class Fire : MonoBehaviour
 
         if (GetDown(KeyBindings.TransferKay) && Firetime > 0.1f) // 転生キャンセル
         {
+            transform.position = CandleScript.GetHeadPosition();
             Transfer();
         }
     }
