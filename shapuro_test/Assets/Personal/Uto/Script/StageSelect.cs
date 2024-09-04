@@ -121,18 +121,18 @@ public class StageSelect : MonoBehaviour
         if (!IsMoving && !IsPause)
         {
             // 右キーが押された場合
-            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) && selectNumber + 1 < stageList.Count)
+            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyHorizontal") > 0.1f) && selectNumber + 1 < stageList.Count)
             {
                 Move(1);
             }
             // 左キーが押された場合
-            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) && 0 < selectNumber)
+            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.1f) && 0 < selectNumber)
             {
                 Move(-1);
             }
 
             // エンターキーが押された場合
-            if (!IsSelected && Input.GetKeyDown(KeyCode.Return) && 0 <= selectNumber && selectNumber < stageList.Count && stageList[selectNumber].StageName != "")
+            if (!IsSelected && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton1)) && 0 <= selectNumber && selectNumber < stageList.Count && stageList[selectNumber].StageName != "")
             {
                 gameStageSelectSE();
                 SceneSelectionState.selectedIndex = selectNumber; // 現在の選択番号を保存

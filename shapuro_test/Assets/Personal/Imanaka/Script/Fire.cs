@@ -137,7 +137,7 @@ public class Fire : MonoBehaviour
 
     void BigFire()
     {
-        if (GetStay(KeyBindings.DashKay))
+        if (GetStay(KeyBindings.DashKay) || Input.GetKey(KeyCode.JoystickButton0))
         {
             if (IsNormal)
             {
@@ -177,31 +177,32 @@ public class Fire : MonoBehaviour
         {
             speed = MoveSpeed;
         }
-        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) == (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))) // 両方押されているまたは押されていない時
+        if ((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) == (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        && Mathf.Abs(Input.GetAxis("JoyHorizontal")) < 0.1f) // 両方押されているまたは押されていない時
         {
             CandleScript.Move(0f);
         }
         else // 片方のみ押されている時
         {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.1f)
             {
                 CandleScript.Move(-speed);
             }
-            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyHorizontal") > 0.1f)
             {
                 CandleScript.Move(speed);
             }
         }
 
-        if (GetDown(KeyBindings.JumpKay))
+        if (GetDown(KeyBindings.JumpKay) || Input.GetKeyDown(KeyCode.JoystickButton1))
         {
             CandleScript.Jump();
         }
-        else if (GetUp(KeyBindings.JumpKay))
+        else if (GetUp(KeyBindings.JumpKay) || Input.GetKeyUp(KeyCode.JoystickButton1))
         {
             CandleScript.StopJump();
         }
-        if (GetDown(KeyBindings.TransferKay))
+        if (GetDown(KeyBindings.TransferKay) || Input.GetKeyDown(KeyCode.JoystickButton2))
         {
             FlyFire();
         }
@@ -238,24 +239,24 @@ public class Fire : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.1f)
         {
             transform.position += new Vector3(-Firespeed * Time.deltaTime, 0, 0);
         }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyHorizontal") > 0.1f)
         {
             transform.position += new Vector3(Firespeed * Time.deltaTime, 0, 0);
         }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyVertical") > 0.1f)
         {
             transform.position += new Vector3(0, Firespeed * Time.deltaTime, 0);
         }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("JoyVertical") < -0.1f)
         {
             transform.position += new Vector3(0, -Firespeed * Time.deltaTime, 0);
         }
 
-        if (GetDown(KeyBindings.TransferKay) && Firetime > 0.1f) // 転生キャンセル
+        if ((GetDown(KeyBindings.TransferKay) || Input.GetKeyDown(KeyCode.JoystickButton2)) && Firetime > 0.1f) // 転生キャンセル
         {
             transform.position = CandleScript.GetHeadPosition();
             Transfer();

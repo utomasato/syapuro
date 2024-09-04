@@ -17,31 +17,10 @@ public class test1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
+        Debug.Log(Input.GetAxis("JoyHorizontal"));
+        if (Input.anyKeyDown)
         {
-            candle.Move(-speed);
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            candle.Move(speed);
-        }
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            candle.Shorten(0.1f);
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            candle.Jump();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            if (!a) candle.WakeUp();
-            else candle.Sleep();
-            a = !a;
+            Debug.Log("Pressed any key");
         }
     }
 }
