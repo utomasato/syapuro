@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 182620805}
   - component: {fileID: 182620804}
   - component: {fileID: 182620809}
+  - component: {fileID: 182620810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -151,14 +152,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 182620803}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 483fb845584c5458dba7b585b5308dd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  junp: 1
+  jump: 1
   HP: 0
   Speed: 0.1
+  x: 0
 --- !u!135 &182620805
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -253,6 +255,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &182620810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182620803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f938cd82dde99479b9d7c7f0e62c4d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  candle: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
