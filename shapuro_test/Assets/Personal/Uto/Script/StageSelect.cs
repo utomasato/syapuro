@@ -71,6 +71,7 @@ public class StageSelect : MonoBehaviour
             p = transform.position.x;
             animator.SetBool("Moving", true);
             footer.GrayOutInstructionTexts();
+            SceneSelectionState.mode = 0;
         }
         else
         {
@@ -90,9 +91,9 @@ public class StageSelect : MonoBehaviour
 
         Save.LoadGame();
 
-        foreach (StageData stage in stageList)
+        for (int i = 0; i < stageList.Count; i++)
         {
-            UpdateCanvas(stage);
+            UpdateCanvas(i);
         }
         IsPause = false;
         IsSelected = false;
@@ -129,6 +130,23 @@ public class StageSelect : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.1f) && 0 < selectNumber)
             {
                 Move(-1);
+            }
+
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyVertical") > 0.1f))
+            {
+                SceneSelectionState.mode = 1;
+                for (int i = 0; i < stageList.Count; i++)
+                {
+                    UpdateCanvas(i);
+                }
+            }
+            else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("JoyVertical") < -0.1f))
+            {
+                SceneSelectionState.mode = 0;
+                for (int i = 0; i < stageList.Count; i++)
+                {
+                    UpdateCanvas(i);
+                }
             }
 
             // エンターキーが押された場合
@@ -224,6 +242,20 @@ public class StageSelect : MonoBehaviour
         for (int i = 0; i < Save.saveData.lampCounts[data.StageID]; i++)
         {
             data.LampList[i].Ignition();
+        }
+    }
+
+    private void UpdateCanvas(int stageNumber)
+    {
+        string[] sl = { "easy", "hard" };
+        stageList[stageNumber].StageNameTMP.text = stageList[stageNumber].StageName + " " + sl[SceneSelectionState.mode];
+        foreach (DisplayLamp lamp in stageList[stageNumber].LampList)
+        {
+            lamp.Extinguishment();
+        }
+        for (int i = 0; i < Save.saveData.lampCounts[stageList[stageNumber].StageID * 2 + SceneSelectionState.mode]; i++)
+        {
+            stageList[stageNumber].LampList[i].Ignition();
         }
     }
 

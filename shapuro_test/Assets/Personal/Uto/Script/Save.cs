@@ -59,7 +59,7 @@ public class Save : MonoBehaviour
         else
         {
             Debug.LogWarning("Save file not found at " + saveFilePath);
-            saveData = new SaveData(new List<int>() { 0, 0, 0 });
+            saveData = new SaveData(new List<int>() { 0, 0, 0, 0, 0, 0 });
             SaveGame();
             return;
         }
@@ -67,7 +67,7 @@ public class Save : MonoBehaviour
 
     public static void Reset()
     {
-        saveData = new SaveData(new List<int>() { 0, 0, 0 });
+        saveData = new SaveData(new List<int>() { 0, 0, 0, 0, 0, 0 });
         SaveGame();
     }
 

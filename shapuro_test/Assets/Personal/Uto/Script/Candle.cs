@@ -40,6 +40,7 @@ public class Candle : MonoBehaviour
     private bool isPaused = false;
 
     [SerializeField] float BurningSpeedInTheFlameWall;
+    float br;
 
 
     void Start()
@@ -72,6 +73,7 @@ public class Candle : MonoBehaviour
         rb = GetComponent<Rigidbody>(); // Rigidbodyコンポーネントを取得
         hand.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 腕を画面外に移動
         foot.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 足を画面外に移動
+        br = fire.GetBurnRate;
     }
 
     void Update()
@@ -397,8 +399,7 @@ public class Candle : MonoBehaviour
     { // 炎の壁に当たると短くなる
         if (other.gameObject.CompareTag("fire") && gameState.JudgeState("GamePlay"))
         {
-
-            Shorten(BurningSpeedInTheFlameWall);
+            Shorten(BurningSpeedInTheFlameWall * br);
         }
     }
 
