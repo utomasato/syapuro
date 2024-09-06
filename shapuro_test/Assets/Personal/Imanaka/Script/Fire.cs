@@ -13,6 +13,8 @@ public class Fire : MonoBehaviour
     private float Normal_BurnSpeed;//通常時
     [SerializeField]
     private float Strong_BurnSpeed;//強火時
+    [SerializeField] private List<float> BurnRates = new List<float>() { 0.5f, 1f };
+    private float BurnRate;
     [SerializeField]
     private float Firespeed;//火の玉状態のスピード
     [Tooltip("この時間を過ぎたらゲームオーバーになります")]
@@ -78,6 +80,8 @@ public class Fire : MonoBehaviour
         SE2 = FireSE.GetComponent<AudioSource>();
         SE2.volume = 0.2f;
 
+        BurnRate = BurnRates[SceneSelectionState.mode];
+        Debug.Log(BurnRate);
         KeyBindings.LoadConfig();
     }
 
@@ -147,7 +151,7 @@ public class Fire : MonoBehaviour
                 CurrentSize.y *= 2f;
                 transform.localScale = CurrentSize;
             }
-            CandleScript.Shorten(Strong_BurnSpeed);
+            CandleScript.Shorten(Strong_BurnSpeed * BurnRate);
         }
         else
         {
@@ -162,7 +166,7 @@ public class Fire : MonoBehaviour
             {
                 NormalBurnSE_Func();
             }
-            CandleScript.Shorten(Normal_BurnSpeed);
+            CandleScript.Shorten(Normal_BurnSpeed * BurnRate);
         }
     }
 
@@ -347,9 +351,10 @@ public class Fire : MonoBehaviour
 
     public Candle GetCandle()
     {
-
         return CandleScript;
     }
+
+    public float GetBurnRate => BurnRate;
 
     public void JumpSE_Func()
     {
