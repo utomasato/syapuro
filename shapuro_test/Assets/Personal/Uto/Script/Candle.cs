@@ -6,8 +6,8 @@ public class Candle : MonoBehaviour
 {
     [SerializeField] private float startLife; // 初期ライフ
     private float life; // 現在のライフ
-    private float startSize; // 初期サイズ
-    [SerializeField] private float size; // 現在のサイズ Start()でWakeUp()が呼び出されたときのために入力が必要
+    [SerializeField] private float startSize; // 初期サイズ
+    private float size; // 現在のサイズ 
     [SerializeField] private float minJumpPower, maxJumpPower; // 最小ジャンプ力と最大ジャンプ力
     [SerializeField] private GameObject head; // ロウソクの頭部
     [SerializeField] private GameObject hand; // ロウソクの腕
@@ -16,6 +16,7 @@ public class Candle : MonoBehaviour
     [SerializeField] private float handCoefficient; // 腕の位置補正値
     [SerializeField] private float footSize; // 足が生えたときの高さの増加分
     [SerializeField] private float marginSize; // 燃え尽きる時のサイズ
+    [SerializeField] private float puttingSize = 0.5f; // 置いているときの追加の長さ
 
     [Tooltip("HitPointプレファブの中にあるスライドを選択してください")]
     [SerializeField] private Slider CurrentHPbar;//現在のロウソクのHP
@@ -47,9 +48,9 @@ public class Candle : MonoBehaviour
     {
         gameState = GameObject.Find("GameState").GetComponent<GameState>();
         life = startLife; // 初期ライフを設定
-        if (!IsBurning)
+        if (!IsBurning) // 置かれている
         {
-            startSize = transform.lossyScale.y; // 初期サイズを設定
+            //startSize = transform.lossyScale.y; // 初期サイズを設定
             Vector3 pos = transform.position;
             pos.z = 2;
             transform.position = pos;
@@ -57,11 +58,15 @@ public class Candle : MonoBehaviour
             {
                 animator.SetBool("IsBurning", false);
             }
-            size = startSize; // 現在のサイズを初期サイズに設定
+            size = startSize + puttingSize; // 現在のサイズを初期サイズに設定
+            Vector3 ls = transform.localScale;
+            ls.y = size;
+            transform.localScale = ls;
+            body.transform.localScale = ls;
         }
-        else
+        else // 火がついている
         {
-            startSize = transform.lossyScale.y - footSize - marginSize;
+            //startSize = transform.lossyScale.y - footSize - marginSize;
             Shorten(0.0f); // 諸々の大きさと位置を合わすならこれが楽
         }
 
@@ -137,11 +142,6 @@ public class Candle : MonoBehaviour
         if (IsBurning)
             ls.y += footSize; // 燃えている場合はサイズを調整
         transform.localScale = ls;
-        if (CurrentHPbar != null)
-        {
-            CurrentHPbar.value = HPbar();
-        }
-
     }
 
     public void Move(float x) // ロウソクを水平に移動
@@ -204,11 +204,12 @@ public class Candle : MonoBehaviour
         pos.y += footSize / 2; // 足の大きさに応じて位置を調整
         transform.position = pos;
 
-        size += marginSize;
+        size = startSize * (life / startLife) + marginSize;
 
         Vector3 ls = transform.localScale;
         ls.y = size + footSize; // 足の大きさに応じてローカルスケールを調整
         transform.localScale = ls;
+
 
         foreach (Animator animator in animatorList) // 蝋燭の見た目を憑依状態にする
         {
@@ -231,7 +232,7 @@ public class Candle : MonoBehaviour
         pos.y += footSize / 2; // 足の消失に応じて位置を調整
         transform.position = pos;
 
-        size = startSize * (life / startLife);
+        size = startSize * (life / startLife) + puttingSize;
 
         Vector3 ls = transform.localScale;
         ls.y = size; // ローカルスケールをリセット
