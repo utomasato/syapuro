@@ -51,36 +51,13 @@ public class GameOver : MonoBehaviour
         if (SampleCoroutine == null)
         {
             //コルーチン開始
-            SampleCoroutine = StartCoroutine(GameCoroutine(2.0f, GameOverAssets));
+            SampleCoroutine = StartCoroutine(GameCoroutine(0.2f, GameOverAssets));
         }
 
         Background.SetActive(true);
     }
 
-    /*public int RandomScore(int min, int max)
-    {
-        return Random.Range(min, max);
-    }
 
-    public void ScoreResult(float Endtime, TMP_Text ScoreText)
-    {
-        GameState_test state = GetComponent<GameState_test>();
-        ResultStartTime += Time.deltaTime;
-        if (ResultStartTime < Endtime)
-        {
-            int Assignscore = RandomScore(500, 1500);
-            ScoreText.text = Assignscore.ToString();
-        }
-        else
-        {
-            if (state != null)
-            {
-                int Assignscore = state.GetScore();
-                ScoreText.text = Assignscore.ToString();
-            }
-        }
-    }
-*/
 
     public IEnumerator GameCoroutine(float delay, GameObject[] Asset)
     {
