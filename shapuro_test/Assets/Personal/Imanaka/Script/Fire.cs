@@ -9,6 +9,7 @@ public class Fire : MonoBehaviour
     private float MoveSpeed;//ロウソクについている時の通常移動スピード
     [SerializeField]
     private float DashMoveSpeed;//ロウソクについている時のダッシュ移動スピード
+    [SerializeField] private float Idle_BurnSpeed = 0.02f; //プレイヤー停止時
     [SerializeField]
     private float Normal_BurnSpeed;//通常時
     [SerializeField]
@@ -65,6 +66,8 @@ public class Fire : MonoBehaviour
 
     private List<string> list = new List<string>() { "shift", "ctrl", "alt", "cmd" };
 
+    private Vector3 PreviousPos;//現在の位置を保存
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,6 +86,7 @@ public class Fire : MonoBehaviour
         BurnRate = BurnRates[SceneSelectionState.mode];
         Debug.Log(BurnRate);
         KeyBindings.LoadConfig();
+        PreviousPos = transform.position;
     }
 
     // Update is called once per frame
@@ -155,6 +159,7 @@ public class Fire : MonoBehaviour
         }
         else
         {
+
             if (!IsNormal)
             {
                 SE2.Stop();
@@ -167,7 +172,9 @@ public class Fire : MonoBehaviour
                 NormalBurnSE_Func();
             }
             CandleScript.Shorten(Normal_BurnSpeed * BurnRate);
+
         }
+        PreviousPos = transform.position;
     }
 
     void MoveFire()//ロウソクに炎がついてる時の移動
