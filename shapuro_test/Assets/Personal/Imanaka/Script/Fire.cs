@@ -174,7 +174,7 @@ public class Fire : MonoBehaviour
             CandleScript.Shorten(Normal_BurnSpeed * BurnRate);
 
         }
-        PreviousPos = transform.position;
+        // PreviousPos = transform.position;
     }
 
     void MoveFire()//ロウソクに炎がついてる時の移動
