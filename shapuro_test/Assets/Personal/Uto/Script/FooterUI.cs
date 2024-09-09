@@ -24,11 +24,11 @@ public class FooterUI : MonoBehaviour
         if (KeyBindings.JumpKay == null)
             KeyBindings.LoadConfig();
         if (jumpText != null)
-            jumpText.text = "Jump : " + CapitalizeFirstLetter(KeyBindings.JumpKay);
+            jumpText.text = "ジャンプ : " + CapitalizeFirstLetter(KeyBindings.JumpKay);
         if (dashText != null)
-            dashText.text = "Dash : " + CapitalizeFirstLetter(KeyBindings.DashKay);
+            dashText.text = "ダッシュ : " + CapitalizeFirstLetter(KeyBindings.DashKay);
         if (detachText != null)
-            detachText.text = "Detach : " + CapitalizeFirstLetter(KeyBindings.TransferKay);
+            detachText.text = "転生 : " + CapitalizeFirstLetter(KeyBindings.TransferKay);
     }
 
     public void SwitchInstructionTexts(bool isOnCandle)
