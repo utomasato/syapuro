@@ -1120,9 +1120,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1221838111}
     - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: Idle_BurnSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: gaugeControllor
       value: 
       objectReference: {fileID: 1675826847}
+    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: Normal_BurnSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: BurnInTheFireWallSE
       value: 
