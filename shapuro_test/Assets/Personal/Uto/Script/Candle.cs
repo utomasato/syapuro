@@ -199,7 +199,7 @@ public class Candle : MonoBehaviour
         IsBurning = true;
         Vector3 pos = transform.position;
         pos.z = 0;
-        pos.y += footSize / 2; // 足の大きさに応じて位置を調整
+        pos.y += (footSize - puttingSize) / 2; // 足の大きさに応じて位置を調整
         transform.position = pos;
 
         size = startSize * (life / startLife) + marginSize;
