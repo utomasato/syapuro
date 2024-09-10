@@ -1167,8 +1167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startLife: 2
   startSize: 1.3
-  minJumpPower: 10
-  maxJumpPower: 14
+  minJumpPower: 17.3
+  maxJumpPower: 24.22
   head: {fileID: 6152572056011139340}
   hand: {fileID: 2305378777581833585}
   body: {fileID: 6152572054976107908}
