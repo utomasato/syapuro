@@ -1722,7 +1722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1623642089291917063, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
       propertyPath: m_text
-      value: 'Pause : Esc'
+      value: "\u30DD\u30FC\u30BA : Esc"
       objectReference: {fileID: 0}
     - target: {fileID: 1623642089512033926, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
       propertyPath: m_Name
@@ -1822,7 +1822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4064754710092916638, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
       propertyPath: m_text
-      value: 'Pause : Esc'
+      value: "\u30DD\u30FC\u30BA : Esc"
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1623642089512033925, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}

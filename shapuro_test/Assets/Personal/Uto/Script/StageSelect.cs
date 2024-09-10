@@ -206,10 +206,7 @@ public class StageSelect : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
-            List<int> list = Save.saveData.lampCounts;
-            list[selectNumber] = 0;
-            Save.saveData.lampCounts = list;
-            Save.SaveGame();
+            Save.Reset();
             foreach (StageData stage in stageList)
             {
                 UpdateCanvas(stage);
