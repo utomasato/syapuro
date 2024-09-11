@@ -607,6 +607,10 @@ PrefabInstance:
       propertyPath: BurnInTheFireWallSE
       value: 
       objectReference: {fileID: 8300000, guid: 7ca9233b71c2946b086524f6ddcc5663, type: 3}
+    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: BurnRates.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
 --- !u!1 &285683465
