@@ -147,6 +147,7 @@ public class Fire : MonoBehaviour
     {
 
 
+
         if (GetStay(KeyBindings.DashKay) || Input.GetKey(KeyCode.JoystickButton0))
         {
             if (IsNormal)
@@ -161,6 +162,18 @@ public class Fire : MonoBehaviour
         }
         else
         {
+            bool moveLeft = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.1f;
+            bool moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyHorizontal") > 0.1f;
+            bool moveDown = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("JoyVertical") < -0.1f;
+
+            if (!moveLeft && !moveRight && !moveDown && CandleScript.GetCanJump())
+            {
+                CandleScript.Shorten(Idle_BurnSpeed * BurnRate);
+            }
+            else
+            {
+                CandleScript.Shorten(Normal_BurnSpeed * BurnRate);
+            }
 
             if (!IsNormal)
             {
@@ -173,15 +186,18 @@ public class Fire : MonoBehaviour
             {
                 NormalBurnSE_Func();
             }
-            CandleScript.Shorten(Normal_BurnSpeed * BurnRate);
+
 
         }
 
-        PreviousPos = transform.position;
+
+
+
     }
 
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
+
 
         float speed = 0f;
         if (GetStay(KeyBindings.DashKay))
@@ -197,6 +213,8 @@ public class Fire : MonoBehaviour
         {
             CandleScript.Move(0f);
         }
+
+
         else // 片方のみ押されている時
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.1f)
@@ -367,6 +385,9 @@ public class Fire : MonoBehaviour
 
     public float GetBurnRate => BurnRate;
 
+
+
+    /*********************以下効果音**************/
     public void JumpSE_Func()
     {
         SE.volume = 0.1f;
