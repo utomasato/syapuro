@@ -192,8 +192,12 @@ MonoBehaviour:
   PL: {fileID: 436746013411857900}
   MoveSpeed: 3
   DashMoveSpeed: 5
+  Idle_BurnSpeed: 0.02
   Normal_BurnSpeed: 0.1
   Strong_BurnSpeed: 0.3
+  BurnRates:
+  - 0.5
+  - 1
   Firespeed: 1.5
   SurviveTime: 4
   CandleScript: {fileID: 0}
@@ -204,7 +208,9 @@ MonoBehaviour:
   NormalBurnSE: {fileID: 8300000, guid: ba80b87e89fcc4c1bbefb6c6081059dc, type: 3}
   StrongBurnSE: {fileID: 8300000, guid: 70e3c1db5e22a471d9f23852ead4160e, type: 3}
   TransferSE: {fileID: 8300000, guid: 4042ac113f0114ab8a4d783d0ee07e3f, type: 3}
+  WarningSE: {fileID: 0}
   CandleSetSE: {fileID: 8300000, guid: 9927a7e8d868c4fc7b563b10671fe365, type: 3}
+  BurnInTheFireWallSE: {fileID: 0}
 --- !u!82 &4413201082728150973
 AudioSource:
   m_ObjectHideFlags: 0
