@@ -996,8 +996,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: GAMEOVER
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5c590e13e4b8b4b1190daea411bddc0f, type: 2}
+  m_sharedMaterial: {fileID: 7993423419275675444, guid: 5c590e13e4b8b4b1190daea411bddc0f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
