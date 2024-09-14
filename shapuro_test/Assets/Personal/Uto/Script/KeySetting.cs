@@ -46,6 +46,7 @@ public class KeySetting : MonoBehaviour
 
     public void Commit()
     {
+        KeyBindings.ResetConfig();
         KeyBindings.keys.dashKay = dash.text;
         KeyBindings.keys.jumpKay = jump.text;
         KeyBindings.keys.transferKay = detach.text;

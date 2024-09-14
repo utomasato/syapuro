@@ -148,7 +148,7 @@ public class Fire : MonoBehaviour
 
 
 
-        if (GetStay(KeyBindings.DashKay) || Input.GetKey(KeyCode.JoystickButton0))
+        if (GetStay(KeyBindings.DashKay) || GetStay(KeyBindings.DashButton))
         {
             if (IsNormal)
             {
@@ -199,7 +199,7 @@ public class Fire : MonoBehaviour
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
         float speed = 0f;
-        if (GetStay(KeyBindings.DashKay))
+        if (GetStay(KeyBindings.DashKay) || GetStay(KeyBindings.DashButton))
         {
             speed = DashMoveSpeed;
         }
@@ -224,15 +224,15 @@ public class Fire : MonoBehaviour
             }
         }
 
-        if (GetDown(KeyBindings.JumpKay) || Input.GetKeyDown(KeyCode.JoystickButton1))
+        if (GetDown(KeyBindings.JumpKay) || GetDown(KeyBindings.JumpButton))
         {
             CandleScript.Jump();
         }
-        else if (GetUp(KeyBindings.JumpKay) || Input.GetKeyUp(KeyCode.JoystickButton1))
+        else if (GetUp(KeyBindings.JumpKay) || GetUp(KeyBindings.JumpButton))
         {
             CandleScript.StopJump();
         }
-        if (GetDown(KeyBindings.TransferKay) || Input.GetKeyDown(KeyCode.JoystickButton2))
+        if (GetDown(KeyBindings.TransferKay) || GetDown(KeyBindings.TransferButton))
         {
             FlyFire();
         }
@@ -286,7 +286,7 @@ public class Fire : MonoBehaviour
             transform.position += new Vector3(0, -Firespeed * Time.deltaTime, 0);
         }
 
-        if ((GetDown(KeyBindings.TransferKay) || Input.GetKeyDown(KeyCode.JoystickButton2)) && Firetime > 0.1f) // 転生キャンセル
+        if ((GetDown(KeyBindings.TransferKay) || GetDown(KeyBindings.TransferButton)) && Firetime > 0.1f) // 転生キャンセル
         {
             transform.position = CandleScript.GetHeadPosition();
             Transfer();
