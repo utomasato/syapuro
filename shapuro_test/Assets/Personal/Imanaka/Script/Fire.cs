@@ -164,12 +164,13 @@ public class Fire : MonoBehaviour
         {
             bool moveLeft = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.1f;
             bool moveRight = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyHorizontal") > 0.1f;
-            bool moveDown = Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("JoyVertical") < -0.1f;
 
-            if (!moveLeft && !moveRight && !moveDown && CandleScript.GetCanJump())
+
+            if ((!moveLeft && !moveRight && CandleScript.GetCanJump()) || moveLeft && moveRight && CandleScript.GetCanJump())
             {
                 CandleScript.Shorten(Idle_BurnSpeed * BurnRate);
             }
+
             else
             {
                 CandleScript.Shorten(Normal_BurnSpeed * BurnRate);
