@@ -198,8 +198,6 @@ public class Fire : MonoBehaviour
 
     void MoveFire()//ロウソクに炎がついてる時の移動
     {
-
-
         float speed = 0f;
         if (GetStay(KeyBindings.DashKay))
         {
@@ -214,8 +212,6 @@ public class Fire : MonoBehaviour
         {
             CandleScript.Move(0f);
         }
-
-
         else // 片方のみ押されている時
         {
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.1f)
