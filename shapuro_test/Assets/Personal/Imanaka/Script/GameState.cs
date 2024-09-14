@@ -23,6 +23,7 @@ public class GameState : MonoBehaviour
     [SerializeField] private FooterUI footer;
     [SerializeField] private SceneChange sceneChange;
     [SerializeField] private string selectScene;
+    [SerializeField] private string nextScene;
     private bool buttonClicked;
 
     /*AudioSourceを2つにして、片方をSEに、もう片方をBGMに入れてください*/
@@ -269,6 +270,16 @@ public class GameState : MonoBehaviour
         {
             gameButtonSE();
             sceneChange.StartFadeOut(selectScene);
+            buttonClicked = true;
+        }
+    }
+
+    public void NextStage()
+    {
+        if (!buttonClicked)
+        {
+            gameButtonSE();
+            sceneChange.StartFadeOut(nextScene);
             buttonClicked = true;
         }
     }
