@@ -150,7 +150,7 @@ public class StageSelect : MonoBehaviour
             }
 
             // エンターキーが押された場合
-            if (!IsSelected && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton1)) && 0 <= selectNumber && selectNumber < stageList.Count && stageList[selectNumber].StageName != "")
+            if (!IsSelected && (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.JoystickButton2)) && 0 <= selectNumber && selectNumber < stageList.Count && stageList[selectNumber].StageName != "")
             {
                 gameStageSelectSE();
                 SceneSelectionState.selectedIndex = selectNumber; // 現在の選択番号を保存
@@ -190,7 +190,7 @@ public class StageSelect : MonoBehaviour
             lastSelectedButton = currentSelected.GetComponent<UnityEngine.UI.Button>();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton9))
         {
             if (IsPause)
             {

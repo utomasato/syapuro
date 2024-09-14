@@ -9,13 +9,20 @@ public struct Keys
     public string jumpKay;
     public string transferKay;
     public string pauseKay;
+    public string dashButton;
+    public string jumpButton;
+    public string transferButton;
 
-    public Keys(string d, string j, string t, string p)
+
+    public Keys(string d, string j, string t, string p, string db, string jb, string tb)
     {
         dashKay = d;
         jumpKay = j;
         transferKay = t;
         pauseKay = p;
+        dashButton = db;
+        jumpButton = jb;
+        transferButton = tb;
     }
 }
 
@@ -28,6 +35,9 @@ public class KeyBindings : MonoBehaviour
     public static string JumpKay => keys.jumpKay;
     public static string TransferKay => keys.transferKay;
     public static string PauseKay => keys.pauseKay;
+    public static string DashButton => keys.dashButton;
+    public static string JumpButton => keys.jumpButton;
+    public static string TransferButton => keys.transferButton;
 
     public static void SaveConfig()
     {
@@ -53,9 +63,14 @@ public class KeyBindings : MonoBehaviour
         else
         {
             Debug.LogWarning("Save file not found at " + configFilePath);
-            keys = new Keys("shift", "space", "return", "escape");
-            SaveConfig();
+            ResetConfig();
             return;
         }
+    }
+
+    public static void ResetConfig()
+    {
+        keys = new Keys("shift", "space", "return", "escape", "joystick button 0", "joystick button 1", "joystick button 3");
+        SaveConfig();
     }
 }
