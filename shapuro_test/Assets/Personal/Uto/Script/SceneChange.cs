@@ -11,28 +11,43 @@ public class SceneChange : MonoBehaviour
     [SerializeField] private float fadeTime = 1.0f; // フェードインアウトにかかる時間
     private Color fadeColor;
     string NextScene; // フェードアウト後に移動するシーン
-    private bool IsFadeInNow;
-    private bool IsFadeOutNow;
-
-    private float startSize; // ズームインアウト前の大きさ
-    [SerializeField] private float endSize; // ズームインアウト後の大きさ
-    private Vector3 startPosition; // 移動前のカメラの位置
-    [SerializeField] private Vector3 endPosition; // 移動後のカメラの位置
+    private bool IsFadeInNow = false;
+    private bool IsFadeOutNow = false;
     [SerializeField] private float zoomTime; // ズームインアウトにかかる時間
     private bool IsZoomNow = false;
+
+    [System.Serializable]
+    public class MovementStep
+    {
+        [SerializeField] private Vector3 cameraPosition;
+        [SerializeField] private float cameraSize;
+        [SerializeField] private float restTime;
+        public bool IsResting;
+
+        public Vector3 CameraPosition => cameraPosition;
+        public float CameraSize => cameraSize;
+        public float RestTime => restTime;
+    }
+    [SerializeField] private List<MovementStep> stepList;
 
     private float elapsedTime = 0.0f;
 
     [SerializeField] private bool IsInStage = false;
     [SerializeField] private GameState gameState;
+    [SerializeField] private int step;
+    [SerializeField] private bool IsMoving;
 
     void Start()
     {
         fadeColor = fadeImage.color;
-        IsFadeOutNow = false;
-        fadeCanvas.SetActive(false);
+        StartFadeIn();
+        step = 0;
+        IsMoving = false;
         if (IsInStage)
-            StartFadeIn();
+        {
+            transform.position = stepList[step].CameraPosition;
+            Camera.main.orthographicSize = stepList[step].CameraSize;
+        }
     }
 
     void Update()
@@ -63,24 +78,46 @@ public class SceneChange : MonoBehaviour
                 IsFadeInNow = false;
                 fadeCanvas.SetActive(false);
                 if (IsInStage)
-                    StartZoom();
+                {
+                    IsMoving = true;
+                    elapsedTime = 0.0f;
+                    stepList[step].IsResting = true;
+                }
             }
         }
 
-        if (IsZoomNow)
+        if (IsMoving)
         {
-            elapsedTime += Time.deltaTime; // 経過時間を更新
-            Camera.main.orthographicSize = Mathf.Lerp(startSize, endSize, elapsedTime / zoomTime); // サイズを線形補間
-            transform.position = Vector3.Lerp(startPosition, endPosition, elapsedTime / zoomTime); // 位置を線形補完
-            if (elapsedTime >= zoomTime)
+            if (stepList[step].IsResting)
             {
-                Camera.main.orthographicSize = endSize;
-                transform.position = endPosition;
-                IsZoomNow = false;
-                if (IsInStage)
-                    gameState.GameStart();
+                elapsedTime += Time.deltaTime; // 経過時間を更新
+                if (elapsedTime > stepList[step].RestTime)
+                {
+                    stepList[step].IsResting = false;
+                    elapsedTime = 0f;
+                    if (step + 1 >= stepList.Count)
+                    {
+                        IsMoving = false;
+                        gameState.GameStart();
+                    }
+                }
+            }
+            else
+            {
+                elapsedTime += Time.deltaTime; // 経過時間を更新
+                Camera.main.orthographicSize = Mathf.Lerp(stepList[step].CameraSize, stepList[step + 1].CameraSize, elapsedTime / zoomTime); // サイズを線形補間
+                transform.position = Vector3.Lerp(stepList[step].CameraPosition, stepList[step + 1].CameraPosition, elapsedTime / zoomTime); // 位置を線形補完
+                if (elapsedTime >= zoomTime)
+                {
+                    Camera.main.orthographicSize = stepList[step + 1].CameraSize;
+                    transform.position = stepList[step + 1].CameraPosition;
+                    step += 1;
+                    elapsedTime = 0f;
+                    stepList[step].IsResting = true;
+                }
             }
         }
+
     }
 
     public void StartFadeOut(string nextscene = null) // だんだん暗く
@@ -100,13 +137,5 @@ public class SceneChange : MonoBehaviour
         elapsedTime = 0.0f;
         fadeColor.a = 1;
         fadeImage.color = fadeColor;
-    }
-
-    public void StartZoom()
-    {
-        elapsedTime = 0.0f;
-        startSize = Camera.main.orthographicSize;
-        startPosition = transform.position;
-        IsZoomNow = true;
     }
 }

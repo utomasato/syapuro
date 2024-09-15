@@ -66,7 +66,7 @@ public class StageSelect : MonoBehaviour
         {
             p0 = 0; // 初期位置を0に設定
             selectNumber = 0; // 選択番号を設定
-            sceneChange.StartFadeIn();
+            //sceneChange.StartFadeIn();
             IsNoSelect = true;
             p = transform.position.x;
             animator.SetBool("Moving", true);
@@ -81,7 +81,7 @@ public class StageSelect : MonoBehaviour
             Vector3 pos = startPos;
             pos.x = startPos.x + p0 * interval; // 選択位置に応じてX座標を調整
             transform.position = pos;
-            sceneChange.StartFadeIn();
+            //sceneChange.StartFadeIn();
             animator.SetBool("Moving", false);
             footer.ActivateInstructionTexts();
             stageList[selectNumber].canvas.SetActive(true);
