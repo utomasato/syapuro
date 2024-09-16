@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/tutrial/tutrial_02.unity
     guid: 12ba7b75e68d24700b09cdc2ed3d47c8
+  - enabled: 1
+    path: Assets/Scenes/tutrial/tutrial_03.unity
+    guid: b7fe971df5f504e17b132846e467280e
+  - enabled: 1
+    path: Assets/Scenes/tutrial/tutrial_04.unity
+    guid: ede8e84c072724ac082fb55cab9ea09e
   m_configObjects: {}
