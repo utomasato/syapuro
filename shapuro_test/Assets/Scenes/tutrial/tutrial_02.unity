@@ -249,11 +249,20 @@ MonoBehaviour:
   fadeCanvas: {fileID: 2112316679}
   fadeImage: {fileID: 1650726769}
   fadeTime: 1
-  endSize: 5
-  endPosition: {x: 0, y: 0, z: -10}
   zoomTime: 1
+  stepList:
+  - cameraPosition: {x: -3.5, y: -1.8, z: -10}
+    cameraSize: 3
+    restTime: 0
+    IsResting: 0
+  - cameraPosition: {x: 0, y: 0, z: -10}
+    cameraSize: 5
+    restTime: 0
+    IsResting: 0
   IsInStage: 1
   gameState: {fileID: 312465510}
+  step: 0
+  IsMoving: 0
 --- !u!1001 &273526667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -530,7 +539,7 @@ MonoBehaviour:
   footer: {fileID: 540921092}
   sceneChange: {fileID: 256278650}
   selectScene: StageSelect
-  nextScene: 
+  nextScene: tutrial_03
   SE: {fileID: 312465514}
   BGM: {fileID: 312465513}
   GameBGM_Tutorial: {fileID: 0}
@@ -1329,7 +1338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 585118060467967894, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Retry
+      value: NextStage
       objectReference: {fileID: 0}
     - target: {fileID: 585118060467967894, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -1345,7 +1354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 585118061122560696, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_text
-      value: Retry
+      value: Next
       objectReference: {fileID: 0}
     - target: {fileID: 585118061388314501, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_LocalPosition.z

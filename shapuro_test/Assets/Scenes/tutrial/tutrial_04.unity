@@ -249,11 +249,20 @@ MonoBehaviour:
   fadeCanvas: {fileID: 2112316679}
   fadeImage: {fileID: 1650726769}
   fadeTime: 1
-  endSize: 5
-  endPosition: {x: 0, y: 0, z: -10}
   zoomTime: 1
+  stepList:
+  - cameraPosition: {x: -3.5, y: -1.8, z: -10}
+    cameraSize: 3
+    restTime: 0
+    IsResting: 0
+  - cameraPosition: {x: 0, y: 0, z: -10}
+    cameraSize: 5
+    restTime: 0
+    IsResting: 0
   IsInStage: 1
   gameState: {fileID: 312465510}
+  step: 0
+  IsMoving: 0
 --- !u!1001 &273526667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2734,9 +2743,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1741258545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d301628ce015141c59dc60ba6fadc4ab, type: 3}
+  m_Script: {fileID: 11500000, guid: f5df76f6e9a4e4c9d9d527e07c5f8ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test: "\u30C0\u30C3\u30B7\u30E5 : "
+  C_text: {fileID: 1741258547}
+  test_test: 1
 --- !u!1 &1796157302
 GameObject:
   m_ObjectHideFlags: 0
