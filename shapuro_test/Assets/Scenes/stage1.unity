@@ -1610,6 +1610,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 534627417342154413, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1623642089512033926, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
       propertyPath: m_Name
       value: Footer
@@ -1706,10 +1710,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5884107343218348860, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: d29ec42e527754604b6cbbe0594d5f36, type: 2}
+    - target: {fileID: 3311996595832612336, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515330256904709726, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5055e2be4da8481e85a8360f2aaf9f7, type: 3}
 --- !u!114 &491934768 stripped
