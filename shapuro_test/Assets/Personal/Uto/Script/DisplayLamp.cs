@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DisplayLamp : MonoBehaviour
 {
-    [SerializeField] private Lamp lamp;
+    //[SerializeField] private Lamp lamp;
     [SerializeField] private GameObject fire;
     //[SerializeField] private GameState state;
 
