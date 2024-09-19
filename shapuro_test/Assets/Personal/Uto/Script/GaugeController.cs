@@ -19,6 +19,9 @@ public class GaugeController : MonoBehaviour
 
     RectTransform fireRectTransform;
     [SerializeField] private TextMeshProUGUI Counter;
+    [SerializeField] private TextMeshProUGUI Mode;
+    [SerializeField] private string[] sl = { "easy", "hard" };
+
 
     void Start()
     {
@@ -26,12 +29,13 @@ public class GaugeController : MonoBehaviour
         fireImg = fireGauge.GetComponent<Image>();
         fireRectTransform = fireGauge.GetComponent<RectTransform>();
         fireStartPosition = fireRectTransform.anchoredPosition;
+        Mode.text = sl[SceneSelectionState.mode];
     }
 
     public void UpdateCandleGauge(float life)
     {
-        candleImg.fillAmount = (life / 2.0f)*(life / 2.0f);
-        fireRectTransform.anchoredPosition = Vector3.Lerp(fireEndPosition, fireStartPosition, (life / 2.0f)*(life / 2.0f));
+        candleImg.fillAmount = (life / 2.0f) * (life / 2.0f);
+        fireRectTransform.anchoredPosition = Vector3.Lerp(fireEndPosition, fireStartPosition, (life / 2.0f) * (life / 2.0f));
     }
 
     public void UpdateFireGauge(float life)

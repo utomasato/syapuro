@@ -28,6 +28,7 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private GameObject SettingCanvas;
     [SerializeField] private UnityEngine.UI.Button button;
     private UnityEngine.UI.Button lastSelectedButton;
+    [SerializeField] private string[] sl = { "easy", "hard" };
 
     //[SerializeField] private List<TextMeshProUGUI> lampCounters;
 
@@ -39,6 +40,7 @@ public class StageSelect : MonoBehaviour
         [SerializeField] private string stageScene;
         [SerializeField] private int maxLampCount;
         public TextMeshProUGUI StageNameTMP;
+        public TextMeshProUGUI StageModeTMP;
         [SerializeField] private List<DisplayLamp> lampList;
         public GameObject canvas;
 
@@ -131,7 +133,7 @@ public class StageSelect : MonoBehaviour
             {
                 Move(-1);
             }
-
+            //難易度切り替え
             if ((Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyVertical") > 0.1f))
             {
                 SceneSelectionState.mode = 1;
@@ -232,6 +234,7 @@ public class StageSelect : MonoBehaviour
     private void UpdateCanvas(StageData data)
     {
         data.StageNameTMP.text = data.StageName;
+        data.StageModeTMP.text = sl[SceneSelectionState.mode];
         foreach (DisplayLamp lamp in data.LampList)
         {
             lamp.Extinguishment();
@@ -244,8 +247,8 @@ public class StageSelect : MonoBehaviour
 
     private void UpdateCanvas(int stageNumber)
     {
-        string[] sl = { "easy", "hard" };
-        stageList[stageNumber].StageNameTMP.text = stageList[stageNumber].StageName + " " + sl[SceneSelectionState.mode];
+        stageList[stageNumber].StageNameTMP.text = stageList[stageNumber].StageName;
+        stageList[stageNumber].StageModeTMP.text = sl[SceneSelectionState.mode];
         foreach (DisplayLamp lamp in stageList[stageNumber].LampList)
         {
             lamp.Extinguishment();
