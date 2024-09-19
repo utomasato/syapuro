@@ -6,4 +6,5 @@ public class SceneSelectionState : MonoBehaviour
 {
     public static int selectedIndex = -1;
     public static int mode = 0;
+    public static bool IsPlayed = false;
 }

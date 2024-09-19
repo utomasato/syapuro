@@ -156,6 +156,7 @@ public class StageSelect : MonoBehaviour
             {
                 gameStageSelectSE();
                 SceneSelectionState.selectedIndex = selectNumber; // 現在の選択番号を保存
+                SceneSelectionState.IsPlayed = false;
                 sceneChange.StartFadeOut(stageList[selectNumber].StageScene);
                 IsSelected = true;
             }
