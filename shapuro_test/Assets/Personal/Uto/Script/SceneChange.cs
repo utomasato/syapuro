@@ -45,6 +45,16 @@ public class SceneChange : MonoBehaviour
         IsMoving = false;
         if (IsInStage)
         {
+            Debug.Log("isplayd : " + SceneSelectionState.IsPlayed);
+            if (!SceneSelectionState.IsPlayed)
+            {
+                SceneSelectionState.IsPlayed = true;
+            }
+            else
+            {
+                step = 1;
+            }
+            Debug.Log("step : " + step);
             transform.position = stepList[step].CameraPosition;
             Camera.main.orthographicSize = stepList[step].CameraSize;
         }
