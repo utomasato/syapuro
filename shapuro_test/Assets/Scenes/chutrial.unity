@@ -3114,7 +3114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 585118061122560696, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_text
-      value: Retry
+      value: "\u30EA\u30C8\u30E9\u30A4"
       objectReference: {fileID: 0}
     - target: {fileID: 585118061388314501, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3182,15 +3182,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 585118061545729655, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585118061545729655, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585118061545729655, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585118061545729655, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6480,15 +6480,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7810650592890806162, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7810650592890806162, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7810650592890806162, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7810650592890806162, guid: 362635c12b4a443adb14e3e96b861167, type: 3}
       propertyPath: m_AnchoredPosition.x
