@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
-  createObject: {fileID: 7830806575548757366, guid: 8eff6df0d5e7240b0bd644fde032cbe0, type: 3}
+  createObject: {fileID: 7830806575548757366, guid: 012124fa447b7441a8a21c612f7d6e4c, type: 3}
   MaxLampCount: 0
   LampCount: 0
   radius: 2

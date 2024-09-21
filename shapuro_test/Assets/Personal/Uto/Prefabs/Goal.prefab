@@ -254,10 +254,6 @@ PrefabInstance:
       propertyPath: MaxLampCount
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 5693364152032586937, guid: dfcd16da071da466eaefc03280a60c38, type: 3}
-      propertyPath: createObject
-      value: 
-      objectReference: {fileID: 7830806575548757366, guid: 8eff6df0d5e7240b0bd644fde032cbe0, type: 3}
     - target: {fileID: 5693364152032586938, guid: dfcd16da071da466eaefc03280a60c38, type: 3}
       propertyPath: m_Name
       value: CbF
