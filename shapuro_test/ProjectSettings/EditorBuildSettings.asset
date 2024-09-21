@@ -12,13 +12,13 @@ EditorBuildSettings:
     path: Assets/Scenes/StageSelect.unity
     guid: c6c57dccd4ff34dd8af46d56a03b1e4b
   - enabled: 1
-    path: Assets/Scenes/stage1.unity
+    path: Assets/Scenes/Stage/stage1.unity
     guid: 210481bc3530340778420f3f06e815fc
   - enabled: 1
-    path: Assets/Scenes/stage2.unity
+    path: Assets/Scenes/Stage/stage2.unity
     guid: 369341614759c42bcb8335cac73f2550
   - enabled: 1
-    path: Assets/Scenes/chutrial.unity
+    path: Assets/Scenes/Stage/chutrial.unity
     guid: 5d8893d02594643ee9e31917e2a997c5
   - enabled: 1
     path: Assets/Scenes/tutrial/tutrial_01.unity
