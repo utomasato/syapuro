@@ -11,7 +11,8 @@ public class Event_text : MonoBehaviour
     {
         Mode_Jump,
         Mode_Dash,
-        Mode_Trans
+        Mode_Trans,
+        Mode_Controller
     }
     public Test test_test;
     // Start is called before the first frame update
@@ -30,6 +31,11 @@ public class Event_text : MonoBehaviour
         {
             C_text.text = test + testtesttest(KeyBindings.TransferKay);
         }
+        if (test_test == Test.Mode_Controller)
+        {
+            C_text.text = test + "           ";
+        }
+
         //C_text.text = test + " : " + KeyBindings.JumpKay + KeyBindings.DashKay + KeyBindings.TransferKay;
         //C_text.text = test + " : " + testtesttest(KeyBindings.JumpKay) + testtesttest(KeyBindings.DashKay) + testtesttest(KeyBindings.TransferKay);
     }
