@@ -317,6 +317,30 @@ public class Fire : MonoBehaviour
         footer.SwitchInstructionTexts(true);
     }
 
+    public void Transfer(Candle NewCandle)//蝋燭に憑依
+    {
+        if (NewCandle != null)
+        {
+            if (NewCandle == CandleScript)
+            {
+                return;
+            }
+            gameGetCandleSE();
+            CandleScript = NewCandle;
+        }
+        if (CandleScript.GetBurnOut()) // 憑依した蝋燭が既に燃え尽きていたら
+        {
+            gameState.GameOver();
+        }
+        //   DidWarning = false;
+        IsCandle = true;
+        CandleScript.WakeUp();
+        transform.localScale = StartScale;
+        gaugeControllor.SetCandleGaugeGrayOut(false); // 20240803 宇藤追加
+        gaugeControllor.FillFireGauge();
+        footer.SwitchInstructionTexts(true);
+    }
+
     private bool GetDown(string key)
     {
         if (list.IndexOf(key) >= 0)
