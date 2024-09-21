@@ -33,7 +33,7 @@ public class Event_text : MonoBehaviour
         }
         if (test_test == Test.Mode_Controller)
         {
-            C_text.text = test + "           ";
+            //C_text.text = test + "           ";
         }
 
         //C_text.text = test + " : " + KeyBindings.JumpKay + KeyBindings.DashKay + KeyBindings.TransferKay;
