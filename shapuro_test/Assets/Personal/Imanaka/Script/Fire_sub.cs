@@ -12,6 +12,10 @@ public class Fire_sub : MonoBehaviour
         {
             parent.Transfer(other.gameObject.GetComponent<Candlewick>());
         }
+        if (!parent.JudgeCandle && other.gameObject.CompareTag("candle")) // 火の玉状態で蝋燭に当たったら
+        {
+            parent.Transfer(other.gameObject.GetComponent<Candle>());
+        }
         if (other.gameObject.CompareTag("water")) // 水に当たったら
         {
             parent.Deletefire();

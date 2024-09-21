@@ -14,7 +14,6 @@ public class SceneChange : MonoBehaviour
     private bool IsFadeInNow = false;
     private bool IsFadeOutNow = false;
     [SerializeField] private float zoomTime; // ズームインアウトにかかる時間
-    private bool IsZoomNow = false;
 
     [System.Serializable]
     public class MovementStep
