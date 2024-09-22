@@ -1,0 +1,12 @@
+Font: Kaisei Opti  Style: Regular
+Point Size: 115   SP/PD Ratio: 4.3%
+
+Characters included: 118/118
+Missing characters: 0
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+
+Characters excluded from packing:
+----------------------------------------
