@@ -207,12 +207,15 @@ public class GameState : MonoBehaviour
         if (SceneSelectionState.selectedIndex != -1)
         {
             List<int> list = Save.saveData.lampCounts;
+            List<bool> Blist = Save.saveData.clearedList;
             if (list[SceneSelectionState.selectedIndex * 2 + SceneSelectionState.mode] < LampCount)
             {
                 list[SceneSelectionState.selectedIndex * 2 + SceneSelectionState.mode] = LampCount;
                 Save.saveData.lampCounts = list;
-                Save.SaveGame();
             }
+            Blist[SceneSelectionState.selectedIndex * 2 + SceneSelectionState.mode] = true;
+            Save.saveData.clearedList = Blist;
+            Save.SaveGame();
         }
     }
 

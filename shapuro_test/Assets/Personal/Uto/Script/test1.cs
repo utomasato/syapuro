@@ -6,8 +6,8 @@ using UnityEngine;
 public class test1 : MonoBehaviour
 {
     public Candle candle;
-    float speed = 1.0f;
-    bool a = false;
+    //float speed = 1.0f;
+    //bool a = false;
     // Start is called before the first frame update
     void Start()
     {
