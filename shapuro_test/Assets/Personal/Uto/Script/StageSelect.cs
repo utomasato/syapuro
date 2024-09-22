@@ -43,6 +43,7 @@ public class StageSelect : MonoBehaviour
         public TextMeshProUGUI StageModeTMP;
         [SerializeField] private List<DisplayLamp> lampList;
         public GameObject canvas;
+        public GameObject stoveFire;
 
         public int StageID => stageID;
         public string StageName => stageName;
@@ -210,9 +211,9 @@ public class StageSelect : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             Save.Reset();
-            foreach (StageData stage in stageList)
+            for (int i = 0; i < stageList.Count; i++)
             {
-                UpdateCanvas(stage);
+                UpdateCanvas(i);
             }
         }
     }
@@ -232,20 +233,6 @@ public class StageSelect : MonoBehaviour
         transform.localScale = ls;
     }
 
-    private void UpdateCanvas(StageData data)
-    {
-        data.StageNameTMP.text = data.StageName;
-        data.StageModeTMP.text = sl[SceneSelectionState.mode];
-        foreach (DisplayLamp lamp in data.LampList)
-        {
-            lamp.Extinguishment();
-        }
-        for (int i = 0; i < Save.saveData.lampCounts[data.StageID]; i++)
-        {
-            data.LampList[i].Ignition();
-        }
-    }
-
     private void UpdateCanvas(int stageNumber)
     {
         stageList[stageNumber].StageNameTMP.text = stageList[stageNumber].StageName;
@@ -257,6 +244,19 @@ public class StageSelect : MonoBehaviour
         for (int i = 0; i < Save.saveData.lampCounts[stageList[stageNumber].StageID * 2 + SceneSelectionState.mode]; i++)
         {
             stageList[stageNumber].LampList[i].Ignition();
+        }
+        GameObject stove = stageList[stageNumber].stoveFire;
+        if (Save.saveData.clearedList[stageList[stageNumber].StageID * 2 + SceneSelectionState.mode])
+        {
+            stove.SetActive(true);
+            if (Save.saveData.lampCounts[stageList[stageNumber].StageID * 2 + SceneSelectionState.mode] == stageList[stageNumber].MaxLampCount)
+                stove.transform.localScale = new Vector3(1f, 1f, 1f);
+            else
+                stove.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
+        else
+        {
+            stove.SetActive(false);
         }
     }
 

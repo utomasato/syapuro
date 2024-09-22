@@ -11,9 +11,12 @@ public struct SaveData
 {
     [SerializeField]
     private List<int> LampCounts;
-    public SaveData(List<int> num)
+    [SerializeField]
+    private List<bool> ClearedList;
+    public SaveData(List<int> num, List<bool> tf)
     {
         this.LampCounts = num;
+        this.ClearedList = tf;
         Debug.Log("reset");
         Debug.Log(string.Join(", ", LampCounts));
     }
@@ -26,6 +29,15 @@ public struct SaveData
             Debug.Log(string.Join(", ", LampCounts));
         }
         get { return this.LampCounts; }
+    }
+    public List<bool> clearedList
+    {
+        set
+        {
+            this.ClearedList = value;
+            Debug.Log(string.Join(", ", ClearedList));
+        }
+        get { return this.ClearedList; }
     }
 }
 
@@ -56,18 +68,17 @@ public class Save : MonoBehaviour
             saveData = data;
             return;
         }
-        else
+        else // セーブデータが見つからないとき
         {
             Debug.LogWarning("Save file not found at " + saveFilePath);
-            saveData = new SaveData(new List<int>() { 0, 0, 0, 0, 0, 0 });
-            SaveGame();
+            Reset();
             return;
         }
     }
 
     public static void Reset()
     {
-        saveData = new SaveData(new List<int>() { 0, 0, 0, 0, 0, 0 });
+        saveData = new SaveData(new List<int>() { 0, 0, 0, 0, 0, 0 }, new List<bool>() { false, false, false, false, false, false });
         SaveGame();
     }
 
