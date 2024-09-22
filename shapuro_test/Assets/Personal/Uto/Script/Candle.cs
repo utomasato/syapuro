@@ -213,6 +213,8 @@ public class Candle : MonoBehaviour
         {
             animator.SetBool("IsBurning", true);
             animator.SetBool("InAir", false);
+            animator.SetFloat("speed", 0f);
+            animator.Play("Stop");
         }
     }
 
