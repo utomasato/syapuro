@@ -839,6 +839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxLampPerStage: 9
   plyer: {fileID: 1010044247}
+  GoalFire: {fileID: 9096930693743322684}
   gaugeController: {fileID: 661784891}
   gameClear: {fileID: 312465509}
   gameOver: {fileID: 312465508}
@@ -5491,3 +5492,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1b32f43ddf724fc3829b733b1606983, type: 3}
+--- !u!212 &9096930693743322684 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 9050571886594127472, guid: f1b32f43ddf724fc3829b733b1606983, type: 3}
+  m_PrefabInstance: {fileID: 9096930693743322683}
+  m_PrefabAsset: {fileID: 0}

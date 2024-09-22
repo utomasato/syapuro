@@ -1136,6 +1136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxLampPerStage: 5
   plyer: {fileID: 1010044247}
+  GoalFire: {fileID: 1463538176}
   gaugeController: {fileID: 1675826847}
   gameClear: {fileID: 312465509}
   gameOver: {fileID: 312465508}
@@ -5368,6 +5369,11 @@ Transform:
   m_Father: {fileID: 325040390}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1463538176 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 9050571886594127472, guid: f1b32f43ddf724fc3829b733b1606983, type: 3}
+  m_PrefabInstance: {fileID: 816425711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1530785620
 GameObject:
   m_ObjectHideFlags: 0

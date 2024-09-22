@@ -16,6 +16,7 @@ public class GameState : MonoBehaviour
     private int MaxLampPerStage = 0;//ステージごとのランプ個数
 
     [SerializeField] private Fire plyer;
+    [SerializeField] private SpriteRenderer GoalFire;
     [SerializeField] private GaugeController gaugeController;
     [SerializeField] private GameClear gameClear;
     [SerializeField] private GameOver gameOver;
@@ -198,6 +199,7 @@ public class GameState : MonoBehaviour
     {
         if (state == State.GameClear) return;
         state = State.GameClear;
+        GoalFire.enabled = true;
         BGM.Stop();
         gameClearSE();
         gameClear.ClearSystem();
