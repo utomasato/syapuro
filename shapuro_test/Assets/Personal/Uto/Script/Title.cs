@@ -21,6 +21,7 @@ public class Title : MonoBehaviour
     [SerializeField] private AudioClip TitleBGM;
     [SerializeField] private AudioSource BGM;
 
+    [SerializeField] private AudioClip ButtonSE;
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(button.gameObject);
