@@ -1931,6 +1931,7 @@ MonoBehaviour:
   button: {fileID: 710965207}
   TitleBGM: {fileID: 8300000, guid: 2e6d28be9df2c44309543e72bbedc460, type: 3}
   BGM: {fileID: 2123825477}
+  ButtonSE: {fileID: 8300000, guid: 403149528bf5545d9954b36e026bc734, type: 3}
 --- !u!82 &2123825477
 AudioSource:
   m_ObjectHideFlags: 0
