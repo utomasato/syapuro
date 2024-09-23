@@ -64,6 +64,7 @@ public class Title : MonoBehaviour
 
     public void Click()
     {
+        BGM.PlayOneShot(ButtonSE);
         buttonClicked = true;
     }
 }
