@@ -18,11 +18,18 @@ public class Title : MonoBehaviour
     private UnityEngine.UI.Button lastSelectedButton;
     private bool buttonClicked;
 
+    [SerializeField] private AudioClip TitleBGM;
+    [SerializeField] private AudioSource BGM;
+
     void Start()
     {
         EventSystem.current.SetSelectedGameObject(button.gameObject);
         lastSelectedButton = button;
         buttonClicked = false;
+        BGM = GetComponent<AudioSource>();
+        BGM.volume = 0.1f;
+        BGM.clip = TitleBGM;
+        BGM.Play();
     }
 
     void Update()
