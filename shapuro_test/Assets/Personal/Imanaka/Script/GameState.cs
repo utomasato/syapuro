@@ -137,10 +137,7 @@ public class GameState : MonoBehaviour
 
     public void GameStart()//20240810uto
     {
-        if (SceneManager.GetActiveScene().name == "chutrial")
-        {
-            TutorialBGM();
-        }
+
         if (SceneManager.GetActiveScene().name == "stage1")
         {
             gameBGM_Stage1();
