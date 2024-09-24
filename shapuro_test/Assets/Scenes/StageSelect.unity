@@ -6254,6 +6254,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1897496554}
+        m_TargetAssemblyTypeName: StageSelect, Assembly-CSharp
+        m_MethodName: gameButtonSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &922210962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12481,6 +12493,8 @@ MonoBehaviour:
     stoveFire: {fileID: 106130299}
   StageSelectSE: {fileID: 8300000, guid: c32020a6f620f4fe79cc29f6b4c06fe9, type: 3}
   StageSelectBGM: {fileID: 8300000, guid: 88d262635f7b245baad48c1bd1780684, type: 3}
+  PauseSE: {fileID: 8300000, guid: e22280fc92e874796a11a8d56327ab6f, type: 3}
+  ButtonSE: {fileID: 8300000, guid: 403149528bf5545d9954b36e026bc734, type: 3}
 --- !u!82 &1897496555
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12808,6 +12822,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: tutrial_01
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1897496554}
+        m_TargetAssemblyTypeName: StageSelect, Assembly-CSharp
+        m_MethodName: gameButtonSE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1971102961

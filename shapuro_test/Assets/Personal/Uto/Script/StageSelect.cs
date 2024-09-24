@@ -59,6 +59,9 @@ public class StageSelect : MonoBehaviour
 
     [SerializeField] private AudioClip StageSelectSE;//ステージを選択した際の音
     [SerializeField] private AudioClip StageSelectBGM;//ステージを選択画面のBGM
+    [SerializeField] private AudioClip PauseSE;//ポーズを押した時の音
+    [SerializeField] private AudioClip ButtonSE;//ボタンを押した際の音
+
     void Start()
     {
         gameStageSelectBGM();
@@ -205,6 +208,7 @@ public class StageSelect : MonoBehaviour
                 IsPause = true;
                 PauseCanvas.SetActive(true);
                 EventSystem.current.SetSelectedGameObject(button.gameObject);
+                gamePauseSE();
             }
         }
 
@@ -270,6 +274,7 @@ public class StageSelect : MonoBehaviour
         IsPause = false;
         PauseCanvas.SetActive(false);
         SettingCanvas.SetActive(false);
+        gameButtonSE();
     }
 
     public void GoTitle()
@@ -279,6 +284,7 @@ public class StageSelect : MonoBehaviour
 
     void gameStageSelectSE()
     {
+        SE.volume = 0.1f;
         SE.PlayOneShot(StageSelectSE);
     }
     void gameStageSelectBGM()
@@ -290,6 +296,14 @@ public class StageSelect : MonoBehaviour
         BGM.volume = 0.06f;
         BGM.Play();
     }
-
-
+    public void gamePauseSE()
+    {
+        SE.volume = 0.1f;
+        SE.PlayOneShot(PauseSE);
+    }
+    public void gameButtonSE()
+    {
+        SE.volume = 0.04f;
+        SE.PlayOneShot(ButtonSE);
+    }
 }
