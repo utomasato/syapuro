@@ -70,7 +70,7 @@ public class KeyBindings : MonoBehaviour
 
     public static void ResetConfig()
     {
-        keys = new Keys("shift", "space", "return", "escape", "joystick button 0", "joystick button 1", "joystick button 3");
+        keys = new Keys("shift", "space", "return", "escape", "joystick button 7", "joystick button 1", "joystick button 3");
         SaveConfig();
     }
 }

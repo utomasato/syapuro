@@ -138,7 +138,7 @@ public class StageSelect : MonoBehaviour
                 Move(-1);
             }
             //難易度切り替え
-            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyVertical") > 0.1f))
+            if ((Input.GetKeyDown(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("JoyVertical") > 0.9f))
             {
                 SceneSelectionState.mode = 1;
                 for (int i = 0; i < stageList.Count; i++)
@@ -146,7 +146,7 @@ public class StageSelect : MonoBehaviour
                     UpdateCanvas(i);
                 }
             }
-            else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("JoyVertical") < -0.1f))
+            else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("JoyVertical") < -0.9f))
             {
                 SceneSelectionState.mode = 0;
                 for (int i = 0; i < stageList.Count; i++)
@@ -212,7 +212,7 @@ public class StageSelect : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.Backspace) || Input.GetMouseButton(1)) //　バックスペースか右クリック
         {
             Save.Reset();
             for (int i = 0; i < stageList.Count; i++)
