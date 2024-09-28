@@ -54,7 +54,7 @@ public class GameClear : MonoBehaviour
         ClearedCanvas.SetActive(true);
         if (SampleCoroutine == null)
         {
-            SampleCoroutine = StartCoroutine(GameCoroutine(2.0f, GameClearAssets));
+            SampleCoroutine = StartCoroutine(GameCoroutine(1.0f, GameClearAssets));
         }
     }
 

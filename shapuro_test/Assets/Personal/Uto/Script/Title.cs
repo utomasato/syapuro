@@ -31,6 +31,7 @@ public class Title : MonoBehaviour
         BGM.volume = 0.1f;
         BGM.clip = TitleBGM;
         BGM.Play();
+        Save.Reset();//展示用
     }
 
     void Update()

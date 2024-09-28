@@ -128,12 +128,12 @@ public class StageSelect : MonoBehaviour
         if (!IsMoving && !IsPause)
         {
             // 右キーが押された場合
-            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyHorizontal") > 0.1f) && selectNumber + 1 < stageList.Count)
+            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyHorizontal") > 0.5f) && selectNumber + 1 < stageList.Count)
             {
                 Move(1);
             }
             // 左キーが押された場合
-            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.1f) && 0 < selectNumber)
+            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.5f) && 0 < selectNumber)
             {
                 Move(-1);
             }
