@@ -140,6 +140,7 @@ public class Fire : MonoBehaviour
                 SE2.time = 1.5f;
             }
         }
+        Debug.Log(Input.GetAxis("JoyVertical"));
 
     }
 
