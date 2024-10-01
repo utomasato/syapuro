@@ -19,7 +19,7 @@ public class Fire_LampCollider : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Fire fire = GetComponentInParent<Fire>();
-        if (fire.CanLampOn())
+        if (fire.GetIsOnCandle())
         {
             if (other.gameObject.CompareTag("lamp"))
             {

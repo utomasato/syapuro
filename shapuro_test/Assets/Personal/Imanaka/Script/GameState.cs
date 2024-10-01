@@ -157,7 +157,7 @@ public class GameState : MonoBehaviour
         beforePauseButton = EventSystem.current.currentSelectedGameObject;
         state = State.Pause;
         gamePauseSE();
-        plyer.UseCandle().Pause();
+        plyer.GetCandle().Pause();
         pause.PauseSystem();
 
     }
@@ -169,7 +169,7 @@ public class GameState : MonoBehaviour
         {
             gameButtonSE();
             state = beforePauseState;
-            plyer.UseCandle().Resume();
+            plyer.GetCandle().Resume();
             pause.ResumeSystem();
             lastSelectedButton = null;
             EventSystem.current.SetSelectedGameObject(beforePauseButton);
@@ -181,14 +181,14 @@ public class GameState : MonoBehaviour
     {
         beforePauseState = state;
         state = State.Explain;
-        plyer.UseCandle().Pause();
+        plyer.GetCandle().Pause();
 
     }
 
     public void CloseExplain()//20240811uto
     {
         state = beforePauseState;
-        plyer.UseCandle().Resume();
+        plyer.GetCandle().Resume();
 
     }
 

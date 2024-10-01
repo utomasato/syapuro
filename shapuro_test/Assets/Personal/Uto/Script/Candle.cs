@@ -25,8 +25,8 @@ public class Candle : MonoBehaviour
     [SerializeField] private Fire fire;//効果音を入れるため
 
     private bool IsBurning = false; // ロウソクが燃えているかどうか
-    private bool CanJump; // ジャンプ可能かどうか
-    private bool CanStopJump;
+    private bool IsGrounded; // 接地しているか
+    private bool IsGoingUp; // 上昇中(減速前)か
     private bool IsBurnOut = false; // ロウソクが燃え尽きたかどうか
     private Rigidbody rb; // 物理挙動のためのRigidbodyコンポーネント
     private bool IsRightFacing = true;
@@ -95,7 +95,7 @@ public class Candle : MonoBehaviour
                 foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
 
-            if (CanJump && Mathf.Abs(rb.velocity.y) < 0.5f)
+            if (IsGrounded && Mathf.Abs(rb.velocity.y) < 0.5f)
             {
                 foreach (Animator animator in animatorList)
                 {
@@ -107,6 +107,10 @@ public class Candle : MonoBehaviour
                 foreach (Animator animator in animatorList)
                 {
                     animator.SetBool("InAir", true);
+                }
+                if (IsGoingUp && rb.velocity.y < -0.1f)
+                {
+                    IsGoingUp = false;
                 }
             }
         }
@@ -171,12 +175,12 @@ public class Candle : MonoBehaviour
     public void Jump() // ロウソクをジャンプさせる
     {
         float jumpPower = Mathf.Lerp(minJumpPower, maxJumpPower, 1.0f - life / startLife); // ライフに応じてジャンプ力を計算
-        if (CanJump && Mathf.Abs(rb.velocity.y) < 0.1f)
+        if (IsGrounded && Mathf.Abs(rb.velocity.y) < 0.1f)
         {
             fire.JumpSE_Func();
             rb.velocity = Vector3.up * jumpPower; // ジャンプ力を適用
-            CanJump = false; // 衝突が再び検出されるまでジャンプ不可にする
-            CanStopJump = true;
+            IsGrounded = false; // 衝突が再び検出されるまでジャンプ不可にする
+            IsGoingUp = true;
             foreach (Animator animator in animatorList)
             {
                 animator.SetBool("InAir", true);
@@ -186,10 +190,10 @@ public class Candle : MonoBehaviour
 
     public void StopJump()
     {
-        if (CanStopJump && rb.velocity.y > 0.1f)
+        if (IsGoingUp && rb.velocity.y > 0.1f)
         {
             rb.velocity *= 0.3f;
-            CanStopJump = false;
+            IsGoingUp = false;
         }
     }
 
@@ -240,7 +244,6 @@ public class Candle : MonoBehaviour
         body.transform.localScale = ls;
         hand.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 腕を画面外に移動
         foot.transform.position = new Vector3(0.0f, -100.0f, 0.0f); // 足を画面外に移動
-        //StopJump();
         if (CurrentHPbar != null)
         {
             CurrentHPbar.value = 1;//HPバーリセット
@@ -276,7 +279,7 @@ public class Candle : MonoBehaviour
             StopAnimation();
             PauseRigidbody();
             isPaused = true;
-            CanStopJump = false;
+            IsGoingUp = false;
         }
     }
 
@@ -350,7 +353,7 @@ public class Candle : MonoBehaviour
 
     public bool GetCanJump() // ジャンプ可能か
     {
-        return CanJump && Mathf.Abs(rb.velocity.y) < 0.5f;
+        return IsGrounded && Mathf.Abs(rb.velocity.y) < 0.5f;
     }
 
     void OnCollisionEnter(Collision other)
@@ -360,7 +363,7 @@ public class Candle : MonoBehaviour
         {
             if (contact.normal.y > 0.5f)
             {
-                CanJump = true;
+                IsGrounded = true;
                 foreach (Animator animator in animatorList)
                 {
                     animator.SetBool("InAir", false);

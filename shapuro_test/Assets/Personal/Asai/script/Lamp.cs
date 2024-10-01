@@ -17,7 +17,7 @@ public class Lamp : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Fire" && IsBurning == false && player.GetIsCandle())
+        if (other.gameObject.name == "Fire" && IsBurning == false && player.GetIsOnCandle())
         {
             IsBurning = true;
             fire.GetComponent<SpriteRenderer>().enabled = true; // 点火する
