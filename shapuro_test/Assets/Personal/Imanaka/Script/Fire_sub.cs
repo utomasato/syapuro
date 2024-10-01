@@ -8,11 +8,11 @@ public class Fire_sub : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (!parent.JudgeCandle && other.gameObject.CompareTag("FirePosition")) // 火の玉状態で蝋燭に当たったら
+        if (!parent.GetIsOnCandle() && other.gameObject.CompareTag("FirePosition")) // 火の玉状態で蝋燭に当たったら
         {
             parent.Transfer(other.gameObject.GetComponent<Candlewick>());
         }
-        if (!parent.JudgeCandle && other.gameObject.CompareTag("candle")) // 火の玉状態で蝋燭に当たったら
+        if (!parent.GetIsOnCandle() && other.gameObject.CompareTag("candle")) // 火の玉状態で蝋燭に当たったら
         {
             parent.Transfer(other.gameObject.GetComponent<Candle>());
         }

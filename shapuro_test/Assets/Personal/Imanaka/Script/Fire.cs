@@ -24,7 +24,7 @@ public class Fire : MonoBehaviour
 
     private float Firetime;//火の玉状態になってからの生存期間
 
-    private bool IsCandle = true;//ロウソクに炎がついているか
+    private bool IsOnCandle = true;//ロウソクに炎がついているか
     private bool IsNormal = true;//火の大きさが普通かどうか
 
     private bool DidWarning = false;//警告音を出したか
@@ -104,7 +104,7 @@ public class Fire : MonoBehaviour
         {
             FlyFire();
         }
-        if (IsCandle)//炎がロウソクについている時
+        if (IsOnCandle)//炎がロウソクについている時
         {
             transform.position = CandleScript.GetHeadPosition();
 
@@ -114,7 +114,7 @@ public class Fire : MonoBehaviour
             gaugeControllor.UpdateCandleGauge(CandleScript.GetLife()); // 20240803 宇藤追加
             footer.SetJumpTextGrayOut(!CandleScript.GetCanJump());
         }
-        if (!IsCandle)//炎がロウソクについてないとき
+        if (!IsOnCandle)//炎がロウソクについてないとき
         {
             gaugeControllor.UpdateCandleGauge(CandleScript.GetLife()); // 20240803 宇藤追加
             gaugeControllor.UpdateFireGauge(1.0f - Firetime / SurviveTime);
@@ -140,8 +140,6 @@ public class Fire : MonoBehaviour
                 SE2.time = 1.5f;
             }
         }
-        Debug.Log(Input.GetAxis("JoyVertical"));
-
     }
 
     void BigFire()
@@ -242,7 +240,7 @@ public class Fire : MonoBehaviour
     public void FlyFire()//蝋燭から離れる
     {
         gameTransferSE();
-        IsCandle = false;
+        IsOnCandle = false;
         transform.localScale = new Vector3(1, 1, 1);
         transform.position += new Vector3(0, 0, -1);
 
@@ -310,7 +308,7 @@ public class Fire : MonoBehaviour
             gameState.GameOver();
         }
         //   DidWarning = false;
-        IsCandle = true;
+        IsOnCandle = true;
         CandleScript.WakeUp();
         transform.localScale = StartScale;
         gaugeControllor.SetCandleGaugeGrayOut(false); // 20240803 宇藤追加
@@ -334,7 +332,7 @@ public class Fire : MonoBehaviour
             gameState.GameOver();
         }
         //   DidWarning = false;
-        IsCandle = true;
+        IsOnCandle = true;
         CandleScript.WakeUp();
         transform.localScale = StartScale;
         gaugeControllor.SetCandleGaugeGrayOut(false); // 20240803 宇藤追加
@@ -364,16 +362,9 @@ public class Fire : MonoBehaviour
             return Input.GetKey(key);
     }
 
-    public bool GetIsCandle()
+    public bool GetIsOnCandle()
     {
-        return IsCandle;
-    }
-
-
-    public bool JudgeCandle //ロウソクについているか
-    {
-        get { return IsCandle; }
-        set { IsCandle = value; }
+        return IsOnCandle;
     }
 
     public bool JudgeIsChange//転生準備完了したか
@@ -382,10 +373,11 @@ public class Fire : MonoBehaviour
         set { IsChangeCandle = value; }
     }
 
-    public Candle UseCandle()//どのロウソクを使用しているか
+    public Candle GetCandle()
     {
         return CandleScript;
     }
+
     public void Deletefire()//ゲームオーバーに？？
     {
         PL.SetActive(false);
@@ -394,15 +386,6 @@ public class Fire : MonoBehaviour
     public bool getIsNormal()
     {
         return IsNormal;
-    }
-    public bool CanLampOn()
-    {
-        return IsCandle;
-    }
-
-    public Candle GetCandle()
-    {
-        return CandleScript;
     }
 
     public float GetBurnRate => BurnRate;

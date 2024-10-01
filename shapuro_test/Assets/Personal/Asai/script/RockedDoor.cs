@@ -14,7 +14,7 @@ public class RockedDoor : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Fire" && Rock == true && fire_script.GetIsCandle())
+        if (other.gameObject.name == "Fire" && Rock == true && fire_script.GetIsOnCandle())
         {
             transform.position += new Vector3(0, Asai_testx * Time.deltaTime, 0);
         }

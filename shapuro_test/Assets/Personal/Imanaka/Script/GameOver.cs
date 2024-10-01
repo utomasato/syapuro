@@ -45,7 +45,7 @@ public class GameOver : MonoBehaviour
 
     public void GameOverSystem()
     {
-        candle = fire.UseCandle();//使用しているキャンドルのスクリプトを使用
+        candle = fire.GetCandle();//使用しているキャンドルのスクリプトを使用
 
         GameOverCanvas.SetActive(true);
         if (SampleCoroutine == null)

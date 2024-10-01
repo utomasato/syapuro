@@ -26,7 +26,7 @@ public class fireWall : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Fire" && FireStart == false && fire_script.GetIsCandle())
+        if (other.gameObject.name == "Fire" && FireStart == false && fire_script.GetIsOnCandle())
         {
             time += Time.deltaTime;
             if (time >= 1)
