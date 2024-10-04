@@ -114,10 +114,13 @@ public class Candle : MonoBehaviour
                 }
                 if (Mathf.Abs(rb.velocity.y) < 0.1f) // 上下動が小さい時
                 {
-                    IsGrounded = Physics.Raycast(transform.position, Vector3.down, transform.localScale.y / 2f);
-                    foreach (Animator animator in animatorList)
+                    if (Physics.Raycast(transform.position, Vector3.down, transform.localScale.y / 2f))
                     {
-                        animator.SetBool("InAir", false);
+                        IsGrounded = true;
+                        foreach (Animator animator in animatorList)
+                        {
+                            animator.SetBool("InAir", false);
+                        }
                     }
                 }
             }
