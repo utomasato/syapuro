@@ -95,22 +95,30 @@ public class Candle : MonoBehaviour
                 foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
             }
 
-            if (IsGrounded && Mathf.Abs(rb.velocity.y) < 0.5f)
+            if (IsGrounded && Mathf.Abs(rb.velocity.y) < 0.5f) // 接地している時
             {
                 foreach (Animator animator in animatorList)
                 {
                     animator.SetBool("InAir", false);
                 }
             }
-            else
+            else // 接地していない時
             {
                 foreach (Animator animator in animatorList)
                 {
                     animator.SetBool("InAir", true);
                 }
-                if (IsGoingUp && rb.velocity.y < -0.1f)
+                if (IsGoingUp && rb.velocity.y < -0.1f) // 下降に転じた時
                 {
                     IsGoingUp = false;
+                }
+                if (Mathf.Abs(rb.velocity.y) < 0.1f) // 上下動が小さい時
+                {
+                    IsGrounded = Physics.Raycast(transform.position, Vector3.down, transform.localScale.y / 2f);
+                    foreach (Animator animator in animatorList)
+                    {
+                        animator.SetBool("InAir", false);
+                    }
                 }
             }
         }
