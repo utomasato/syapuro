@@ -147,4 +147,6 @@ public class SceneChange : MonoBehaviour
         fadeColor.a = 1;
         fadeImage.color = fadeColor;
     }
+
+    public bool IsFadeNow => IsFadeInNow || IsFadeOutNow;
 }

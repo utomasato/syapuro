@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class StageSelect : MonoBehaviour
@@ -14,7 +12,6 @@ public class StageSelect : MonoBehaviour
     float t = 0.0f; // 補間のための時間
     int p0; // 現在の位置
     [SerializeField] Vector3 startPos; // スタート位置
-    //[SerializeField] private List<string> Stagelist; // ステージのリスト
     [SerializeField] private SceneChange sceneChange;
     bool IsNoSelect = false; // 何も選んでいない
     float p;
@@ -31,27 +28,29 @@ public class StageSelect : MonoBehaviour
     [SerializeField] private string[] sl = { "easy", "hard" };
 
     //[SerializeField] private List<TextMeshProUGUI> lampCounters;
+    /*
+        [System.Serializable]
+        public struct StageData
+        {
+            [SerializeField] private int stageID;
+            [SerializeField] private string stageName;
+            [SerializeField] private string stageScene;
+            [SerializeField] private int maxLampCount;
+            public TextMeshProUGUI StageNameTMP;
+            public TextMeshProUGUI StageModeTMP;
+            [SerializeField] private List<DisplayLamp> lampList;
+            public GameObject canvas;
+            public GameObject stoveFire;
 
-    [System.Serializable]
-    public struct StageData
-    {
-        [SerializeField] private int stageID;
-        [SerializeField] private string stageName;
-        [SerializeField] private string stageScene;
-        [SerializeField] private int maxLampCount;
-        public TextMeshProUGUI StageNameTMP;
-        public TextMeshProUGUI StageModeTMP;
-        [SerializeField] private List<DisplayLamp> lampList;
-        public GameObject canvas;
-        public GameObject stoveFire;
-
-        public int StageID => stageID;
-        public string StageName => stageName;
-        public string StageScene => stageScene;
-        public int MaxLampCount => maxLampCount;
-        public List<DisplayLamp> LampList => lampList;
-    }
-    [SerializeField] private List<StageData> stageList;
+            public int StageID => stageID;
+            public string StageName => stageName;
+            public string StageScene => stageScene;
+            public int MaxLampCount => maxLampCount;
+            public List<DisplayLamp> LampList => lampList;
+        }
+        [SerializeField] private List<StageData> stageList;
+    */
+    [SerializeField] private List<Stage> stageList;
 
 
     AudioSource SE;
@@ -90,7 +89,7 @@ public class StageSelect : MonoBehaviour
             //sceneChange.StartFadeIn();
             animator.SetBool("Moving", false);
             footer.ActivateInstructionTexts();
-            stageList[selectNumber].canvas.SetActive(true);
+            stageList[selectNumber].ShowDisplay();
         }
 
         IsMoving = false; // 移動中フラグをリセット
@@ -99,7 +98,7 @@ public class StageSelect : MonoBehaviour
 
         for (int i = 0; i < stageList.Count; i++)
         {
-            UpdateCanvas(i);
+            stageList[i].UpdateDisplay();
         }
         IsPause = false;
         IsSelected = false;
@@ -117,7 +116,7 @@ public class StageSelect : MonoBehaviour
                 animator.SetBool("Moving", false);
                 footer.ActivateInstructionTexts();
                 //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
-                stageList[selectNumber].canvas.SetActive(true);
+                stageList[selectNumber].ShowDisplay();
             }
             Vector3 pos = transform.position;
             pos.x = Mathf.Lerp(p, startPos.x, t); // 補間を用いてX座標を計算
@@ -128,12 +127,12 @@ public class StageSelect : MonoBehaviour
         if (!IsMoving && !IsPause)
         {
             // 右キーが押された場合
-            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyHorizontal") > 0.5f) && selectNumber + 1 < stageList.Count)
+            if ((Input.GetKeyDown(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("JoyHorizontal") > 0.5f))
             {
                 Move(1);
             }
             // 左キーが押された場合
-            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.5f) && 0 < selectNumber)
+            if ((Input.GetKeyDown(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("JoyHorizontal") < -0.5f))
             {
                 Move(-1);
             }
@@ -143,7 +142,7 @@ public class StageSelect : MonoBehaviour
                 SceneSelectionState.mode = 1;
                 for (int i = 0; i < stageList.Count; i++)
                 {
-                    UpdateCanvas(i);
+                    stageList[i].UpdateDisplay();
                 }
             }
             else if ((Input.GetKeyDown(KeyCode.S) || Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("JoyVertical") < -0.9f))
@@ -151,7 +150,7 @@ public class StageSelect : MonoBehaviour
                 SceneSelectionState.mode = 0;
                 for (int i = 0; i < stageList.Count; i++)
                 {
-                    UpdateCanvas(i);
+                    stageList[i].UpdateDisplay();
                 }
             }
 
@@ -176,7 +175,7 @@ public class StageSelect : MonoBehaviour
                 animator.SetBool("Moving", false);
                 footer.ActivateInstructionTexts();
                 //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
-                stageList[selectNumber].canvas.SetActive(true);
+                stageList[selectNumber].ShowDisplay();
             }
             Vector3 pos = transform.position;
             pos.x = startPos.x + Mathf.Lerp(p0 * interval, selectNumber * interval, t); // 補間を用いてX座標を計算
@@ -217,50 +216,27 @@ public class StageSelect : MonoBehaviour
             Save.Reset();
             for (int i = 0; i < stageList.Count; i++)
             {
-                UpdateCanvas(i);
+                stageList[i].UpdateDisplay();
             }
         }
     }
 
     public void Move(int delta)
     {
-        stageList[selectNumber].canvas.SetActive(false);
-        selectNumber += delta; // 選択番号を増やす
-        IsMoving = true; // 移動中フラグを設定
-        t = 0.0f; // 補間の時間をリセット
-        animator.SetBool("Moving", true);
-        footer.GrayOutInstructionTexts();
-        //transform.position -= new Vector3(0.0f, 0.1f, 0.0f);
-        Vector3 ls = transform.localScale;
-        if (delta > 0) ls.x = 1.0f;
-        else ls.x = -1.0f;
-        transform.localScale = ls;
-    }
-
-    private void UpdateCanvas(int stageNumber)
-    {
-        stageList[stageNumber].StageNameTMP.text = stageList[stageNumber].StageName;
-        stageList[stageNumber].StageModeTMP.text = sl[SceneSelectionState.mode];
-        foreach (DisplayLamp lamp in stageList[stageNumber].LampList)
+        Debug.Log(selectNumber);
+        if (0 <= selectNumber + delta && selectNumber + delta < stageList.Count)
         {
-            lamp.Extinguishment();
-        }
-        for (int i = 0; i < Save.saveData.lampCounts[stageList[stageNumber].StageID * 2 + SceneSelectionState.mode]; i++)
-        {
-            stageList[stageNumber].LampList[i].Ignition();
-        }
-        GameObject stove = stageList[stageNumber].stoveFire;
-        if (Save.saveData.clearedList[stageList[stageNumber].StageID * 2 + SceneSelectionState.mode])
-        {
-            stove.SetActive(true);
-            if (Save.saveData.lampCounts[stageList[stageNumber].StageID * 2 + SceneSelectionState.mode] == stageList[stageNumber].MaxLampCount)
-                stove.transform.localScale = new Vector3(1f, 1f, 1f);
-            else
-                stove.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        }
-        else
-        {
-            stove.SetActive(false);
+            stageList[selectNumber].HideDisplay();
+            selectNumber += delta; // 選択番号を増やす
+            IsMoving = true; // 移動中フラグを設定
+            t = 0.0f; // 補間の時間をリセット
+            animator.SetBool("Moving", true);
+            footer.GrayOutInstructionTexts();
+            //transform.position -= new Vector3(0.0f, 0.1f, 0.0f);
+            Vector3 ls = transform.localScale;
+            if (delta > 0) ls.x = 1.0f;
+            else ls.x = -1.0f;
+            transform.localScale = ls;
         }
     }
 
