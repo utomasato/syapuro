@@ -8467,6 +8467,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3165401360812916034, guid: d2103103bac2844c1b2f68cb7be1f60b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3165401361148729067, guid: d2103103bac2844c1b2f68cb7be1f60b, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
@@ -8563,6 +8567,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 312465510}
+    - target: {fileID: 3487931774869965484, guid: d2103103bac2844c1b2f68cb7be1f60b, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5154583700258767711, guid: d2103103bac2844c1b2f68cb7be1f60b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
