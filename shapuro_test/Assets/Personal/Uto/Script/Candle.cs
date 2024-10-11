@@ -6,6 +6,7 @@ public class Candle : MonoBehaviour
 {
     [SerializeField] private float startLife; // 初期ライフ
     private float life; // 現在のライフ
+    [SerializeField] private float panicLife; // 焦り出すライフ
     [SerializeField] private float startSize; // 初期サイズ
     private float size; // 現在のサイズ 
     [SerializeField] private float minJumpPower, maxJumpPower; // 最小ジャンプ力と最大ジャンプ力
@@ -35,10 +36,12 @@ public class Candle : MonoBehaviour
     private float speed;
     private float animationSpeed;
     private bool animatiorIsPlaying = true;
+    [SerializeField] private Animator effectAnimator;
 
     private Vector3 savedVelocity;
     private Vector3 savedAngularVelocity;
     private bool isPaused = false;
+    private bool effectActive = false;
 
     [SerializeField] float BurningSpeedInTheFlameWall;
 
@@ -140,6 +143,12 @@ public class Candle : MonoBehaviour
             if (!IsBurnOut) BurnOut(); // ライフが0になったら燃え尽き処理を実行
             return;
         }
+        if (!effectActive && life <= panicLife)
+        {
+            effectAnimator.Play("PanicEffect");
+            effectActive = true;
+        }
+
         Vector3 ls = transform.localScale; // ローカルスケールを更新
         ls.y = size;
         /* if (ls.y <= 1.0)
@@ -223,13 +232,17 @@ public class Candle : MonoBehaviour
         ls.y = size + footSize; // 足の大きさに応じてローカルスケールを調整
         transform.localScale = ls;
 
-
         foreach (Animator animator in animatorList) // 蝋燭の見た目を憑依状態にする
         {
             animator.SetBool("IsBurning", true);
             animator.SetBool("InAir", false);
             animator.SetFloat("speed", 0f);
             animator.Play("Stop");
+        }
+
+        if (effectActive)
+        {
+            effectAnimator.Play("PanicEffect");
         }
     }
 
@@ -265,6 +278,7 @@ public class Candle : MonoBehaviour
             animator.SetBool("IsBurning", false);
             animator.SetBool("InAir", false);
         }
+        effectAnimator.Play("Stop");
     }
 
     private void BurnOut() // ロウソクの燃え尽き処理
@@ -314,6 +328,7 @@ public class Candle : MonoBehaviour
             animator.speed = 0.0f;
         }
         animatiorIsPlaying = false;
+        effectAnimator.speed = 0.0f;
     }
 
     private void PlayAnimation() // アニメーションを再生する
@@ -323,6 +338,7 @@ public class Candle : MonoBehaviour
             animator.speed = animationSpeed;
         }
         animatiorIsPlaying = true;
+        effectAnimator.speed = 1.0f;
     }
 
     private void PauseRigidbody()
