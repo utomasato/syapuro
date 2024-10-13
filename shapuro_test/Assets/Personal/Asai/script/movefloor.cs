@@ -185,20 +185,4 @@ public class movefloor : MonoBehaviour
         //Debug.Log("x = " + transform.position.x.ToString() + " p = " + p.x.ToString() + " xdif = " + (transform.position.x - p.x).ToString());
         transform.position = p;
     }
-    private void OnCollisionEnter(Collision other)
-    {
-        if (other.gameObject.CompareTag("candle"))
-        {
-            // 触れたobjの親を移動床にする
-            other.transform.SetParent(transform);
-        }
-    }
-    private void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.CompareTag("candle"))
-        {
-            // 触れたobjの親をなくす
-            other.transform.SetParent(null);
-        }
-    }
 }
