@@ -41,10 +41,9 @@ public class Candle : MonoBehaviour
     private Vector3 savedVelocity;
     private Vector3 savedAngularVelocity;
     private bool isPaused = false;
-    private bool effectActive = false;
+    private bool IsPanic = false;
 
     [SerializeField] float BurningSpeedInTheFlameWall;
-
 
     void Start()
     {
@@ -94,8 +93,17 @@ public class Candle : MonoBehaviour
             head.transform.position = body.transform.position + new Vector3(0.0f, size / 2.0f, 0.0f);
             if (speed == 0.0f)
             {
-                body.transform.position += new Vector3(0.0f, 0.1f - (1.3f - size) * 0.2f, 0.0f);
-                foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+                if (!IsPanic)
+                {
+                    body.transform.position += new Vector3(0.0f, 0.1f - (1.3f - size) * 0.2f, 0.0f);
+                    foot.transform.position += new Vector3(0.0f, 0.1f, 0.0f);
+                }
+                else
+                {
+                    body.transform.position += new Vector3(0.0f, -0.05f + (1.3f - size) * 0.07f, 0.0f);
+                    head.transform.position += new Vector3(0.0f, -0.1f, 0.0f);
+                }
+
             }
 
             if (IsGrounded && Mathf.Abs(rb.velocity.y) < 0.5f) // 接地している時
@@ -143,10 +151,16 @@ public class Candle : MonoBehaviour
             if (!IsBurnOut) BurnOut(); // ライフが0になったら燃え尽き処理を実行
             return;
         }
-        if (!effectActive && life <= panicLife)
+        if (!IsPanic && life <= panicLife)
         {
             effectAnimator.Play("PanicEffect");
-            effectActive = true;
+            IsPanic = true;
+            foreach (Animator animator in animatorList)
+            {
+                animator.Play("Stop");
+                animator.Play("PanicStop");
+            }
+
         }
 
         Vector3 ls = transform.localScale; // ローカルスケールを更新
@@ -237,10 +251,14 @@ public class Candle : MonoBehaviour
             animator.SetBool("IsBurning", true);
             animator.SetBool("InAir", false);
             animator.SetFloat("speed", 0f);
-            animator.Play("Stop");
+
+            if (IsPanic)
+                animator.Play("PanicStop");
+            else
+                animator.Play("Stop");
         }
 
-        if (effectActive)
+        if (IsPanic)
         {
             effectAnimator.Play("PanicEffect");
         }
