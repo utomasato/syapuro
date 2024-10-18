@@ -13,6 +13,8 @@ public class StageSelect : MonoBehaviour
     int p0; // 現在の位置
     [SerializeField] Vector3 startPos; // スタート位置
     [SerializeField] private SceneChange sceneChange;
+    [SerializeField] private GameObject cameraObj;
+    private Vector3 cameraStartPos;
     bool IsNoSelect = false; // 何も選んでいない
     float p;
     bool IsPause;
@@ -67,6 +69,7 @@ public class StageSelect : MonoBehaviour
         SE = GetComponent<AudioSource>();
         SE.volume = 0.1f;
         BGM = GetComponent<AudioSource>();
+        cameraStartPos = cameraObj.transform.position;
         if (SceneSelectionState.selectedIndex == -1)
         {
             p0 = 0; // 初期位置を0に設定
@@ -102,6 +105,8 @@ public class StageSelect : MonoBehaviour
         }
         IsPause = false;
         IsSelected = false;
+
+        cameraObj.transform.position += new Vector3(0f, selectNumber * interval, 0f);
     }
 
     void Update()
@@ -176,10 +181,14 @@ public class StageSelect : MonoBehaviour
                 footer.ActivateInstructionTexts();
                 //transform.position += new Vector3(0.0f, 0.1f, 0.0f);
                 stageList[selectNumber].ShowDisplay();
+                cameraObj.transform.position = cameraStartPos + new Vector3(selectNumber / 3 * interval * 3, 0f, 0f);
             }
             Vector3 pos = transform.position;
             pos.x = startPos.x + Mathf.Lerp(p0 * interval, selectNumber * interval, t); // 補間を用いてX座標を計算
             transform.position = pos; // 新しい位置を設定
+            pos = cameraObj.transform.position;
+            pos.x = cameraStartPos.x + Mathf.Lerp(p0 / 3 * interval * 3, selectNumber / 3 * interval * 3, t);
+            cameraObj.transform.position = pos;
         }
 
         GameObject currentSelected = EventSystem.current.currentSelectedGameObject; // 現在選択されているUI要素を取得
@@ -223,7 +232,7 @@ public class StageSelect : MonoBehaviour
 
     public void Move(int delta)
     {
-        Debug.Log(selectNumber);
+        //Debug.Log(selectNumber);
         if (0 <= selectNumber + delta && selectNumber + delta < stageList.Count)
         {
             stageList[selectNumber].HideDisplay();
