@@ -15,7 +15,7 @@ public class keycreate : MonoBehaviour
     }
     void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Fire" && Input.GetKey(KeyCode.Space) && RockedDoor.Rock == false && fire_script.GetIsOnCandle())
+        if (other.gameObject.name == "Fire" && (Input.GetKey("left " + KeyBindings.DashKay) || Input.GetKey("right " + KeyBindings.DashKay) || Input.GetKey(KeyBindings.DashButton))/*Input.GetKey(KeyCode.Space)*/ && RockedDoor.Rock == false && fire_script.GetIsOnCandle())
         {
             Createkey();
         }
