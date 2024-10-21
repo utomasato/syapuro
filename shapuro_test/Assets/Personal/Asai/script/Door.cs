@@ -13,7 +13,7 @@ public class Door : MonoBehaviour
             test.gameObject.SetActive(false);
         }
     }
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.gameObject.name == "Fire" && fire_script.GetIsOnCandle())
         {
