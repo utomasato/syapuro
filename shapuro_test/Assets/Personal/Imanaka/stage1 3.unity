@@ -818,7 +818,6 @@ MonoBehaviour:
   Background: {fileID: 531590464}
   ClearText: {fileID: 1968589712}
   ScoreParents: {fileID: 1662565987}
-  RankText: {fileID: 1757314019}
   Button: {fileID: 230780878}
   PLFire: {fileID: 1703191838}
   lamp: {fileID: 5370332940987848758, guid: c0f859cfb5b614290b444a6153cdf30d, type: 3}
@@ -2065,7 +2064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 585118061545729643, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585118061545729655, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_Pivot.x
@@ -2158,10 +2157,6 @@ PrefabInstance:
     - target: {fileID: 1610388285517167155, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2449342375547825183, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4970789696420924582, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4577,17 +4572,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710014182}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1757314019 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8246093224492576348, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
-  m_PrefabInstance: {fileID: 820558998}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1766548018
 GameObject:
   m_ObjectHideFlags: 0

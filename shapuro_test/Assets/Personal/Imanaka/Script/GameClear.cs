@@ -16,7 +16,10 @@ public class GameClear : MonoBehaviour
     [SerializeField]
     private GameObject ScoreParents;//スコア表示の親オブジェクト
     [SerializeField]
+    private TMP_Text RankText;
+    [SerializeField]
     private GameObject Button;
+
     [SerializeField]
     private GameObject PLFire;//プレイヤー
 
@@ -35,6 +38,8 @@ public class GameClear : MonoBehaviour
     // private GameObject Lamp;//仮
     void Start()
     {
+        ClearedCanvas.SetActive(true);
+
         ClearedCanvas.SetActive(false);
         GameClearAssets = new GameObject[] { ClearText, ScoreParents, Button };
         foreach (GameObject asset in GameClearAssets)
@@ -52,6 +57,10 @@ public class GameClear : MonoBehaviour
 
         InitializeLamp(state.GetMaxLamp());
         ClearedCanvas.SetActive(true);
+        if (RankText != null)
+        {
+            RankText.text = state.Rank(RankText);
+        }
         if (SampleCoroutine == null)
         {
             SampleCoroutine = StartCoroutine(GameCoroutine(1.0f, GameClearAssets));
@@ -90,34 +99,15 @@ public class GameClear : MonoBehaviour
 
     void InitializeLamp(int lampCount)
     {
-        /*
-        /*今だけ無理矢理修正しています* /
-        GameObject lamp = GameObject.Find("lamp (1)");
-        float ScreenHeight = Screen.height;
-        float ScreenWidth = 30;
 
-        float Space = ScreenWidth / (lampCount + 1); // +1で両端に余白を追加
-
-        for (int i = 0; i < lampCount; i++)
-        {
-            GameObject LampInstance = Instantiate(lamp);
-            LampInstance.transform.localScale *= 3f;
-
-            // Lampのx座標を計算し、等間隔に配置
-            float xPos = Space * (i + 1);
-
-            // LampのTransformを設定
-            LampInstance.transform.position = new Vector3(xPos - 13, 4, -17);
-        }
-        */
         for (int i = 0; i < lampCount; i++)
         {
             GameObject LampInstance = Instantiate(lamp, ScoreParents.transform);
             RectTransform lampTransform = LampInstance.GetComponent<RectTransform>();
             Vector3 pos = lampTransform.anchoredPosition;
-            float interval = Mathf.Lerp(minInterval, maxInterval, 1f - lampCount / 10f);
-            pos.x = -(lampCount - 1) * interval / 2 + i * interval;
-            pos.y = 16f;
+            float interval = Mathf.Lerp(minInterval, maxInterval, 1f - lampCount / 2f);
+            pos.x = -(lampCount + 1) * interval / 2 + i * interval;
+            pos.y = 40f;
             lampTransform.anchoredPosition = pos;
 
             foreach (RectTransform child in LampInstance.GetComponentsInChildren<RectTransform>())
