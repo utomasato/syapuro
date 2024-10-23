@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fire_sub : MonoBehaviour
 {
     [SerializeField] private Fire parent;
+    [SerializeField] private LayerMask layerMask;
 
     private void OnTriggerStay(Collider other)
     {
@@ -20,9 +21,30 @@ public class Fire_sub : MonoBehaviour
         {
             parent.Deletefire();
         }
-        if (other.gameObject.CompareTag("wind"))
+        if (other.gameObject.CompareTag("wind")) // 風エリアに入ったら
         {
-            if (parent.getIsNormal()) parent.Deletefire();
+            if (parent.getIsNormal()) // ダッシュ中でない
+            {
+                Ray[] rays = {
+                    new Ray(transform.position+new Vector3(transform.localScale.x*0.5f,transform.localScale.y*0.5f,0f), -other.gameObject.transform.up),
+                    new Ray(transform.position+new Vector3(-transform.localScale.x*0.5f,transform.localScale.y*0.5f,0f), -other.gameObject.transform.up),
+                    new Ray(transform.position+new Vector3(transform.localScale.x*0.5f,-transform.localScale.y*0.5f,0f), -other.gameObject.transform.up),
+                    new Ray(transform.position+new Vector3(-transform.localScale.x*0.5f,-transform.localScale.y*0.5f,0f), -other.gameObject.transform.up)
+                };
+                RaycastHit hit;
+                foreach (Ray ray in rays)
+                {
+                    if (Physics.Raycast(ray, out hit, 20f, layerMask)) // 風が来る方向にレイを飛ばす
+                    {
+                        if (hit.collider.gameObject.layer == 8) // 扇風機に例が当たったら
+                        {
+                            Debug.Log("Raycast:" + hit.collider.name);
+                            parent.Deletefire();
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 }
