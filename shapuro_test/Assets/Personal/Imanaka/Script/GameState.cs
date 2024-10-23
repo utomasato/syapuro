@@ -291,6 +291,35 @@ public class GameState : MonoBehaviour
         yield return null; // 1フレーム待つ
         action?.Invoke(); // 渡された処理を実行
     }
+
+    public string Rank(TMP_Text text)
+    {
+        float lampPercentage = (float)LampCount / MaxLampPerStage;
+        Debug.Log(lampPercentage);
+        if (lampPercentage == 1.0f)
+        {
+            text.text = "S";  // すべてのランプをつけた場合
+        }
+        else if (lampPercentage >= 0.7f)
+        {
+            text.text = "A";
+        }
+        else if (lampPercentage >= 0.5f)
+        {
+            text.text = "B";
+        }
+        else if (lampPercentage >= 0.2f)
+        {
+            text.text = "C";
+        }
+        else
+        {
+            text.text = "D";
+        }
+
+        return text.text;
+    }
+
     public void TutorialBGM()
     {
         BGM.clip = GameBGM_Tutorial;
