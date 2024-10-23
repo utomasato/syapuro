@@ -15,7 +15,7 @@ public class GameState : MonoBehaviour
     [SerializeField]
     private int MaxLampPerStage = 0;//ステージごとのランプ個数
 
-    [SerializeField] private Fire plyer;
+    [SerializeField] private Fire player;
     [SerializeField] private SpriteRenderer GoalFire;
     [SerializeField] private GaugeController gaugeController;
     [SerializeField] private GameClear gameClear;
@@ -157,7 +157,7 @@ public class GameState : MonoBehaviour
         beforePauseButton = EventSystem.current.currentSelectedGameObject;
         state = State.Pause;
         gamePauseSE();
-        plyer.GetCandle().Pause();
+        player.GetCandle().Pause();
         pause.PauseSystem();
 
     }
@@ -169,7 +169,7 @@ public class GameState : MonoBehaviour
         {
             gameButtonSE();
             state = beforePauseState;
-            plyer.GetCandle().Resume();
+            player.GetCandle().Resume();
             pause.ResumeSystem();
             lastSelectedButton = null;
             EventSystem.current.SetSelectedGameObject(beforePauseButton);
@@ -181,14 +181,14 @@ public class GameState : MonoBehaviour
     {
         beforePauseState = state;
         state = State.Explain;
-        plyer.GetCandle().Pause();
+        player.GetCandle().Pause();
 
     }
 
     public void CloseExplain()//20240811uto
     {
         state = beforePauseState;
-        plyer.GetCandle().Resume();
+        player.GetCandle().Resume();
 
     }
 

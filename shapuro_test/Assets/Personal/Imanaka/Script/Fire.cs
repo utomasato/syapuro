@@ -249,6 +249,7 @@ public class Fire : MonoBehaviour
         {
             CandleScript.Sleep();
         }
+        IsNormal = true;
         gaugeControllor.SetCandleGaugeGrayOut(true); // 20240803 宇藤追加
         footer.SwitchInstructionTexts(false);
     }
@@ -381,6 +382,7 @@ public class Fire : MonoBehaviour
     public void Deletefire()//ゲームオーバーに？？
     {
         PL.SetActive(false);
+        FlyFire();
         gameState.GameOver();
     }
     public bool getIsNormal()

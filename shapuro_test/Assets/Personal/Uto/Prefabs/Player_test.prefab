@@ -142,6 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 5921233088317968699}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 384
 --- !u!1 &436746013411857900
 GameObject:
   m_ObjectHideFlags: 0
