@@ -838,8 +838,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaef485f629cf4388bfd4a46ee4850e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxLampPerStage: 9
-  plyer: {fileID: 1010044247}
+  MaxLampPerStage: 0
+  player: {fileID: 0}
   GoalFire: {fileID: 9096930693743322684}
   gaugeController: {fileID: 661784891}
   gameClear: {fileID: 312465509}
