@@ -106,7 +106,7 @@ public class StageSelect : MonoBehaviour
         IsPause = false;
         IsSelected = false;
 
-        cameraObj.transform.position += new Vector3(0f, selectNumber * interval, 0f);
+        cameraObj.transform.position += new Vector3(selectNumber / 3 * interval * 3, 0f, 0f);
     }
 
     void Update()
