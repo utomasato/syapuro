@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageID: 3
-  stageScene: stage2
+  stageScene: stage3
   canvas: {fileID: 1061362317}
   stageName: Stage4
   maxLampCount: 7
