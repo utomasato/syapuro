@@ -47,4 +47,8 @@ public class Fire_sub : MonoBehaviour
             }
         }
     }
+    public bool getIsNormal()
+    {
+        return parent.getIsNormal();
+    }
 }
