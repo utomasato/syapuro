@@ -294,29 +294,34 @@ public class GameState : MonoBehaviour
 
     public string Rank(TMP_Text text)
     {
-        float lampPercentage = (float)LampCount / MaxLampPerStage;
-        Debug.Log(lampPercentage);
-        if (lampPercentage == 1.0f)
+        if (MaxLampPerStage == 0)
         {
-            text.text = "S";  // すべてのランプをつけた場合
-        }
-        else if (lampPercentage >= 0.7f)
-        {
-            text.text = "A";
-        }
-        else if (lampPercentage >= 0.5f)
-        {
-            text.text = "B";
-        }
-        else if (lampPercentage >= 0.2f)
-        {
-            text.text = "C";
+            text.text = "ー";
         }
         else
         {
-            text.text = "D";
+            float Judgelamp = (float)LampCount / MaxLampPerStage;
+            if (Judgelamp == 1.0f)
+            {
+                text.text = "S";  // すべてのランプをつけた場合
+            }
+            else if (Judgelamp >= 0.7f)
+            {
+                text.text = "A";
+            }
+            else if (Judgelamp >= 0.5f)
+            {
+                text.text = "B";
+            }
+            else if (Judgelamp >= 0.2f)
+            {
+                text.text = "C";
+            }
+            else
+            {
+                text.text = "D";
+            }
         }
-
         return text.text;
     }
 
