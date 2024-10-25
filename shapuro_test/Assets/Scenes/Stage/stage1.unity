@@ -839,7 +839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxLampPerStage: 9
-  plyer: {fileID: 1010044247}
+  player: {fileID: 1010044247}
   GoalFire: {fileID: 9096930693743322684}
   gaugeController: {fileID: 661784891}
   gameClear: {fileID: 312465509}

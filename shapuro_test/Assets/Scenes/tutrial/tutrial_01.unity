@@ -702,6 +702,7 @@ MonoBehaviour:
   Background: {fileID: 531590464}
   ClearText: {fileID: 1968589712}
   ScoreParents: {fileID: 1662565987}
+  RankText: {fileID: 0}
   Button: {fileID: 230780878}
   PLFire: {fileID: 1703191838}
   lamp: {fileID: 5370332940987848758, guid: c0f859cfb5b614290b444a6153cdf30d, type: 3}
@@ -722,7 +723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxLampPerStage: 0
-  plyer: {fileID: 1010044247}
+  player: {fileID: 1010044247}
   GoalFire: {fileID: 994884701}
   gaugeController: {fileID: 1675826847}
   gameClear: {fileID: 312465509}
