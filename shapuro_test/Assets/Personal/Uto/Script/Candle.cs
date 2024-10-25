@@ -450,6 +450,12 @@ public class Candle : MonoBehaviour
         {
             Shorten(BurningSpeedInTheFlameWall * fire.GetBurnRate);
         }
+        if (other.gameObject.CompareTag("through"))
+        {
+            Transform Parentobj = other.transform.parent;
+            Collider parent = Parentobj.GetComponent<Collider>();
+            parent.isTrigger = false;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -457,6 +463,12 @@ public class Candle : MonoBehaviour
         if (other.gameObject.CompareTag("fire") && gameState.JudgeState("GamePlay"))
         {
             fire.SEstop();
+        }
+        if (other.gameObject.CompareTag("through"))
+        {
+            Transform Parentobj = other.transform.parent;
+            Collider parent = Parentobj.GetComponent<Collider>();
+            parent.isTrigger = true;
         }
     }
 
