@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class balloon : MonoBehaviour
 {
-    public GameObject player;
+    public GameObject fire;
+    public GameObject parent;
     private bool isRise = false;
     private float t;
     private Vector3 rise;
@@ -13,28 +14,37 @@ public class balloon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        t = Time.deltaTime;
+        t += Time.deltaTime;
         if (t >= 0.1)
         {
             t = 0F;
             if (isRise)
             {
-                Debug.Log("OK");
-                rise = this.gameObject.transform.localPosition;
-                this.gameObject.transform.localPosition = new Vector3(rise.x, rise.y + 0.2F, rise.z);
-                rise = player.transform.localPosition;
-                player.transform.localPosition = new Vector3(rise.x, rise.y + 0.2F, rise.z);
-
+                rise = parent.gameObject.transform.localPosition;
+                parent.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * 2000);
+            }
+            else
+            {
+                parent.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * -400);
             }
         }
     }
-    void OnCollisionEnter(Collision other)
+
+    private void OnTriggerStay(Collider other)
     {
         Debug.Log("何かにぶつかった");
-        if (other.gameObject.Equals(player))
+        if (other.gameObject == fire)
         {
             Debug.Log("プレイヤー");
-            isRise = true;
+            if (!fire.GetComponent<Fire_sub>().getIsNormal())
+            {
+                Debug.Log("上昇");
+                isRise = true;
+            }
+            else
+            {
+                isRise = false;
+            }
         }
     }
 }
