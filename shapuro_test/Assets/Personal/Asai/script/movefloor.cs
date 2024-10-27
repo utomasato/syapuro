@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class movefloor : MonoBehaviour
 {
+    public GameState GameState;
     enum MoveDirection
     {
         x = 0,
@@ -78,7 +79,10 @@ public class movefloor : MonoBehaviour
 
     private void FixedUpdate()
     {
-        time += Time.deltaTime;
+        if (!GameState.JudgeState("Pause"))
+        {
+            time += Time.deltaTime;
+        }
         if ((len + sv) * 2 <= time * velocity)
         {
             time -= (len + sv) * 2 / velocity;
