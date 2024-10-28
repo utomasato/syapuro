@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class leverdoor : MonoBehaviour
 {
+    public GameState GameState;
     public lever lever;
     public enum Test
     {
@@ -13,10 +14,14 @@ public class leverdoor : MonoBehaviour
     public Test mode;
     public float FirstScale;
     public float FirstPosition;
+    public float Scale_dash;
     void Start()
     {
+        GameObject Gamestate = GameObject.Find("GameState");
+        GameState = Gamestate.GetComponent<GameState>();
         Vector3 s = transform.localScale;
         FirstScale = s.y;
+        Scale_dash = s.y;
         Vector3 p = transform.position;
         FirstPosition = p.y;
         if (mode == Test.Mode_TransF && lever.mode == lever.Test.Mode_Second)
@@ -35,38 +40,65 @@ public class leverdoor : MonoBehaviour
             transform.position = p;
             //Debug.Log("aho2");
         }
+        FirstPosition = FirstScale / (lever.TransTime * 60) * 0.5f;
+        FirstScale = FirstScale / (lever.TransTime * 60);
     }
     void FixedUpdate()
     {
         Vector3 s = transform.localScale;
         Vector3 p = transform.position;
-        if (mode == Test.Mode_TransF && lever.mode == lever.Test.Mode_TransF)
+        if (s.y <= 0.0f || GameState.JudgeState("Pause"))
         {
-            s.y = 0;
-            p.y = 0.5f * FirstScale + FirstPosition;
+
+        }
+        else if (mode == Test.Mode_TransF && lever.mode == lever.Test.Mode_TransF)
+        {
+            // s.y = 0;
+            // p.y = 0.5f * FirstScale + FirstPosition;
+            s.y -= FirstScale;
+            p.y += FirstPosition;
+            transform.localScale = s;
+            transform.position = p;
+            // Debug.Log(FirstScale);
+            // Debug.Log(FirstPosition);
+        }
+        if (s.y <= 0.0f || GameState.JudgeState("Pause"))
+        {
+
+        }
+        else if (mode == Test.Mode_TransS && lever.mode == lever.Test.Mode_TransS)
+        {
+            // s.y = 0;
+            // p.y = 0.5f * FirstScale + FirstPosition;
+            s.y -= FirstScale;
+            p.y += FirstPosition;
             transform.localScale = s;
             transform.position = p;
             //Debug.Log("aa");
         }
-        if (mode == Test.Mode_TransS && lever.mode == lever.Test.Mode_TransS)
+        if (s.y >= Scale_dash || GameState.JudgeState("Pause"))
         {
-            s.y = 0;
-            p.y = 0.5f * FirstScale + FirstPosition;
-            transform.localScale = s;
-            transform.position = p;
-            //Debug.Log("aa");
+
         }
-        if (mode == Test.Mode_TransF && lever.mode == lever.Test.Mode_TransS)
+        else if (mode == Test.Mode_TransF && lever.mode == lever.Test.Mode_TransS)
         {
-            s.y = FirstScale;
-            p.y = FirstPosition;
+            // s.y = FirstScale;
+            // p.y = FirstPosition;
+            s.y += FirstScale;
+            p.y -= FirstPosition;
             transform.localScale = s;
             transform.position = p;
         }
-        if (mode == Test.Mode_TransS && lever.mode == lever.Test.Mode_TransF)
+        if (s.y >= Scale_dash || GameState.JudgeState("Pause"))
         {
-            s.y = FirstScale;
-            p.y = FirstPosition;
+
+        }
+        else if (mode == Test.Mode_TransS && lever.mode == lever.Test.Mode_TransF)
+        {
+            // s.y = FirstScale;
+            // p.y = FirstPosition;
+            s.y += FirstScale;
+            p.y -= FirstPosition;
             transform.localScale = s;
             transform.position = p;
         }

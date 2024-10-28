@@ -224,9 +224,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacf183b8d3bf4f568e046b8d9e0f064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameState: {fileID: 0}
   moveDirection: 0
-  min: -8.5
-  max: -4.5
+  min: 0
+  max: 0
   velocity: 2
   stopTime: 1
 --- !u!1 &3722074873296493638
