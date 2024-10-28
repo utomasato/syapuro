@@ -6,7 +6,9 @@ public class lever : MonoBehaviour
 {
     public float CreateTime;
     public float TransTime;
+    public float TransTime_Dash;
     public Fire player;
+    public Transform lever_B02;
     public enum Test
     {
         Mode_First,
@@ -19,24 +21,52 @@ public class lever : MonoBehaviour
     {
         GameObject Gamestate = GameObject.Find("Player");
         player = Gamestate.GetComponent<Fire>();
+        lever_B02.transform.Rotate(0.0f, 0.0f, 45.0f);
+        TransTime_Dash = 90 / (TransTime * 60);
     }
     void FixedUpdate()
     {
+        //Vector3 worldAngle = lever_B02.eulerAngles;
         if (mode == Test.Mode_TransF || mode == Test.Mode_TransS)
         {
-            CreateTime += Time.deltaTime;
-            if (CreateTime > TransTime && mode == Test.Mode_TransF)
+            //CreateTime += Time.deltaTime;
+            //Debug.Log(lever_B02.transform.localEulerAngles.z);
+            if (mode == Test.Mode_TransF/* && CreateTime > 0.1f*/)
             {
-                Debug.Log("aaa");
+                lever_B02.transform.Rotate(0.0f, 0.0f, -TransTime_Dash);
+                //CreateTime = 0.0f;
+            }
+            if (mode == Test.Mode_TransS/* && CreateTime > 0.1f */)
+            {
+                lever_B02.transform.Rotate(0.0f, 0.0f, TransTime_Dash);
+                //CreateTime = 0.0f;
+            }
+            if (lever_B02.transform.localEulerAngles.z >= 315.0f && lever_B02.transform.localEulerAngles.z <= 316.0f && mode == Test.Mode_TransF)
+            {
                 mode = Test.Mode_Second;
-                CreateTime = 0.0f;
             }
-            if (CreateTime > TransTime && mode == Test.Mode_TransS)
+            if (lever_B02.transform.localEulerAngles.z >= 45.0f && lever_B02.transform.localEulerAngles.z <= 46.0f && mode == Test.Mode_TransS)
             {
-                Debug.Log("bbb");
                 mode = Test.Mode_First;
-                CreateTime = 0.0f;
             }
+            // if (CreateTime > TransTime + 0.2f && mode == Test.Mode_TransF)
+            // {
+            //     Debug.Log("aaa");
+            //     mode = Test.Mode_Second;
+            //     //lever_B02.transform.Rotate(0.0f, 0.0f, -90.0f);
+            //     worldAngle.z = 315.0f;
+            //     lever_B02.eulerAngles = worldAngle;
+            //     CreateTime = 0.0f;
+            // }
+            // if (CreateTime > TransTime + 0.2f && mode == Test.Mode_TransS)
+            // {
+            //     Debug.Log("bbb");
+            //     mode = Test.Mode_First;
+            //     //lever_B02.transform.Rotate(0.0f, 0.0f, 90.0f);
+            //     worldAngle.z = 45.0f;
+            //     lever_B02.eulerAngles = worldAngle;
+            //     CreateTime = 0.0f;
+            // }
         }
     }
     void OnTriggerStay(Collider other)
