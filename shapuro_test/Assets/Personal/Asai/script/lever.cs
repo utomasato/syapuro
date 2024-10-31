@@ -8,6 +8,7 @@ public class lever : MonoBehaviour
     public float TransTime;
     public float TransTime_Dash;
     public Fire player;
+    public GameState GameState;
     public Transform lever_B02;
     public enum Test
     {
@@ -21,13 +22,19 @@ public class lever : MonoBehaviour
     {
         GameObject Gamestate = GameObject.Find("Player");
         player = Gamestate.GetComponent<Fire>();
+        GameObject Gamestate1 = GameObject.Find("GameState");
+        GameState = Gamestate1.GetComponent<GameState>();
         lever_B02.transform.Rotate(0.0f, 0.0f, 45.0f);
         TransTime_Dash = 90 / (TransTime * 60);
     }
     void FixedUpdate()
     {
+        if (GameState.JudgeState("Pause"))
+        {
+
+        }
         //Vector3 worldAngle = lever_B02.eulerAngles;
-        if (mode == Test.Mode_TransF || mode == Test.Mode_TransS)
+        else if (mode == Test.Mode_TransF || mode == Test.Mode_TransS)
         {
             //CreateTime += Time.deltaTime;
             //Debug.Log(lever_B02.transform.localEulerAngles.z);
