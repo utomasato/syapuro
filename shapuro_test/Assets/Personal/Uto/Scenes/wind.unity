@@ -4103,6 +4103,10 @@ PrefabInstance:
       propertyPath: min
       value: -5
       objectReference: {fileID: 0}
+    - target: {fileID: 3722074872036843943, guid: 681162590ba91448ab0bbd0fdf32da36, type: 3}
+      propertyPath: GameState
+      value: 
+      objectReference: {fileID: 312465510}
     - target: {fileID: 3722074872036847195, guid: 681162590ba91448ab0bbd0fdf32da36, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -4643,6 +4647,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6576024119684561223, guid: 2bbc236f7ef0640938236543a3462111, type: 3}
+      propertyPath: interval
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7535279998670973449, guid: 2bbc236f7ef0640938236543a3462111, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -7596,6 +7604,14 @@ PrefabInstance:
     - target: {fileID: 34837618851430835, guid: 2bbc236f7ef0640938236543a3462111, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5390084651607653751, guid: 2bbc236f7ef0640938236543a3462111, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6576024119684561223, guid: 2bbc236f7ef0640938236543a3462111, type: 3}
+      propertyPath: interval
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7136795980154526763, guid: 2bbc236f7ef0640938236543a3462111, type: 3}
       propertyPath: m_Layer
