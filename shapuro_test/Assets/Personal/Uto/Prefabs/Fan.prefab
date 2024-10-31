@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5469772822933206836}
+  - component: {fileID: 6576024119684561223}
   m_Layer: 0
   m_Name: wind
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 3390537891676000331}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 15, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7535279999847780973}
@@ -34,6 +35,26 @@ Transform:
   m_Father: {fileID: 7535279998670973449}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6576024119684561223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390537891676000331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e739bc2c4d934a43be350ff8918e846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 15
+  initialTime: 0
+  BurningGauge: {fileID: 0}
+  SilentGauge: {fileID: 0}
+  windMode: 1
+  windParticle: {fileID: 917269134497096786}
+  maxRange: 15
+  particleMargin: 1
 --- !u!1 &7136795980154526763
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,7 +67,7 @@ GameObject:
   - component: {fileID: 917269134497096786}
   - component: {fileID: 2567519748804807685}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: windParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4859,7 +4880,6 @@ GameObject:
   - component: {fileID: 7535279998670973448}
   - component: {fileID: 7535279998670973455}
   - component: {fileID: 7535279998670973454}
-  - component: {fileID: 5390084651607653751}
   m_Layer: 8
   m_Name: Fan
   m_TagString: Untagged
@@ -4946,22 +4966,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5390084651607653751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7535279998670973453}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f13b5391fe67d43eeb1067da93c9598c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windArea: {fileID: 3390537891676000331}
-  windParticle: {fileID: 917269134497096786}
-  range: 15
-  particleMargin: 1
 --- !u!1 &7535279999327499991
 GameObject:
   m_ObjectHideFlags: 0
@@ -5086,8 +5090,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7535279999847780972}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 7.5, z: 0}
+  m_LocalScale: {x: 1, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5469772822933206836}
