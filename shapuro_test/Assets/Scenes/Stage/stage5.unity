@@ -1933,11 +1933,11 @@ PrefabInstance:
       objectReference: {fileID: 1010044247}
     - target: {fileID: 6152572054318079177, guid: 14e3e0f6075c247ff9edb2f43941bac1, type: 3}
       propertyPath: startLife
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6152572054318079177, guid: 14e3e0f6075c247ff9edb2f43941bac1, type: 3}
       propertyPath: startSize
-      value: 0.975
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 6152572054318079179, guid: 14e3e0f6075c247ff9edb2f43941bac1, type: 3}
       propertyPath: m_Enabled
