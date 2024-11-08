@@ -4,19 +4,34 @@ using UnityEngine;
 
 public class RockedDoor : MonoBehaviour
 {
+    public GameObject lock_image;
     public Fire fire_script;
-    public float Asai_testx = 1f;
     public bool Rock = false;
+    public Transform test;
+    public GameObject Door01;
+    public GameObject Door02;
     void Start()
     {
         GameObject Gamestate = GameObject.Find("Player");
         fire_script = Gamestate.GetComponent<Fire>();
     }
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Fire" && Rock == true && fire_script.GetIsOnCandle())
+        if (other.gameObject.name == "Fire" && fire_script.GetIsOnCandle() && Rock == true)
         {
-            transform.position += new Vector3(0, Asai_testx * Time.deltaTime, 0);
+            lock_image.GetComponent<SpriteRenderer>().enabled = false;
+            test.gameObject.SetActive(false);
+            Door01.gameObject.SetActive(false);
+            Door02.gameObject.SetActive(true);
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Fire" && fire_script.GetIsOnCandle())
+        {
+            test.gameObject.SetActive(true);
+            Door01.gameObject.SetActive(true);
+            Door02.gameObject.SetActive(false);
         }
     }
 }
