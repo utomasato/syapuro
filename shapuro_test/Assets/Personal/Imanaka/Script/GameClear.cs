@@ -107,7 +107,7 @@ public class GameClear : MonoBehaviour
             Vector3 pos = lampTransform.anchoredPosition;
             float interval = Mathf.Lerp(minInterval, maxInterval, 1f - lampCount / 2f);
             pos.x = -(lampCount + 1) * interval / 2 + i * interval;
-            pos.y = 40f;
+            pos.y = 30f;
             lampTransform.anchoredPosition = pos;
 
             foreach (RectTransform child in LampInstance.GetComponentsInChildren<RectTransform>())

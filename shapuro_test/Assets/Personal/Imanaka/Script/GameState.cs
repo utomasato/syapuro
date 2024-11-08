@@ -224,6 +224,10 @@ public class GameState : MonoBehaviour
         gameOverSE();
         gameOver.GameOverSystem();
     }
+    public void SetDeathCause(string Cause)
+    {
+        gameOver.SetDeathCause(Cause);
+    }
 
     public bool JudgeState(string targetState)//20240810uto
     {

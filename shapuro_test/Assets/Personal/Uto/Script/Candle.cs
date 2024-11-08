@@ -309,6 +309,7 @@ public class Candle : MonoBehaviour
         }
         if (gameState != null && IsBurning)
         {
+            gameState.SetDeathCause("rousoku ga moetukitesimatta "/*蝋燭が燃え尽きてしまった...*/);
             gameState.GameOver();
         }
         transform.parent.gameObject.SetActive(false); // 親オブジェクトを非アクティブ化
