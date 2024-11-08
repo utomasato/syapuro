@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class keycreate : MonoBehaviour
 {
-    public GameObject lock_image;
     public Fire fire_script;
     public RockedDoor RockedDoor;
     public float CreateTime;
@@ -17,28 +16,26 @@ public class keycreate : MonoBehaviour
     {
         if (other.gameObject.name == "Fire" && (Input.GetKey("left " + KeyBindings.DashKay) || Input.GetKey("right " + KeyBindings.DashKay) || Input.GetKey(KeyBindings.DashButton))/*Input.GetKey(KeyCode.Space)*/ && RockedDoor.Rock == false && fire_script.GetIsOnCandle())
         {
-            Createkey();
+            Createkey(2);
+        }
+        else if (other.gameObject.name == "Fire" && RockedDoor.Rock == false && fire_script.GetIsOnCandle())
+        {
+            Createkey(1);
         }
     }
-    void Createkey()
+    void Createkey(int test)
     {
-        CreateTime += Time.deltaTime;
+        if (test == 2)
+        {
+            CreateTime += Time.deltaTime * 10.0f;
+        }
+        else
+        {
+            CreateTime += Time.deltaTime;
+        }
         if (CreateTime > 2f)
         {
             RockedDoor.Rock = true;
-            lock_image.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        else if (CreateTime > 1.8f)
-        {
-            //RockedDoor.Rock = true;
-        }
-        else if (CreateTime > 1.2f)
-        {
-            //RockedDoor.Rock = true;
-        }
-        else if (CreateTime > 0.6f)
-        {
-            //RockedDoor.Rock = true;
         }
     }
 }
