@@ -14,6 +14,8 @@ public class GameOver : MonoBehaviour
     [Tooltip("GAMEOVERと書かれているテキストを入れてください")]
     [SerializeField]
     private GameObject GameOverText;
+
+    private GameObject Cause;
     [SerializeField]
     private GameObject ScoreParents;//スコア表示の親オブジェクト
     [SerializeField]
@@ -22,6 +24,7 @@ public class GameOver : MonoBehaviour
     private Candle candle;
     [SerializeField]
     private Fire fire;
+    private string DeathCause = "";
 
     GameObject[] GameOverAssets;
 
@@ -33,7 +36,8 @@ public class GameOver : MonoBehaviour
 
     void Start()
     {
-        GameOverAssets = new GameObject[] { GameOverText, ScoreParents, Button };
+        Cause = GameOverCanvas.transform.Find("Cause").gameObject;
+        GameOverAssets = new GameObject[] { GameOverText, Cause, ScoreParents, Button };
         foreach (GameObject asset in GameOverAssets)
         {
             asset.SetActive(false);//ゲームオーバー用のアセット非アクティブ化
@@ -46,6 +50,7 @@ public class GameOver : MonoBehaviour
     public void GameOverSystem()
     {
         candle = fire.GetCandle();//使用しているキャンドルのスクリプトを使用
+
 
         GameOverCanvas.SetActive(true);
         if (SampleCoroutine == null)
@@ -61,6 +66,7 @@ public class GameOver : MonoBehaviour
 
     public IEnumerator GameCoroutine(float delay, GameObject[] Asset)
     {
+        Cause.GetComponent<TextMeshProUGUI>().text = DeathCause;
         GameState_test state = GetComponent<GameState_test>();
         while (i < Asset.Length)
         {
@@ -74,7 +80,10 @@ public class GameOver : MonoBehaviour
 
         SampleCoroutine = null;
     }
-
+    public void SetDeathCause(string Cause)
+    {
+        DeathCause = Cause;
+    }
 
 }
 
