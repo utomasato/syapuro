@@ -27,6 +27,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Stage/stage5.unity
     guid: ee2a963366d234977a31f4fec2651f44
   - enabled: 1
+    path: Assets/Scenes/Stage/stage6.unity
+    guid: a2669a505371d43b7848c12244dbe31d
+  - enabled: 1
+    path: Assets/Scenes/Stage/stage7.unity
+    guid: a6dc924ac937442ec8f06bc9cf53e75f
+  - enabled: 1
     path: Assets/Scenes/tutrial/tutrial_01.unity
     guid: b5f652d15ce5143cbace217a6a480be2
   - enabled: 1

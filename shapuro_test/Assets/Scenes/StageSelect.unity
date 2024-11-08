@@ -15826,17 +15826,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5370332940987848757, guid: c0f859cfb5b614290b444a6153cdf30d, type: 3}
   m_PrefabInstance: {fileID: 1395878770}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1395878772 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6343924379938891567, guid: c0f859cfb5b614290b444a6153cdf30d, type: 3}
-  m_PrefabInstance: {fileID: 1395878770}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f933001de924004b7cd6f5a14a203b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1401338642 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5370332940987848757, guid: c0f859cfb5b614290b444a6153cdf30d, type: 3}
@@ -23510,7 +23499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageID: 5
-  stageScene: stage2
+  stageScene: stage6
   canvas: {fileID: 193303229}
   stageName: Stage6
   maxLampCount: 7
@@ -23523,7 +23512,6 @@ MonoBehaviour:
   - {fileID: 147489641}
   - {fileID: 2004029978}
   - {fileID: 411896619}
-  - {fileID: 1395878772}
   stoveFire: {fileID: 1654356197}
   modeList:
   - Easy
@@ -23757,10 +23745,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageID: 6
-  stageScene: stage2
+  stageScene: stage7
   canvas: {fileID: 1193313243}
   stageName: Stage7
-  maxLampCount: 7
+  maxLampCount: 8
   StageNameTMP: {fileID: 1699627475}
   StageModeTMP: {fileID: 1466220876}
   lampList:
@@ -23770,6 +23758,7 @@ MonoBehaviour:
   - {fileID: 582742917}
   - {fileID: 1401338643}
   - {fileID: 1752375921}
+  - {fileID: 543690313}
   - {fileID: 543690313}
   stoveFire: {fileID: 387769661}
   modeList:
