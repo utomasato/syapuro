@@ -385,6 +385,10 @@ public class Fire : MonoBehaviour
         FlyFire();
         gameState.GameOver();
     }
+    public void SetDeathCause(string Cause)
+    {
+        gameState.SetDeathCause(Cause);
+    }
     public bool getIsNormal()
     {
         return IsNormal;

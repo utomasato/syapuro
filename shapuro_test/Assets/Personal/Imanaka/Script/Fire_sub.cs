@@ -19,6 +19,7 @@ public class Fire_sub : MonoBehaviour
         }
         if (other.gameObject.CompareTag("water")) // 水に当たったら
         {
+            SetDeathCause("honoo ga mizu ni haittesimatta"/*炎が水にはいってしまった*/);
             parent.Deletefire();
         }
         if (other.gameObject.CompareTag("wind")) // 風エリアに入ったら
@@ -39,6 +40,7 @@ public class Fire_sub : MonoBehaviour
                         if (hit.collider.gameObject.layer == 8) // 扇風機に例が当たったら
                         {
                             Debug.Log("Raycast:" + hit.collider.name);
+                            SetDeathCause("honoo ga kazani kesaretesimatta"/*炎が風に消されてしまった*/);
                             parent.Deletefire();
                             break;
                         }
@@ -51,4 +53,9 @@ public class Fire_sub : MonoBehaviour
     {
         return parent.getIsNormal();
     }
+    public void SetDeathCause(string Cause)
+    {
+        parent.SetDeathCause(Cause);
+    }
 }
+
