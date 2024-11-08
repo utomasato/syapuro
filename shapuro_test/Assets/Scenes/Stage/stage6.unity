@@ -1047,7 +1047,7 @@ MonoBehaviour:
   fadeTime: 1
   zoomTime: 1
   stepList:
-  - cameraPosition: {x: 3.5, y: -1, z: -10}
+  - cameraPosition: {x: 12, y: 1, z: -10}
     cameraSize: 3
     restTime: 0.5
     IsResting: 0
