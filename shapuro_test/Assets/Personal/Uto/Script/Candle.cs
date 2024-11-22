@@ -38,6 +38,8 @@ public class Candle : MonoBehaviour
     private bool animatiorIsPlaying = true;
     [SerializeField] private Animator effectAnimator;
 
+    [SerializeField] private GameObject deathAnim;
+
     private Vector3 savedVelocity;
     private Vector3 savedAngularVelocity;
     private bool isPaused = false;
@@ -209,7 +211,7 @@ public class Candle : MonoBehaviour
     public void Jump() // ロウソクをジャンプさせる
     {
         float jumpPower = Mathf.Lerp(minJumpPower, maxJumpPower, 1.0f - life / startLife); // ライフに応じてジャンプ力を計算
-        if (IsGrounded && Mathf.Abs(rb.velocity.y) < 0.1f)
+        if (IsGrounded /*&& Mathf.Abs(rb.velocity.y) < 0.1f*/)
         {
             fire.JumpSE_Func();
             rb.velocity = Vector3.up * jumpPower; // ジャンプ力を適用
@@ -220,6 +222,7 @@ public class Candle : MonoBehaviour
                 animator.SetBool("InAir", true);
             }
         }
+        deathAnim.GetComponent<Animator>().Play("death");
     }
 
     public void StopJump()
@@ -312,6 +315,9 @@ public class Candle : MonoBehaviour
             gameState.SetDeathCause("rousoku ga moetukitesimatta "/*蝋燭が燃え尽きてしまった...*/);
             gameState.GameOver();
         }
+        deathAnim.transform.position = transform.position + new Vector3(0f, 0.7f, 0f);
+        deathAnim.transform.parent = null;
+        deathAnim.GetComponent<Animator>().Play("death");
         transform.parent.gameObject.SetActive(false); // 親オブジェクトを非アクティブ化
 
     }
@@ -399,7 +405,7 @@ public class Candle : MonoBehaviour
 
     public bool GetCanJump() // ジャンプ可能か
     {
-        return IsGrounded && Mathf.Abs(rb.velocity.y) < 0.5f;
+        return IsGrounded /*&& Mathf.Abs(rb.velocity.y) < 0.5f*/;
     }
 
     void OnCollisionEnter(Collision other)

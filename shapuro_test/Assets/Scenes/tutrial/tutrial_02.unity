@@ -1520,6 +1520,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u6B21\u3078"
       objectReference: {fileID: 0}
+    - target: {fileID: 585118061122560697, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 92
+      objectReference: {fileID: 0}
     - target: {fileID: 585118061388314501, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0

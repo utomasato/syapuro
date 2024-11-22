@@ -1614,8 +1614,8 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 585118060467967895, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 103
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 585118060473540961, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1625,9 +1625,33 @@ PrefabInstance:
       propertyPath: m_text
       value: "\u6B21\u3078"
       objectReference: {fileID: 0}
+    - target: {fileID: 585118061122560696, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 585118061122560697, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 585118061122560697, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0839999
+      objectReference: {fileID: 0}
+    - target: {fileID: 585118061122560697, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0839999
+      objectReference: {fileID: 0}
     - target: {fileID: 585118061122560697, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -45
+      value: 326
+      objectReference: {fileID: 0}
+    - target: {fileID: 585118061122560697, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 585118061122560697, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 585118061388314501, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1738,8 +1762,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4715380758305583909, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715380758305583909, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715380758305583909, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.84
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715380758305583909, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -33
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715380758305583909, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715380758305583909, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4970789696420924582, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1750,12 +1794,20 @@ PrefabInstance:
       value: "\u30B9\u30C6\u30FC\u30B8\u304B\u3089\u51FA\u308B"
       objectReference: {fileID: 0}
     - target: {fileID: 5985247399519769235, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_fontSize
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985247399519769235, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 36
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985247399519769235, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
       propertyPath: m_isRightToLeft
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7315295663881665650, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 627
+      propertyPath: m_SizeDelta.x
+      value: 1087.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
