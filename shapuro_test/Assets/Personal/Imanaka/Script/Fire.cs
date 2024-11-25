@@ -67,6 +67,7 @@ public class Fire : MonoBehaviour
     private List<string> list = new List<string>() { "shift", "ctrl", "alt", "cmd" };
 
     private Vector3 PreviousPos;//現在の位置を保存
+    [SerializeField] private Animator fireAnimator;
 
     // Start is called before the first frame update
     void Start()
@@ -381,8 +382,9 @@ public class Fire : MonoBehaviour
 
     public void Deletefire()//ゲームオーバーに？？
     {
-        PL.SetActive(false);
+        //PL.SetActive(false);
         FlyFire();
+        fireAnimator.Play("death");
         gameState.GameOver();
     }
     public void SetDeathCause(string Cause)

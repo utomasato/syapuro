@@ -214,6 +214,7 @@ MonoBehaviour:
   WarningSE: {fileID: 0}
   CandleSetSE: {fileID: 8300000, guid: 9927a7e8d868c4fc7b563b10671fe365, type: 3}
   BurnInTheFireWallSE: {fileID: 0}
+  fireAnimator: {fileID: 6072705714698365699}
 --- !u!82 &4413201082728150973
 AudioSource:
   m_ObjectHideFlags: 0
