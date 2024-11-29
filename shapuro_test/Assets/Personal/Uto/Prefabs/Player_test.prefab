@@ -204,6 +204,8 @@ MonoBehaviour:
   Firespeed: 1.5
   SurviveTime: 4
   CandleScript: {fileID: 0}
+  fireSpriteRenderer: {fileID: 369217750519474328}
+  fireAlpha: 100
   gameState: {fileID: 0}
   gaugeControllor: {fileID: 0}
   footer: {fileID: 0}
