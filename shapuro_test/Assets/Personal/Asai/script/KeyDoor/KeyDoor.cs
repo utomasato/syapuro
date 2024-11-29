@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KeyDoor : MonoBehaviour
 {
+    public GameState GameState;
     public Fire fire_script;
     public GameObject Door_hit;
     public GameObject KeyMake;
@@ -26,54 +27,59 @@ public class KeyDoor : MonoBehaviour
     {
         GameObject Gamestate = GameObject.Find("Player");
         fire_script = Gamestate.GetComponent<Fire>();
+        GameObject Gamestate2 = GameObject.Find("GameState");
+        GameState = Gamestate2.GetComponent<GameState>();
     }
     void FixedUpdate()
     {
-        Vector3 poss = this.transform.position;
-        poss.z = -5;
-        KeyImage.transform.position = poss;
-        if (mode == Test.Mode_First)
+        if (!GameState.JudgeState("Pause"))
         {
-            this.transform.position = KeyMake.transform.position;
-            mode = Test.Mode_First_2;
-        }
-        if (mode == Test.Mode_First_2)
-        {
-            this.transform.Translate(Vector3.forward * -0.1f);
-            CountTime += Time.deltaTime;
-            if (CountTime > 0.5f)
+            Vector3 poss = this.transform.position;
+            poss.z = -5;
+            KeyImage.transform.position = poss;
+            if (mode == Test.Mode_First)
             {
-                CountTime = 0f;
-                mode = Test.Mode_First_3;
+                this.transform.position = KeyMake.transform.position;
+                mode = Test.Mode_First_2;
             }
-            //mode = Test.Mode_First_3;
-        }
-        if (mode == Test.Mode_First_3)
-        {
-            CountTime += Time.deltaTime;
-            if (CountTime > 0.5f)
+            if (mode == Test.Mode_First_2)
             {
-                CountTime = 0f;
-                mode = Test.Mode_First_4;
+                this.transform.Translate(Vector3.forward * -0.1f);
+                CountTime += Time.deltaTime;
+                if (CountTime > 0.5f)
+                {
+                    CountTime = 0f;
+                    mode = Test.Mode_First_3;
+                }
+                //mode = Test.Mode_First_3;
             }
-            //mode = Test.Mode_First_4;
-        }
-        if (mode == Test.Mode_First_4)
-        {
-            Vector3 vector3 = Door_hit.transform.position - this.transform.position;
-            //vector3.z = 0;
-            Quaternion quaternion = Quaternion.LookRotation(vector3);
-            this.transform.rotation = quaternion;
-            this.transform.Translate(Vector3.forward * 0.1f);
-        }
-        if (mode == Test.Mode_Second)
-        {
-            Door01.gameObject.SetActive(false);
-            Door02.gameObject.SetActive(true);
-            Vector3 pos = this.transform.position;
-            pos.x = -100;
-            this.transform.position = pos;
-            mode = Test.Mode_Finish;
+            if (mode == Test.Mode_First_3)
+            {
+                CountTime += Time.deltaTime;
+                if (CountTime > 0.5f)
+                {
+                    CountTime = 0f;
+                    mode = Test.Mode_First_4;
+                }
+                //mode = Test.Mode_First_4;
+            }
+            if (mode == Test.Mode_First_4)
+            {
+                Vector3 vector3 = Door_hit.transform.position - this.transform.position;
+                //vector3.z = 0;
+                Quaternion quaternion = Quaternion.LookRotation(vector3);
+                this.transform.rotation = quaternion;
+                this.transform.Translate(Vector3.forward * 0.1f);
+            }
+            if (mode == Test.Mode_Second)
+            {
+                Door01.gameObject.SetActive(false);
+                Door02.gameObject.SetActive(true);
+                Vector3 pos = this.transform.position;
+                pos.x = -100;
+                this.transform.position = pos;
+                mode = Test.Mode_Finish;
+            }
         }
     }
     void OnTriggerStay(Collider other)
