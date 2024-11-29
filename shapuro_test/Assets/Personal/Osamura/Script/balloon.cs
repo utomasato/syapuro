@@ -6,12 +6,13 @@ public class balloon : MonoBehaviour
 {
     public GameObject fire;
     public GameObject parent;
+    public GameObject floor;
     private bool isRise = false;
     private float t;
+    private bool p = false;
     private Vector3 rise;
     // Start is called before the first frame update
 
-    // Update is called once per frame
     void Update()
     {
         t += Time.deltaTime;
@@ -21,30 +22,37 @@ public class balloon : MonoBehaviour
             if (isRise)
             {
                 rise = parent.gameObject.transform.localPosition;
-                parent.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * 2000);
+                parent.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * 1000);
             }
             else
             {
-                parent.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * -400);
+                parent.gameObject.GetComponent<Rigidbody>().AddForce(transform.up * -200);
             }
         }
+        floor.GetComponent<BoxCollider>().enabled = p;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("何かにぶつかった");
         if (other.gameObject == fire)
         {
-            Debug.Log("プレイヤー");
+            p = true;
             if (!fire.GetComponent<Fire_sub>().getIsNormal())
             {
-                Debug.Log("上昇");
                 isRise = true;
             }
             else
             {
                 isRise = false;
             }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == fire)
+        {
+            isRise = false;
+            p = false;
         }
     }
 }
