@@ -31,7 +31,8 @@ public class Fire : MonoBehaviour
     [Tooltip("現段階では最初に憑依するcandleを参照してください")]
     [SerializeField]
     private Candle CandleScript;
-
+    [SerializeField] private SpriteRenderer fireSpriteRenderer;
+    [SerializeField] private float fireAlpha = 128;
 
 
     private Vector3 StartScale;
@@ -253,6 +254,7 @@ public class Fire : MonoBehaviour
         IsNormal = true;
         gaugeControllor.SetCandleGaugeGrayOut(true); // 20240803 宇藤追加
         footer.SwitchInstructionTexts(false);
+        fireSpriteRenderer.color = new Color(255f, 255f, 255f, fireAlpha / 256f);
     }
 
     void NoCandle()//ロウソクがない時の移動
@@ -316,6 +318,7 @@ public class Fire : MonoBehaviour
         gaugeControllor.SetCandleGaugeGrayOut(false); // 20240803 宇藤追加
         gaugeControllor.FillFireGauge();
         footer.SwitchInstructionTexts(true);
+        fireSpriteRenderer.color = new Color(255f, 255f, 255f, 1f);
     }
 
     public void Transfer(Candle NewCandle)//蝋燭に憑依
