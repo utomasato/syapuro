@@ -9,6 +9,8 @@ public class KeyDoor : MonoBehaviour
     public GameObject Door_hit;
     public GameObject KeyMake;
     public GameObject KeyImage;
+    public GameObject Keylock;
+    public GameObject Keyopen;
     public GameObject Door01;
     public GameObject Door02;
     public float CountTime;
@@ -20,6 +22,7 @@ public class KeyDoor : MonoBehaviour
         Mode_First_3,
         Mode_First_4,
         Mode_Second,
+        Mode_Second_2,
         Mode_Finish,
     }
     public Test mode;
@@ -69,15 +72,27 @@ public class KeyDoor : MonoBehaviour
                 //vector3.z = 0;
                 Quaternion quaternion = Quaternion.LookRotation(vector3);
                 this.transform.rotation = quaternion;
-                this.transform.Translate(Vector3.forward * 0.1f);
+                this.transform.Translate(Vector3.forward * 0.2f);
             }
             if (mode == Test.Mode_Second)
             {
-                Door01.gameObject.SetActive(false);
-                Door02.gameObject.SetActive(true);
+                Keylock.gameObject.SetActive(false);
+                Keyopen.gameObject.SetActive(true);
                 Vector3 pos = this.transform.position;
                 pos.x = -100;
                 this.transform.position = pos;
+                CountTime += Time.deltaTime;
+                if (CountTime > 0.5f)
+                {
+                    CountTime = 0f;
+                    mode = Test.Mode_Second_2;
+                }
+            }
+            if (mode == Test.Mode_Second_2)
+            {
+                Door01.gameObject.SetActive(false);
+                Door02.gameObject.SetActive(true);
+                Keyopen.gameObject.SetActive(false);
                 mode = Test.Mode_Finish;
             }
         }
