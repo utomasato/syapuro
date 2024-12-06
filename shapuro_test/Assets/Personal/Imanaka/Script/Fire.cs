@@ -343,6 +343,7 @@ public class Fire : MonoBehaviour
         gaugeControllor.SetCandleGaugeGrayOut(false); // 20240803 宇藤追加
         gaugeControllor.FillFireGauge();
         footer.SwitchInstructionTexts(true);
+        fireSpriteRenderer.color = new Color(255f, 255f, 255f, 1f);
     }
 
     private bool GetDown(string key)
