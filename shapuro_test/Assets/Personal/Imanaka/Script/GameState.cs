@@ -138,11 +138,11 @@ public class GameState : MonoBehaviour
     public void GameStart()//20240810uto
     {
 
-        if (SceneManager.GetActiveScene().name == "stage1")
+        if (SceneManager.GetActiveScene().name == "stage2")
         {
             gameBGM_Stage1();
         }
-        if (SceneManager.GetActiveScene().name == "stage2")
+        if (SceneManager.GetActiveScene().name == "stage3")
         {
             gameBGM_Stage2();
         }
