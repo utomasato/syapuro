@@ -78,8 +78,11 @@ public class Save : MonoBehaviour
 
     public static void Reset()
     {
-        saveData = new SaveData(new List<int>() { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
-            new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false });
+        saveData = new SaveData(
+            new List<int>() { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+            new List<bool>() { false, false, false, false, false, false, false, false, false, false, false, false,
+                                false, false, false, false, false, false, false, false, false, false, false, false }
+            );
         SaveGame();
     }
 
