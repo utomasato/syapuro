@@ -96,7 +96,7 @@ public class Fire : MonoBehaviour
     {
         if (!gameState.JudgeState("GamePlay"))
         {
-            if (gameState.JudgeState("GameClear"))
+            if (gameState.JudgeState("GameClear") || gameState.JudgeState("BeforeStart"))
                 transform.position = CandleScript.GetHeadPosition();
             return;
         }
