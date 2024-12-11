@@ -89,6 +89,10 @@ public class StageSelect : MonoBehaviour
             Vector3 pos = startPos;
             pos.x = startPos.x + p0 * interval; // 選択位置に応じてX座標を調整
             transform.position = pos;
+            pos = cameraObj.transform.position;
+            pos.x += selectNumber / 3 * interval * 3;
+            cameraObj.transform.position = pos;
+
             //sceneChange.StartFadeIn();
             animator.SetBool("Moving", false);
             footer.ActivateInstructionTexts();
@@ -105,8 +109,6 @@ public class StageSelect : MonoBehaviour
         }
         IsPause = false;
         IsSelected = false;
-
-        cameraObj.transform.position += new Vector3(selectNumber / 3 * interval * 3, 0f, 0f);
     }
 
     void Update()

@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 563619723886934120}
   - component: {fileID: 563619723886934119}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Max (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 563619725428645973}
   - component: {fileID: 563619725428645972}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Count (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -632,8 +632,8 @@ MonoBehaviour:
   Counter: {fileID: 563619725428645972}
   Mode: {fileID: 5771529388464004843}
   sl:
-  - Easy
-  - Hard
+  - "\u30A4\u30FC\u30B8\u30FC"
+  - "\u30CF\u30FC\u30C9"
 --- !u!1 &8967570268032404628
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 4771970283837643983}
   - component: {fileID: 5771529388464004843}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: 'Mode (TMP) '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -670,7 +670,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1748, y: 1030}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 956.7, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4771970283837643983
 CanvasRenderer:
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Mode
+  m_text: "\u30A4\u30FC\u30B8\u30FC"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5c590e13e4b8b4b1190daea411bddc0f, type: 2}
   m_sharedMaterial: {fileID: 7993423419275675444, guid: 5c590e13e4b8b4b1190daea411bddc0f, type: 2}
@@ -727,8 +727,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 124.2
-  m_fontSizeBase: 124.2
+  m_fontSize: 94.7
+  m_fontSizeBase: 94.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

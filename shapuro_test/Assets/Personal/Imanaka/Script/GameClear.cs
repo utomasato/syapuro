@@ -47,7 +47,7 @@ public class GameClear : MonoBehaviour
             asset.SetActive(false);//クリアキャンバス非アクティブ化
         }
         dinplayLampList = new List<GameObject>();
-
+        //RankText.enabled = false;
     }
 
 
@@ -86,6 +86,7 @@ public class GameClear : MonoBehaviour
                         yield return new WaitForSeconds(0.5f);
                     }
                 }
+                //RankText.enabled = true;
             }
 
             i++;
