@@ -25,6 +25,7 @@ public class Stage : MonoBehaviour
     public List<DisplayLamp> LampList => lampList;
 
     [SerializeField] private string[] modeList = { "Easy", "Hard" };
+    [SerializeField] private TextMeshProUGUI RankTMP;
 
     public void ShowDisplay()
     {
@@ -68,10 +69,47 @@ public class Stage : MonoBehaviour
                 stove.transform.localScale = new Vector3(1f, 1f, 1f);
             else
                 stove.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            RankTMP.text = Rank();
         }
         else
         {
             stove.SetActive(false);
+            RankTMP.text = "ー";
         }
+    }
+
+    private string Rank()
+    {
+        string rank = "ー";
+        int lampCount = Save.saveData.lampCounts[StageID * 2 + SceneSelectionState.mode];
+        if (maxLampCount == 0)
+        {
+            rank = "ー";
+        }
+        else
+        {
+            float Judgelamp = (float)lampCount / maxLampCount;
+            if (Judgelamp == 1.0f)
+            {
+                rank = "S";  // すべてのランプをつけた場合
+            }
+            else if (Judgelamp >= 0.7f)
+            {
+                rank = "A";
+            }
+            else if (Judgelamp >= 0.5f)
+            {
+                rank = "B";
+            }
+            else if (Judgelamp >= 0.2f)
+            {
+                rank = "C";
+            }
+            else
+            {
+                rank = "D";
+            }
+        }
+        return rank;
     }
 }
