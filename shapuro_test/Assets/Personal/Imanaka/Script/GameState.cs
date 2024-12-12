@@ -30,10 +30,8 @@ public class GameState : MonoBehaviour
     /*AudioSourceを2つにして、片方をSEに、もう片方をBGMに入れてください*/
     [SerializeField] AudioSource SE;
     [SerializeField] AudioSource BGM;
-    [SerializeField] private List<AudioClip> GameBGMs;
-    [SerializeField] private AudioClip GameBGM_Tutorial;//チュートリアルのBGM
-    [SerializeField] private AudioClip GameBGM_1;//ステージ１のBGM
-    [SerializeField] private AudioClip GameBGM_2;//ステージ2のBGM
+
+
     [SerializeField] private AudioClip LampSE;//ランプをつけた時の効果音
     [SerializeField] private AudioClip GameOverSE;
     [SerializeField] private AudioClip GameClearSE;
@@ -139,14 +137,9 @@ public class GameState : MonoBehaviour
     public void GameStart()//20240810uto
     {
 
-        if (SceneManager.GetActiveScene().name == "stage2")
-        {
-            gameBGM_Stage1();
-        }
-        if (SceneManager.GetActiveScene().name == "stage3")
-        {
-            gameBGM_Stage2();
-        }
+
+
+        PlayBGM();
         state = State.GamePlay;
         footer.ActivateInstructionTexts();
     }
@@ -197,6 +190,7 @@ public class GameState : MonoBehaviour
     {
         if (state == State.GameClear) return;
         state = State.GameClear;
+        StopBGM();
         GoalFire.enabled = true;
         BGM.Stop();
         gameClearSE();
@@ -221,6 +215,7 @@ public class GameState : MonoBehaviour
     {
         if (state == State.GameOver) return;
         state = State.GameOver;
+        StopBGM();
         BGM.Stop();
         gameOverSE();
         gameOver.GameOverSystem();
@@ -330,32 +325,9 @@ public class GameState : MonoBehaviour
         return text.text;
     }
 
-    private void PlayBGM(int stage_number, float vol)
-    {
-        if (stage_number >= 0 && GameBGMs[stage_number!] != null)
-        {
-            BGM.clip = GameBGMs[stage_number];
-            BGM.volume = vol;
-        }
-    }
-    public void TutorialBGM()
-    {
-        BGM.clip = GameBGM_Tutorial;
-        BGM.volume = 0.15f;
-        BGM.Play();
-    }
-    public void gameBGM_Stage1()
-    {
-        BGM.clip = GameBGM_1;
-        BGM.volume = 0.1f;
-        BGM.Play();
-    }
-    public void gameBGM_Stage2()
-    {
-        BGM.clip = GameBGM_2;
-        BGM.volume = 0.08f;
-        BGM.Play();
-    }
+
+
+
     public void gameLampSE()
     {
         SE.volume = 0.15f;
@@ -381,5 +353,33 @@ public class GameState : MonoBehaviour
         SE.volume = 0.04f;
         SE.PlayOneShot(ButtonSE);
     }
-}
+    private void PlayBGM()
+    {
+        Transform ChildState = transform.GetChild(0);
+        if (ChildState != null)
+        {
+            // 子オブジェクトからAudioSourceを取得
+            AudioSource childAudioSource = ChildState.GetComponent<AudioSource>();
+            if (childAudioSource != null)
+            {
 
+                childAudioSource.Play(); // 音を再生
+            }
+        }
+    }
+    private void StopBGM()
+    {
+        Transform ChildState = transform.GetChild(0);
+        if (ChildState != null)
+        {
+            // 子オブジェクトからAudioSourceを取得
+            AudioSource childAudioSource = ChildState.GetComponent<AudioSource>();
+            if (childAudioSource != null)
+            {
+
+                childAudioSource.Stop(); // 音を再生
+            }
+        }
+    }
+
+}
