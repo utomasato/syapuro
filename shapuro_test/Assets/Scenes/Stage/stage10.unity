@@ -5790,6 +5790,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 312465510}
     - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
+      propertyPath: BurnWindSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 0221b364c60484464b536645b077b8f7, type: 3}
+    - target: {fileID: 5921233088317968699, guid: 83feacad4dcf0425eacc4a4a006603fe, type: 3}
       propertyPath: CandleScript
       value: 
       objectReference: {fileID: 1221838111}
@@ -14435,7 +14439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 364890113609570107, guid: d05e89c746ce64365b35e86dc6fae11b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 364890113609570107, guid: d05e89c746ce64365b35e86dc6fae11b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15502,7 +15506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3722074872036847195, guid: 681162590ba91448ab0bbd0fdf32da36, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 3722074872036847195, guid: 681162590ba91448ab0bbd0fdf32da36, type: 3}
       propertyPath: m_LocalPosition.x

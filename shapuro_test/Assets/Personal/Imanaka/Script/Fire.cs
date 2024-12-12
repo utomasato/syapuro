@@ -404,7 +404,11 @@ public class Fire : MonoBehaviour
 
     public float GetBurnRate => BurnRate;
 
-
+    private IEnumerator StopSE(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SE.Stop();
+    }
 
     /*********************以下効果音**************/
     public void JumpSE_Func()
@@ -455,8 +459,15 @@ public class Fire : MonoBehaviour
     }
     public void WindSE()
     {
-        SE.volume = 0.7f;
-        SE.PlayOneShot(BurnWindSE);
+
+        /* if (BurnWindSE != null && !SE.isPlaying)
+         {
+             SE.volume = 0.7f;
+             SE.PlayOneShot(BurnWindSE);
+             StartCoroutine(StopSE(2f));
+             SEstop();
+         }*/
+
     }
     public void SEstop()
     {
