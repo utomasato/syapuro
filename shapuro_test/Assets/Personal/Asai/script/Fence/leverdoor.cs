@@ -15,6 +15,7 @@ public class leverdoor : MonoBehaviour
     public float FirstScale;
     public float FirstPosition;
     public float Scale_dash;
+    public GameObject Door_hit;
     void Start()
     {
         GameObject Gamestate = GameObject.Find("GameState");
@@ -30,6 +31,7 @@ public class leverdoor : MonoBehaviour
             p.y = 0.5f * FirstScale + FirstPosition;
             transform.localScale = s;
             transform.position = p;
+            Door_hit.gameObject.SetActive(false);
             //Debug.Log("aho1");
         }
         if (mode == Test.Mode_TransS && lever.mode == lever.Test.Mode_First)
@@ -38,6 +40,7 @@ public class leverdoor : MonoBehaviour
             p.y = 0.5f * FirstScale + FirstPosition;
             transform.localScale = s;
             transform.position = p;
+            Door_hit.gameObject.SetActive(false);
             //Debug.Log("aho2");
         }
         FirstPosition = FirstScale / (lever.TransTime * 60) * 0.5f;
@@ -59,6 +62,7 @@ public class leverdoor : MonoBehaviour
             p.y += FirstPosition;
             transform.localScale = s;
             transform.position = p;
+            Door_hit.gameObject.SetActive(false);
             // Debug.Log(FirstScale);
             // Debug.Log(FirstPosition);
         }
@@ -74,6 +78,7 @@ public class leverdoor : MonoBehaviour
             p.y += FirstPosition;
             transform.localScale = s;
             transform.position = p;
+            Door_hit.gameObject.SetActive(false);
             //Debug.Log("aa");
         }
         if (s.y >= Scale_dash || GameState.JudgeState("Pause"))
@@ -88,6 +93,7 @@ public class leverdoor : MonoBehaviour
             p.y -= FirstPosition;
             transform.localScale = s;
             transform.position = p;
+            Door_hit.gameObject.SetActive(true);
         }
         if (s.y >= Scale_dash || GameState.JudgeState("Pause"))
         {
@@ -101,6 +107,7 @@ public class leverdoor : MonoBehaviour
             p.y -= FirstPosition;
             transform.localScale = s;
             transform.position = p;
+            Door_hit.gameObject.SetActive(true);
         }
     }
 }
