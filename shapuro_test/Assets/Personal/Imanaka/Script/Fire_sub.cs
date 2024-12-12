@@ -26,6 +26,7 @@ public class Fire_sub : MonoBehaviour
         {
             if (parent.getIsNormal()) // ダッシュ中でない
             {
+
                 Ray[] rays = {
                     new Ray(transform.position+new Vector3(transform.localScale.x*0.5f,transform.localScale.y*0.5f,0f), -other.gameObject.transform.up),
                     new Ray(transform.position+new Vector3(-transform.localScale.x*0.5f,transform.localScale.y*0.5f,0f), -other.gameObject.transform.up),
