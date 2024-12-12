@@ -355,29 +355,35 @@ public class GameState : MonoBehaviour
     }
     private void PlayBGM()
     {
-        Transform ChildState = transform.GetChild(0);
-        if (ChildState != null)
+        if (transform.childCount > 0)
         {
-            // 子オブジェクトからAudioSourceを取得
-            AudioSource childAudioSource = ChildState.GetComponent<AudioSource>();
-            if (childAudioSource != null)
+            Transform ChildState = transform.GetChild(0);
+            if (ChildState != null)
             {
+                // 子オブジェクトからAudioSourceを取得
+                AudioSource childAudioSource = ChildState.GetComponent<AudioSource>();
+                if (childAudioSource != null)
+                {
 
-                childAudioSource.Play(); // 音を再生
+                    childAudioSource.Play(); // 音を再生
+                }
             }
         }
     }
     private void StopBGM()
     {
-        Transform ChildState = transform.GetChild(0);
-        if (ChildState != null)
+        if (transform.childCount > 0)
         {
-            // 子オブジェクトからAudioSourceを取得
-            AudioSource childAudioSource = ChildState.GetComponent<AudioSource>();
-            if (childAudioSource != null)
+            Transform ChildState = transform.GetChild(0);
+            if (ChildState != null)
             {
+                // 子オブジェクトからAudioSourceを取得
+                AudioSource childAudioSource = ChildState.GetComponent<AudioSource>();
+                if (childAudioSource != null)
+                {
 
-                childAudioSource.Stop(); // 音を再生
+                    childAudioSource.Stop(); // 音を再生
+                }
             }
         }
     }
