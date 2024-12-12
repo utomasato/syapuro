@@ -64,6 +64,8 @@ public class Fire : MonoBehaviour
 
     [SerializeField] private AudioClip BurnInTheFireWallSE;//FireWAllに当たった時の音
 
+    [SerializeField] private AudioClip BurnWindSE;//ロウソクが風に当たった時の音
+
 
     private List<string> list = new List<string>() { "shift", "ctrl", "alt", "cmd" };
 
@@ -450,6 +452,11 @@ public class Fire : MonoBehaviour
     {
         SE.volume = 0.7f;
         SE.PlayOneShot(BurnInTheFireWallSE);
+    }
+    public void WindSE()
+    {
+        SE.volume = 0.7f;
+        SE.PlayOneShot(BurnWindSE);
     }
     public void SEstop()
     {
