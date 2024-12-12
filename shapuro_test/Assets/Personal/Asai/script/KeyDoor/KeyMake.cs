@@ -8,12 +8,18 @@ public class KeyMake : MonoBehaviour
     public Fire fire_script;
     public KeyDoor KeyDoor;
     public float CreateTime;
+
+    private AudioSource SE;
+    [SerializeField] private AudioClip KeyMakeSE;
     void Start()
     {
         GameObject Gamestate1 = GameObject.Find("Player");
         fire_script = Gamestate1.GetComponent<Fire>();
         GameObject Gamestate2 = GameObject.Find("GameState");
         GameState = Gamestate2.GetComponent<GameState>();
+        SE = this.gameObject.AddComponent<AudioSource>();
+        SE = this.gameObject.GetComponent<AudioSource>();
+
     }
     void OnTriggerStay(Collider other)
     {
@@ -43,5 +49,10 @@ public class KeyMake : MonoBehaviour
         {
             KeyDoor.TransMode("Mode_First");
         }
+    }
+    public void KeyMakeSE_Func()
+    {
+        SE.volume = 0.1f;
+        SE.PlayOneShot(KeyMakeSE);
     }
 }

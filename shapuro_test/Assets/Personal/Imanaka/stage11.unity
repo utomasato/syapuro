@@ -1068,6 +1068,7 @@ MonoBehaviour:
   nextScene: 
   SE: {fileID: 312465514}
   BGM: {fileID: 312465513}
+  GameBGMs: []
   GameBGM_Tutorial: {fileID: 0}
   GameBGM_1: {fileID: 8300000, guid: d371d24ccb4f2471f92d77280ec85d13, type: 3}
   GameBGM_2: {fileID: 8300000, guid: 60af118c636f14a81af04ac4e60cebc2, type: 3}
@@ -2333,8 +2334,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613386519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.27, y: -7.88, z: -0.015907288}
-  m_LocalScale: {x: 6, y: 1, z: 4}
+  m_LocalPosition: {x: -1.74, y: -8.15, z: -0.015907288}
+  m_LocalScale: {x: 4, y: 1, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 325040390}
