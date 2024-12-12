@@ -30,6 +30,7 @@ public class GameState : MonoBehaviour
     /*AudioSourceを2つにして、片方をSEに、もう片方をBGMに入れてください*/
     [SerializeField] AudioSource SE;
     [SerializeField] AudioSource BGM;
+    [SerializeField] private List<AudioClip> GameBGMs;
     [SerializeField] private AudioClip GameBGM_Tutorial;//チュートリアルのBGM
     [SerializeField] private AudioClip GameBGM_1;//ステージ１のBGM
     [SerializeField] private AudioClip GameBGM_2;//ステージ2のBGM
@@ -329,6 +330,14 @@ public class GameState : MonoBehaviour
         return text.text;
     }
 
+    private void PlayBGM(int stage_number, float vol)
+    {
+        if (stage_number >= 0 && GameBGMs[stage_number!] != null)
+        {
+            BGM.clip = GameBGMs[stage_number];
+            BGM.volume = vol;
+        }
+    }
     public void TutorialBGM()
     {
         BGM.clip = GameBGM_Tutorial;
