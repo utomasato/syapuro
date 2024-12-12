@@ -389,7 +389,7 @@ Transform:
   m_GameObject: {fileID: 7098277439781079400}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -100, z: -4}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7098277440341283169}
@@ -436,7 +436,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b0dbf0135d3d94ea3b8b1d2658a31b5c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd4f8a62e80c34a89aa3a30a7c667acb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1103,6 +1103,7 @@ MonoBehaviour:
   fire_script: {fileID: 0}
   KeyDoor: {fileID: 7098277440835429149}
   CreateTime: 0
+  KeyMakeSE: {fileID: 0}
 --- !u!1 &7098277441143493151
 GameObject:
   m_ObjectHideFlags: 0
