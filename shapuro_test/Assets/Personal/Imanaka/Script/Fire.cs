@@ -32,7 +32,7 @@ public class Fire : MonoBehaviour
     [SerializeField]
     private Candle CandleScript;
     [SerializeField] private SpriteRenderer fireSpriteRenderer;
-    [SerializeField] private float fireAlpha = 128;
+    [SerializeField] private float fireAlpha = 192;
 
 
     private Vector3 StartScale;
