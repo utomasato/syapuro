@@ -47,6 +47,8 @@ public class Candle : MonoBehaviour
     private bool IsPanic = false;
 
     [SerializeField] float BurningSpeedInTheFlameWall;
+    private bool isOnBurner = false;
+
 
     void Start()
     {
@@ -313,7 +315,10 @@ public class Candle : MonoBehaviour
         }
         if (gameState != null && IsBurning)
         {
-            gameState.SetDeathCause("ろうそくが燃え尽きてしまった... "/*蝋燭が燃え尽きてしまった...*/);
+            if (isOnBurner)
+                gameState.SetDeathCause("バーナーに焼かれた... "/*バーナーに焼かれた*/);
+            else
+                gameState.SetDeathCause("ろうそくが燃え尽きてしまった... "/*蝋燭が燃え尽きてしまった...*/);
             gameState.GameOver();
         }
         deathObj.transform.position = transform.position + new Vector3(0f, 0.7f, 0f);
@@ -437,10 +442,11 @@ public class Candle : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // バーナーに当たった時
         if (other.gameObject.CompareTag("fire") && gameState.JudgeState("GamePlay"))
         {
             fire.FireWallSE();
-
+            isOnBurner = true;
         }
         // 火がついているときにゴールに触れたらクリア
         if (other.gameObject.CompareTag("Goal") && IsBurning)
@@ -454,11 +460,12 @@ public class Candle : MonoBehaviour
         }
     }
     private void OnTriggerStay(Collider other)
-    { // 炎の壁に当たると短くなる
+    {   // バーナーに当たってる時
         if (other.gameObject.CompareTag("fire") && gameState.JudgeState("GamePlay"))
         {
             Shorten(BurningSpeedInTheFlameWall * fire.GetBurnRate);
         }
+
         if (other.gameObject.CompareTag("through"))
         {
             Transform Parentobj = other.transform.parent;
@@ -468,11 +475,14 @@ public class Candle : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other)
-    { // 炎の壁に当たると短くなる
+    {
+        //バーナーから抜けた時
         if (other.gameObject.CompareTag("fire") && gameState.JudgeState("GamePlay"))
         {
             fire.SEstop();
+            isOnBurner = false;
         }
+
         if (other.gameObject.CompareTag("through"))
         {
             Transform Parentobj = other.transform.parent;
