@@ -41,7 +41,7 @@ public class Fire_sub : MonoBehaviour
                         if (hit.collider.gameObject.layer == 8) // 扇風機に例が当たったら
                         {
                             Debug.Log("Raycast:" + hit.collider.name);
-                            SetDeathCause("honoo ga kazani kesaretesimatta"/*炎が風に消されてしまった*/);
+                            SetDeathCause("炎が風に消されてしまった...\n火が弱かったようだ..."/*炎が風に消されてしまった*/);
                             parent.Deletefire();
                             break;
                         }
