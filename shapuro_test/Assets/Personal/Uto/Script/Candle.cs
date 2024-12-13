@@ -38,7 +38,8 @@ public class Candle : MonoBehaviour
     private bool animatiorIsPlaying = true;
     [SerializeField] private Animator effectAnimator;
 
-    [SerializeField] private GameObject deathAnim;
+    [SerializeField] private GameObject deathObj;
+    [SerializeField] private Animator deathAnim;
 
     private Vector3 savedVelocity;
     private Vector3 savedAngularVelocity;
@@ -222,7 +223,7 @@ public class Candle : MonoBehaviour
                 animator.SetBool("InAir", true);
             }
         }
-        deathAnim.GetComponent<Animator>().Play("death");
+        //deathAnim.GetComponent<Animator>().Play("death");
     }
 
     public void StopJump()
@@ -312,11 +313,12 @@ public class Candle : MonoBehaviour
         }
         if (gameState != null && IsBurning)
         {
-            gameState.SetDeathCause("rousoku ga moetukitesimatta "/*蝋燭が燃え尽きてしまった...*/);
+            gameState.SetDeathCause("ろうそくが燃え尽きてしまった... "/*蝋燭が燃え尽きてしまった...*/);
             gameState.GameOver();
         }
-        deathAnim.transform.position = transform.position + new Vector3(0f, 0.7f, 0f);
-        deathAnim.transform.parent = null;
+        deathObj.transform.position = transform.position + new Vector3(0f, 0.7f, 0f);
+        deathObj.transform.parent = null; // 親子解消
+        deathObj.SetActive(true);
         deathAnim.GetComponent<Animator>().Play("death");
         transform.parent.gameObject.SetActive(false); // 親オブジェクトを非アクティブ化
 
