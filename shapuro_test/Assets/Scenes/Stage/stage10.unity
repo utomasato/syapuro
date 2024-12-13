@@ -5643,7 +5643,7 @@ MonoBehaviour:
   fadeTime: 1
   zoomTime: 1
   stepList:
-  - cameraPosition: {x: 3.5, y: -1, z: -10}
+  - cameraPosition: {x: 5.37, y: -0.59, z: -10}
     cameraSize: 3
     restTime: 0.5
     IsResting: 0
@@ -16091,7 +16091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9096930694604456749, guid: f1b32f43ddf724fc3829b733b1606983, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.86
+      value: 5.09
       objectReference: {fileID: 0}
     - target: {fileID: 9096930694604456749, guid: f1b32f43ddf724fc3829b733b1606983, type: 3}
       propertyPath: m_LocalPosition.y
