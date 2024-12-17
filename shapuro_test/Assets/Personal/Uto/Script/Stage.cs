@@ -13,7 +13,9 @@ public class Stage : MonoBehaviour
     [SerializeField] private string stageName;
     [SerializeField] private int maxLampCount;
     public TextMeshProUGUI StageNameTMP;
-    public TextMeshProUGUI StageModeTMP;
+    //public TextMeshProUGUI StageModeTMP;
+    [SerializeField] private TextMeshProUGUI easyTMP, hardTMP;
+    [SerializeField] private byte textAlpha;
     [SerializeField] private List<DisplayLamp> lampList;
 
     public GameObject stoveFire;
@@ -52,7 +54,17 @@ public class Stage : MonoBehaviour
     public void UpdateDisplay()
     {
         StageNameTMP.text = StageName; // ステージ名を表示する
-        StageModeTMP.text = modeList[SceneSelectionState.mode]; // 難易度を表示する
+        //StageModeTMP.text = modeList[SceneSelectionState.mode]; // 難易度を表示する
+        if (SceneSelectionState.mode == 0)
+        {
+            easyTMP.color = new Color32(0, 0, 0, 255);
+            hardTMP.color = new Color32(0, 0, 0, textAlpha);
+        }
+        else if (SceneSelectionState.mode == 1)
+        {
+            easyTMP.color = new Color32(0, 0, 0, textAlpha);
+            hardTMP.color = new Color32(0, 0, 0, 255);
+        }
         int lampCount = Save.saveData.lampCounts[StageID * 2 + SceneSelectionState.mode];
         for (int i = 0; i < MaxLampCount; i++) // ステージの達成度を更新
         {
