@@ -22,7 +22,7 @@ public class Wind : MonoBehaviour
 
     void Update()
     {
-        ChangeRange(range);
+        //ChangeRange(range);
     }
 
     public void ChangeRange(float r)

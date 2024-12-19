@@ -55,6 +55,7 @@ MonoBehaviour:
   windParticle: {fileID: 917269134497096786}
   maxRange: 15
   particleMargin: 1
+  windAnim: {fileID: 7366297779402967013}
 --- !u!1 &4008129286663483248
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +214,7 @@ ParticleSystem:
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
-  autoRandomSeed: 1
+  autoRandomSeed: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -5025,7 +5026,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7535279998670973453}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

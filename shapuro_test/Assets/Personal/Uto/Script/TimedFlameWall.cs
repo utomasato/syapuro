@@ -12,11 +12,12 @@ public class TimedFlameWall : MonoBehaviour
     private GameState gameState;
     [SerializeField] Image BurningGauge, SilentGauge;
 
-    [SerializeField] bool windMode;
-    [SerializeField] ParticleSystem windParticle;
-    [SerializeField] float maxRange;
-    [SerializeField] float particleMargin;
-    ParticleSystem.MainModule main;
+    [SerializeField] private bool windMode;
+    [SerializeField] private ParticleSystem windParticle;
+    [SerializeField] private float maxRange;
+    [SerializeField] private float particleMargin;
+    [SerializeField] private Animator windAnim;
+    private ParticleSystem.MainModule main;
 
     void Start()
     {
@@ -51,9 +52,9 @@ public class TimedFlameWall : MonoBehaviour
         if (gameState.JudgeState("GamePlay"))
         {
             elapsedTime += Time.deltaTime;
-            size.y = Mathf.PingPong((elapsedTime + initialTime) * 2 / interval + 1f, 2f) - 1f;
+            float y = Mathf.PingPong((elapsedTime + initialTime) * 2 / interval + 1f, 2f) - 1f;
             if (BurningGauge != null)
-                if (size.y > 0f)
+                if (y > 0f)
                 {
                     //Debug.Log(1f - (elapsedTime + initialTime) / interval % 2f);
                     BurningGauge.fillAmount = 1f - (elapsedTime + initialTime) / interval % 2f;
@@ -65,12 +66,21 @@ public class TimedFlameWall : MonoBehaviour
                     //Debug.Log(2f - (elapsedTime + initialTime) / interval % 2f);
                     SilentGauge.fillAmount = 2f - (elapsedTime + initialTime) / interval % 2f;
                 }
-            size.y = Mathf.Clamp(size.y * interval * 8f, 0f, 1f);
+            size.y = Mathf.Clamp(y * interval * 8f, 0f, 1f);
             transform.localScale = size;
 
             if (windMode)
             {
                 main.startLifetime = (maxRange * size.y + particleMargin) / 100;
+                if (y > 0f)
+                {
+                    windParticle.Play();
+                }
+                else
+                {
+                    windParticle.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                }
+                windAnim.speed = Mathf.Clamp(y, -0.2f, 0.0f) / 0.2f * 0.8f + 1.0f;
             }
         }
     }
