@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class KeyMake : MonoBehaviour
 {
+    public Image Keyimage;
+    public GameObject Keycanvas;
     public GameState GameState;
     public Fire fire_script;
     public KeyDoor KeyDoor;
@@ -35,19 +38,34 @@ public class KeyMake : MonoBehaviour
             }
         }
     }
+    void OnTriggerExit(Collider other)
+    {
+        if (!GameState.JudgeState("Pause"))
+        {
+            if (other.gameObject.name == "Fire" && KeyDoor.JudgeMode("Mode_Stay") && fire_script.GetIsOnCandle())
+            {
+                Keycanvas.gameObject.SetActive(false);
+            }
+        }
+    }
     void Createkey(int test)
     {
         if (test == 2)
         {
             CreateTime += Time.deltaTime * 10.0f;
+            Keyimage.fillAmount = CreateTime / 2.0f;
+            Keycanvas.gameObject.SetActive(true);
         }
         else
         {
             CreateTime += Time.deltaTime;
+            Keyimage.fillAmount = CreateTime / 2.0f;
+            Keycanvas.gameObject.SetActive(true);
         }
         if (CreateTime > 2f)
         {
             KeyDoor.TransMode("Mode_First");
+            Keycanvas.gameObject.SetActive(false);
         }
     }
     public void KeyMakeSE_Func()
