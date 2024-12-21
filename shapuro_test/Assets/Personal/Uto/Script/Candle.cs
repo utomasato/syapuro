@@ -316,7 +316,7 @@ public class Candle : MonoBehaviour
         if (gameState != null && IsBurning)
         {
             if (isOnBurner)
-                gameState.SetDeathCause("バーナーに焼かれた... "/*バーナーに焼かれた*/);
+                gameState.SetDeathCause("バーナーに溶かされた... "/*バーナーに焼かれた*/);
             else
                 gameState.SetDeathCause("ろうそくが燃え尽きてしまった... "/*蝋燭が燃え尽きてしまった...*/);
             gameState.GameOver();
