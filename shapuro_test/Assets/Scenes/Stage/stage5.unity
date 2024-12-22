@@ -4607,6 +4607,10 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 563619725018573313, guid: fc808ddb87c0b4682a1ada9cfb693a9e, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.36
+      objectReference: {fileID: 0}
     - target: {fileID: 563619725460283226, guid: fc808ddb87c0b4682a1ada9cfb693a9e, type: 3}
       propertyPath: m_Name
       value: UI
