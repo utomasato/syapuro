@@ -311,6 +311,7 @@ public class Fire : MonoBehaviour
         }
         if (CandleScript.GetBurnOut()) // 憑依した蝋燭が既に燃え尽きていたら
         {
+            gameState.SetDeathCause("バーナーに溶かされた... "/*バーナーに焼かれた*/);
             gameState.GameOver();
         }
         //   DidWarning = false;
@@ -336,6 +337,7 @@ public class Fire : MonoBehaviour
         }
         if (CandleScript.GetBurnOut()) // 憑依した蝋燭が既に燃え尽きていたら
         {
+            gameState.SetDeathCause("バーナーに溶かされた... "/*バーナーに焼かれた*/);
             gameState.GameOver();
         }
         //   DidWarning = false;

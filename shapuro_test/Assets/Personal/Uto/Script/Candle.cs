@@ -128,7 +128,7 @@ public class Candle : MonoBehaviour
                 {
                     IsGoingUp = false;
                 }
-                if (Mathf.Abs(rb.velocity.y) < 0.1f) // 上下動が小さい時
+                if (Mathf.Abs(rb.velocity.y) < 0.5f) // 上下動が小さい時
                 {
                     if (Physics.Raycast(transform.position, Vector3.down, transform.localScale.y / 2f))
                     {
@@ -316,7 +316,7 @@ public class Candle : MonoBehaviour
         if (gameState != null && IsBurning)
         {
             if (isOnBurner)
-                gameState.SetDeathCause("バーナーに焼かれた... "/*バーナーに焼かれた*/);
+                gameState.SetDeathCause("バーナーに溶かされた... "/*バーナーに焼かれた*/);
             else
                 gameState.SetDeathCause("ろうそくが燃え尽きてしまった... "/*蝋燭が燃え尽きてしまった...*/);
             gameState.GameOver();

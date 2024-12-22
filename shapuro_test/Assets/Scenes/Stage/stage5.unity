@@ -535,7 +535,7 @@ MonoBehaviour:
   Background: {fileID: 531590464}
   ClearText: {fileID: 1968589712}
   ScoreParents: {fileID: 1662565987}
-  RankText: {fileID: 0}
+  RankText: {fileID: 1622240197}
   Button: {fileID: 230780878}
   PLFire: {fileID: 1703191838}
   lamp: {fileID: 5370332940987848758, guid: c0f859cfb5b614290b444a6153cdf30d, type: 3}
@@ -713,7 +713,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1763,6 +1763,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 312465510}
+    - target: {fileID: 8246093224492576348, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+      propertyPath: m_text
+      value: S
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
 --- !u!1 &828604338
@@ -3263,6 +3267,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26de3d077c197423aa4b351be7ab7576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1622240197 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8246093224492576348, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+  m_PrefabInstance: {fileID: 820558998}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1650726766
 GameObject:
   m_ObjectHideFlags: 0
@@ -3845,10 +3860,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c1779e198c1d24f328122148ec3bec88, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_PlayOnAwake: 0
+  m_Volume: 0.1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4591,6 +4606,10 @@ PrefabInstance:
       value: '/5
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 563619725018573313, guid: fc808ddb87c0b4682a1ada9cfb693a9e, type: 3}
+      propertyPath: m_FillAmount
+      value: 0.36
       objectReference: {fileID: 0}
     - target: {fileID: 563619725460283226, guid: fc808ddb87c0b4682a1ada9cfb693a9e, type: 3}
       propertyPath: m_Name

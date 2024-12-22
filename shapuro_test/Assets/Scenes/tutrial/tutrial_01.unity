@@ -321,14 +321,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1480019181}
     m_Modifications:
-    - target: {fileID: 479606768351558777, guid: 324c940297ae44b029957f0d25882522, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 491
-      objectReference: {fileID: 0}
-    - target: {fileID: 479606768351558778, guid: 324c940297ae44b029957f0d25882522, type: 3}
-      propertyPath: m_Text
-      value: "\u5FC5\u9808\uFF1A\u6696\u7089\u3092\u76EE\u6307\u305D\u3046\n"
-      objectReference: {fileID: 0}
     - target: {fileID: 479606768917153675, guid: 324c940297ae44b029957f0d25882522, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -775,7 +767,7 @@ MonoBehaviour:
   Background: {fileID: 531590464}
   ClearText: {fileID: 1968589712}
   ScoreParents: {fileID: 1662565987}
-  RankText: {fileID: 0}
+  RankText: {fileID: 820559000}
   Button: {fileID: 230780878}
   PLFire: {fileID: 1703191838}
   lamp: {fileID: 5370332940987848758, guid: c0f859cfb5b614290b444a6153cdf30d, type: 3}
@@ -1988,6 +1980,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 585118061545729655, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
   m_PrefabInstance: {fileID: 820558998}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &820559000 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8246093224492576348, guid: 76fb60a3c80e14435ac898466797b871, type: 3}
+  m_PrefabInstance: {fileID: 820558998}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &836721850
 GameObject:
   m_ObjectHideFlags: 0
