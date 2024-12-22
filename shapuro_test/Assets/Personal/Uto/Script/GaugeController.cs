@@ -30,6 +30,7 @@ public class GaugeController : MonoBehaviour
         fireRectTransform = fireGauge.GetComponent<RectTransform>();
         fireStartPosition = fireRectTransform.anchoredPosition;
         Mode.text = sl[SceneSelectionState.mode];
+        fireRectTransform.anchoredPosition = Vector3.Lerp(fireEndPosition, fireStartPosition, candleImg.fillAmount);
     }
 
     public void UpdateCandleGauge(float life)

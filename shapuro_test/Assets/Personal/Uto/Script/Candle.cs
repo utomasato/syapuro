@@ -128,7 +128,7 @@ public class Candle : MonoBehaviour
                 {
                     IsGoingUp = false;
                 }
-                if (Mathf.Abs(rb.velocity.y) < 0.1f) // 上下動が小さい時
+                if (Mathf.Abs(rb.velocity.y) < 0.5f) // 上下動が小さい時
                 {
                     if (Physics.Raycast(transform.position, Vector3.down, transform.localScale.y / 2f))
                     {
