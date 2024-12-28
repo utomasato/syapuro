@@ -214,7 +214,7 @@ public class Candle : MonoBehaviour
     public void Jump() // ロウソクをジャンプさせる
     {
         float jumpPower = Mathf.Lerp(minJumpPower, maxJumpPower, 1.0f - life / startLife); // ライフに応じてジャンプ力を計算
-        if (IsGrounded /*&& Mathf.Abs(rb.velocity.y) < 0.1f*/)
+        if (IsGrounded && Mathf.Abs(rb.velocity.y) < 0.5f)
         {
             fire.JumpSE_Func();
             rb.velocity = Vector3.up * jumpPower; // ジャンプ力を適用
